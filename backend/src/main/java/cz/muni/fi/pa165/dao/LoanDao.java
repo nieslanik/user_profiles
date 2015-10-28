@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.dao;
 
+import java.util.List;
+
 import cz.muni.fi.pa165.entity.Loan;
 
 /**
@@ -17,10 +19,29 @@ public interface LoanDao {
     void create(Loan loan);
 
     /**
+     * Updates entity data in database
+     *
+     * @param loan
+     *            Loan object to be updated
+     * */
+    void update(Loan loan);
+
+    /**
      * Finds a loan in the database by its ID
      *
      * @return Found Loan object or null if no loan was found.
      * */
     Loan findById(Long id);
 
+    /**
+     * Retrieves all Loans from the database
+     *
+     * @return List of all Loans
+     * */
+    List<Loan> findAll();
+
+    /**
+     * Removes given Loan from the database
+     * */
+    void delete(Loan loan);
 }
