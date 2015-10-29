@@ -31,7 +31,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void delete(Book book) throws IllegalArgumentException {
-        em.remove(findBookById(book.getId()));
+        em.remove(findById(book.getId()));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book findBookById(Long id) {
+    public Book findById(Long id) {
         return em.find(Book.class, id);
     }
 }
