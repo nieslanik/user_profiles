@@ -30,7 +30,7 @@ import cz.muni.fi.pa165.spring.LibrarySpringContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = LibrarySpringContext.class)
 @Transactional
-public class BookDaoTest1 {
+public class BookDaoTest {
     @PersistenceContext
     private EntityManager em;
 
@@ -68,8 +68,7 @@ public class BookDaoTest1 {
         assertNotNull(book3.getId());
     }
 
-    // @Test(expected = ConstrainValidationException.class)
-    @Test(expected = Exception.class)
+    @Test(expected = PersistenceException.class)
     public void testCreateNullName() {
         Book newBook = new Book();
         bookDao.create(newBook);
@@ -81,16 +80,6 @@ public class BookDaoTest1 {
         bookDao.update(book1);
         assertEquals("changed", em.find(Book.class, book1.getId())
                 .getName());
-    }
-
-    @Test(expected = PersistenceException.class)
-    public void testUpdateNonexistent() {
-        Book newBook = new Book();
-        newBook.setId(100L);
-        newBook.setName("evil");
-        newBook.setState(BookState.NEW);
-        newBook.setIsbn(10L);
-        bookDao.update(newBook);
     }
 
     @Test
@@ -114,10 +103,10 @@ public class BookDaoTest1 {
     @Test
     public void testDelete() {
         bookDao.delete(book2);
-        assertNull(em.find(Book.class, book2));
+        assertNull(em.find(Book.class, book2.getId()));
     }
 
-    @Test(expected = PersistenceException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testDeleteNonexistent() {
         Book newBook = new Book();
         newBook.setId(100L);
