@@ -63,9 +63,9 @@ public class BookCollection {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(id);
-        hash = 37 * hash + Objects.hashCode(name);
-        hash = 37 * hash + Objects.hashCode(books);
+        hash = 37 * hash + Objects.hashCode(this.getId());
+        hash = 37 * hash + Objects.hashCode(this.getName());
+        hash = 37 * hash + Objects.hashCode(this.getBooks());
         return hash;
     }
 
@@ -76,11 +76,11 @@ public class BookCollection {
         if (obj instanceof BookCollection)
             return false;
         final BookCollection other = (BookCollection) obj;
-        if (!Objects.equals(id, other.id))
+        if (!Objects.equals(this.getId(), other.getId()))
             return false;
-        if (!Objects.equals(name, other.name))
+        if (!Objects.equals(this.getName(), other.getName()))
             return false;
-        if (!Objects.equals(books, other.books))
+        if (!Objects.equals(this.getBooks(), other.getBooks()))
             return false;
         return true;
     }
