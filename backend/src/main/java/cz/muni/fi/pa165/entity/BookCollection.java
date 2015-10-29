@@ -4,8 +4,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import javassist.bytecode.Opcode;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,10 +15,11 @@ import javax.persistence.ManyToMany;
 
 /**
  * Entity representing a collection of books in a library
- * 
+ *
  * @author Jakub Peschel
  * @email jakub.peschel@studentagency.cz
  */
+@Entity
 public class BookCollection {
 
     @Id
@@ -30,7 +32,7 @@ public class BookCollection {
     @Column
     @ManyToMany
     private Set<Book> books = new HashSet<>();
-    
+
     //<editor-fold defaultstate="collapsed" desc="GET/SET">
     public Long getId() {
         return id;
@@ -51,11 +53,11 @@ public class BookCollection {
     public Set<Book> getBooks() {
         return Collections.unmodifiableSet(books);
     }
-    
+
     public void addBook(Book books) {
         this.books.add(books);
     }
-    
+
     //</editor-fold>
 
     @Override
@@ -87,6 +89,6 @@ public class BookCollection {
         }
         return true;
     }
-    
-    
+
+
 }
