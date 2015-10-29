@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
+import cz.muni.fi.pa165.entity.BookState;
 
 /**
  * @author Michael Simacek
@@ -40,10 +41,16 @@ public class BookCollectionDaoTest {
     public void setUp() {
         book1 = new Book();
         book1.setName("Varime s konopim");
+        book1.setIsbn(1L);
+        book1.setState(BookState.NEW);
         book2 = new Book();
         book2.setName("Kamasutra");
+        book2.setIsbn(1L);
+        book2.setState(BookState.NEW);
         book3 = new Book();
         book3.setName("Everything I Want to Do Is Illegal");
+        book3.setIsbn(1L);
+        book3.setState(BookState.NEW);
         em.persist(book1);
         em.persist(book2);
         em.persist(book3);
