@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.dao.test;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -12,12 +13,14 @@ import javax.persistence.PersistenceException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
+import cz.muni.fi.pa165.dao.BookDao;
 import cz.muni.fi.pa165.entity.Book;
-import cz.muni.fi.pa165.entity.BookCollection;
 import cz.muni.fi.pa165.entity.BookState;
-import java.util.HashSet;
+import cz.muni.fi.pa165.spring.LibrarySpringContext;
 
 /**
  * @author Jakub Peschel
@@ -25,13 +28,14 @@ import java.util.HashSet;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-// TODO @ContextConfiguration(...)
+@ContextConfiguration(classes = LibrarySpringContext.class)
+@Transactional
 public class BookDaoTest1 {
     @PersistenceContext
     private EntityManager em;
 
     @Inject
-    BookDao bookDao;
+    private BookDao bookDao;
 
     private Book book1;
     private Book book2;
@@ -45,12 +49,12 @@ public class BookDaoTest1 {
         book1.setState(BookState.NEW);
         book2 = new Book();
         book2.setName("Java Enterprise");
-        book1.setIsbn(1L);
-        book1.setState(BookState.NEW);
+        book2.setIsbn(1L);
+        book2.setState(BookState.NEW);
         book3 = new Book();
         book3.setName("Neural networks for dummies");
-        book1.setIsbn(1L);
-        book1.setState(BookState.NEW);
+        book3.setIsbn(1L);
+        book3.setState(BookState.NEW);
         em.persist(book1);
         em.persist(book2);
         em.persist(book3);

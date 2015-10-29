@@ -2,11 +2,18 @@ package cz.muni.fi.pa165.entity;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Entity representing a single book in a library
@@ -18,6 +25,7 @@ import javax.persistence.ManyToMany;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -30,13 +38,15 @@ public class Book {
     private Long isbn;
 
     @Column(nullable = false)
-    private BookState state;
+    private BookState state = BookState.NEW;
 
-    @Column
     @ManyToMany(mappedBy = "books")
     private Set<BookCollection> collections = new HashSet<>();
 
-    //<editor-fold defaultstate="collapsed" desc="GET/SET">
+    @OneToMany
+    // OneToMany because we want to keep history of loans
+    private Set<Loan> loans = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -80,11 +90,22 @@ public class Book {
     public Set<BookCollection> getCollections() {
         return Collections.unmodifiableSet(collections);
     }
-    
-    public void addCollection(BookCollection collection){
-        this.collections.add(collection);
+
+    public void addCollection(BookCollection collection) {
+        collections.add(collection);
     }
-    //</editor-fold>
+
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(Set<Loan> loans) {
+        this.loans = loans;
+    }
+
+    public void setCollections(Set<BookCollection> collections) {
+        this.collections = collections;
+    }
 
     @Override
     public int hashCode() {
@@ -99,37 +120,28 @@ public class Book {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
-        if (!(obj instanceof Book)) {
+        if (!(obj instanceof Book))
             return false;
-        }
         Book other = (Book) obj;
         if (authorName == null) {
-            if (other.authorName != null) {
+            if (other.authorName != null)
                 return false;
-            }
-        } else if (!authorName.equals(other.authorName)) {
+        } else if (!authorName.equals(other.authorName))
             return false;
-        }
         if (isbn == null) {
-            if (other.isbn != null) {
+            if (other.isbn != null)
                 return false;
-            }
-        } else if (!isbn.equals(other.isbn)) {
+        } else if (!isbn.equals(other.isbn))
             return false;
-        }
         if (name == null) {
-            if (other.name != null) {
+            if (other.name != null)
                 return false;
-            }
-        } else if (!name.equals(other.name)) {
+        } else if (!name.equals(other.name))
             return false;
-        }
         return true;
     }
 }

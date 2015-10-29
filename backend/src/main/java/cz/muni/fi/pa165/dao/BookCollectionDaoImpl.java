@@ -5,15 +5,25 @@
 package cz.muni.fi.pa165.dao;
 
 import cz.muni.fi.pa165.entity.BookCollection;
+
 import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author xkubist
  */
+@Repository
+@Transactional
 public class BookCollectionDaoImpl implements BookCollectionDao {
+    @PersistenceContext
     private EntityManager em;
+
     public void create (BookCollection b){
         em.persist(b);
     }
