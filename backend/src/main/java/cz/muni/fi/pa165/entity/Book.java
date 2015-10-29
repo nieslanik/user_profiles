@@ -112,9 +112,9 @@ public class Book {
         final int prime = 31;
         int result = 1;
         result = prime * result
-                + ((authorName == null) ? 0 : authorName.hashCode());
-        result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
+                + ((this.getAuthorName() == null) ? 0 : this.getAuthorName().hashCode());
+        result = prime * result + ((this.getIsbn() == null) ? 0 : this.getIsbn().hashCode());
+        result = prime * result + ((this.getName() == null) ? 0 : this.getName().hashCode());
         return result;
     }
 
@@ -127,20 +127,20 @@ public class Book {
         if (!(obj instanceof Book))
             return false;
         Book other = (Book) obj;
-        if (authorName == null) {
-            if (other.authorName != null)
+        if (this.getAuthorName() == null) {
+            if (other.getAuthorName() != null)
                 return false;
-        } else if (!authorName.equals(other.authorName))
+        } else if (!this.getAuthorName().equals(other.getAuthorName()))
             return false;
-        if (isbn == null) {
-            if (other.isbn != null)
+        if (this.getIsbn() == null) {
+            if (other.getIsbn() != null)
                 return false;
-        } else if (!isbn.equals(other.isbn))
+        } else if (!this.getIsbn().equals(other.getIsbn()))
             return false;
-        if (name == null) {
-            if (other.name != null)
+        if (this.getName() == null) {
+            if (other.getName() != null)
                 return false;
-        } else if (!name.equals(other.name))
+        } else if (!this.getName().equals(other.getName()))
             return false;
         return true;
     }
