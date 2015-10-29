@@ -1,13 +1,15 @@
 package cz.muni.fi.pa165.dao;
 
-import cz.muni.fi.pa165.entity.Book;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
-import javax.persistence.TypedQuery;
-import java.util.List;
+import cz.muni.fi.pa165.entity.Book;
 
 /**
  * Created by Juraj on 10/29/2015.
@@ -16,7 +18,7 @@ import java.util.List;
 @Transactional
 public class BookDaoImpl implements BookDao {
 
-    @PersistenceUnit
+    @PersistenceContext
     private EntityManager em;
 
     @Override

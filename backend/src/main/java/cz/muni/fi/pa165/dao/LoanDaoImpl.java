@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ import cz.muni.fi.pa165.entity.Loan;
 @Transactional
 @Repository
 public class LoanDaoImpl implements LoanDao {
-    @PersistenceUnit
+    @PersistenceContext
     private EntityManager em;
 
     @Override

@@ -1,24 +1,27 @@
 package cz.muni.fi.pa165.dao;
 
-import cz.muni.fi.pa165.entity.Member;
 import java.util.List;
+
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import cz.muni.fi.pa165.entity.Member;
+
 /**
- * Data access object for Member entity 
- * 
+ * Data access object for Member entity
+ *
  * @author Jakub Peschel
  * @email jakub.peschel@studentagency.cz
  */
 @Transactional
 @Repository
 public class MemberDaoImpl implements MemberDao {
-    @PersistenceUnit
+    @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void create(Member member) {
         em.persist(member);
