@@ -1,8 +1,12 @@
 package cz.muni.fi.pa165.entity;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  * Entity representing a single book in a library
@@ -19,7 +23,7 @@ public class Book {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column
     private String authorName;
 
     @Column(nullable = false)
@@ -28,6 +32,11 @@ public class Book {
     @Column(nullable = false)
     private BookState state;
 
+    @Column
+    @ManyToMany(mappedBy = "books")
+    private Set<BookCollection> collections = new HashSet<>();
+
+    //<editor-fold defaultstate="collapsed" desc="GET/SET">
     public Long getId() {
         return id;
     }
@@ -67,6 +76,15 @@ public class Book {
     public void setState(BookState state) {
         this.state = state;
     }
+
+    public Set<BookCollection> getCollections() {
+        return Collections.unmodifiableSet(collections);
+    }
+    
+    public void addCollection(BookCollection collection){
+        this.collections.add(collection);
+    }
+    //</editor-fold>
 
     @Override
     public int hashCode() {
