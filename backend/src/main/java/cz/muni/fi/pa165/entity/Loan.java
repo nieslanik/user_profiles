@@ -90,11 +90,11 @@ public class Loan {
         final int prime = 31;
         int result = 1;
         result = prime * result
-                + ((loanDate == null) ? 0 : loanDate.hashCode());
-        result = prime * result + ((returned == null) ? 0 : returned.hashCode());
-        result = prime * result + ((returnDate == null) ? 0 : returnDate.hashCode());
-        result = prime * result + ((returnBookState == null) ? 0 : returnBookState.hashCode());
-        result = prime * result + ((book == null) ? 0 : book.hashCode());
+                + ((this.getDate() == null) ? 0 : this.getDate().hashCode());
+        result = prime * result + ((this.isReturned() == null) ? 0 : this.isReturned().hashCode());
+        result = prime * result + ((this.getReturnDate() == null) ? 0 : this.getReturnDate().hashCode());
+        result = prime * result + ((this.getReturnBookState() == null) ? 0 : this.getReturnBookState().hashCode());
+        result = prime * result + ((this.getBook() == null) ? 0 : this.getBook().hashCode());
         return result;
     }
 
@@ -110,34 +110,34 @@ public class Loan {
             return false;
         }
         Loan other = (Loan) obj;
-        if (loanDate == null && other.loanDate != null) {
+        if (this.getDate() == null && other.getDate() != null) {
                 return false;
             }
-        else if (!loanDate.equals(other.loanDate)){
+        else if (!this.getDate().equals(other.getDate())){
             return false; 
         }
-        if (returned == null && other.returned != null) {
+        if (this.isReturned() == null && other.isReturned() != null) {
                 return false;
         }
-        else if(returned!=other.returned){
+        else if(isReturned()!=other.isReturned()){
             return false; 
         }
-        if (returnDate == null && other.returnDate != null) {
+        if (this.getReturnDate() == null && other.getReturnDate() != null) {
                 return false;
         }
-        else if(!returnDate.equals(other.returnDate)){
+        else if(!this.getReturnDate().equals(other.getReturnDate())){
             return false; 
         }
-        if (returnBookState == null && other.returnBookState != null) {
+        if (this.getReturnBookState() == null && other.getReturnBookState() != null) {
                 return false;
         }
-        else if(!returnBookState.equals(other.returnBookState)){
+        else if(!this.getReturnBookState().equals(other.getReturnBookState())){
             return false;
         }
-        if (book == null && other.book != null) {
+        if (this.getBook() == null && other.getBook() != null) {
                 return false;
         }
-        else if(!book.equals(other.book)){
+        else if(!this.getBook().equals(other.getBook())){
             return false;
         }
         return true;
