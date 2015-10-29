@@ -42,8 +42,7 @@ public class BookCollectionDaoTest {
     private BookCollection coll1;
     private BookCollection coll2;
 
-    @Before
-    public void setUp() {
+    public void prepareData() {
         book1 = new Book();
         book1.setName("Varime s konopim");
         book1.setIsbn(1L);
@@ -65,68 +64,71 @@ public class BookCollectionDaoTest {
         coll1.addBook(book1);
         coll1.addBook(book2);
         coll2 = new BookCollection();
+        coll2.setName("test2");
         coll2.addBook(book2);
         coll2.addBook(book3);
         collectionDao.create(coll1);
         collectionDao.create(coll2);
+        em.flush();
     }
 
     @Test
+    @Transactional
     public void testCreate() {
+        prepareData();
+        BookCollection c = new BookCollection();
+        c.setName("foo");
+        collectionDao.create(c);
+        assertNotNull(c.getId());
         assertNotNull(coll1.getId());
         assertNotNull(coll2.getId());
     }
 
-    // @Test(expected = ConstrainValidationException.class)
-    @Test(expected = Exception.class)
+    @Test(expected = PersistenceException.class)
     public void testCreateNullName() {
         BookCollection newColl = new BookCollection();
         collectionDao.create(newColl);
     }
 
     @Test
+    @Transactional
     public void testUpdate() {
+        prepareData();
         coll2.setName("changed");
         collectionDao.update(coll2);
         assertEquals("changed", em.find(BookCollection.class, coll2.getId())
                 .getName());
     }
 
-    @Test(expected = PersistenceException.class)
-    public void testUpdateNonexistent() {
-        BookCollection newColl = new BookCollection();
-        newColl.setId(100);
-        newColl.setName("evil");
-        collectionDao.update(newColl);
-    }
-
     @Test
     public void testFindById() {
+        prepareData();
         assertSame(coll1, collectionDao.findById(coll1.getId()));
         assertSame(coll2, collectionDao.findById(coll2.getId()));
-        assertNull(collectionDao.findById(666));
+        assertNull(collectionDao.findById(666L));
     }
 
     @Test
     public void testFindAll() {
-        Set<BookCollection> expected;
+        prepareData();
+        Set<BookCollection> expected = new HashSet<>();
         expected.add(coll1);
         expected.add(coll2);
-        Set<BookCollection> actual;
-        actual.addAll(collectionDao.findAll());
+        Set<BookCollection> actual = new HashSet<>(collectionDao.findAll());
         assertEquals(expected, actual);
     }
 
     @Test
     public void testDelete() {
+        prepareData();
         collectionDao.delete(coll2);
-        assertNull(em.find(BookCollection.class, coll2));
+        assertNull(em.find(BookCollection.class, coll2.getId()));
     }
 
-    @Test(expected = PersistenceException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testDeleteNonexistent() {
         BookCollection newColl = new BookCollection();
-        newColl.setId(100);
+        newColl.setId(100L);
         newColl.setName("evil");
         collectionDao.delete(newColl);
     }

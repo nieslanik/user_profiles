@@ -49,12 +49,12 @@ public class BookDaoTest1 {
         book1.setState(BookState.NEW);
         book2 = new Book();
         book2.setName("Java Enterprise");
-        book1.setIsbn(1L);
-        book1.setState(BookState.NEW);
+        book2.setIsbn(1L);
+        book2.setState(BookState.NEW);
         book3 = new Book();
         book3.setName("Neural networks for dummies");
-        book1.setIsbn(1L);
-        book1.setState(BookState.NEW);
+        book3.setIsbn(1L);
+        book3.setState(BookState.NEW);
         em.persist(book1);
         em.persist(book2);
         em.persist(book3);
