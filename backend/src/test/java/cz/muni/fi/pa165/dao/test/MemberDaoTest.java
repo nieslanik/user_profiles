@@ -12,7 +12,6 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -20,13 +19,18 @@ import static org.junit.Assert.assertSame;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import cz.muni.fi.pa165.spring.LibrarySpringContext;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author xkubist
  */
 @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = LibrarySpringContext.class)
+@Transactional
 public class MemberDaoTest {
     @PersistenceContext
     private EntityManager em;
@@ -36,7 +40,6 @@ public class MemberDaoTest {
     
     private Member member1;
     private Member member2;
-    
     @Before
     public void setUp() {
         member1 = new Member();
@@ -54,67 +57,55 @@ public class MemberDaoTest {
         em.persist(member1);
         em.persist(member2);
         em.flush();
+        memberDao.create(member1);
+        memberDao.create(member2);
         
     }
     
     @Test
+    @Transactional
     public void testCreate() {
-        memberDao.create(member1);
-        memberDao.create(member2);
         assertNotNull(member1.getId());
         assertNotNull(member2.getId());
     }
     
-    @Test
-    public void testCreateNullName() {
-        Member member = new Member();
-        memberDao.create(member);
-    }
     
     @Test
+    @Transactional
     public void testUpdate() {
-        memberDao.create(member1);
         member1.setGivenName("Janka");
         memberDao.update(member1);
         assertEquals("Janka", em.find(Member.class, member1.getId())
                 .getGivenName());
     }
     
-    @Test(expected = PersistenceException.class)
-    public void testUpdateNonexistent() {
-        memberDao.update(member1);
-    }
     
     @Test
     public void testFindById() {
-        memberDao.create(member1);
-        memberDao.create(member2);
         assertSame(member1, memberDao.findById(member1.getId()));
         assertSame(member2, memberDao.findById(member2.getId()));
         assertNull(memberDao.findById(Long.MAX_VALUE));
     }
     @Test
     public void testFindAll() {
+      
         Set<Member> members = new HashSet<>();
         members.add(member1);
         members.add(member2);
-        memberDao.create(member1);
-        memberDao.create(member2);
-        Set<Member> result = new HashSet<>();
-        result.addAll(memberDao.findAll());
+        Set<Member> result = new HashSet<>(memberDao.findAll());
         assertEquals(result, members);
     }
     
     @Test
     public void testDelete() {
-        memberDao.create(member1);
         memberDao.delete(member1);
-        assertNull(em.find(Member.class, member1));
+        assertNull(em.find(Member.class, member1.getId()));
     }
 
-    @Test(expected = PersistenceException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testDeleteNonexistent() {
-        memberDao.delete(member1);
+        Member member = new Member();
+        memberDao.delete(member);
     }
     
 }
