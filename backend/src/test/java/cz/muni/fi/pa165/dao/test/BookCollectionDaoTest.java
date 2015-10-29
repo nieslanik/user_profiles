@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.dao.test;
 
+import cz.muni.fi.pa165.dao.BookCollectionDao;
 import static org.junit.Assert.*;
 
 import java.util.Set;
