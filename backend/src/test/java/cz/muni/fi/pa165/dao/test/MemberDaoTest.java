@@ -104,8 +104,8 @@ public class MemberDaoTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testDeleteNonexistent() {
-        Member member = new Member();
-        memberDao.delete(member);
+        Member myMember = new Member();
+        memberDao.delete(myMember);
     }
     
 }
