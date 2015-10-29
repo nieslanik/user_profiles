@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
  /**
   * +[Loan|loanDate:Date;returned:Boolean;returnDate:Date;returnedBookState:BookState]
@@ -22,15 +24,27 @@ public class Loan {
     private Long id;
     
     @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date loanDate;
     @Column(nullable = false)
     private Boolean returned;
     @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date returnDate;
     @Column(nullable = false)
     private BookState returnBookState;
     @Column(nullable = false)
-    private List<Book> books;
+    
+    @ManyToOne
+    private Book book;
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public Book getBook() {
+        return book;
+    }
     
     public void setId(Long id){
         this.id=id;
@@ -68,18 +82,8 @@ public class Loan {
         this.returnDate=returnBookState;
     }
     
-    public void returnBook(Book book){
-        if(books.contains(book)){
-            books.remove(book);
-        }
-        else{
-            throw new IllegalArgumentException("Book"+book.getId()+ "is not lend!");
-        }
-    }
     
-    public List<Book> getLendBooks(){
-        return Collections.unmodifiableList(books);
-    }
+    
   
     @Override
     public int hashCode() {
@@ -90,7 +94,7 @@ public class Loan {
         result = prime * result + ((returned == null) ? 0 : returned.hashCode());
         result = prime * result + ((returnDate == null) ? 0 : returnDate.hashCode());
         result = prime * result + ((returnBookState == null) ? 0 : returnBookState.hashCode());
-        result = prime * result + ((books == null) ? 0 : books.hashCode());
+        result = prime * result + ((book == null) ? 0 : book.hashCode());
         return result;
     }
 
@@ -130,10 +134,10 @@ public class Loan {
         else if(!returnBookState.equals(other.returnBookState)){
             return false;
         }
-        if (books == null && other.books != null) {
+        if (book == null && other.book != null) {
                 return false;
         }
-        else if(!books.equals(other.books)){
+        else if(!book.equals(other.book)){
             return false;
         }
         return true;
