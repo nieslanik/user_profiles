@@ -3,12 +3,14 @@ package cz.muni.fi.pa165.entity;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
  /**
@@ -33,7 +35,6 @@ public class Loan {
     private Date returnDate;
     @Column(nullable = false)
     private BookState returnBookState;
-    @Column(nullable = false)
     
     @ManyToOne
     private Book book;

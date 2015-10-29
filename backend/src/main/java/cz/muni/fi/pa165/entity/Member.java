@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.entity;
 
 import javax.persistence.*;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Set;
 public class Member {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)

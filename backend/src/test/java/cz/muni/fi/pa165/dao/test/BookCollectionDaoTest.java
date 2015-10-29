@@ -1,8 +1,8 @@
 package cz.muni.fi.pa165.dao.test;
 
-import cz.muni.fi.pa165.dao.BookCollectionDao;
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -10,27 +10,31 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
+import cz.muni.fi.pa165.dao.BookCollectionDao;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
 import cz.muni.fi.pa165.entity.BookState;
+import cz.muni.fi.pa165.spring.LibrarySpringContext;
 
 /**
  * @author Michael Simacek
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-// TODO @ContextConfiguration(...)
+@ContextConfiguration(classes = LibrarySpringContext.class)
+@Transactional
 public class BookCollectionDaoTest {
     @PersistenceContext
     private EntityManager em;
 
     @Inject
-    BookCollectionDao collectionDao;
+    private BookCollectionDao collectionDao;
 
     private Book book1;
     private Book book2;

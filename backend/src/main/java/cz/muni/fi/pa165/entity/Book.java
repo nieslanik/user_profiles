@@ -2,13 +2,18 @@ package cz.muni.fi.pa165.entity;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Entity representing a single book in a library
@@ -20,6 +25,7 @@ import javax.persistence.ManyToOne;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -32,14 +38,13 @@ public class Book {
     private Long isbn;
 
     @Column(nullable = false)
-    private BookState state;
+    private BookState state = BookState.NEW;
 
-    @Column
     @ManyToMany(mappedBy = "books")
     private Set<BookCollection> collections = new HashSet<>();
 
-    @ManyToOne
-    // ManyToOne because we want to keep history of loans
+    @OneToMany
+    // OneToMany because we want to keep history of loans
     private Set<Loan> loans = new HashSet<>();
 
     public Long getId() {

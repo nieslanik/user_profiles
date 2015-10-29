@@ -63,30 +63,25 @@ public class BookCollection {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.books);
+        hash = 37 * hash + Objects.hashCode(id);
+        hash = 37 * hash + Objects.hashCode(name);
+        hash = 37 * hash + Objects.hashCode(books);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
-        if (obj instanceof BookCollection) {
+        if (obj instanceof BookCollection)
             return false;
-        }
         final BookCollection other = (BookCollection) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(id, other.id))
             return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(name, other.name))
             return false;
-        }
-        if (!Objects.equals(this.books, other.books)) {
+        if (!Objects.equals(books, other.books))
             return false;
-        }
         return true;
     }
 
