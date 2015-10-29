@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
  /**
   * +[Loan|loanDate:Date;returned:Boolean;returnDate:Date;returnedBookState:BookState]
@@ -11,6 +14,11 @@ import javax.persistence.Column;
   * @author xkubist
   */
 public class Loan {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
     @Column(nullable = false)
     private Date loanDate;
     @Column(nullable = false)
@@ -21,6 +29,14 @@ public class Loan {
     private BookState returnBookState;
     @Column(nullable = false)
     private List<Book> books;
+    
+    public void setId(Long id){
+        this.id=id;
+    }
+    
+    public Long getId(){
+        return this.id;
+    }
     
     public void setDate(Date loanDate){
         this.loanDate=loanDate;
