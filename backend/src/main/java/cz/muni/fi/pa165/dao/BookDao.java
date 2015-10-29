@@ -12,5 +12,6 @@ public interface BookDao {
     void update(Book book) throws IllegalArgumentException;
     void delete(Book book) throws IllegalArgumentException;
     List<Book> findAll();
-    Book findBookById(Long id);
+
+    Book findById(Long id);
 }
