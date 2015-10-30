@@ -93,7 +93,11 @@ public class Book {
     }
 
     public Set<Loan> getLoans() {
-        return loans;
+        return Collections.unmodifiableSet(loans);
+    }
+
+    public void addLoan(Loan loan) {
+        loans.add(loan);
     }
 
     public void setLoans(Set<Loan> loans) {
