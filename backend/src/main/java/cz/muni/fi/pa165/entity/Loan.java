@@ -13,18 +13,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
- /**
-  * +[Loan|loanDate:Date;returned:Boolean;returnDate:Date;returnedBookState:BookState]
-  * +[Loan]++-1>[Book]
-  * @author xkubist
-  */
+/**
+ * +[Loan|loanDate:Date;returned:Boolean;returnDate:Date;returnedBookState:BookState]
+ * +[Loan]++-1>[Book]
+ *
+ * @author xkubist
+ */
 @Entity
 public class Loan {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date loanDate;
@@ -35,7 +36,7 @@ public class Loan {
     private Date returnDate;
     @Column(nullable = false)
     private BookState returnBookState;
-    
+
     @ManyToOne
     private Book book;
 
@@ -46,46 +47,47 @@ public class Loan {
     public Book getBook() {
         return book;
     }
-    
-    public void setId(Long id){
-        this.id=id;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    
-    public Long getId(){
+
+    public Long getId() {
         return this.id;
     }
-    
-    public void setDate(Date loanDate){
-        this.loanDate=loanDate;
+
+    public void setDate(Date loanDate) {
+        this.loanDate = loanDate;
     }
-     public Date getDate(){
+
+    public Date getDate() {
         return this.loanDate;
     }
-     
-    public Boolean isReturned(){
+
+    public Boolean isReturned() {
         return this.returned;
     }
-    public void returnLoan(){
-        this.returned=true;
+
+    public void returnLoan() {
+        this.returned = true;
     }
-    
-    public Date getReturnDate(){
+
+    public Date getReturnDate() {
         return this.returnDate;
     }
-    public void setReturnDate(Date returnDate){
-        this.returnDate=returnDate;
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
-    
-    public BookState getReturnBookState(){
+
+    public BookState getReturnBookState() {
         return this.returnBookState;
     }
-    public void setReturnBookState(Date returnBookState){
-        this.returnDate=returnBookState;
+
+    public void setReturnBookState(BookState returnBookState) {
+        this.returnBookState = returnBookState;
     }
-    
-    
-    
-  
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -112,33 +114,28 @@ public class Loan {
         }
         Loan other = (Loan) obj;
         if (this.getDate() == null && other.getDate() != null) {
-                return false;
-            }
-        else if (!this.getDate().equals(other.getDate())){
-            return false; 
+            return false;
+        } else if (!this.getDate().equals(other.getDate())) {
+            return false;
         }
         if (this.isReturned() == null && other.isReturned() != null) {
-                return false;
-        }
-        else if(isReturned()!=other.isReturned()){
-            return false; 
+            return false;
+        } else if (isReturned() != other.isReturned()) {
+            return false;
         }
         if (this.getReturnDate() == null && other.getReturnDate() != null) {
-                return false;
-        }
-        else if(!this.getReturnDate().equals(other.getReturnDate())){
-            return false; 
+            return false;
+        } else if (!this.getReturnDate().equals(other.getReturnDate())) {
+            return false;
         }
         if (this.getReturnBookState() == null && other.getReturnBookState() != null) {
-                return false;
-        }
-        else if(!this.getReturnBookState().equals(other.getReturnBookState())){
+            return false;
+        } else if (!this.getReturnBookState().equals(other.getReturnBookState())) {
             return false;
         }
         if (this.getBook() == null && other.getBook() != null) {
-                return false;
-        }
-        else if(!this.getBook().equals(other.getBook())){
+            return false;
+        } else if (!this.getBook().equals(other.getBook())) {
             return false;
         }
         return true;
