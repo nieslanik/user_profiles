@@ -68,6 +68,10 @@ public class Loan {
         return this.returned;
     }
 
+    public void setReturned(Boolean returned) {
+        this.returned = returned;
+    }
+
     public void returnLoan() {
         this.returned = true;
     }

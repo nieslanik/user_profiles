@@ -64,23 +64,27 @@ public class LoanDaoTest {
         firstLoan.setBook(firstBook);
         firstLoan.setReturnBookState(BookState.NEW);
         firstLoan.setReturnDate(date);
+        firstLoan.setReturned(true);
 
         secondLoan.setDate(date);
         secondLoan.setBook(secondBook);
         secondLoan.setReturnBookState(BookState.LIGHT_DAMAGE);
         secondLoan.setReturnDate(date);
+        secondLoan.setReturned(true);
 
         thirdLoan.setDate(date);
         thirdLoan.setBook(firstBook);
         thirdLoan.setReturnBookState(BookState.HEAVY_DAMAGE);
         thirdLoan.setReturnDate(date);
+        thirdLoan.setReturned(true);
 
         loanDao.create(firstLoan);
         loanDao.create(secondLoan);
+        loanDao.create(thirdLoan);
     }
 
     @Test
-    private void testCreate() {
+    public void testCreate() {
         createTestData();
         assertNotNull(firstLoan.getId());
         assertNotNull(secondLoan.getId());
@@ -88,7 +92,7 @@ public class LoanDaoTest {
     }
 
     @Test(expected = PersistenceException.class)
-    private void testCreateNullDate() {
+    public void testCreateNullDate() {
         Loan loan = new Loan();
         Calendar calendar = new GregorianCalendar(2015, 1, 1);
         Date date = calendar.getTime();
@@ -98,7 +102,7 @@ public class LoanDaoTest {
     }
 
     @Test
-    private void testUpdate() {
+    public void testUpdate() {
         createTestData();
 
         Calendar calendar = new GregorianCalendar(2015, 12, 24);
@@ -112,7 +116,7 @@ public class LoanDaoTest {
     }
 
     @Test
-    private void testDelete() {
+    public void testDelete() {
         createTestData();
         loanDao.delete(firstLoan);
         Loan found = em.find(Loan.class, firstLoan.getId());
@@ -120,7 +124,7 @@ public class LoanDaoTest {
     }
 
     @Test
-    private void testFindById() {
+    public void testFindById() {
         createTestData();
         Loan found = loanDao.findById(secondLoan.getId());
         assertNotNull(found);
@@ -128,14 +132,14 @@ public class LoanDaoTest {
     }
 
     @Test
-    private void testFindAll() {
+    public void testFindAll() {
         createTestData();
         List<Loan> loans = loanDao.findAll();
         assertEquals(loans.size(), 3);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    private void testDeleteNonExistent() {
+    public void testDeleteNonExistent() {
         Loan loan = new Loan();
         Calendar calendar = new GregorianCalendar(2015,1,1);
         Date date = calendar.getTime();
