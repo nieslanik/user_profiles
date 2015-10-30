@@ -27,12 +27,12 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void update(Book book) throws IllegalArgumentException {
+    public void update(Book book) {
         em.merge(book);
     }
 
     @Override
-    public void delete(Book book) throws IllegalArgumentException {
+    public void delete(Book book) {
         em.remove(findById(book.getId()));
     }
 
