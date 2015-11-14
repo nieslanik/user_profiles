@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>backend</artifactId>
+  <artifactId>persistence</artifactId>
 
   <modelVersion>4.0.0</modelVersion>
   <dependencies>
