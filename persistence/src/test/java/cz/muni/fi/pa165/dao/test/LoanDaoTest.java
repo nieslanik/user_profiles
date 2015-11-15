@@ -1,29 +1,28 @@
 package cz.muni.fi.pa165.dao.test;
 
-import cz.muni.fi.pa165.dao.BookDao;
-import cz.muni.fi.pa165.dao.LoanDao;
-import cz.muni.fi.pa165.entity.Book;
-import cz.muni.fi.pa165.entity.BookState;
-import cz.muni.fi.pa165.entity.Loan;
-import cz.muni.fi.pa165.spring.LibrarySpringContext;
-import org.junit.BeforeClass;
+import static org.junit.Assert.*;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
-import javax.persistence.PersistenceUnit;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import static org.junit.Assert.*;
+import cz.muni.fi.pa165.dao.LoanDao;
+import cz.muni.fi.pa165.entity.Book;
+import cz.muni.fi.pa165.entity.BookState;
+import cz.muni.fi.pa165.entity.Loan;
+import cz.muni.fi.pa165.spring.LibrarySpringContext;
 
 /**
  * Created by Juraj on 10/30/2015.
