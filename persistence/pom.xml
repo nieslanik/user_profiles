@@ -11,6 +11,14 @@
 
   <modelVersion>4.0.0</modelVersion>
   <dependencies>
+    <!-- internal deps -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <!-- external deps -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>

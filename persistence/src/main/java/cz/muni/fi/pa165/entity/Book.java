@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import cz.muni.fi.pa165.enums.BookState;
+
 /**
  * Entity representing a single book in a library
  *

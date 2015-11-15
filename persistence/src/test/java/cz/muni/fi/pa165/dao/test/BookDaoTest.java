@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.muni.fi.pa165.dao.BookDao;
 import cz.muni.fi.pa165.entity.Book;
-import cz.muni.fi.pa165.entity.BookState;
+import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.spring.LibrarySpringContext;
 
 /**

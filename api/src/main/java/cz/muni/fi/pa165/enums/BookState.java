@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.entity;
+package cz.muni.fi.pa165.enums;
 
 /**
  * Enum representig possible state/condition which a book can have

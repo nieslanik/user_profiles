@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
+import cz.muni.fi.pa165.enums.BookState;
+
 /**
  * +[Loan|loanDate:Date;returned:Boolean;returnDate:Date;returnedBookState:BookState]
  * +[Loan]++-1>[Book]
