@@ -28,8 +28,8 @@ public class BookCollectionDTO {
         return books;
     }
 
-    public void setBooks(Set<BookDTO> books) {
-        this.books = books;
+    public void addBook(BookDTO book) {
+        this.books.add(book);
     }
 
     @Override
