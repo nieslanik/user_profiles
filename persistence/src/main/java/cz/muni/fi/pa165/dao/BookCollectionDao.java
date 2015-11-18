@@ -16,36 +16,35 @@ public interface BookCollectionDao {
      *
      * @param b BookCollection object to be persisted
      * */
-    public void create(BookCollection b);
-    /**
+    public /**
      * delete the BookCollection from database
      * 
      * @param b BookCollection to be deleted
      */
-    public void delete(BookCollection b);
+    void delete(BookCollection b);
     /**
      * update the BookCollection from database
      * 
      * @param b BookCollection to be deleted
      */
-    public void update(BookCollection b);
+    void update(BookCollection b);
     /**
      * return list of all BookCollection objects from database 
      * 
      * @return list of all BookCollection objects from database 
      */
-    public List<BookCollection> findAll();
+    List<BookCollection> findAll();
     /**
      * return BookCollection objects with target name 
      * 
      * @return BookCollection objects with target name 
      */
-    public BookCollection findByName(String Name);
+    BookCollection findByName(String Name);
     /**
      * return BookCollection objects with target id 
      * 
      * @return BookCollection objects with target id 
      */
-    public BookCollection findById(Long id);
+    BookCollection findById(Long id);
     
 }
