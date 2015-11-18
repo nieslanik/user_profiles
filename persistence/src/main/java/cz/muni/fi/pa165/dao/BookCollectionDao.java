@@ -16,7 +16,8 @@ public interface BookCollectionDao {
      *
      * @param b BookCollection object to be persisted
      * */
-    public /**
+    void create(BookCollection b);
+    /**
      * delete the BookCollection from database
      * 
      * @param b BookCollection to be deleted
