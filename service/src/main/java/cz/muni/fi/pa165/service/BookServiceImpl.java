@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import cz.muni.fi.pa165.dao.BookDao;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.exceptions.LibraryServiceException;
 
 /**
  * Implementation of BookService
@@ -37,7 +38,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public void setState(Book book, BookState newState) {
         if (book.getState().compareTo(newState) < 0) {
-            throw new IllegalArgumentException("Book cannot be set to less damaged state than it already was");
+            throw new LibraryServiceException("Book cannot be set to less damaged state than it already was");
         }
         book.setState(newState);
         bookDao.update(book);
