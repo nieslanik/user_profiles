@@ -6,8 +6,11 @@ import javax.inject.Inject;
 
 import cz.muni.fi.pa165.dao.BookDao;
 import cz.muni.fi.pa165.entity.Book;
+import cz.muni.fi.pa165.enums.BookState;
 
 /**
+ * Implementation of BookService
+ *
  * @author Michael Simacek
  *
  */
@@ -17,7 +20,7 @@ public class BookServiceImpl implements BookService {
     BookDao bookDao;
 
     @Override
-    public void createBook(Book book) {
+    public void create(Book book) {
         bookDao.create(book);
     }
 
@@ -31,4 +34,17 @@ public class BookServiceImpl implements BookService {
         return bookDao.findAll();
     }
 
+    @Override
+    public void setState(Book book, BookState newState) {
+        if (book.getState().compareTo(newState) < 0) {
+            throw new IllegalArgumentException("Book cannot be set to less damaged state than it already was");
+        }
+        book.setState(newState);
+        bookDao.update(book);
+    }
+
+    @Override
+    public void delete(Book book) {
+        bookDao.delete(book);
+    }
 }
