@@ -67,6 +67,10 @@ public class MemberDTO {
         this.loans = loans;
     }
 
+    public void addLoan(LoanDTO loan) {
+        loans.add(loan);
+    }
+
     @Override
     public int hashCode() {
         final int prime = 29;

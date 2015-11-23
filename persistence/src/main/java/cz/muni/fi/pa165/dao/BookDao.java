@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.entity.Book;
 import java.util.List;
 
 /**
- * Created by Juraj on 10/29/2015.
+ * Created by Juraj Tomko on 10/29/2015.
  */
 public interface BookDao {
     /**
