@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.entity.Member;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Service layer for Member entity
@@ -13,13 +14,6 @@ import java.util.List;
  */
 @Service
 public interface MemberService {
-
-    /**
-     * Persists member into database
-     *
-     * @param member entity to be persisted
-     */
-    void create(Member member);
 
     /**
      * Returns member with given id or null
@@ -35,13 +29,6 @@ public interface MemberService {
      * @return list of all members
      */
     List<Member> findAll();
-
-    /**
-     * Updates member stored in database
-     *
-     * @param member entity to be updated
-     */
-    void update(Member member);
 
     /**
      * Removes member from database
@@ -64,16 +51,16 @@ public interface MemberService {
      * @param member
      * @return list of all loans possessed by member or null
      */
-    List getAllLoansOfMember(Member member);
+    Set<Loan> getAllLoansOfMember(Member member);
 
     /**
      * Authenticates member if password matches the records
      *
      * @param member to authenticate
-     * @param password hashed password to be matched
+     * @param unhashedPassword hashed password to be matched
      * @return boolean
      */
-    boolean authenticate(Member member, String password);
+    boolean authenticate(Member member, String unhashedPassword);
 
     /**
      * Checks if member is admin
@@ -85,7 +72,7 @@ public interface MemberService {
     /**
      * Registers member
      * @param member to register
-     * @param password
+     * @param unhashedPassword
      */
-    void register(Member member, String password);
+    void register(Member member, String unhashedPassword);
 }

@@ -30,6 +30,10 @@ public class Member {
     @OneToMany
     private Set<Loan> loans = new HashSet<>();
 
+    private String passwordHash;
+
+    private boolean isAdmin;
+
     public Member() {
     }
 
@@ -81,6 +85,22 @@ public class Member {
         this.registrationDate = registrationDate;
     }
 
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 29;
@@ -89,6 +109,7 @@ public class Member {
         result = prime * result + (getSurname() == null ? 0 : getSurname().hashCode());
         result = prime * result + (getEmail() == null ? 0 : getEmail().hashCode());
         result = prime * result + (getRegistrationDate() == null ? 0 : getRegistrationDate().hashCode());
+        result = prime * result + (getPasswordHash() == null ? 0 : getPasswordHash().hashCode());
         return result;
     }
 
