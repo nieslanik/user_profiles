@@ -100,6 +100,9 @@ public class Member {
         if (obj == null) {
             return false;
         }
+        if (!(obj instanceof Member)) {
+            return false;
+        }
         Member other = (Member) obj;
         if (getGivenName() == null) {
             if (other.getGivenName() != null) {
