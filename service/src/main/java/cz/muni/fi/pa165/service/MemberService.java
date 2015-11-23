@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.service;
 
+import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
  *
  * Created by Juraj Tomko on 11/23/2015.
  */
+@Service
 public interface MemberService {
 
     /**
@@ -50,18 +53,18 @@ public interface MemberService {
     /**
      * Adds loan to member
      *
-     * @param memberId
-     * @param loanId
+     * @param member
+     * @param loan
      */
-    void addLoanToMember(Long memberId, Long loanId);
+    void addLoanToMember(Member member, Loan loan);
 
     /**
      * Returns all loans of member
      *
-     * @param id of member
+     * @param member
      * @return list of all loans possessed by member or null
      */
-    List getAllLoansOfMember(Long id);
+    List getAllLoansOfMember(Member member);
 
     /**
      * Authenticates member if password matches the records
@@ -82,7 +85,7 @@ public interface MemberService {
     /**
      * Registers member
      * @param member to register
-     * @param unencryptedPassword
+     * @param password
      */
-    void register(Member member, String unencryptedPassword);
+    void register(Member member, String password);
 }

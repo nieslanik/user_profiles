@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Juraj on 11/23/2015.
+ * Created by Juraj Tomko on 11/23/2015.
  */
 public class MemberDTO {
 
