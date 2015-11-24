@@ -27,23 +27,12 @@ public class BookCollectionServiceImpl implements BookCollectionService {
     public void delete(BookCollection b){
         bookCollectionDao.delete(b);
     }
-    
-    @Override
-    public void update(BookCollection b){
-        bookCollectionDao.update(b);
-    }
-    
+     
     @Override
     public List<BookCollection> findAll(){
         return bookCollectionDao.findAll();
     }
-    
-    @Override
-    public BookCollection findByName(String Name)
-    {
-        return bookCollectionDao.findByName(Name);
-    }
-    
+   
     @Override
     public BookCollection findById(Long id){
         return bookCollectionDao.findById(id);
