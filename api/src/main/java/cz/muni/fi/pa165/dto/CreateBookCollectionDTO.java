@@ -11,6 +11,7 @@ import java.util.Set;
 /**
  *
  * @author xkubist
+ * @email m.kubistel@gmail.com
  */
 public class CreateBookCollectionDTO {
 
