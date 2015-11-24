@@ -30,23 +30,11 @@ public interface BookCollectionService {
      * 
      * @param b BookCollection to be deleted
      */
-    void update(BookCollection b);
-    /**
-     * return list of all BookCollection objects from database 
-     * 
-     * @return list of all BookCollection objects from database 
-     */
     List<BookCollection> findAll();
     /**
      * return BookCollection objects with target name 
      * 
      * @return BookCollection objects with target name 
-     */
-    BookCollection findByName(String Name);
-    /**
-     * return BookCollection objects with target id 
-     * 
-     * @return BookCollection objects with target id 
      */
     BookCollection findById(Long id);
 }
