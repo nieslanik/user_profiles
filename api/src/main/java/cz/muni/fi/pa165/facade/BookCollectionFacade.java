@@ -11,6 +11,7 @@ import java.util.List;
 /**
  *
  * @author xkubist
+ * @email m.kubistel@gmail.com
  */
 public interface BookCollectionFacade {
     /**
