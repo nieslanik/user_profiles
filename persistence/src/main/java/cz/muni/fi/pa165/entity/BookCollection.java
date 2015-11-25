@@ -16,8 +16,7 @@ import javax.persistence.ManyToMany;
 /**
  * Entity representing a collection of books in a library
  *
- * @author Jakub Peschel
- * @email jakub.peschel@studentagency.cz
+ * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */
 @Entity
 public class BookCollection {
@@ -73,7 +72,7 @@ public class BookCollection {
     public boolean equals(Object obj) {
         if (obj == null)
             return false;
-        if (obj instanceof BookCollection)
+        if (!(obj instanceof BookCollection))
             return false;
         final BookCollection other = (BookCollection) obj;
         if (!Objects.equals(this.getId(), other.getId()))

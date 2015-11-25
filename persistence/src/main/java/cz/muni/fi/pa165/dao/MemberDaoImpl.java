@@ -13,8 +13,7 @@ import cz.muni.fi.pa165.entity.Member;
 /**
  * Data access object for Member entity
  *
- * @author Jakub Peschel
- * @email jakub.peschel@studentagency.cz
+ * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */
 @Transactional
 @Repository

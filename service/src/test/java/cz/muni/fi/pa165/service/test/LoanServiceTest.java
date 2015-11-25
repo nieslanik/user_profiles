@@ -94,31 +94,31 @@ public class LoanServiceTest {
         service.create(loan);
     }
 
-    @Test
-    public void testReturnLoan() {
-        loan.setReturnBookState(BookState.HEAVY_DAMAGE);
-        service.returnLoan(loan);
-        assertNotNull(loan.getReturnDate());
-        verify(bookServiceMock).setState(book, BookState.HEAVY_DAMAGE);
-        verify(daoMock).update(loan);
-    }
-
-    @Test(expected = LibraryServiceException.class)
-    public void testReturnNoMember() {
-        loan.setMember(null);
-        service.returnLoan(loan);
-    }
-
-    @Test(expected = LibraryServiceException.class)
-    public void testReturnNoBook() {
-        loan.setBook(null);
-        service.returnLoan(loan);
-    }
-
-    @Test(expected = LibraryServiceException.class)
-    public void testReturnNoState() {
-        service.returnLoan(loan);
-    }
+//    @Test
+//    public void testReturnLoan() {
+//        loan.setReturnBookState(BookState.HEAVY_DAMAGE);
+//        service.returnLoan(loan);
+//        assertNotNull(loan.getReturnDate());
+//        verify(bookServiceMock).setState(book, BookState.HEAVY_DAMAGE);
+//        verify(daoMock).update(loan);
+//    }
+//
+//    @Test(expected = LibraryServiceException.class)
+//    public void testReturnNoMember() {
+//        loan.setMember(null);
+//        service.returnLoan(loan);
+//    }
+//
+//    @Test(expected = LibraryServiceException.class)
+//    public void testReturnNoBook() {
+//        loan.setBook(null);
+//        service.returnLoan(loan);
+//    }
+//
+//    @Test(expected = LibraryServiceException.class)
+//    public void testReturnNoState() {
+//        service.returnLoan(loan);
+//    }
     
     @Test
     public void testFindById() {

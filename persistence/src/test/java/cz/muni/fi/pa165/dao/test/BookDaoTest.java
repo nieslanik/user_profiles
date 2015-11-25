@@ -23,8 +23,7 @@ import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.spring.LibrarySpringContext;
 
 /**
- * @author Jakub Peschel
- * @email jakub.peschel@studentagency.cz
+ * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
