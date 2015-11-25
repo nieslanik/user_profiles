@@ -50,4 +50,9 @@ public class BookFacadeImpl implements BookFacade {
         service.setState(service.findById(bookId), newState);
     }
 
+    @Override
+    public List<BookDTO> findByName(String name) {
+        return service.findByName(name).stream().map(x -> mapper.map(x, BookDTO.class)).collect(Collectors.toList());
+    }
+
 }

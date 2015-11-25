@@ -37,6 +37,13 @@ public interface BookService {
     List<Book> findAll();
 
     /**
+     * Finds books by name (there can be multiple copies of the same book)
+     *
+     * @return list of books
+     */
+    List<Book> findByName(String name);
+
+    /**
      * Removes book from the database
      *
      * @param book

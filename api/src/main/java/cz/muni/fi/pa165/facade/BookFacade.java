@@ -31,6 +31,13 @@ public interface BookFacade {
     BookDTO findById(Long id);
 
     /**
+     * Finds books by name (there can be multiple copies of the same book)
+     *
+     * @return list of books
+     */
+    List<BookDTO> findByName(String name);
+
+    /**
      * Obtains all persisted books
      *
      * @return list of all books

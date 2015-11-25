@@ -90,6 +90,14 @@ public class BookDaoTest {
     }
 
     @Test
+    public void testFindByName() {
+        Set<Book> expected = new HashSet<>();
+        expected.add(book2);
+        Set<Book> actual = new HashSet<>(bookDao.findByName("Java Enterprise"));
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void testFindAll() {
         Set<Book> expected = new HashSet<>();
         expected.add(book1);

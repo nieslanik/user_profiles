@@ -46,4 +46,9 @@ public class BookDaoImpl implements BookDao {
     public Book findById(Long id) {
         return em.find(Book.class, id);
     }
+
+    @Override
+    public List<Book> findByName(String name) {
+        return em.createQuery("from Book where name = :name", Book.class).setParameter("name", name).getResultList();
+    }
 }

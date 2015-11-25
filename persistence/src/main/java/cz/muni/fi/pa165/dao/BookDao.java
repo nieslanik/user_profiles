@@ -38,4 +38,11 @@ public interface BookDao {
      * @return found book item.
      */
     Book findById(Long id);
+
+    /**
+     * Finds books by name (there can be multiple copies of the same book)
+     *
+     * @return list of books
+     */
+    List<Book> findByName(String name);
 }
