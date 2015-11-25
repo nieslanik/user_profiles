@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("cz.muni.fi.pa165")
+@ComponentScan("cz.muni.fi.pa165.dao")
 public class LibrarySpringContext {
     /**
      * Creates entityManagerFactory for this configuration
