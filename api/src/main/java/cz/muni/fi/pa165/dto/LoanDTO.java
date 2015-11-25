@@ -4,6 +4,11 @@ import cz.muni.fi.pa165.enums.BookState;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ *
+ * @author xkubist
+ * @email m.kubistel@gmail.com
+ */
 public class LoanDTO {
     
     private Long id;
