@@ -11,18 +11,27 @@ import java.util.Objects;
  */
 public class LoanDTO {
     
-    private Long id;
+    private Long LoanId;
+    private Long MemberId;
     private Date loanDate;
     private Boolean returned;
     private Date returnDate;
     private BookState returnBookState;
 
-    public Long getId() {
-        return id;
+    public Long getMemberId() {
+        return MemberId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMemberId(Long MemberId) {
+        this.MemberId = MemberId;
+    }
+    
+    public Long getLoanId() {
+        return LoanId;
+    }
+
+    public void setLoanId(Long LoanId) {
+        this.LoanId = LoanId;
     }
 
     public Date getLoanDate() {
@@ -60,7 +69,7 @@ public class LoanDTO {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.LoanId);
         hash = 23 * hash + Objects.hashCode(this.loanDate);
         hash = 23 * hash + Objects.hashCode(this.returned);
         hash = 23 * hash + Objects.hashCode(this.returnDate);
@@ -77,7 +86,7 @@ public class LoanDTO {
             return false;
         }
         final LoanDTO other = (LoanDTO) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.LoanId, other.LoanId)) {
             return false;
         }
         if (!Objects.equals(this.loanDate, other.loanDate)) {
