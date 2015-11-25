@@ -37,6 +37,17 @@ public class Loan {
     private BookState returnBookState;
 
     @ManyToOne
+    private Member member;
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    @ManyToOne
     private Book book;
 
     public void setBook(Book book) {
