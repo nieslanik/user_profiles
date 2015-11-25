@@ -32,7 +32,8 @@ public class Member {
 
     private String passwordHash;
 
-    private boolean isAdmin;
+    @Column(nullable = false)
+    private boolean isAdmin = false;
 
     public Member() {
     }
