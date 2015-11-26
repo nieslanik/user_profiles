@@ -25,14 +25,13 @@ public class BookCollection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column
     @ManyToMany
     private Set<Book> books = new HashSet<>();
 
-    //<editor-fold defaultstate="collapsed" desc="GET/SET">
     public Long getId() {
         return id;
     }
@@ -61,32 +60,29 @@ public class BookCollection {
         this.books.remove(books);
     }
 
-    //</editor-fold>
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.getId());
-        hash = 37 * hash + Objects.hashCode(this.getName());
-        hash = 37 * hash + Objects.hashCode(this.getBooks());
-        return hash;
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
         if (obj == null)
             return false;
         if (!(obj instanceof BookCollection))
             return false;
-        final BookCollection other = (BookCollection) obj;
-        if (!Objects.equals(this.getId(), other.getId()))
-            return false;
-        if (!Objects.equals(this.getName(), other.getName()))
-            return false;
-        if (!Objects.equals(this.getBooks(), other.getBooks()))
+        BookCollection other = (BookCollection) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.getName()))
             return false;
         return true;
     }
-
 
 }

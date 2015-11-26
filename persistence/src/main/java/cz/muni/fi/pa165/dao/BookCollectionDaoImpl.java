@@ -1,10 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.dao;
-
-import cz.muni.fi.pa165.entity.BookCollection;
 
 import java.util.List;
 
@@ -12,7 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
+import cz.muni.fi.pa165.entity.BookCollection;
 
 /**
  *
@@ -23,23 +18,38 @@ public class BookCollectionDaoImpl implements BookCollectionDao {
     @PersistenceContext
     private EntityManager em;
 
-    public void create (BookCollection b){
+    @Override
+    public void create(BookCollection b) {
         em.persist(b);
     }
-    public void delete(BookCollection b){
+
+    @Override
+    public void delete(BookCollection b) {
         em.remove(b);
     }
-    public void update(BookCollection b){
+
+    @Override
+    public void update(BookCollection b) {
         em.merge(b);
     }
-    public List<BookCollection> findAll(){
-        return em.createQuery("select b from BookCollection b", BookCollection.class)
-				.getResultList();
+
+    @Override
+    public List<BookCollection> findAll() {
+        return em.createQuery("select b from BookCollection b", BookCollection.class).getResultList();
     }
-    public List<BookCollection> findByName(String name){
-            return em.createQuery("from BookCollection where name = :name", BookCollection.class).setParameter("name", name).getResultList();
+
+    @Override
+    public BookCollection findByName(String name) {
+        List<BookCollection> result = em.createQuery("from BookCollection where name = :name", BookCollection.class)
+                .setParameter("name", name).getResultList();
+        if (result.size() == 0)
+            return null;
+        else
+            return result.get(0);
     }
-    public BookCollection findById(Long id){
-            return em.find(BookCollection.class, id);
+
+    @Override
+    public BookCollection findById(Long id) {
+        return em.find(BookCollection.class, id);
     }
 }

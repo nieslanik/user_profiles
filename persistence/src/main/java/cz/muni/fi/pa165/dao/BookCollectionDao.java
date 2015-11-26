@@ -36,11 +36,11 @@ public interface BookCollectionDao {
      */
     List<BookCollection> findAll();
     /**
-     * return BookCollection objects with target name 
+     * return BookCollection object with target name 
      * 
-     * @return BookCollection objects with target name 
+     * @return BookCollection object with target name 
      */
-    List<BookCollection> findByName(String Name);
+    BookCollection findByName(String Name);
     /**
      * return BookCollection objects with target id 
      * 
