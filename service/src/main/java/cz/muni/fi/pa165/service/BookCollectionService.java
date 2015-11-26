@@ -16,7 +16,7 @@ public interface BookCollectionService {
      * */
     void create(BookCollection b);
     /**
-     * delete the BookCollection from database
+     * deleteMember the BookCollection from database
      * 
      * @param b BookCollection to be deleted
      */

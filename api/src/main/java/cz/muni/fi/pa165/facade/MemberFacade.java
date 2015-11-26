@@ -11,12 +11,6 @@ import java.util.List;
 public interface MemberFacade {
 
     /**
-     * Creates new member
-     * @param member data transfer object
-     */
-    void createMember(MemberDTO member);
-
-    /**
      * Finds member by id
      * @param id
      * @return member dto or null
@@ -34,25 +28,6 @@ public interface MemberFacade {
      * @param id
      */
     void deleteMember(Long id);
-
-    /**
-     * Adds new loan to member
-     * @param newLoan dto
-     */
-    void addNewLoan(NewLoanDTO newLoan);
-
-    /**
-     * Removes loan from current loans
-     * @param id
-     */
-    void removeFromCurrentLoans(Long id);
-
-    /**
-     * Returns all current loans possessed by member
-     * @param id
-     * @return list of loans
-     */
-    List<LoanDTO> getCurrentLoans(Long id);
 
     /**
      * Returns all loans made by member

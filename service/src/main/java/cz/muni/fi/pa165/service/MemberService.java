@@ -33,15 +33,8 @@ public interface MemberService {
      *
      * @param member entity to be removed
      */
-    void delete(Member member);
+    void deleteMember(Member member);
 
-    /**
-     * Adds loan to member
-     *
-     * @param member
-     * @param loan
-     */
-    void addLoanToMember(Member member, Loan loan);
 
     /**
      * Returns all loans of member
@@ -49,16 +42,23 @@ public interface MemberService {
      * @param member
      * @return list of all loans possessed by member or null
      */
-    Set<Loan> getAllLoansOfMember(Member member);
+    Set<Loan> getAllLoans(Member member);
 
     /**
      * Authenticates member if password matches the records
      *
-     * @param member to authenticate
+     * @param member to authenticateMember
      * @param unhashedPassword hashed password to be matched
      * @return boolean
      */
-    boolean authenticate(Member member, String unhashedPassword);
+    boolean authenticateMember(Member member, String unhashedPassword);
+
+    /**
+     * Registers member
+     * @param member to registerMember
+     * @param unhashedPassword
+     */
+    void registerMember(Member member, String unhashedPassword);
 
     /**
      * Checks if member is admin
@@ -66,11 +66,4 @@ public interface MemberService {
      * @return boolean
      */
     boolean isAdmin(Member member);
-
-    /**
-     * Registers member
-     * @param member to register
-     * @param unhashedPassword
-     */
-    void register(Member member, String unhashedPassword);
 }

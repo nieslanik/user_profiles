@@ -33,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void delete(Member member) {
+    public void deleteMember(Member member) {
         memberDao.delete(member);
     }
 
@@ -44,13 +44,13 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Set<Loan> getAllLoansOfMember(Member member) {
+    public Set<Loan> getAllLoans(Member member) {
         Long id = member.getId();
         return memberDao.findById(id).getLoans();
     }
 
     @Override
-    public boolean authenticate(Member member, String unhashedPassword) {
+    public boolean authenticateMember(Member member, String unhashedPassword) {
         return member.getPasswordHash().equals(makeSha1Hash(unhashedPassword));
     }
 
@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void register(Member member, String password) {
+    public void registerMember(Member member, String password) {
         member.setPasswordHash(makeSha1Hash(password));
         memberDao.create(member);
     }

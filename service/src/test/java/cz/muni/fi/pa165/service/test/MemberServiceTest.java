@@ -4,7 +4,6 @@
  */
 package cz.muni.fi.pa165.service.test;
 
-import cz.muni.fi.pa165.dao.MemberDao;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
@@ -21,8 +20,7 @@ import static org.junit.Assert.assertSame;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.HashSet;
-import java.util.Set;
+
 /**
  *
  * @author xkubist
@@ -52,8 +50,8 @@ public class MemberServiceTest {
         member2.setIsAdmin(Boolean.FALSE);
         date = new Date(2);
         member2.setRegistrationDate(date);
-        service.register(member1,"totoJeNajneprelomitelnejsieHesloNaSvete");
-        service.register(member2, "OhFreddledGruntbugglyThyMicturationsAreToMe");
+        service.registerMember(member1, "totoJeNajneprelomitelnejsieHesloNaSvete");
+        service.registerMember(member2, "OhFreddledGruntbugglyThyMicturationsAreToMe");
         
         Book book = new Book();
         book.setName("Clean Code");
@@ -92,7 +90,7 @@ public class MemberServiceTest {
         assertNotNull(member2.getId());
         assertNotNull(member1.getPasswordHash());
         assertNotNull(member1.getPasswordHash());
-        //service.register()
+        //service.registerMember()
     }
     
     
@@ -114,19 +112,19 @@ public class MemberServiceTest {
     
     @Test
     public void testDelete() {
-        service.delete(member1);
+        service.deleteMember(member1);
         assertNull(service.findById(member1.getId()));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testDeleteNonexistent() {
         Member myMember = new Member();
-        service.delete(myMember);
+        service.deleteMember(myMember);
     }
     
     @Test
     public void testAddLoanToMember() {
-       Set<Loan> result = new HashSet<>(service.getAllLoansOfMember(member2));
+       Set<Loan> result = new HashSet<>(service.getAllLoans(member2));
        assertSame(result.contains(loan3),Boolean.FALSE);
     }
 
@@ -135,22 +133,22 @@ public class MemberServiceTest {
        Set<Loan> loans = new HashSet<>();
         loans.add(loan1);
         loans.add(loan2);
-        Set<Loan> result = new HashSet<>(service.getAllLoansOfMember(member1));
+        Set<Loan> result = new HashSet<>(service.getAllLoans(member1));
         assertEquals(result, loans);
     }
     @Test
     public void testCorrectAuthenticate() {
-        assertSame(service.authenticate(member1,"totoJeNajneprelomitelnejsieHesloNaSvete"),Boolean.TRUE);
+        assertSame(service.authenticateMember(member1, "totoJeNajneprelomitelnejsieHesloNaSvete"),Boolean.TRUE);
     }
     
     @Test
     public void testIncorrectAuthenticate() {
-        assertSame(service.authenticate(member1,"totoJeNajsieHesloNaSvete"),Boolean.FALSE);
+        assertSame(service.authenticateMember(member1, "totoJeNajsieHesloNaSvete"),Boolean.FALSE);
     }
     
     @Test
     public void testEmptyAuthenticate() {
-        assertSame(service.authenticate(member1,null),Boolean.FALSE);
+        assertSame(service.authenticateMember(member1, null),Boolean.FALSE);
     }
     
 }
