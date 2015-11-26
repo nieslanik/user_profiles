@@ -5,29 +5,33 @@
 package cz.muni.fi.pa165.service.test;
 
 import cz.muni.fi.pa165.config.ServiceConfiguration;
+import cz.muni.fi.pa165.dao.LoanDao;
 import cz.muni.fi.pa165.dao.MemberDao;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.service.BookService;
+import cz.muni.fi.pa165.service.LoanService;
 import cz.muni.fi.pa165.service.MemberService;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
-import org.hibernate.service.spi.ServiceException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,108 +43,101 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class MemberServiceTest {
-     @Mock
-    private MemberDao productDao;
-    
-    
+    @Mock
+    MemberDao memberMock;
 
-    @Autowired
+    @Inject
     @InjectMocks
-    private MemberService service;
-
-    @BeforeClass
-    public void setup() throws ServiceException
-    {
-        MockitoAnnotations.initMocks(this);
-    }
+    MemberService service;
     
-    private Member member1;
-    private Member member2;
-    private Loan loan1;
-    private Loan loan2;
-    private Loan loan3;
+    private Member member;
     @Before
     public void setUp() {
-        member1 = new Member();
-        member1.setGivenName("Blanka");
-        member1.setSurname("Protrhla");
-        member1.setEmail("BerUska15@pokec.sk");
-        member1.setIsAdmin(Boolean.TRUE);
+         MockitoAnnotations.initMocks(this);
+        member = new Member();
+        member.setGivenName("Blanka");
+        member.setSurname("Protrhla");
+        member.setEmail("BerUska15@pokec.sk");
+        member.setIsAdmin(Boolean.TRUE);
         Date date = new Date(0);
-        member1.setRegistrationDate(date);
-        member2 = new Member();
-        member2.setGivenName("Petr");
-        member2.setSurname("Soustal");
-        member2.setEmail("soustal@gmail.com");
-        member2.setIsAdmin(Boolean.FALSE);
-        date = new Date(2);
-        member2.setRegistrationDate(date);
-        service.registerMember(member1, "totoJeNajneprelomitelnejsieHesloNaSvete");
-        service.registerMember(member2, "OhFreddledGruntbugglyThyMicturationsAreToMe");
-
+        member.setRegistrationDate(date);       
     }
     
     @Test
     @Transactional/*dokonci registraci s prazdnym heslom a registraciu toho isteho uzivatela*/
     public void testRegister() {
-        assertNotNull(member1.getId());
-        assertNotNull(member2.getId());
-        assertNotNull(member1.getPasswordHash());
-        assertNotNull(member1.getPasswordHash());
-        //service.registerMember()
+        service.registerMember(member, "OhFreddledGruntbugglyThyMicturationsAreToMe");
+        verify(memberMock).create(member);
+        assertNotNull(member.getId());
     }
     
     
     @Test
     public void testFindById() {
-        assertSame(member1, service.findById(member1.getId()));
-        assertSame(member2, service.findById(member2.getId()));
-        assertNull(service.findById(Long.MAX_VALUE));
+        when(memberMock.findById(member.getId())).thenReturn(member);
+        service.findById(member.getId());
+        assertSame(member, service.findById(member.getId()));
     }
     @Test
     public void testFindAll() {
       
-        Set<Member> members = new HashSet<>();
-        members.add(member1);
-        members.add(member2);
-        Set<Member> result = new HashSet<>(service.findAll());
-        assertEquals(result, members);
+        List<Member> members = new ArrayList<>();
+        members.add(member);
+         when(memberMock.findAll()).thenReturn(members);
+        assertEquals(members, service.findAll());
     }
     
     @Test
     public void testDelete() {
-        service.deleteMember(member1);
-        assertNull(service.findById(member1.getId()));
+        service.deleteMember(member);
+        verify(memberMock).delete(member);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testDeleteNonexistent() {
-        Member myMember = new Member();
-        service.deleteMember(myMember);
-    }
+   
     
-
+   
     @Test
-    public void testGetAllLoansOfMember(Member member) {
-       Set<Loan> loans = new HashSet<>();
+    public void testGetAllLoansOfMember() {
+        
+        Book book = new Book();
+        book.setName("Clean Code");
+        book.setIsbn(1L);
+        book.setState(BookState.NEW);
+        
+        Loan loan1=new Loan();
+        loan1.setBook(book);
+        loan1.setDate(new Date(1));
+        loan1.setReturnBookState(BookState.NEW);
+        loan1.setReturnDate(new Date(3));
+        loan1.setReturned(Boolean.TRUE);
+        
+        Loan loan2=new Loan();
+        loan2.setBook(new Book());
+        loan2.setDate(new Date(10));
+        loan2.setReturned(Boolean.FALSE);
+        
+        Set<Loan> loans = new HashSet<>();
         loans.add(loan1);
         loans.add(loan2);
-        Set<Loan> result = new HashSet<>(service.getAllLoans(member1));
-        assertEquals(result, loans);
+        member.addLoan(loan1);
+        member.addLoan(loan2);
+        
+        when(memberMock.findById(member.getId())).thenReturn(member);
+        assertSame(loans, service.getAllLoans(member));
     }
     @Test
     public void testCorrectAuthenticate() {
-        assertSame(service.authenticateMember(member1, "totoJeNajneprelomitelnejsieHesloNaSvete"),Boolean.TRUE);
+        assertSame(service.authenticateMember(member, "totoJeNajneprelomitelnejsieHesloNaSvete"),Boolean.TRUE);
     }
     
     @Test
     public void testIncorrectAuthenticate() {
-        assertSame(service.authenticateMember(member1, "totoJeNajsieHesloNaSvete"),Boolean.FALSE);
+        assertSame(service.authenticateMember(member, "totoJeNajsieHesloNaSvete"),Boolean.FALSE);
     }
     
     @Test
     public void testEmptyAuthenticate() {
-        assertSame(service.authenticateMember(member1, null),Boolean.FALSE);
+        assertSame(service.authenticateMember(member, null),Boolean.FALSE);
     }
     
 }
