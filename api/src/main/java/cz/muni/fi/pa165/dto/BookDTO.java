@@ -1,8 +1,5 @@
 package cz.muni.fi.pa165.dto;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import cz.muni.fi.pa165.enums.BookState;
 
 /**
@@ -17,8 +14,6 @@ public class BookDTO {
     private String authorName;
     private Long isbn;
     private BookState state;
-    private Set<BookCollectionDTO> collections = new HashSet<>();
-    private Set<LoanDTO> loans = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -58,30 +53,6 @@ public class BookDTO {
 
     public void setState(BookState state) {
         this.state = state;
-    }
-
-    public Set<BookCollectionDTO> getCollections() {
-        return collections;
-    }
-
-    public void addCollection(BookCollectionDTO collection) {
-        collections.add(collection);
-    }
-
-    public Set<LoanDTO> getLoans() {
-        return loans;
-    }
-
-    public void addLoan(LoanDTO loan) {
-        loans.add(loan);
-    }
-
-    public void setLoans(Set<LoanDTO> loans) {
-        this.loans = loans;
-    }
-
-    public void setCollections(Set<BookCollectionDTO> collections) {
-        this.collections = collections;
     }
 
     @Override

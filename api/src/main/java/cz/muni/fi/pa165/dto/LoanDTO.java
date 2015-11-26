@@ -1,8 +1,8 @@
 package cz.muni.fi.pa165.dto;
 
-import cz.muni.fi.pa165.enums.BookState;
 import java.util.Date;
-import java.util.Objects;
+
+import cz.muni.fi.pa165.enums.BookState;
 
 /**
  *
@@ -10,37 +10,37 @@ import java.util.Objects;
  * @email m.kubistel@gmail.com
  */
 public class LoanDTO {
-    
+
     private Long id;
-    private Long memberId;
-    private Long bookId;
+    private MemberDTO member;
+    private BookDTO book;
     private Date loanDate;
     private Boolean returned;
     private Date returnDate;
     private BookState returnBookState;
-    
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long loanId) {
-        this.id = loanId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getMemberId() {
-        return memberId;
+    public MemberDTO getMember() {
+        return member;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setMember(MemberDTO member) {
+        this.member = member;
     }
 
-    public Long getBookId() {
-        return bookId;
+    public BookDTO getBook() {
+        return book;
     }
 
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
+    public void setBook(BookDTO book) {
+        this.book = book;
     }
 
     public Date getLoanDate() {
@@ -79,9 +79,9 @@ public class LoanDTO {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
+        result = prime * result + ((book == null) ? 0 : book.hashCode());
         result = prime * result + ((loanDate == null) ? 0 : loanDate.hashCode());
-        result = prime * result + ((memberId == null) ? 0 : memberId.hashCode());
+        result = prime * result + ((member == null) ? 0 : member.hashCode());
         return result;
     }
 
@@ -94,22 +94,21 @@ public class LoanDTO {
         if (getClass() != obj.getClass())
             return false;
         LoanDTO other = (LoanDTO) obj;
-        if (bookId == null) {
-            if (other.bookId != null)
+        if (book == null) {
+            if (other.book != null)
                 return false;
-        } else if (!bookId.equals(other.bookId))
+        } else if (!book.equals(other.book))
             return false;
         if (loanDate == null) {
             if (other.loanDate != null)
                 return false;
         } else if (!loanDate.equals(other.loanDate))
             return false;
-        if (memberId == null) {
-            if (other.memberId != null)
+        if (member == null) {
+            if (other.member != null)
                 return false;
-        } else if (!memberId.equals(other.memberId))
+        } else if (!member.equals(other.member))
             return false;
         return true;
     }
-
 }

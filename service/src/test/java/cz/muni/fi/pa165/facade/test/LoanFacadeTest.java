@@ -13,8 +13,10 @@ import org.mockito.ArgumentCaptor;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateLoanDTO;
 import cz.muni.fi.pa165.dto.LoanDTO;
+import cz.muni.fi.pa165.dto.MemberDTO;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
@@ -66,24 +68,30 @@ public class LoanFacadeTest {
 
     @Test
     public void testFindById() {
-        Long l1 = Long.valueOf(1);
+        Date d = new Date(0);
         Book book = new Book();
-        book.setId(l1);
+        book.setId(1L);
         Member member = new Member();
-        member.setId(l1);
+        member.setId(2L);
         Loan loan = new Loan();
-        loan.setId(l1);
+        loan.setId(3L);
         loan.setBook(book);
         loan.setMember(member);
         loan.setReturnBookState(BookState.HEAVY_DAMAGE);
-        loan.setDate(new Date(0));
-        when(loanServiceMock.findById(l1)).thenReturn(loan);
-        LoanDTO dto = facade.findById(l1);
-        assertEquals(l1, dto.getId());
-        assertEquals(l1, dto.getBookId());
-        assertEquals(l1, dto.getMemberId());
+        loan.setLoanDate(d);
+        loan.setReturnDate(d);
+        when(loanServiceMock.findById(3L)).thenReturn(loan);
+        LoanDTO dto = facade.findById(3L);
+        assertEquals(Long.valueOf(3), dto.getId());
+        BookDTO bookDto = dto.getBook();
+        assertNotNull(bookDto);
+        assertEquals(Long.valueOf(1), bookDto.getId());
+        MemberDTO memberDto= dto.getMember();
+        assertNotNull(memberDto);
+        assertEquals(Long.valueOf(2), memberDto.getId());
         assertEquals(BookState.HEAVY_DAMAGE, dto.getReturnBookState());
-        assertEquals(new Date(0), dto.getReturnDate());
+        assertEquals(d, dto.getLoanDate());
+        assertEquals(d, dto.getReturnDate());
     }
 
     @Test

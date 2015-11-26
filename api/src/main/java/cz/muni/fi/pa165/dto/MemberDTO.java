@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.dto;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Juraj Tomko on 11/23/2015.
@@ -14,7 +12,6 @@ public class MemberDTO {
     private String surname;
     private String email;
     private Date registrationDate;
-    private Set<LoanDTO> loans = new HashSet<>();
     private boolean isAdmin;
 
     public MemberDTO() {
@@ -58,18 +55,6 @@ public class MemberDTO {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
-    }
-
-    public Set<LoanDTO> getLoans() {
-        return loans;
-    }
-
-    public void setLoans(Set<LoanDTO> loans) {
-        this.loans = loans;
-    }
-
-    public void addLoan(LoanDTO loan) {
-        loans.add(loan);
     }
 
     public boolean isAdmin() {
