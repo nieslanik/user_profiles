@@ -5,14 +5,11 @@
 package cz.muni.fi.pa165.service.test;
 
 import cz.muni.fi.pa165.config.ServiceConfiguration;
-import cz.muni.fi.pa165.dao.LoanDao;
 import cz.muni.fi.pa165.dao.MemberDao;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.enums.BookState;
-import cz.muni.fi.pa165.service.BookService;
-import cz.muni.fi.pa165.service.LoanService;
 import cz.muni.fi.pa165.service.MemberService;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +19,6 @@ import java.util.Set;
 import javax.inject.Inject;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import org.junit.Before;
 import org.junit.Test;
