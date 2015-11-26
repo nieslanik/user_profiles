@@ -15,6 +15,7 @@ public class MemberDTO {
     private String email;
     private Date registrationDate;
     private Set<LoanDTO> loans = new HashSet<>();
+    private boolean isAdmin;
 
     public MemberDTO() {
     }
@@ -69,6 +70,14 @@ public class MemberDTO {
 
     public void addLoan(LoanDTO loan) {
         loans.add(loan);
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     @Override
