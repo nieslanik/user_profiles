@@ -54,7 +54,7 @@ public class BookCollection {
     }
 
     public void addBook(Book book) {
-        this.books.add(books);
+        this.books.add(book);
     }
     
     public void removeBook(Book book) {
