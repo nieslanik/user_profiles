@@ -39,7 +39,6 @@ public class LoanServiceImpl implements LoanService {
         return loanDao.findById(id);
     }
     
-
     @Override
     public Loan returnLoan(Long loanId, BookState returnState) {
         Loan returnedLoan = findById(loanId);
