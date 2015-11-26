@@ -71,7 +71,6 @@ public class MemberServiceTest {
     @Test
     public void testFindById() {
         when(memberMock.findById(member.getId())).thenReturn(member);
-        service.findById(member.getId());
         assertSame(member, service.findById(member.getId()));
     }
     @Test
@@ -112,7 +111,7 @@ public class MemberServiceTest {
         loan2.setDate(new Date(10));
         loan2.setReturned(Boolean.FALSE);
         
-        Set<Loan> loans = new HashSet<>();
+        List<Loan> loans = new ArrayList<>();
         loans.add(loan1);
         loans.add(loan2);
         member.addLoan(loan1);
