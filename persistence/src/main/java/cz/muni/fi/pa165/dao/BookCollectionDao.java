@@ -40,7 +40,7 @@ public interface BookCollectionDao {
      * 
      * @return BookCollection objects with target name 
      */
-    BookCollection findByName(String Name);
+    List<BookCollection> findByName(String Name);
     /**
      * return BookCollection objects with target id 
      * 
