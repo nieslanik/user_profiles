@@ -1,52 +1,40 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.service.test;
 
-import cz.muni.fi.pa165.config.ServiceConfiguration;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.transaction.annotation.Transactional;
+
 import cz.muni.fi.pa165.dao.MemberDao;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.service.MemberService;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.inject.Inject;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
+import cz.muni.fi.pa165.service.MemberServiceImpl;
 
 /**
  *
  * @author xkubist
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ServiceConfiguration.class)
 public class MemberServiceTest {
     @Mock
     MemberDao memberMock;
 
-    @Inject
     @InjectMocks
-    MemberService service;
+    MemberService service = new MemberServiceImpl();
     
     private Member member;
+
     @Before
     public void setUp() {
          MockitoAnnotations.initMocks(this);
@@ -67,12 +55,12 @@ public class MemberServiceTest {
         assertNotNull(member.getId());
     }
     
-    
     @Test
     public void testFindById() {
         when(memberMock.findById(member.getId())).thenReturn(member);
         assertSame(member, service.findById(member.getId()));
     }
+
     @Test
     public void testFindAll() {
       
@@ -87,9 +75,6 @@ public class MemberServiceTest {
         service.deleteMember(member);
         verify(memberMock).delete(member);
     }
-
-   
-    
    
     @Test
     public void testGetAllLoansOfMember() {
@@ -120,6 +105,7 @@ public class MemberServiceTest {
         when(memberMock.findById(member.getId())).thenReturn(member);
         assertSame(loans, service.getAllLoans(member));
     }
+
     @Test
     public void testCorrectAuthenticate() {
         assertSame(service.authenticateMember(member, "totoJeNajneprelomitelnejsieHesloNaSvete"),Boolean.TRUE);

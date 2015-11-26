@@ -1,30 +1,18 @@
 package cz.muni.fi.pa165.service.test;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import cz.muni.fi.pa165.config.ServiceConfiguration;
 import cz.muni.fi.pa165.dao.LoanDao;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.Loan;
@@ -33,9 +21,8 @@ import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.exceptions.LibraryServiceException;
 import cz.muni.fi.pa165.service.BookService;
 import cz.muni.fi.pa165.service.LoanService;
+import cz.muni.fi.pa165.service.LoanServiceImpl;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ServiceConfiguration.class)
 public class LoanServiceTest {
 
     @Mock
@@ -44,9 +31,8 @@ public class LoanServiceTest {
     @Mock
     BookService bookServiceMock;
 
-    @Inject
     @InjectMocks
-    LoanService service;
+    LoanService service = new LoanServiceImpl();
 
     private Member member;
     private Book book;
