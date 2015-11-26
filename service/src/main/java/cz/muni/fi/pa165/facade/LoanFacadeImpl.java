@@ -9,11 +9,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import org.dozer.Mapper;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */
+@Service
+@Transactional
 public class LoanFacadeImpl implements LoanFacade {
 
     @Inject

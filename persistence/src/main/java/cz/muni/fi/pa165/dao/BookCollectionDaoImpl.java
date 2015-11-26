@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author xkubist
  */
 @Repository
-@Transactional
 public class BookCollectionDaoImpl implements BookCollectionDao {
     @PersistenceContext
     private EntityManager em;

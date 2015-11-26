@@ -14,6 +14,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
  * @email m.kubistel@gmail.com
  */
 @Service
+@Transactional
 public class BookCollectionFacadeImpl implements BookCollectionFacade{
     @Inject
     BookCollectionService service;

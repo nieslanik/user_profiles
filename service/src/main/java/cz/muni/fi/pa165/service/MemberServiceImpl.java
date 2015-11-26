@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Juraj on 11/23/2015.
+ * Created by Juraj Tomko on 11/23/2015.
  */
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -35,12 +35,6 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void deleteMember(Member member) {
         memberDao.delete(member);
-    }
-
-    @Override
-    public void addLoanToMember(Member member, Loan loan) {
-        member.addLoan(loan);
-        memberDao.update(member);
     }
 
     @Override
@@ -65,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
         memberDao.create(member);
     }
 
-    public String makeSha1Hash(String input)
+    private String makeSha1Hash(String input)
     {
         MessageDigest md = null;
         try

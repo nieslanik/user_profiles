@@ -15,7 +15,6 @@ import cz.muni.fi.pa165.entity.Book;
  * Created by Juraj Tomko on 10/29/2015.
  */
 @Repository
-@Transactional
 public class BookDaoImpl implements BookDao {
 
     @PersistenceContext

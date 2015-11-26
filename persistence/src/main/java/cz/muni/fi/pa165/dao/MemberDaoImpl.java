@@ -15,7 +15,6 @@ import cz.muni.fi.pa165.entity.Member;
  *
  * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */
-@Transactional
 @Repository
 public class MemberDaoImpl implements MemberDao {
     @PersistenceContext

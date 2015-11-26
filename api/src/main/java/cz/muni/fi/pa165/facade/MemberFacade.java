@@ -48,7 +48,7 @@ public interface MemberFacade {
      * @param memberReg
      * @return true if registration was successful, else false
      */
-    boolean registerMember(MemberRegisterDTO memberReg);
+    void registerMember(MemberRegisterDTO memberReg);
 
     /**
      * Checks if member has admin permissions

@@ -13,12 +13,14 @@ import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.service.BookService;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Michael Simacek
  *
  */
 @Service
+@Transactional
 public class BookFacadeImpl implements BookFacade {
 
     @Inject

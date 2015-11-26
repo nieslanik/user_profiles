@@ -16,7 +16,6 @@ import cz.muni.fi.pa165.entity.Loan;
  * @author Michael Simacek
  *
  */
-@Transactional
 @Repository
 public class LoanDaoImpl implements LoanDao {
     @PersistenceContext
