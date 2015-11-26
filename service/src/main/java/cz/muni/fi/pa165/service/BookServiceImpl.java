@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import cz.muni.fi.pa165.dao.BookDao;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.enums.BookState;
@@ -15,6 +17,7 @@ import cz.muni.fi.pa165.exceptions.LibraryServiceException;
  * @author Michael Simacek
  *
  */
+@Service
 public class BookServiceImpl implements BookService {
 
     @Inject

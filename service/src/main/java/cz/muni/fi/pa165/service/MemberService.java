@@ -1,18 +1,16 @@
 package cz.muni.fi.pa165.service;
 
-import cz.muni.fi.pa165.entity.Loan;
-import cz.muni.fi.pa165.entity.Member;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Set;
+
+import cz.muni.fi.pa165.entity.Loan;
+import cz.muni.fi.pa165.entity.Member;
 
 /**
  * Service layer for Member entity
  *
  * Created by Juraj Tomko on 11/23/2015.
  */
-@Service
 public interface MemberService {
 
     /**

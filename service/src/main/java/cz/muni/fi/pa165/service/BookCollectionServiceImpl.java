@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.service;
 
 import cz.muni.fi.pa165.dao.BookCollectionDao;
@@ -9,11 +5,14 @@ import cz.muni.fi.pa165.entity.BookCollection;
 import java.util.List;
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author xkubist
  * @email m.kubistel@gmail.com
  */
+@Service
 public class BookCollectionServiceImpl implements BookCollectionService {
     @Inject
     BookCollectionDao bookCollectionDao;

@@ -13,12 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import org.dozer.Mapper;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author xkubist
  * @email m.kubistel@gmail.com
  */
+@Service
 public class BookCollectionFacadeImpl implements BookCollectionFacade{
     @Inject
     BookCollectionService service;

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 
 import org.dozer.Mapper;
+import org.springframework.stereotype.Service;
 
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
@@ -17,6 +18,7 @@ import cz.muni.fi.pa165.service.BookService;
  * @author Michael Simacek
  *
  */
+@Service
 public class BookFacadeImpl implements BookFacade {
 
     @Inject

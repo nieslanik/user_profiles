@@ -7,10 +7,13 @@ import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */
+@Service
 public class LoanServiceImpl implements LoanService {
 
     @Inject

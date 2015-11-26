@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  * 
  * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */
-@Service
 public interface LoanService {
      /**
      * Method creates loan in database.

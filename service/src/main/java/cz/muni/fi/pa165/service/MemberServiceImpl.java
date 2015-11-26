@@ -5,6 +5,9 @@ import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
 
 import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.Set;
 /**
  * Created by Juraj on 11/23/2015.
  */
+@Service
 public class MemberServiceImpl implements MemberService {
 
     @Inject
