@@ -107,13 +107,13 @@ public class BookCollectionDaoTest {
         assertNull(collectionDao.findById(666L));
     }
 
-    /*@Test
+    @Test
     public void testFindByName() {
         prepareData();
         assertEquals(coll1, collectionDao.findByName(coll1.getName()));
         assertEquals(coll2, collectionDao.findByName(coll2.getName()));
         assertNull(collectionDao.findByName("nonexistent"));
-    }*/
+    }
 
     @Test
     public void testFindAll() {

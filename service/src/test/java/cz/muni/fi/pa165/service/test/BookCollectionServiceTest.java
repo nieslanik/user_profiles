@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
 import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.service.BookCollectionService;
+import cz.muni.fi.pa165.service.BookCollectionServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.runner.RunWith;
@@ -14,16 +15,16 @@ import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.inject.Inject;
 import static org.junit.Assert.assertSame;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import org.mockito.MockitoAnnotations;
 
 /**
- *  @author Jakub Peschel <jakub.peschel@studentagency.cz>
+ * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ServiceConfiguration.class)
@@ -32,15 +33,15 @@ public class BookCollectionServiceTest {
     @Mock
     BookCollectionDao daoMock;
 
-    @Inject
     @InjectMocks
-    BookCollectionService service;
+    BookCollectionService service = new BookCollectionServiceImpl();
 
     private BookCollection collection;
     private Book book;
 
     @Before
     public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
         book = new Book();
         book.setId(1L);
         book.setName("testBook");
@@ -83,6 +84,4 @@ public class BookCollectionServiceTest {
         verify(daoMock).delete(collection);
     }
 
-
 }
-

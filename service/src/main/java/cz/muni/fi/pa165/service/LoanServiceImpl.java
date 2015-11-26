@@ -31,6 +31,7 @@ public class LoanServiceImpl implements LoanService {
             throw new LibraryServiceException("Book cannot be null!");
         if(loan.getBook().getState().equals(BookState.REMOVED))
             throw new LibraryServiceException("Book cannot be in state REMOVED!");
+        loan.setLoanDate(new Date());
         loanDao.create(loan);
     }
 
