@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.service;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.enums.BookState;
 import java.util.List;
-import org.springframework.stereotype.Service;
 
 /**
  * Service layer for loan entity
@@ -43,7 +42,6 @@ public interface LoanService {
      * 
      * @param loanId Id of loan to be updated
      * @param returnState state of book when returned
-     * @return updated loan
      */
-    Loan returnLoan(Long loanId, BookState returnState);
+    void returnLoan(Long loanId, BookState returnState);
 }

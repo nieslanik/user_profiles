@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.service;
 import cz.muni.fi.pa165.dao.LoanDao;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.exceptions.LibraryServiceException;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -19,8 +20,17 @@ public class LoanServiceImpl implements LoanService {
     @Inject
     LoanDao loanDao;
     
+    @Inject
+    BookService bookService;
+    
     @Override
-    public void create(Loan loan) {
+    public void create(Loan loan){
+        if(loan.getMember() == null)
+            throw new LibraryServiceException("Member cannot be null!");      
+        if(loan.getBook() == null)
+            throw new LibraryServiceException("Book cannot be null!");
+        if(loan.getBook().getState().equals(BookState.REMOVED))
+            throw new LibraryServiceException("Book cannot be in state REMOVED!");
         loanDao.create(loan);
     }
 
@@ -40,13 +50,16 @@ public class LoanServiceImpl implements LoanService {
     }
     
     @Override
-    public Loan returnLoan(Long loanId, BookState returnState) {
+    public void returnLoan(Long loanId, BookState returnState) {
         Loan returnedLoan = findById(loanId);
         returnedLoan.setReturned(Boolean.TRUE);
         returnedLoan.setReturnDate(new Date());
         returnedLoan.setReturnBookState(returnState);
+        bookService.setState(
+                returnedLoan.getBook(),
+                returnState
+        );
         loanDao.update(returnedLoan);
-        return findById(returnedLoan.getId());
     }
 
 
