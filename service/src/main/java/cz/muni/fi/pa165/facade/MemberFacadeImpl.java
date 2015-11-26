@@ -1,18 +1,18 @@
 package cz.muni.fi.pa165.facade;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberAuthenticateDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
 import cz.muni.fi.pa165.dto.MemberRegisterDTO;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.service.MemberService;
-import org.dozer.Mapper;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.inject.Inject;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Juraj on 11/26/2015.
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class MemberFacadeImpl implements MemberFacade {
 
     @Inject
-    Mapper mapper;
+    ListMapper mapper;
 
     @Inject
     MemberService service;
@@ -34,10 +34,7 @@ public class MemberFacadeImpl implements MemberFacade {
 
     @Override
     public List<MemberDTO> findAll() {
-        return service.findAll()
-                .stream()
-                .map(x -> mapper.map(x, MemberDTO.class))
-                .collect(Collectors.toList());
+        return mapper.map(service.findAll(), MemberDTO.class);
     }
 
     @Override
@@ -48,10 +45,7 @@ public class MemberFacadeImpl implements MemberFacade {
     @Override
     public List<LoanDTO> getAllLoans(Long id) {
         Member member = service.findById(id);
-        return service.getAllLoans(member)
-                .stream()
-                .map(x -> mapper.map(x, LoanDTO.class))
-                .collect(Collectors.toList());
+        return mapper.map(service.getAllLoans(member), LoanDTO.class);
     }
 
     @Override

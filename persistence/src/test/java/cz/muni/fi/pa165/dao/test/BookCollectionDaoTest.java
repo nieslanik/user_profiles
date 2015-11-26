@@ -96,8 +96,7 @@ public class BookCollectionDaoTest {
         prepareData();
         coll2.setName("changed");
         collectionDao.update(coll2);
-        assertEquals("changed", em.find(BookCollection.class, coll2.getId())
-                .getName());
+        assertEquals("changed", em.find(BookCollection.class, coll2.getId()).getName());
     }
 
     @Test
@@ -106,6 +105,14 @@ public class BookCollectionDaoTest {
         assertSame(coll1, collectionDao.findById(coll1.getId()));
         assertSame(coll2, collectionDao.findById(coll2.getId()));
         assertNull(collectionDao.findById(666L));
+    }
+
+    @Test
+    public void testFindByName() {
+        prepareData();
+        assertSame(coll1, collectionDao.findByName("test1"));
+        assertSame(coll2, collectionDao.findByName("test2"));
+        assertNull(collectionDao.findByName("nonexistent"));
     }
 
     @Test

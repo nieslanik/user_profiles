@@ -1,11 +1,18 @@
 package cz.muni.fi.pa165.entity;
 
-import javax.persistence.*;
-
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Member {
@@ -28,7 +35,7 @@ public class Member {
     private Date registrationDate;
 
     @OneToMany
-    private Set<Loan> loans = new HashSet<>();
+    private List<Loan> loans = new ArrayList<>();
 
     private String passwordHash;
 
@@ -42,8 +49,8 @@ public class Member {
         loans.add(loan);
     }
 
-    public Set<Loan> getLoans() {
-        return Collections.unmodifiableSet(loans);
+    public List<Loan> getLoans() {
+        return Collections.unmodifiableList(loans);
     }
 
     public Long getId() {

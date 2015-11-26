@@ -1,19 +1,17 @@
 package cz.muni.fi.pa165.facade;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
-import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.service.BookService;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Michael Simacek
@@ -24,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BookFacadeImpl implements BookFacade {
 
     @Inject
-    Mapper mapper;
+    ListMapper mapper;
 
     @Inject
     BookService service;
@@ -41,7 +39,7 @@ public class BookFacadeImpl implements BookFacade {
 
     @Override
     public List<BookDTO> findAll() {
-        return service.findAll().stream().map(x -> mapper.map(x, BookDTO.class)).collect(Collectors.toList());
+        return mapper.map(service.findAll(), BookDTO.class);
     }
 
     @Override
@@ -56,7 +54,7 @@ public class BookFacadeImpl implements BookFacade {
 
     @Override
     public List<BookDTO> findByName(String name) {
-        return service.findByName(name).stream().map(x -> mapper.map(x, BookDTO.class)).collect(Collectors.toList());
+        return mapper.map(service.findByName(name), BookDTO.class);
     }
 
 }

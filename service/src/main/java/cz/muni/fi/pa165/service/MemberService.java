@@ -42,7 +42,7 @@ public interface MemberService {
      * @param member
      * @return list of all loans possessed by member or null
      */
-    Set<Loan> getAllLoans(Member member);
+    List<Loan> getAllLoans(Member member);
 
     /**
      * Authenticates member if password matches the records
