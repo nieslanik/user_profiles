@@ -34,7 +34,6 @@ public class LoanFacadeImpl implements LoanFacade {
 
     @Override
     public LoanDTO findById(Long id) {
-        System.out.println(loanService.findById(1L));
         return mapper.map(loanService.findById(id), LoanDTO.class);
     }
 
