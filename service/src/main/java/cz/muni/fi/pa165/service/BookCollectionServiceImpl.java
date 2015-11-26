@@ -1,8 +1,10 @@
 package cz.muni.fi.pa165.service;
 
 import cz.muni.fi.pa165.dao.BookCollectionDao;
+import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
 import java.util.List;
+import java.util.Set;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -35,5 +37,19 @@ public class BookCollectionServiceImpl implements BookCollectionService {
     @Override
     public BookCollection findById(Long id){
         return bookCollectionDao.findById(id);
+    }
+    @Override
+    public void addBookToCollection(Long id,Book book){
+        BookCollection coll=bookCollectionDao.findById(id);
+        coll.addBook(book);
+        bookCollectionDao.update(coll);
+        
+    }
+    
+    @Override
+    public void removeBookFromCollection(Long id,Book book){
+        BookCollection coll=bookCollectionDao.findById(id);
+        coll.removeBook(book);
+        bookCollectionDao.update(coll);
     }
 }
