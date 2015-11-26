@@ -3,7 +3,9 @@ package cz.muni.fi.pa165.facade.test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -66,41 +68,63 @@ public class LoanFacadeTest {
         verify(loanServiceMock).returnLoan(1L, BookState.HEAVY_DAMAGE);
     }
 
-    @Test
-    public void testFindById() {
+    private Loan prepareLoan(Long id) {
         Date d = new Date(0);
         Book book = new Book();
-        book.setId(1L);
+        book.setId(id + 1);
         Member member = new Member();
-        member.setId(2L);
+        member.setId(id + 2);
         Loan loan = new Loan();
-        loan.setId(3L);
+        loan.setId(id);
         loan.setBook(book);
         loan.setMember(member);
         loan.setReturnBookState(BookState.HEAVY_DAMAGE);
         loan.setLoanDate(d);
         loan.setReturnDate(d);
-        when(loanServiceMock.findById(3L)).thenReturn(loan);
-        LoanDTO dto = facade.findById(3L);
-        assertEquals(Long.valueOf(3), dto.getId());
+        return loan;
+    }
+
+    private void assertLoanDTO(long expectedId, LoanDTO dto) {
+        Date d = new Date(0);
+        assertEquals(Long.valueOf(expectedId), dto.getId());
         BookDTO bookDto = dto.getBook();
         assertNotNull(bookDto);
-        assertEquals(Long.valueOf(1), bookDto.getId());
-        MemberDTO memberDto= dto.getMember();
+        assertEquals(Long.valueOf(expectedId + 1), bookDto.getId());
+        MemberDTO memberDto = dto.getMember();
         assertNotNull(memberDto);
-        assertEquals(Long.valueOf(2), memberDto.getId());
+        assertEquals(Long.valueOf(expectedId + 2), memberDto.getId());
         assertEquals(BookState.HEAVY_DAMAGE, dto.getReturnBookState());
         assertEquals(d, dto.getLoanDate());
         assertEquals(d, dto.getReturnDate());
     }
 
     @Test
-    public void testFindAll() {
+    public void testFindById() {
+        Loan loan = prepareLoan(1L);
+        when(loanServiceMock.findById(1L)).thenReturn(loan);
+        LoanDTO dto = facade.findById(1L);
+        assertLoanDTO(1L, dto);
+    }
 
+    @Test
+    public void testFindAll() {
+        Loan loan1 = prepareLoan(1L);
+        Loan loan2 = prepareLoan(100L);
+        List<Loan> allLoans = new ArrayList<>();
+        allLoans.add(loan1);
+        allLoans.add(loan2);
+        when(loanServiceMock.findAll()).thenReturn(allLoans);
+        List<LoanDTO> dtos = facade.findAll();
+        assertEquals(2, dtos.size());
+        assertLoanDTO(1L, dtos.get(0));
+        assertLoanDTO(100L, dtos.get(1));
     }
 
     @Test
     public void testDelete() {
-
+        Loan loan = prepareLoan(1L);
+        when(loanServiceMock.findById(1L)).thenReturn(loan);
+        facade.delete(1L);
+        verify(loanServiceMock).delete(loan);
     }
 }
