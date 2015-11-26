@@ -36,8 +36,8 @@ public class BookCollectionDaoImpl implements BookCollectionDao {
         return em.createQuery("select b from BookCollection b", BookCollection.class)
 				.getResultList();
     }
-    public BookCollection findByName(String name){
-            return em.find(BookCollection.class, name);
+    public List<BookCollection> findByName(String name){
+            return em.createQuery("from BookCollection where name = :name", BookCollection.class).setParameter("name", name).getResultList();
     }
     public BookCollection findById(Long id){
             return em.find(BookCollection.class, id);
