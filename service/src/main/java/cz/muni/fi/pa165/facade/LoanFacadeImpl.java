@@ -38,7 +38,7 @@ public class LoanFacadeImpl implements LoanFacade {
 
     @Override
     public List<LoanDTO> findAll() {
-        return loanService.findAll().stream().map(x -> mapper.map(x, LoanDTO.class)).collect(Collectors.toList());
+        return null;//loanService.findAll().stream().map(x -> mapper.map(x, LoanDTO.class)).collect(Collectors.toList());
     }
 
     @Override
