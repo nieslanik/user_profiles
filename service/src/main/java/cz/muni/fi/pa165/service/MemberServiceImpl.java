@@ -8,6 +8,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -44,8 +46,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean authenticateMember(Member member, String unhashedPassword) {
-        return member.getPasswordHash().equals(makeSha1Hash(unhashedPassword));
+    public boolean authenticateMember(Member member, String unencryptedPassword) {
+        return member.getPasswordHash().equals(makeSha1Hash(unencryptedPassword));
     }
 
     @Override
@@ -59,25 +61,18 @@ public class MemberServiceImpl implements MemberService {
         memberDao.create(member);
     }
 
-    private String makeSha1Hash(String input)
+    private String makeSha1Hash(String password)
     {
         MessageDigest md = null;
-        try
-        {
-            md = MessageDigest.getInstance("SHA1");
-            md.reset();
-            byte[] buffer = input.getBytes();
-            md.update(buffer);
-            byte[] digest = md.digest();
-
-            String hexString = "";
-            for (int i = 0; i < digest.length; i++)
-            {
-                hexString += Integer.toString((digest[i] & 0xff) + 0x100, 16).substring(1);
-            }
-            return hexString;
+        try {
+            MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+            crypt.reset();
+            crypt.update(password.getBytes("UTF-8"));
+            return new BigInteger(1, crypt.digest()).toString(16);
         }
         catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
     }

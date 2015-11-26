@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.dto;
 
 /**
- * Created by Juraj on 11/23/2015.
+ * Created by Juraj Tomko on 11/23/2015.
  */
 public class MemberAuthenticateDTO {
 
