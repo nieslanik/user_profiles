@@ -29,7 +29,7 @@ public class Loan {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date loanDate;
     @Column(nullable = false)
-    private Boolean returned;
+    private boolean returned;
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date returnDate;
@@ -66,19 +66,19 @@ public class Loan {
         return this.id;
     }
 
-    public void setDate(Date loanDate) {
+    public Date getLoanDate() {
+        return loanDate;
+    }
+
+    public void setLoanDate(Date loanDate) {
         this.loanDate = loanDate;
     }
 
-    public Date getDate() {
-        return this.loanDate;
+    public boolean isReturned() {
+        return returned;
     }
 
-    public Boolean isReturned() {
-        return this.returned;
-    }
-
-    public void setReturned(Boolean returned) {
+    public void setReturned(boolean returned) {
         this.returned = returned;
     }
 
@@ -106,52 +106,37 @@ public class Loan {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result
-                + ((this.getDate() == null) ? 0 : this.getDate().hashCode());
-        result = prime * result + ((this.isReturned() == null) ? 0 : this.isReturned().hashCode());
-        result = prime * result + ((this.getReturnDate() == null) ? 0 : this.getReturnDate().hashCode());
-        result = prime * result + ((this.getReturnBookState() == null) ? 0 : this.getReturnBookState().hashCode());
-        result = prime * result + ((this.getBook() == null) ? 0 : this.getBook().hashCode());
+        result = prime * result + ((book == null) ? 0 : book.hashCode());
+        result = prime * result + ((loanDate == null) ? 0 : loanDate.hashCode());
+        result = prime * result + ((member == null) ? 0 : member.hashCode());
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
-        if (!(obj instanceof Loan)) {
+        if (!(obj instanceof Loan))
             return false;
-        }
         Loan other = (Loan) obj;
-        if (this.getDate() == null && other.getDate() != null) {
+        if (book == null) {
+            if (other.book != null)
+                return false;
+        } else if (!book.equals(other.getBook()))
             return false;
-        } else if (!this.getDate().equals(other.getDate())) {
+        if (loanDate == null) {
+            if (other.loanDate != null)
+                return false;
+        } else if (!loanDate.equals(other.getLoanDate()))
             return false;
-        }
-        if (this.isReturned() == null && other.isReturned() != null) {
+        if (member == null) {
+            if (other.member != null)
+                return false;
+        } else if (!member.equals(other.getMember()))
             return false;
-        } else if (isReturned() != other.isReturned()) {
-            return false;
-        }
-        if (this.getReturnDate() == null && other.getReturnDate() != null) {
-            return false;
-        } else if (!this.getReturnDate().equals(other.getReturnDate())) {
-            return false;
-        }
-        if (this.getReturnBookState() == null && other.getReturnBookState() != null) {
-            return false;
-        } else if (!this.getReturnBookState().equals(other.getReturnBookState())) {
-            return false;
-        }
-        if (this.getBook() == null && other.getBook() != null) {
-            return false;
-        } else if (!this.getBook().equals(other.getBook())) {
-            return false;
-        }
         return true;
     }
+
 }

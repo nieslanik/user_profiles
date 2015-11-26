@@ -77,7 +77,7 @@ public class LoanServiceTest {
     public void testCreate() {
         service.create(loan);
         verify(daoMock).create(loan);
-        assertNotNull(loan.getDate());
+        assertNotNull(loan.getLoanDate());
         assertNull(loan.getReturnBookState());
         assertNull(loan.getReturnDate());
     }

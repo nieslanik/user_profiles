@@ -101,14 +101,14 @@ public class MemberServiceTest {
         
         Loan loan1=new Loan();
         loan1.setBook(book);
-        loan1.setDate(new Date(1));
+        loan1.setLoanDate(new Date(1));
         loan1.setReturnBookState(BookState.NEW);
         loan1.setReturnDate(new Date(3));
         loan1.setReturned(Boolean.TRUE);
         
         Loan loan2=new Loan();
         loan2.setBook(new Book());
-        loan2.setDate(new Date(10));
+        loan2.setLoanDate(new Date(10));
         loan2.setReturned(Boolean.FALSE);
         
         List<Loan> loans = new ArrayList<>();

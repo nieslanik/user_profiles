@@ -59,19 +59,19 @@ public class LoanDaoTest {
 
         Calendar calendar = new GregorianCalendar(2015, 10, 27);
         Date date = calendar.getTime();
-        firstLoan.setDate(date);
+        firstLoan.setLoanDate(date);
         firstLoan.setBook(firstBook);
         firstLoan.setReturnBookState(BookState.NEW);
         firstLoan.setReturnDate(date);
         firstLoan.setReturned(true);
 
-        secondLoan.setDate(date);
+        secondLoan.setLoanDate(date);
         secondLoan.setBook(secondBook);
         secondLoan.setReturnBookState(BookState.LIGHT_DAMAGE);
         secondLoan.setReturnDate(date);
         secondLoan.setReturned(true);
 
-        thirdLoan.setDate(date);
+        thirdLoan.setLoanDate(date);
         thirdLoan.setBook(firstBook);
         thirdLoan.setReturnBookState(BookState.HEAVY_DAMAGE);
         thirdLoan.setReturnDate(date);
@@ -107,11 +107,11 @@ public class LoanDaoTest {
         Calendar calendar = new GregorianCalendar(2015, 12, 24);
         Date newDate = calendar.getTime();
 
-        firstLoan.setDate(newDate);
+        firstLoan.setLoanDate(newDate);
         loanDao.update(firstLoan);
 
         Loan found = em.find(Loan.class, firstLoan.getId());
-        assertEquals(found.getDate(), firstLoan.getDate());
+        assertEquals(found.getLoanDate(), firstLoan.getLoanDate());
     }
 
     @Test
@@ -142,7 +142,7 @@ public class LoanDaoTest {
         Loan loan = new Loan();
         Calendar calendar = new GregorianCalendar(2015,1,1);
         Date date = calendar.getTime();
-        loan.setDate(date);
+        loan.setLoanDate(date);
         loan.setReturnBookState(BookState.HEAVY_DAMAGE);
         loan.setReturnDate(date);
         loan.setBook(firstBook);
