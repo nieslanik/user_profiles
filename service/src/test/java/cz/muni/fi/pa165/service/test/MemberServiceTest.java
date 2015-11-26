@@ -43,6 +43,7 @@ public class MemberServiceTest {
         member.setSurname("Protrhla");
         member.setEmail("BerUska15@pokec.sk");
         member.setIsAdmin(Boolean.TRUE);
+        member.setPasswordHash("fb9f91a6279185848d4d67fcf5e79d5dd8af8f0");
         Date date = new Date(0);
         member.setRegistrationDate(date);       
     }
@@ -52,7 +53,6 @@ public class MemberServiceTest {
     public void testRegister() {
         service.registerMember(member, "OhFreddledGruntbugglyThyMicturationsAreToMe");
         verify(memberMock).create(member);
-        assertNotNull(member.getId());
     }
     
     @Test
@@ -103,22 +103,16 @@ public class MemberServiceTest {
         member.addLoan(loan2);
         
         when(memberMock.findById(member.getId())).thenReturn(member);
-        assertSame(loans, service.getAllLoans(member));
+        assertEquals(loans, service.getAllLoans(member));
     }
 
     @Test
     public void testCorrectAuthenticate() {
-        assertSame(service.authenticateMember(member, "totoJeNajneprelomitelnejsieHesloNaSvete"),Boolean.TRUE);
+        assertTrue(service.authenticateMember(member, "totoJeNajneprelomitelnejsieHesloNaSvete"));
     }
     
     @Test
     public void testIncorrectAuthenticate() {
-        assertSame(service.authenticateMember(member, "totoJeNajsieHesloNaSvete"),Boolean.FALSE);
+        assertFalse(service.authenticateMember(member, "totoJeNajsieHesloNaSvete"));
     }
-    
-    @Test
-    public void testEmptyAuthenticate() {
-        assertSame(service.authenticateMember(member, null),Boolean.FALSE);
-    }
-    
 }
