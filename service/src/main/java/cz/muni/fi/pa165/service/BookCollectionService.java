@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.service;
 
+import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
 import java.util.List;
 
@@ -33,4 +34,16 @@ public interface BookCollectionService {
      * @return BookCollection objects with target name 
      */
     BookCollection findById(Long id);
+    /**
+     * add book to book collection 
+     * 
+     * @param book 
+     */
+    void addBookToCollection(Long id,Book book);
+    /**
+     * remove book from book collection 
+     * 
+     * @param book 
+     */
+    void removeBookFromCollection(Long id,Book book);
 }
