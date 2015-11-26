@@ -13,7 +13,6 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Juraj Tomko on 11/23/2015.
@@ -40,7 +39,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Set<Loan> getAllLoans(Member member) {
+    public List<Loan> getAllLoans(Member member) {
         Long id = member.getId();
         return memberDao.findById(id).getLoans();
     }

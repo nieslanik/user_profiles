@@ -1,11 +1,9 @@
 package cz.muni.fi.pa165.facade;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
-import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +22,7 @@ import cz.muni.fi.pa165.service.LoanService;
 public class LoanFacadeImpl implements LoanFacade {
 
     @Inject
-    Mapper mapper;
+    ListMapper mapper;
 
     @Inject
     LoanService loanService;
@@ -42,7 +40,7 @@ public class LoanFacadeImpl implements LoanFacade {
 
     @Override
     public List<LoanDTO> findAll() {
-        return null;//loanService.findAll().stream().map(x -> mapper.map(x, LoanDTO.class)).collect(Collectors.toList());
+        return mapper.map(loanService.findAll(), LoanDTO.class);
     }
 
     @Override
