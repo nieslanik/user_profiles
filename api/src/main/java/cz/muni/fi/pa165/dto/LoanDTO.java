@@ -11,27 +11,36 @@ import java.util.Objects;
  */
 public class LoanDTO {
     
-    private Long LoanId;
-    private Long MemberId;
+    private Long id;
+    private Long memberId;
+    private Long bookId;
     private Date loanDate;
     private Boolean returned;
     private Date returnDate;
     private BookState returnBookState;
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long loanId) {
+        this.id = loanId;
+    }
 
     public Long getMemberId() {
-        return MemberId;
+        return memberId;
     }
 
-    public void setMemberId(Long MemberId) {
-        this.MemberId = MemberId;
-    }
-    
-    public Long getLoanId() {
-        return LoanId;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 
-    public void setLoanId(Long LoanId) {
-        this.LoanId = LoanId;
+    public Long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
     }
 
     public Date getLoanDate() {
@@ -65,42 +74,42 @@ public class LoanDTO {
     public void setReturnBookState(BookState returnBookState) {
         this.returnBookState = returnBookState;
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.LoanId);
-        hash = 23 * hash + Objects.hashCode(this.loanDate);
-        hash = 23 * hash + Objects.hashCode(this.returned);
-        hash = 23 * hash + Objects.hashCode(this.returnDate);
-        hash = 23 * hash + Objects.hashCode(this.returnBookState);
-        return hash;
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
+        result = prime * result + ((loanDate == null) ? 0 : loanDate.hashCode());
+        result = prime * result + ((memberId == null) ? 0 : memberId.hashCode());
+        return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (this == obj)
+            return true;
+        if (obj == null)
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
             return false;
-        }
-        final LoanDTO other = (LoanDTO) obj;
-        if (!Objects.equals(this.LoanId, other.LoanId)) {
+        LoanDTO other = (LoanDTO) obj;
+        if (bookId == null) {
+            if (other.bookId != null)
+                return false;
+        } else if (!bookId.equals(other.bookId))
             return false;
-        }
-        if (!Objects.equals(this.loanDate, other.loanDate)) {
+        if (loanDate == null) {
+            if (other.loanDate != null)
+                return false;
+        } else if (!loanDate.equals(other.loanDate))
             return false;
-        }
-        if (!Objects.equals(this.returned, other.returned)) {
+        if (memberId == null) {
+            if (other.memberId != null)
+                return false;
+        } else if (!memberId.equals(other.memberId))
             return false;
-        }
-        if (!Objects.equals(this.returnDate, other.returnDate)) {
-            return false;
-        }
-        if (this.returnBookState != other.returnBookState) {
-            return false;
-        }
         return true;
     }
+
 }

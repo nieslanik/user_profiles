@@ -2,8 +2,8 @@ package cz.muni.fi.pa165.facade;
 
 import java.util.List;
 
+import cz.muni.fi.pa165.dto.CreateLoanDTO;
 import cz.muni.fi.pa165.dto.LoanDTO;
-import cz.muni.fi.pa165.dto.NewLoanDTO;
 import cz.muni.fi.pa165.enums.BookState;
 
 /**
@@ -17,7 +17,7 @@ public interface LoanFacade {
      *
      * @param loan
      */
-    void createLoan(NewLoanDTO loan);
+    void createLoan(CreateLoanDTO loan);
 
     /**
      * Returns loan with given id or null

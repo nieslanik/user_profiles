@@ -1,16 +1,19 @@
 package cz.muni.fi.pa165.facade;
 
-import cz.muni.fi.pa165.dto.LoanDTO;
-import cz.muni.fi.pa165.dto.NewLoanDTO;
-import cz.muni.fi.pa165.entity.Loan;
-import cz.muni.fi.pa165.enums.BookState;
-import cz.muni.fi.pa165.service.LoanService;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import javax.inject.Inject;
+
 import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import cz.muni.fi.pa165.dto.CreateLoanDTO;
+import cz.muni.fi.pa165.dto.LoanDTO;
+import cz.muni.fi.pa165.entity.Loan;
+import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.service.LoanService;
 
 /**
  *
@@ -27,12 +30,13 @@ public class LoanFacadeImpl implements LoanFacade {
     LoanService loanService;
 
     @Override
-    public void createLoan(NewLoanDTO loan) {
+    public void createLoan(CreateLoanDTO loan) {
         loanService.create(mapper.map(loan, Loan.class));
     }
 
     @Override
     public LoanDTO findById(Long id) {
+        System.out.println(loanService.findById(1L));
         return mapper.map(loanService.findById(id), LoanDTO.class);
     }
 
