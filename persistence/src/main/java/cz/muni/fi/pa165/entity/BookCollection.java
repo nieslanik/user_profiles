@@ -53,8 +53,12 @@ public class BookCollection {
         return Collections.unmodifiableSet(books);
     }
 
-    public void addBook(Book books) {
+    public void addBook(Book book) {
         this.books.add(books);
+    }
+    
+    public void removeBook(Book book) {
+        this.books.remove(books);
     }
 
     //</editor-fold>
