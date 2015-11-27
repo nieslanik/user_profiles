@@ -26,7 +26,7 @@ import org.mockito.MockitoAnnotations;
 /**
  * Tests for BookCollectionService
  * 
- * @author Jakub Peschel <jakub.peschel@studentagency.cz>
+ * @author Jakub Peschel 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ServiceConfiguration.class)

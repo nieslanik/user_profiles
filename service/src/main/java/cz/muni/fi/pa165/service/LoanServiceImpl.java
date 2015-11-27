@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author Jakub Peschel <jakub.peschel@studentagency.cz>
+ * @author Jakub Peschel 
  */
 @Service
 public class LoanServiceImpl implements LoanService {
