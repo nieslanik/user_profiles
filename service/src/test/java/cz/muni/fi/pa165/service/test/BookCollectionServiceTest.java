@@ -86,4 +86,18 @@ public class BookCollectionServiceTest {
         verify(daoMock).delete(collection);
     }
 
+    @Test
+    public void testAddBookToCollection() {
+        when(daoMock.findById(1L)).thenReturn(collection);
+        service.addBookToCollection(1L, book);
+        verify(daoMock).update(collection);
+    }
+
+    @Test
+    public void testRemoveBookToCollection() {
+        collection.addBook(book);
+        when(daoMock.findById(1L)).thenReturn(collection);
+        service.removeBookFromCollection(1L, book);
+        verify(daoMock).update(collection);
+    }
 }

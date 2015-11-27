@@ -12,7 +12,7 @@ import cz.muni.fi.pa165.entity.Member;
 /**
  * Data access object for Member entity
  *
- * @author Jakub Peschel
+ * @author Jakub Peschel 
  */
 @Repository
 public class MemberDaoImpl implements MemberDao {

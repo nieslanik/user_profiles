@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
+import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
@@ -107,5 +108,28 @@ public class BookCollectionFacadeTest {
         when(bookCollectionServiceMock.findById(1L)).thenReturn(bookCollection);
         facade.delete(1L);
         verify(bookCollectionServiceMock).delete(bookCollection);
+    }
+    
+    @Test
+    public void testAddBookToCollection(){
+        BookDTO book = new BookDTO();
+        book.setId(1L);
+        facade.addBookToCollection(1L, book);
+        verify(bookCollectionServiceMock).addBookToCollection(
+                any(Long.class), 
+                any(Book.class)
+        );
+        
+    }
+    
+    @Test
+    public void testRemoveBookToCollection(){
+        BookDTO book = new BookDTO();
+        book.setId(1L);
+        facade.removeBookFromCollection(1L, book);
+        verify(bookCollectionServiceMock).removeBookFromCollection(
+                any(Long.class), 
+                any(Book.class)
+        );
     }
 }
