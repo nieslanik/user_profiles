@@ -5,7 +5,9 @@
 package cz.muni.fi.pa165.facade;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
+import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
+import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
 import cz.muni.fi.pa165.facade.BookCollectionFacade;
 import cz.muni.fi.pa165.service.BookCollectionService;
@@ -53,6 +55,17 @@ public class BookCollectionFacadeImpl implements BookCollectionFacade{
     @Override
     public void delete(Long bookId){
         service.delete(service.findById(bookId));
+    }
+    
+    @Override
+    public void addBookToCollection(Long id,BookDTO bookDto){
+        service.addBookToCollection(id, mapper.map(bookDto,Book.class));
+    }
+    
+    @Override
+    public void removeBookFromCollection(Long id,BookDTO bookDto){
+        service.removeBookFromCollection(id, mapper.map(bookDto,Book.class));
+    
     }
 
 
