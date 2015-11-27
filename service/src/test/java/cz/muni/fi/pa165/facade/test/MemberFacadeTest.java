@@ -24,7 +24,8 @@ import cz.muni.fi.pa165.facade.MemberFacade;
 import cz.muni.fi.pa165.service.MemberService;
 
 /**
- *
+ * Tests for MemberFacade
+ * 
  * @author xkubist
  *
  */

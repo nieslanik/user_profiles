@@ -8,7 +8,7 @@ import cz.muni.fi.pa165.entity.Member;
 /**
  * Service layer for Member entity
  *
- * Created by Juraj Tomko on 11/23/2015.
+ * @author Juraj Tomko 
  */
 public interface MemberService {
 

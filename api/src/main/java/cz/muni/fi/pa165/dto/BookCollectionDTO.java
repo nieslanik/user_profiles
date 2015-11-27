@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Data Transfer object for BookCollection entity
+ * 
+ * @author Jakub Peschel <jakub.peschel@sudentagency.cz>
+ */
 public class BookCollectionDTO {
     private Long id;
     private String name;

@@ -24,6 +24,8 @@ import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 
 /**
+ * Tests for BookCollectionService
+ * 
  * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */
 @RunWith(SpringJUnit4ClassRunner.class)

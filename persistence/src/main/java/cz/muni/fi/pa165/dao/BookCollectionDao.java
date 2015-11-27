@@ -3,7 +3,8 @@ import cz.muni.fi.pa165.entity.BookCollection;
 import java.util.List;
 
 /**
- *
+ * Data access object for BookCollection entity
+ * 
  * @author xkubist
  */
 public interface BookCollectionDao {
@@ -34,12 +35,14 @@ public interface BookCollectionDao {
     /**
      * return BookCollection object with target name 
      * 
+     * @param Name
      * @return BookCollection object with target name 
      */
     BookCollection findByName(String Name);
     /**
      * return BookCollection objects with target id 
      * 
+     * @param id
      * @return BookCollection objects with target id 
      */
     BookCollection findById(Long id);

@@ -29,6 +29,7 @@ public interface LoanDao {
     /**
      * Finds a loan in the database by its ID
      *
+     * @param id
      * @return Found Loan object or null if no loan was found.
      * */
     Loan findById(Long id);
@@ -42,6 +43,7 @@ public interface LoanDao {
 
     /**
      * Removes given Loan from the database
-     * */
+     *
+     * @param loan */
     void delete(Loan loan);
 }

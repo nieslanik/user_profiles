@@ -24,7 +24,7 @@ import cz.muni.fi.pa165.service.BookCollectionService;
 import cz.muni.fi.pa165.service.BookService;
 
 /**
- *
+ * Tests for BookCollectionFacade
  *
  * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */
@@ -47,7 +47,7 @@ public class BookCollectionFacadeTest {
         CreateBookCollectionDTO collection = new CreateBookCollectionDTO();
         String name = "Test";
         collection.setName(name);
-        List<Long> bookIds = new ArrayList();
+        List<Long> bookIds = new ArrayList<>();
         bookIds.add(1L);
         collection.setBookIds(bookIds);
         List<Book> bookList = prepareBookColl();
@@ -62,7 +62,7 @@ public class BookCollectionFacadeTest {
     }
 
     private List<Book> prepareBookColl() {
-        List<Book> bookList = new ArrayList();
+        List<Book> bookList = new ArrayList<>();
         Book book1 = new Book();
         book1.setName("Test1");
         book1.setId(1L);

@@ -6,7 +6,8 @@ import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
 import java.util.List;
 
 /**
- *
+ * Facade layer for BookCollection entity
+ * 
  * @author xkubist
  */
 public interface BookCollectionFacade {
@@ -31,18 +32,20 @@ public interface BookCollectionFacade {
 
     /**
      * delete book collection with given id
-     * @param id
+     * @param bookId
      */
     void delete(Long bookId);
     /**
      * add book to book collection 
      * 
+     * @param id
      * @param bookDto
      */
     void addBookToCollection(Long id,BookDTO bookDto);
     /**
      * remove book from book collection 
      * 
+     * @param id
      * @param bookDto 
      */
     void removeBookFromCollection(Long id,BookDTO bookDto);

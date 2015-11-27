@@ -9,6 +9,12 @@ import org.springframework.context.annotation.Import;
 
 import cz.muni.fi.pa165.spring.LibrarySpringContext;
 
+/**
+ * Configuration od services
+ * 
+ * @author Michael Šimáček
+ */
+
 @Configuration
 @Import(LibrarySpringContext.class)
 @ComponentScan({"cz.muni.fi.pa165.service", "cz.muni.fi.pa165.facade"})

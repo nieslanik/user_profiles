@@ -33,6 +33,7 @@ public interface BookFacade {
     /**
      * Finds books by name (there can be multiple copies of the same book)
      *
+     * @param name
      * @return list of books
      */
     List<BookDTO> findByName(String name);
@@ -47,7 +48,7 @@ public interface BookFacade {
     /**
      * Removes book from the database
      *
-     * @param book
+     * @param bookId
      */
     void delete(Long bookId);
 

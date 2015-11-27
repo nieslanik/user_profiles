@@ -28,6 +28,12 @@ import cz.muni.fi.pa165.service.BookService;
 import cz.muni.fi.pa165.service.LoanService;
 import cz.muni.fi.pa165.service.MemberService;
 
+
+/**
+ * Tests for LoanFacade
+ * 
+ * @author Michael Šimáček
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = FacadeTestConfiguration.class)
 public class LoanFacadeTest {

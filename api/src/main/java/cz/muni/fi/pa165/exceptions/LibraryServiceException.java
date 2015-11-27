@@ -1,5 +1,10 @@
 package cz.muni.fi.pa165.exceptions;
 
+/**
+ * LibraryServiceException used for unexpectet behaviour of application
+ * 
+ * @author Michael Šimáček
+ */
 public class LibraryServiceException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;

@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Juraj Tomko on 11/26/2015.
+ * tests for BookService
+ * 
+ * @author Juraj Tomko 
  */
 public class BookServiceTest {
 
