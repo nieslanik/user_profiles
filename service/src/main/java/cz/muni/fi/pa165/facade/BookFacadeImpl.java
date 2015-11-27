@@ -11,6 +11,7 @@ import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.service.BookCollectionService;
 import cz.muni.fi.pa165.service.BookService;
 
 /**
@@ -27,9 +28,16 @@ public class BookFacadeImpl implements BookFacade {
     @Inject
     BookService service;
 
+    @Inject
+    BookCollectionService collectionService;
+
     @Override
     public void createBook(CreateBookDTO book) {
-        service.create(mapper.map(book, Book.class));
+        Book entity = mapper.map(book, Book.class);
+        for (Long id : book.getCollectionIds()) {
+            entity.addCollection(collectionService.findById(id));
+        }
+        service.create(entity);
     }
 
     @Override
