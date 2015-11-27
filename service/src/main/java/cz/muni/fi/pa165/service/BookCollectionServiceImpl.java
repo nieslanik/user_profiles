@@ -16,39 +16,41 @@ import cz.muni.fi.pa165.entity.BookCollection;
  */
 @Service
 public class BookCollectionServiceImpl implements BookCollectionService {
+
     @Inject
     private BookCollectionDao bookCollectionDao;
-    
+
     @Override
-    public void create(BookCollection b){
+    public void create(BookCollection b) {
         bookCollectionDao.create(b);
     }
-    
+
     @Override
-    public void delete(BookCollection b){
+    public void delete(BookCollection b) {
         bookCollectionDao.delete(b);
     }
-     
+
     @Override
-    public List<BookCollection> findAll(){
+    public List<BookCollection> findAll() {
         return bookCollectionDao.findAll();
     }
-   
+
     @Override
-    public BookCollection findById(Long id){
+    public BookCollection findById(Long id) {
         return bookCollectionDao.findById(id);
     }
+
     @Override
-    public void addBookToCollection(Long id,Book book){
-        BookCollection coll=bookCollectionDao.findById(id);
+    public void addBookToCollection(Long id, Book book) {
+        BookCollection coll = bookCollectionDao.findById(id);
         coll.addBook(book);
         bookCollectionDao.update(coll);
-        
+
     }
-    
+
     @Override
-    public void removeBookFromCollection(Long id,Book book){
-        BookCollection coll=bookCollectionDao.findById(id);
+    public void removeBookFromCollection(Long id, Book book) {
+        BookCollection coll = bookCollectionDao.findById(id);
         coll.removeBook(book);
         bookCollectionDao.update(coll);
     }

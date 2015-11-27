@@ -97,10 +97,12 @@ public class BookCollectionServiceTest {
 
     @Test
     public void testRemoveBookToCollection() {
-        collection.addBook(book);
-        when(daoMock.findById(1L)).thenReturn(collection);
+        
+        BookCollection testCollection = new BookCollection();
+        testCollection.setName("testCollection2");
+        when(daoMock.findById(1L)).thenReturn(testCollection);
         service.removeBookFromCollection(1L, book);
-        verify(daoMock).update(collection);
-        assertSame(0, collection.getBooks().size());
+        verify(daoMock).update(testCollection);
+        assertSame(0, testCollection.getBooks().size());
     }
 }
