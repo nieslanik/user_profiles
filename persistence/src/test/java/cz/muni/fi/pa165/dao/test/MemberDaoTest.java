@@ -15,6 +15,7 @@ import static org.junit.Assert.assertSame;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import cz.muni.fi.pa165.spring.LibrarySpringContext;
@@ -98,7 +99,7 @@ public class MemberDaoTest {
         assertNull(em.find(Member.class, member1.getId()));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = DataAccessException.class)
     public void testDeleteNonexistent() {
         Member myMember = new Member();
         memberDao.delete(myMember);

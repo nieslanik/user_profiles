@@ -10,10 +10,10 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -90,7 +90,7 @@ public class LoanDaoTest {
         assertNotNull(thirdLoan.getId());
     }
 
-    @Test(expected = PersistenceException.class)
+    @Test(expected = DataAccessException.class)
     public void testCreateNullDate() {
         Loan loan = new Loan();
         Calendar calendar = new GregorianCalendar(2015, 1, 1);
@@ -137,7 +137,7 @@ public class LoanDaoTest {
         assertEquals(loans.size(), 3);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = DataAccessException.class)
     public void testDeleteNonExistent() {
         Loan loan = new Loan();
         Calendar calendar = new GregorianCalendar(2015,1,1);

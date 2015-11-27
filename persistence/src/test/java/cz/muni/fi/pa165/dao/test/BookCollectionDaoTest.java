@@ -8,10 +8,10 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,7 +84,7 @@ public class BookCollectionDaoTest {
         assertNotNull(coll2.getId());
     }
 
-    @Test(expected = PersistenceException.class)
+    @Test(expected = DataAccessException.class)
     public void testCreateNullName() {
         BookCollection newColl = new BookCollection();
         collectionDao.create(newColl);
@@ -132,7 +132,7 @@ public class BookCollectionDaoTest {
         assertNull(em.find(BookCollection.class, coll2.getId()));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = DataAccessException.class)
     public void testDeleteNonexistent() {
         BookCollection newColl = new BookCollection();
         newColl.setId(100L);

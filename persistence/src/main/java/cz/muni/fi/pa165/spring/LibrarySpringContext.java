@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -25,7 +26,7 @@ public class LibrarySpringContext {
      * Creates entityManagerFactory for this configuration
      *
      * @return Sprint EMF bean
-     * */
+     */
     @Bean
     @Singleton
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -41,9 +42,19 @@ public class LibrarySpringContext {
      * Creates transaction manager
      * 
      * @return transaction manager
-     * */
+     */
     @Bean
     public JpaTransactionManager transactionManager() {
         return new JpaTransactionManager(entityManagerFactory().getObject());
+    }
+
+    /**
+     * Enables Spring exception translation
+     *
+     * @return exception translation processor
+     */
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
+        return new PersistenceExceptionTranslationPostProcessor();
     }
 }
