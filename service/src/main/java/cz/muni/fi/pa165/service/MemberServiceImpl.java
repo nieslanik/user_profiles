@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.service;
 import cz.muni.fi.pa165.dao.MemberDao;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
+import cz.muni.fi.pa165.exceptions.LibraryServiceException;
 
 import javax.inject.Inject;
 
@@ -56,6 +57,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void registerMember(Member member, String password) {
+        if (password.isEmpty()) {
+            throw new LibraryServiceException("Password may not be empty");
+        }
         member.setPasswordHash(makeSha1Hash(password));
         memberDao.create(member);
     }

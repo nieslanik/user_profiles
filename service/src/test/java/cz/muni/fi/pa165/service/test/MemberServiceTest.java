@@ -7,19 +7,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.transaction.annotation.Transactional;
 
 import cz.muni.fi.pa165.dao.MemberDao;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.exceptions.LibraryServiceException;
 import cz.muni.fi.pa165.service.MemberService;
 import cz.muni.fi.pa165.service.MemberServiceImpl;
 
@@ -45,16 +44,20 @@ public class MemberServiceTest {
         member.setSurname("Protrhla");
         member.setEmail("BerUska15@pokec.sk");
         member.setIsAdmin(Boolean.TRUE);
-        member.setPasswordHash("fb9f91a6279185848d4d67fcf5e79d5dd8af8f0");
         Date date = new Date(0);
         member.setRegistrationDate(date);       
     }
     
     @Test
-    @Transactional/*dokonci registraci s prazdnym heslom a registraciu toho isteho uzivatela*/
     public void testRegister() {
-        service.registerMember(member, "OhFreddledGruntbugglyThyMicturationsAreToMe");
+        service.registerMember(member, "totoJeNajneprelomitelnejsieHesloNaSvete");
         verify(memberMock).create(member);
+        assertEquals("fb9f91a6279185848d4d67fcf5e79d5dd8af8f0", member.getPasswordHash());
+    }
+    
+    @Test(expected = LibraryServiceException.class)
+    public void testRegisterEmptyPassword() {
+        service.registerMember(member, "");
     }
     
     @Test
@@ -110,11 +113,13 @@ public class MemberServiceTest {
 
     @Test
     public void testCorrectAuthenticate() {
+        member.setPasswordHash("fb9f91a6279185848d4d67fcf5e79d5dd8af8f0");
         assertTrue(service.authenticateMember(member, "totoJeNajneprelomitelnejsieHesloNaSvete"));
     }
     
     @Test
     public void testIncorrectAuthenticate() {
+        member.setPasswordHash("fb9f91a6279185848d4d67fcf5e79d5dd8af8f0");
         assertFalse(service.authenticateMember(member, "totoJeNajsieHesloNaSvete"));
     }
 }
