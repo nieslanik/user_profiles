@@ -5,7 +5,9 @@ import cz.muni.fi.pa165.dto.*;
 import java.util.List;
 
 /**
- * Created by Juraj Tomko on 11/23/2015.
+ * Facade layer for Member entity
+ * 
+ * @author Juraj Tomko
  */
 
 public interface MemberFacade {
@@ -46,7 +48,6 @@ public interface MemberFacade {
     /**
      * Registers new member
      * @param memberReg
-     * @return true if registration was successful, else false
      */
     void registerMember(MemberRegisterDTO memberReg);
 

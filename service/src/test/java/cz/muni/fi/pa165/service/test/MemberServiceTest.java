@@ -24,7 +24,8 @@ import cz.muni.fi.pa165.service.MemberService;
 import cz.muni.fi.pa165.service.MemberServiceImpl;
 
 /**
- *
+ * Tests for MemberService
+ * 
  * @author xkubist
  */
 public class MemberServiceTest {

@@ -42,7 +42,7 @@ public class BookCollectionDaoImpl implements BookCollectionDao {
     public BookCollection findByName(String name) {
         List<BookCollection> result = em.createQuery("from BookCollection where name = :name", BookCollection.class)
                 .setParameter("name", name).getResultList();
-        if (result.size() == 0)
+        if (result.isEmpty())
             return null;
         else
             return result.get(0);

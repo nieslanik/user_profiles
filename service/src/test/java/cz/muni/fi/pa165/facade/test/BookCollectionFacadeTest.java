@@ -24,7 +24,7 @@ import cz.muni.fi.pa165.service.BookCollectionService;
 import cz.muni.fi.pa165.service.BookService;
 
 /**
- *
+ * Tests for BookCollectionFacade
  *
  * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */

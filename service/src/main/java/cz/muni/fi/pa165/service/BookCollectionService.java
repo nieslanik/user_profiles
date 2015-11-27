@@ -5,7 +5,8 @@ import cz.muni.fi.pa165.entity.BookCollection;
 import java.util.List;
 
 /**
- *
+ * Service layer for BookCollection entity
+ * 
  * @author xkubist
  */
 public interface BookCollectionService {

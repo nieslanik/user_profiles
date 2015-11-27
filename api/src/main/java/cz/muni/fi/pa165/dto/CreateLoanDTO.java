@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.dto;
 
 /**
+ * Data Transfer object for create of Loan entity
+ * 
  * @author Michael Simacek
  *
  */

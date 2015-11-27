@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
+ * Data Transfer object for create of BookCollection entity
+ * 
  * @author xkubist
  */
 public class CreateBookCollectionDTO {

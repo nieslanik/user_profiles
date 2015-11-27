@@ -3,7 +3,8 @@ package cz.muni.fi.pa165.dto;
 import cz.muni.fi.pa165.enums.BookState;
 
 /**
- *
+ * Data Transfer object for Book entity
+ * 
  * @author Michael Simacek
  *
  */

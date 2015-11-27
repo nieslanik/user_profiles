@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Data Transfer object for create of Book entity
+ * 
  * @author Michael Simacek
  *
  */

@@ -5,7 +5,9 @@ import cz.muni.fi.pa165.entity.Book;
 import java.util.List;
 
 /**
- * Created by Juraj Tomko on 10/29/2015.
+ * Data access object for Book entity
+ * 
+ * @author Juraj Tomko
  */
 public interface BookDao {
     /**
@@ -42,6 +44,7 @@ public interface BookDao {
     /**
      * Finds books by name (there can be multiple copies of the same book)
      *
+     * @param name
      * @return list of books
      */
     List<Book> findByName(String name);

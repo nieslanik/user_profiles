@@ -15,7 +15,7 @@ import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.service.MemberService;
 
 /**
- * Created by Juraj on 11/26/2015.
+ * @author Juraj Tomko
  */
 @Service
 @Transactional

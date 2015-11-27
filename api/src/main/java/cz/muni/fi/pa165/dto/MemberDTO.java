@@ -3,7 +3,9 @@ package cz.muni.fi.pa165.dto;
 import java.util.Date;
 
 /**
- * Created by Juraj Tomko on 11/23/2015.
+ * Data Transfer object for Member entity
+ * 
+ * @author Juraj Tomko 
  */
 public class MemberDTO {
 

@@ -24,7 +24,9 @@ import cz.muni.fi.pa165.service.BookCollectionService;
 import cz.muni.fi.pa165.service.BookService;
 
 /**
- * Created by Juraj Tomko on 11/27/2015.
+ * Tests for BookFacade
+ * 
+ * @author Juraj Tomko 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = FacadeTestConfiguration.class)

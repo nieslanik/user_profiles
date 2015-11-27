@@ -8,6 +8,11 @@ import javax.inject.Named;
 
 import org.dozer.Mapper;
 
+/**
+ * List Mapper
+ * 
+ * @author Michael Šimáček
+ */
 @Named
 public class ListMapper {
     @Inject

@@ -7,7 +7,7 @@ import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.enums.BookState;
 
 /**
- *Facade layer for Loan
+ * Facade layer for Loan entity
  * 
  * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */

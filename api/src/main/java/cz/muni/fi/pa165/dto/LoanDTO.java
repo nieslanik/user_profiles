@@ -5,7 +5,8 @@ import java.util.Date;
 import cz.muni.fi.pa165.enums.BookState;
 
 /**
- *
+ * Data Transfer object for Loan entity
+ * 
  * @author xkubist
  */
 public class LoanDTO {

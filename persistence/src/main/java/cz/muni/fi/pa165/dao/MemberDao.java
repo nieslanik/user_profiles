@@ -5,7 +5,7 @@ import java.util.List;
 import cz.muni.fi.pa165.entity.Member;
 
 /**
- * Data manipulation operations for Member entity.
+ * Data access object for Member entity.
  *
  * @author Jakub Peschel <jakub.peschel@studentagency.cz>
  */

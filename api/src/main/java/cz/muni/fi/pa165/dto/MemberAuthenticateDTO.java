@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.dto;
 
 /**
- * Created by Juraj Tomko on 11/23/2015.
+ * Data Transfer object for authentication of Member entity
+ * 
+ * @author Juraj Tomko 
  */
 public class MemberAuthenticateDTO {
 
