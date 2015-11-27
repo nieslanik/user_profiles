@@ -23,7 +23,7 @@ import static org.junit.Assert.assertSame;
  */
 public class MemberFacadeTest {
    /* @Inject
-    MemberFacade facade;
+    private MemberFacade facade;
     
     private MemberDTO member1;
     private MemberDTO member2;

@@ -22,10 +22,10 @@ import cz.muni.fi.pa165.service.MemberService;
 public class MemberFacadeImpl implements MemberFacade {
 
     @Inject
-    ListMapper mapper;
+    private ListMapper mapper;
 
     @Inject
-    MemberService service;
+    private MemberService service;
 
     @Override
     public MemberDTO findById(Long id) {

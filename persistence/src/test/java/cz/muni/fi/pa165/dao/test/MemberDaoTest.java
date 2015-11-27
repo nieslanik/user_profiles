@@ -32,7 +32,7 @@ public class MemberDaoTest {
     private EntityManager em;
     
     @Inject
-    MemberDao memberDao;
+    private MemberDao memberDao;
     
     private Member member1;
     private Member member2;

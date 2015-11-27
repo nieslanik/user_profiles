@@ -23,13 +23,13 @@ import cz.muni.fi.pa165.service.BookService;
 public class BookFacadeImpl implements BookFacade {
 
     @Inject
-    ListMapper mapper;
+    private ListMapper mapper;
 
     @Inject
-    BookService service;
+    private BookService service;
 
     @Inject
-    BookCollectionService collectionService;
+    private BookCollectionService collectionService;
 
     @Override
     public void createBook(CreateBookDTO book) {

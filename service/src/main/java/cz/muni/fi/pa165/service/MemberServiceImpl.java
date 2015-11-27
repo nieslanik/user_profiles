@@ -21,7 +21,7 @@ import java.util.List;
 public class MemberServiceImpl implements MemberService {
 
     @Inject
-    MemberDao memberDao;
+    private MemberDao memberDao;
 
     @Override
     public Member findById(Long id) {

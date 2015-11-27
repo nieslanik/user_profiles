@@ -26,16 +26,16 @@ import cz.muni.fi.pa165.service.MemberService;
 public class LoanFacadeImpl implements LoanFacade {
 
     @Inject
-    ListMapper mapper;
+    private ListMapper mapper;
 
     @Inject
-    LoanService loanService;
+    private LoanService loanService;
     
     @Inject
-    MemberService memberService;
+    private MemberService memberService;
     
     @Inject
-    BookService bookService;
+    private BookService bookService;
 
     @Override
     public void createLoan(CreateLoanDTO loan) {

@@ -29,7 +29,7 @@ import cz.muni.fi.pa165.service.MemberServiceImpl;
  */
 public class MemberServiceTest {
     @Mock
-    MemberDao memberMock;
+    private MemberDao memberMock;
 
     @InjectMocks
     MemberService service = new MemberServiceImpl();

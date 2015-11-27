@@ -21,7 +21,7 @@ import cz.muni.fi.pa165.exceptions.LibraryServiceException;
 public class BookServiceImpl implements BookService {
 
     @Inject
-    BookDao bookDao;
+    private BookDao bookDao;
 
     @Override
     public void create(Book book) {

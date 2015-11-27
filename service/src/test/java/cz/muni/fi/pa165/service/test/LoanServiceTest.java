@@ -26,10 +26,10 @@ import cz.muni.fi.pa165.service.LoanServiceImpl;
 public class LoanServiceTest {
 
     @Mock
-    LoanDao daoMock;
+    private LoanDao daoMock;
 
     @Mock
-    BookService bookServiceMock;
+    private BookService bookServiceMock;
 
     @InjectMocks
     LoanService service = new LoanServiceImpl();

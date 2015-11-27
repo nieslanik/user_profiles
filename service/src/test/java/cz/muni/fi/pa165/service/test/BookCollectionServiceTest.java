@@ -31,7 +31,7 @@ import org.mockito.MockitoAnnotations;
 public class BookCollectionServiceTest {
 
     @Mock
-    BookCollectionDao daoMock;
+    private BookCollectionDao daoMock;
 
     @InjectMocks
     BookCollectionService service = new BookCollectionServiceImpl();

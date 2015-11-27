@@ -18,10 +18,10 @@ import org.springframework.stereotype.Service;
 public class LoanServiceImpl implements LoanService {
 
     @Inject
-    LoanDao loanDao;
+    private LoanDao loanDao;
     
     @Inject
-    BookService bookService;
+    private BookService bookService;
     
     @Override
     public void create(Loan loan){

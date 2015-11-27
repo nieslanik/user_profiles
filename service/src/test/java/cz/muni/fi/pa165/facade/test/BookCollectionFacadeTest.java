@@ -33,13 +33,13 @@ import cz.muni.fi.pa165.service.BookService;
 public class BookCollectionFacadeTest {
 
     @Inject
-    BookCollectionService bookCollectionServiceMock;
+    private BookCollectionService bookCollectionServiceMock;
 
     @Inject
-    BookCollectionFacade facade;
+    private BookCollectionFacade facade;
     
     @Inject
-    BookService bookService;
+    private BookService bookService;
     
     @Test
     public void testCreate() {

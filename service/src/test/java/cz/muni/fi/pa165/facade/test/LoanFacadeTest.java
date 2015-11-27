@@ -33,14 +33,14 @@ import cz.muni.fi.pa165.service.MemberService;
 public class LoanFacadeTest {
     // mock injected from FacadeTestConfiguration
     @Inject
-    LoanService loanServiceMock;
+    private LoanService loanServiceMock;
     @Inject
-    MemberService memberServiceMock;
+    private MemberService memberServiceMock;
     @Inject
-    BookService bookServiceMock;
+    private BookService bookServiceMock;
 
     @Inject
-    LoanFacade facade;
+    private LoanFacade facade;
 
     @Test
     public void testCreate() {

@@ -25,7 +25,7 @@ import java.util.List;
 public class BookServiceTest {
 
     @Mock
-    BookDao daoMock;
+    private BookDao daoMock;
 
     @InjectMocks
     BookService service = new BookServiceImpl();

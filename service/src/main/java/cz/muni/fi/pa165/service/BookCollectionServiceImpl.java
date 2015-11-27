@@ -17,7 +17,7 @@ import cz.muni.fi.pa165.entity.BookCollection;
 @Service
 public class BookCollectionServiceImpl implements BookCollectionService {
     @Inject
-    BookCollectionDao bookCollectionDao;
+    private BookCollectionDao bookCollectionDao;
     
     @Override
     public void create(BookCollection b){

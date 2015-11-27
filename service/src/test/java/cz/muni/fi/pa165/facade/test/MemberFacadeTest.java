@@ -35,10 +35,10 @@ public class MemberFacadeTest {
     // mock injected from FacadeTestConfiguration
     
     @Inject
-    MemberService memberServiceMock;
+    private MemberService memberServiceMock;
 
     @Inject
-    MemberFacade facade;
+    private MemberFacade facade;
     
     @Test
     public void testCreate() {

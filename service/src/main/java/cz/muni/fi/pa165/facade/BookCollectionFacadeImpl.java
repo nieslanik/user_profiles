@@ -25,13 +25,13 @@ import cz.muni.fi.pa165.service.BookService;
 @Transactional
 public class BookCollectionFacadeImpl implements BookCollectionFacade {
     @Inject
-    BookCollectionService service;
+    private BookCollectionService service;
 
     @Inject
-    BookService bookService;
+    private BookService bookService;
 
     @Inject
-    Mapper mapper;
+    private Mapper mapper;
 
     @Override
     public void createBookCollection(CreateBookCollectionDTO bookCollection) {
