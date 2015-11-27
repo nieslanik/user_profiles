@@ -5,6 +5,7 @@
 package cz.muni.fi.pa165.facade;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
+import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
 import java.util.List;
 
@@ -38,6 +39,17 @@ public interface BookCollectionFacade {
      * @param id
      */
     void delete(Long bookId);
-
+    /**
+     * add book to book collection 
+     * 
+     * @param bookDto
+     */
+    void addBookToCollection(Long id,BookDTO bookDto);
+    /**
+     * remove book from book collection 
+     * 
+     * @param bookDto 
+     */
+    void removeBookFromCollection(Long id,BookDTO bookDto);
     
 }
