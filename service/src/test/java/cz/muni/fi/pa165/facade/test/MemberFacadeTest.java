@@ -4,6 +4,7 @@
  */
 package cz.muni.fi.pa165.facade.test;
 
+import java.lang.String;
 import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberAuthenticateDTO;
 import static org.junit.Assert.*;
@@ -18,6 +19,7 @@ import cz.muni.fi.pa165.service.MemberService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
+import org.dozer.Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -42,19 +44,19 @@ public class MemberFacadeTest {
     
     @Test
     public void testCreate() {
-        ArgumentCaptor<Member> captor = ArgumentCaptor.forClass(Member.class);
+        ArgumentCaptor<Member> captorMember = ArgumentCaptor.forClass(Member.class);
+        ArgumentCaptor<String> captorPassword = ArgumentCaptor.forClass(String.class);
         Member member = new Member();
         member.setId(1L);
+        MemberDTO memDto=new MemberDTO();
+        memDto.setId(1L);
+        MemberRegisterDTO memreg= new MemberRegisterDTO();
+        memreg.setMember(memDto);
         when(memberServiceMock.findById(1L)).thenReturn(member);
-        MemberDTO memdto=new MemberDTO();
-        memdto.setId(1L);
-        MemberRegisterDTO regmem = new MemberRegisterDTO();
-        regmem.setMember(memdto);
-        regmem.setPassword("OhFreddledGruntbugglyThyMicturationsAreToMe");
-        facade.registerMember(regmem);
-        verify(memberServiceMock).registerMember(captor.capture(),regmem.getPassword());
-        Member entity = captor.getValue();
-        assertNull(entity.getId());
+        facade.registerMember(memreg);
+        verify(memberServiceMock).registerMember(captorMember.capture(),captorPassword.capture());
+        Member entity = captorMember.getValue();
+        assertSame(1L,entity.getId());
     }
 
     @Test
@@ -64,7 +66,7 @@ public class MemberFacadeTest {
         member.setId(l1);
         when(memberServiceMock.findById(l1)).thenReturn(member);
         MemberDTO dto = facade.findById(l1);
-        assertEquals(l1, dto.getId());
+        assertSame(l1, dto.getId());
     }
     
     @Test
@@ -105,7 +107,7 @@ public class MemberFacadeTest {
         loansDto.add(loandto);
         when(memberServiceMock.findById(1L)).thenReturn(member);
         when(memberServiceMock.getAllLoans(member)).thenReturn(loans);
-        assertEquals(loansDto,facade.getAllLoans(Long.MIN_VALUE));
+        assertEquals(loansDto,facade.getAllLoans(1L));
     }
     
     @Test
@@ -127,7 +129,7 @@ public class MemberFacadeTest {
         member.setId(1L);
         member.setIsAdmin(true);
         when(memberServiceMock.findById(1L)).thenReturn(member);
-        assertEquals(facade.isAdmin(1L),true);
+        assertSame(facade.isAdmin(1L),true);
     
     }
 }
