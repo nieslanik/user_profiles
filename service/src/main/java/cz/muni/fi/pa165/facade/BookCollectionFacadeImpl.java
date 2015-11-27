@@ -1,18 +1,21 @@
 package cz.muni.fi.pa165.facade;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.dozer.Mapper;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
-import cz.muni.fi.pa165.facade.BookCollectionFacade;
 import cz.muni.fi.pa165.service.BookCollectionService;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import org.dozer.Mapper;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import cz.muni.fi.pa165.service.BookService;
 
 /**
  *
@@ -20,25 +23,32 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class BookCollectionFacadeImpl implements BookCollectionFacade{
+public class BookCollectionFacadeImpl implements BookCollectionFacade {
     @Inject
     BookCollectionService service;
-    
+
+    @Inject
+    BookService bookService;
+
     @Inject
     Mapper mapper;
 
     @Override
-     public void createBookCollection(CreateBookCollectionDTO bookCollection){
-        service.create(mapper.map(bookCollection, BookCollection.class));
+    public void createBookCollection(CreateBookCollectionDTO bookCollection) {
+        BookCollection entity = mapper.map(bookCollection, BookCollection.class);
+        for (Long id : bookCollection.getBookIds()) {
+            entity.addBook(bookService.findById(id));
+        }
+        service.create(entity);
     }
 
     @Override
-    public BookCollectionDTO findById(Long id){
+    public BookCollectionDTO findById(Long id) {
         return mapper.map(service.findById(id), BookCollectionDTO.class);
     }
-    
+
     @Override
-    public List<BookCollectionDTO> findAll(){
+    public List<BookCollectionDTO> findAll() {
         List<BookCollection> list = service.findAll();
         List<BookCollectionDTO> finalList = new ArrayList<>();
         for (BookCollection bookCollection : list) {
@@ -48,20 +58,19 @@ public class BookCollectionFacadeImpl implements BookCollectionFacade{
     }
 
     @Override
-    public void delete(Long bookId){
+    public void delete(Long bookId) {
         service.delete(service.findById(bookId));
     }
-    
+
     @Override
-    public void addBookToCollection(Long id,BookDTO bookDto){
-        service.addBookToCollection(id, mapper.map(bookDto,Book.class));
-    }
-    
-    @Override
-    public void removeBookFromCollection(Long id,BookDTO bookDto){
-        service.removeBookFromCollection(id, mapper.map(bookDto,Book.class));
-    
+    public void addBookToCollection(Long id, BookDTO bookDto) {
+        service.addBookToCollection(id, mapper.map(bookDto, Book.class));
     }
 
+    @Override
+    public void removeBookFromCollection(Long id, BookDTO bookDto) {
+        service.removeBookFromCollection(id, mapper.map(bookDto, Book.class));
+
+    }
 
 }
