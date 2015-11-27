@@ -40,7 +40,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void setState(Book book, BookState newState) {
-        if (book.getState().compareTo(newState) < 0) {
+        if (book.getState().compareTo(newState) > 0) {
             throw new LibraryServiceException("Book cannot be set to less damaged state than it already was");
         }
         book.setState(newState);
