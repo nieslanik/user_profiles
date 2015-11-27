@@ -16,7 +16,7 @@ import java.util.List;
 public interface BookCollectionFacade {
     /**
      * Persists book collection into database
-     * @param book collection to be persisted
+     * @param bookCollection
      */
      void createBookCollection(CreateBookCollectionDTO bookCollection);
      

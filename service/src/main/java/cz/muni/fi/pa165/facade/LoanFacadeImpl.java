@@ -9,9 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.muni.fi.pa165.dto.CreateLoanDTO;
 import cz.muni.fi.pa165.dto.LoanDTO;
+import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.Loan;
+import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.service.BookService;
 import cz.muni.fi.pa165.service.LoanService;
+import cz.muni.fi.pa165.service.MemberService;
 
 /**
  *
@@ -26,10 +30,21 @@ public class LoanFacadeImpl implements LoanFacade {
 
     @Inject
     LoanService loanService;
+    
+    @Inject
+    MemberService memberService;
+    
+    @Inject
+    BookService bookService;
 
     @Override
     public void createLoan(CreateLoanDTO loan) {
-        loanService.create(mapper.map(loan, Loan.class));
+        Loan newLoan = mapper.map(loan, Loan.class);
+        Member member = memberService.findById(loan.getMemberId());
+        newLoan.setMember(member);
+        Book book = bookService.findById(loan.getBookId());
+        newLoan.setBook(book);
+        loanService.create(newLoan);
     }
 
     @Override
