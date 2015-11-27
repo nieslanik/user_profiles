@@ -25,7 +25,7 @@ import org.mockito.MockitoAnnotations;
 
 /**
  * Tests for BookCollectionService
- * 
+ *
  * @author Jakub Peschel
  */
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -91,6 +91,8 @@ public class BookCollectionServiceTest {
         when(daoMock.findById(1L)).thenReturn(collection);
         service.addBookToCollection(1L, book);
         verify(daoMock).update(collection);
+        assertSame(collection.getBooks().size(), 1);
+        assertSame(collection.getBooks().get(1), book);
     }
 
     @Test
@@ -99,5 +101,6 @@ public class BookCollectionServiceTest {
         when(daoMock.findById(1L)).thenReturn(collection);
         service.removeBookFromCollection(1L, book);
         verify(daoMock).update(collection);
+        assertSame(collection.getBooks().size(), 0);
     }
 }
