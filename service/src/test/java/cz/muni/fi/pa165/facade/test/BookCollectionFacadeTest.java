@@ -112,24 +112,40 @@ public class BookCollectionFacadeTest {
     
     @Test
     public void testAddBookToCollection(){
-        BookDTO book = new BookDTO();
+        Book book = new Book();
         book.setId(1L);
-        facade.addBookToCollection(1L, book);
+        book.setName("Test");
+        book.setState(BookState.NEW);
+        book.setIsbn(1L);
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setId(1L);
+        bookDTO.setName("Test");
+        bookDTO.setState(BookState.NEW);
+        bookDTO.setIsbn(1L);
+        facade.addBookToCollection(1L, bookDTO);
         verify(bookCollectionServiceMock).addBookToCollection(
                 any(Long.class), 
-                any(Book.class)
+                eq(book)
         );
         
     }
     
     @Test
     public void testRemoveBookToCollection(){
-        BookDTO book = new BookDTO();
+        Book book = new Book();
         book.setId(1L);
-        facade.removeBookFromCollection(1L, book);
+        book.setName("Test");
+        book.setState(BookState.NEW);
+        book.setIsbn(1L);
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setId(1L);
+        bookDTO.setName("Test");
+        bookDTO.setState(BookState.NEW);
+        bookDTO.setIsbn(1L);
+        facade.removeBookFromCollection(1L, bookDTO);
         verify(bookCollectionServiceMock).removeBookFromCollection(
                 any(Long.class), 
-                any(Book.class)
+                eq(book)
         );
     }
 }
