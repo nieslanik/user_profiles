@@ -13,8 +13,7 @@ import javax.persistence.Temporal;
 import cz.muni.fi.pa165.enums.BookState;
 
 /**
- * +[Loan|loanDate:Date;returned:Boolean;returnDate:Date;returnedBookState:BookState]
- * +[Loan]++-1>[Book]
+ * Entity representing a single loan of a book
  *
  * @author xkubist
  */

@@ -14,7 +14,7 @@ public interface MemberFacade {
 
     /**
      * Finds member by id
-     * @param id
+     * @param id member id
      * @return member dto or null
      */
     MemberDTO findById(Long id);
@@ -27,33 +27,33 @@ public interface MemberFacade {
 
     /**
      * Removes member
-     * @param id
+     * @param id member id
      */
     void deleteMember(Long id);
 
     /**
      * Returns all loans made by member
-     * @param id
+     * @param id member id
      * @return list of loans
      */
     List<LoanDTO> getAllLoans(Long id);
 
     /**
      * Makes authentization of member
-     * @param memberAuth
+     * @param memberAuth DTO object containing authentication data
      * @return true if authorization passed, else false
      */
     boolean authenticateMember(MemberAuthenticateDTO memberAuth);
 
     /**
      * Registers new member
-     * @param memberReg
+     * @param memberReg DTO object containing registration data
      */
     void registerMember(MemberRegisterDTO memberReg);
 
     /**
      * Checks if member has admin permissions
-     * @param id
+     * @param id member id
      * @return boolean
      */
     boolean isAdmin(Long id);

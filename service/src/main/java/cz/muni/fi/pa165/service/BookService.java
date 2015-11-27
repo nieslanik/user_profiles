@@ -39,6 +39,7 @@ public interface BookService {
     /**
      * Finds books by name (there can be multiple copies of the same book)
      *
+     * @param name book name to be searched
      * @return list of books
      */
     List<Book> findByName(String name);
@@ -46,7 +47,7 @@ public interface BookService {
     /**
      * Removes book from the database
      *
-     * @param book
+     * @param book book to be deleted
      */
     void delete(Book book);
 
@@ -54,8 +55,8 @@ public interface BookService {
      * Sets book current state. Can be set only to a worse (or the same) state
      * than it already was
      *
-     * @param book
-     * @param newState
+     * @param book book to be updated
+     * @param newState new state
      */
     void setState(Book book, BookState newState);
 }

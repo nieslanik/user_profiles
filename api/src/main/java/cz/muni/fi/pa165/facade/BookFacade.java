@@ -33,7 +33,7 @@ public interface BookFacade {
     /**
      * Finds books by name (there can be multiple copies of the same book)
      *
-     * @param name
+     * @param name book name to be searched
      * @return list of books
      */
     List<BookDTO> findByName(String name);
@@ -48,7 +48,7 @@ public interface BookFacade {
     /**
      * Removes book from the database
      *
-     * @param bookId
+     * @param bookId book id
      */
     void delete(Long bookId);
 
@@ -56,8 +56,8 @@ public interface BookFacade {
      * Sets book current state. Can be set only to a worse (or the same) state
      * than it already was
      *
-     * @param bookId
-     * @param newState
+     * @param bookId book id
+     * @param newState new state to be set
      */
     void setState(Long bookId, BookState newState);
 }

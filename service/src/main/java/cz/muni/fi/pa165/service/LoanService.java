@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Service layer for loan entity
  * 
- * @author Jakub Peschel 
+ * @author Jakub Peschel
  */
 public interface LoanService {
      /**

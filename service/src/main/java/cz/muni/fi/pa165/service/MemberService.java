@@ -38,7 +38,7 @@ public interface MemberService {
     /**
      * Returns all loans of member
      *
-     * @param member
+     * @param member member to be queried
      * @return list of all loans possessed by member or null
      */
     List<Loan> getAllLoans(Member member);
@@ -48,21 +48,21 @@ public interface MemberService {
      *
      * @param member to authenticateMember
      * @param unhashedPassword hashed password to be matched
-     * @return boolean
+     * @return whether authentication was succesful
      */
     boolean authenticateMember(Member member, String unhashedPassword);
 
     /**
      * Registers member
      * @param member to registerMember
-     * @param unhashedPassword
+     * @param unhashedPassword password string
      */
     void registerMember(Member member, String unhashedPassword);
 
     /**
      * Checks if member is admin
      * @param member to check
-     * @return boolean
+     * @return whether member is an admin
      */
     boolean isAdmin(Member member);
 }

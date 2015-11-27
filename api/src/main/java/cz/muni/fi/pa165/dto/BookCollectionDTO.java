@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Data Transfer object for BookCollection entity
  * 
- * @author Jakub Peschel <jakub.peschel@sudentagency.cz>
+ * @author Jakub Peschel
  */
 public class BookCollectionDTO {
     private Long id;

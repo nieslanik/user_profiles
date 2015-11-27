@@ -35,14 +35,14 @@ public interface BookCollectionDao {
     /**
      * return BookCollection object with target name 
      * 
-     * @param Name
+     * @param name name to be searched
      * @return BookCollection object with target name 
      */
-    BookCollection findByName(String Name);
+    BookCollection findByName(String name);
     /**
      * return BookCollection objects with target id 
      * 
-     * @param id
+     * @param id collection id
      * @return BookCollection objects with target id 
      */
     BookCollection findById(Long id);

@@ -44,7 +44,7 @@ public interface BookDao {
     /**
      * Finds books by name (there can be multiple copies of the same book)
      *
-     * @param name
+     * @param name name to be searched
      * @return list of books
      */
     List<Book> findByName(String name);

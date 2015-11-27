@@ -19,7 +19,7 @@ import cz.muni.fi.pa165.service.MemberService;
 
 /**
  *
- * @author Jakub Peschel 
+ * @author Jakub Peschel
  */
 @Service
 @Transactional

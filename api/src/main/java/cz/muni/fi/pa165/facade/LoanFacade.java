@@ -9,20 +9,20 @@ import cz.muni.fi.pa165.enums.BookState;
 /**
  * Facade layer for Loan entity
  * 
- * @author Jakub Peschel <jakub.peschel@studentagency.cz>
+ * @author Jakub Peschel
  */
 public interface LoanFacade {
     /**
      * Persists loan into database
      *
-     * @param loan
+     * @param loan loan object to be created
      */
     void createLoan(CreateLoanDTO loan);
 
     /**
      * Returns loan with given id or null
      *
-     * @param id oan id
+     * @param id loan id
      * @return loan or null
      */
     LoanDTO findById(Long id);
@@ -37,7 +37,7 @@ public interface LoanFacade {
     /**
      * Removes loan from the database
      *
-     * @param loanId
+     * @param loanId loan id
      */
     void delete(Long loanId);
 

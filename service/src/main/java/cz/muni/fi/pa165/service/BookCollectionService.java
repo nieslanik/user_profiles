@@ -25,25 +25,28 @@ public interface BookCollectionService {
     /**
      * update the BookCollection from database
      * 
-     * @param b BookCollection to be deleted
+     * @return list of all book collections
      */
     List<BookCollection> findAll();
     /**
-     * return BookCollection objects with target name 
+     * return BookCollection object with target name 
      * 
-     * @return BookCollection objects with target name 
+     * @param id collection id
+     * @return BookCollection object with target name 
      */
     BookCollection findById(Long id);
     /**
      * add book to book collection 
      * 
-     * @param book 
+     * @param id collection id
+     * @param book book object to be added
      */
     void addBookToCollection(Long id,Book book);
     /**
      * remove book from book collection 
      * 
-     * @param book 
+     * @param id collection id
+     * @param book book object to be removed
      */
     void removeBookFromCollection(Long id,Book book);
 }

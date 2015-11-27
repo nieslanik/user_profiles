@@ -26,7 +26,7 @@ import cz.muni.fi.pa165.service.BookService;
 /**
  * Tests for BookCollectionFacade
  *
- * @author Jakub Peschel 
+ * @author Jakub Peschel
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = FacadeTestConfiguration.class)

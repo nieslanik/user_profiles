@@ -7,7 +7,7 @@ import cz.muni.fi.pa165.entity.Member;
 /**
  * Data access object for Member entity.
  *
- * @author Jakub Peschel <jakub.peschel@studentagency.cz>
+ * @author Jakub Peschel
  */
 public interface MemberDao {
     
@@ -28,7 +28,7 @@ public interface MemberDao {
     /**
      * Finds a member in the database by its ID
      *
-     * @param id
+     * @param id member id
      * @return Found Member object or null if no loan was found.
      * */
     Member findById(Long id);
@@ -42,7 +42,7 @@ public interface MemberDao {
 
     /**
      * Removes given Member from the database
-     * @param member
+     * @param member member to be deleted
      **/
     void delete(Member member);
 }

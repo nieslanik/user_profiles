@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 /**
  * Entity representing a collection of books in a library
  *
- * @author Jakub Peschel <jakub.peschel@studentagency.cz>
+ * @author Jakub Peschel
  */
 @Entity
 public class BookCollection {
