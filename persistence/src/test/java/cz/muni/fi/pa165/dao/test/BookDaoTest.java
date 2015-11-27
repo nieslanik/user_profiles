@@ -23,11 +23,7 @@ import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.spring.LibrarySpringContext;
 
 /**
-<<<<<<< HEAD
- * @author Jakub Peschel
-=======
  * @author Jakub Peschel 
->>>>>>> added tests for BookCollectionFacade and BookCollectionService
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
