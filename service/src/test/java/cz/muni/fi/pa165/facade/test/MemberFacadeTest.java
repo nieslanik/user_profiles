@@ -1,35 +1,31 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.facade.test;
 
-import java.lang.String;
-import cz.muni.fi.pa165.dto.LoanDTO;
-import cz.muni.fi.pa165.dto.MemberAuthenticateDTO;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import cz.muni.fi.pa165.dto.MemberDTO;
-import cz.muni.fi.pa165.dto.MemberRegisterDTO;
 
-import cz.muni.fi.pa165.entity.Loan;
-import cz.muni.fi.pa165.entity.Member;
-import cz.muni.fi.pa165.facade.MemberFacade;
-import cz.muni.fi.pa165.service.MemberService;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
-import org.dozer.Mapper;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cz.muni.fi.pa165.dto.LoanDTO;
+import cz.muni.fi.pa165.dto.MemberAuthenticateDTO;
+import cz.muni.fi.pa165.dto.MemberDTO;
+import cz.muni.fi.pa165.dto.MemberRegisterDTO;
+import cz.muni.fi.pa165.entity.Loan;
+import cz.muni.fi.pa165.entity.Member;
+import cz.muni.fi.pa165.facade.MemberFacade;
+import cz.muni.fi.pa165.service.MemberService;
+
 /**
  *
  * @author xkubist
- * @email m.kubistel@gmail.com
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)

@@ -1,9 +1,7 @@
 package cz.muni.fi.pa165.facade.test;
 
-import cz.muni.fi.pa165.dto.BookCollectionDTO;
-import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
-import cz.muni.fi.pa165.entity.Book;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -17,11 +15,11 @@ import org.mockito.ArgumentCaptor;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cz.muni.fi.pa165.dto.BookCollectionDTO;
+import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
 import cz.muni.fi.pa165.entity.BookCollection;
 import cz.muni.fi.pa165.facade.BookCollectionFacade;
 import cz.muni.fi.pa165.service.BookCollectionService;
-import java.util.HashSet;
-import java.util.Set;
 
 
 /**

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.facade;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
@@ -12,7 +8,6 @@ import java.util.List;
 /**
  *
  * @author xkubist
- * @email m.kubistel@gmail.com
  */
 public interface BookCollectionFacade {
     /**

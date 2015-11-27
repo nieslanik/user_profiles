@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.facade;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
@@ -21,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  *
  * @author xkubist
- * @email m.kubistel@gmail.com
  */
 @Service
 @Transactional

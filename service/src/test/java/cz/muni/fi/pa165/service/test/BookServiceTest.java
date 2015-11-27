@@ -31,7 +31,6 @@ public class BookServiceTest {
     BookService service = new BookServiceImpl();
 
     private Book book;
-    private Book book2;
 
     @Before
     public void setUp() {

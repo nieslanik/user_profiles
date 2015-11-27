@@ -1,26 +1,27 @@
 package cz.muni.fi.pa165.facade.test;
 
-import cz.muni.fi.pa165.dto.BookDTO;
-import cz.muni.fi.pa165.dto.CreateBookDTO;
-import cz.muni.fi.pa165.entity.Book;
-import cz.muni.fi.pa165.enums.BookState;
-import cz.muni.fi.pa165.exceptions.LibraryServiceException;
-import cz.muni.fi.pa165.facade.BookFacade;
-import cz.muni.fi.pa165.service.BookCollectionService;
-import cz.muni.fi.pa165.service.BookService;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import cz.muni.fi.pa165.dto.BookDTO;
+import cz.muni.fi.pa165.dto.CreateBookDTO;
+import cz.muni.fi.pa165.entity.Book;
+import cz.muni.fi.pa165.entity.BookCollection;
+import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.facade.BookFacade;
+import cz.muni.fi.pa165.service.BookCollectionService;
+import cz.muni.fi.pa165.service.BookService;
 
 /**
  * Created by Juraj Tomko on 11/27/2015.
@@ -45,7 +46,11 @@ public class BookFacadeTest {
         CreateBookDTO createBookDto = new CreateBookDTO();
         createBookDto.setName("Hlava 22");
         createBookDto.setAuthorName("Joseph Heller");
-        createBookDto.setIsbn(123l);
+        createBookDto.setIsbn(123L);
+        createBookDto.addCollectionId(3L);
+        BookCollection coll = new BookCollection();
+        coll.setId(3L);
+        when(collectionService.findById(3L)).thenReturn(coll);
 
         facade.createBook(createBookDto);
         verify(bookService).create(captor.capture());
@@ -53,6 +58,8 @@ public class BookFacadeTest {
         assertEquals(createBookDto.getName(), entity.getName());
         assertEquals(createBookDto.getAuthorName(), entity.getAuthorName());
         assertEquals(createBookDto.getIsbn(), entity.getIsbn());
+        assertEquals(1, entity.getCollections().size());
+        assertEquals(createBookDto.getCollectionIds().get(0), entity.getCollections().iterator().next().getId());
     }
 
     @Test
@@ -105,7 +112,7 @@ public class BookFacadeTest {
     @Test
     public void testSetState() {
         Book book = new Book();
-        book.setId(3l);
+        book.setId(3L);
         book.setState(BookState.NEW);
         when(bookService.findById(book.getId())).thenReturn(book);
         facade.setState(book.getId(), BookState.LIGHT_DAMAGE);

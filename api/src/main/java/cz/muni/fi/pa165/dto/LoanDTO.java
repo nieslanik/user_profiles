@@ -7,7 +7,6 @@ import cz.muni.fi.pa165.enums.BookState;
 /**
  *
  * @author xkubist
- * @email m.kubistel@gmail.com
  */
 public class LoanDTO {
 

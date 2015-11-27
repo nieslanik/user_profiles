@@ -1,18 +1,18 @@
 package cz.muni.fi.pa165.service;
 
-import cz.muni.fi.pa165.dao.BookCollectionDao;
-import cz.muni.fi.pa165.entity.Book;
-import cz.muni.fi.pa165.entity.BookCollection;
 import java.util.List;
-import java.util.Set;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import cz.muni.fi.pa165.dao.BookCollectionDao;
+import cz.muni.fi.pa165.entity.Book;
+import cz.muni.fi.pa165.entity.BookCollection;
+
 /**
  *
  * @author xkubist
- * @email m.kubistel@gmail.com
  */
 @Service
 public class BookCollectionServiceImpl implements BookCollectionService {

@@ -60,9 +60,7 @@ public class MemberServiceImpl implements MemberService {
         memberDao.create(member);
     }
 
-    private String makeSha1Hash(String password)
-    {
-        MessageDigest md = null;
+    private String makeSha1Hash(String password) {
         try {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
             crypt.reset();

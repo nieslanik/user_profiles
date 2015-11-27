@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 
 import cz.muni.fi.pa165.config.ServiceConfiguration;
-import cz.muni.fi.pa165.entity.BookCollection;
 import cz.muni.fi.pa165.service.BookCollectionService;
 import cz.muni.fi.pa165.service.BookService;
 import cz.muni.fi.pa165.service.LoanService;
@@ -41,7 +40,7 @@ public class FacadeTestConfiguration {
     public MemberService memberService() {
         return mock(MemberService.class);
     }
-    
+
     @Bean
     @Primary
     public BookCollectionService bookCollectionService() {
