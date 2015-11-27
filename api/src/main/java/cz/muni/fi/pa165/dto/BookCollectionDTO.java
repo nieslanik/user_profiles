@@ -1,12 +1,13 @@
 package cz.muni.fi.pa165.dto;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+
 public class BookCollectionDTO {
     private Long id;
     private String name;
-    private Set<BookDTO> books = new HashSet<>();
+    private List<BookDTO> books = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -24,16 +25,18 @@ public class BookCollectionDTO {
         this.name = name;
     }
 
-    public Set<BookDTO> getBooks() {
+    public List<BookDTO> getBooks() {
         return books;
+    }
+
+    public void setBooks(List<BookDTO> books) {
+        this.books = books;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
         hash = 71 * hash + Objects.hashCode(this.name);
-        hash = 71 * hash + Objects.hashCode(this.books);
         return hash;
     }
 
@@ -46,18 +49,10 @@ public class BookCollectionDTO {
             return false;
         }
         final BookCollectionDTO other = (BookCollectionDTO) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
         if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.books, other.books)) {
             return false;
         }
         return true;
     }
-    
-    
-    
+
 }

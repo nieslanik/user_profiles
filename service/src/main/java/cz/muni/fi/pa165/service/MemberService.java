@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.service;
 
 import java.util.List;
-import java.util.Set;
 
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;

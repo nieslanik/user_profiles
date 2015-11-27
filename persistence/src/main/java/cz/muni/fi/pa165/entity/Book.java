@@ -1,8 +1,8 @@
 package cz.muni.fi.pa165.entity;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,11 +40,11 @@ public class Book {
     private BookState state = BookState.NEW;
 
     @ManyToMany(mappedBy = "books")
-    private Set<BookCollection> collections = new HashSet<>();
+    private List<BookCollection> collections = new ArrayList<>();
 
     @OneToMany
     // OneToMany because we want to keep history of loans
-    private Set<Loan> loans = new HashSet<>();
+    private List<Loan> loans = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -86,27 +86,27 @@ public class Book {
         this.state = state;
     }
 
-    public Set<BookCollection> getCollections() {
-        return Collections.unmodifiableSet(collections);
+    public List<BookCollection> getCollections() {
+        return Collections.unmodifiableList(collections);
     }
 
     public void addCollection(BookCollection collection) {
         collections.add(collection);
     }
 
-    public Set<Loan> getLoans() {
-        return Collections.unmodifiableSet(loans);
+    public List<Loan> getLoans() {
+        return Collections.unmodifiableList(loans);
     }
 
     public void addLoan(Loan loan) {
         loans.add(loan);
     }
 
-    public void setLoans(Set<Loan> loans) {
+    public void setLoans(List<Loan> loans) {
         this.loans = loans;
     }
 
-    public void setCollections(Set<BookCollection> collections) {
+    public void setCollections(List<BookCollection> collections) {
         this.collections = collections;
     }
 
@@ -114,8 +114,7 @@ public class Book {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result
-                + ((this.getAuthorName() == null) ? 0 : this.getAuthorName().hashCode());
+        result = prime * result + ((this.getAuthorName() == null) ? 0 : this.getAuthorName().hashCode());
         result = prime * result + ((this.getIsbn() == null) ? 0 : this.getIsbn().hashCode());
         result = prime * result + ((this.getName() == null) ? 0 : this.getName().hashCode());
         return result;

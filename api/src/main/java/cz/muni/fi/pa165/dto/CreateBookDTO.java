@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.dto;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,7 +13,7 @@ public class CreateBookDTO {
     private String name;
     private String authorName;
     private Long isbn;
-    private Set<BookCollectionDTO> collections = new HashSet<>();
+    private List<Long> collectionIds = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -39,16 +39,16 @@ public class CreateBookDTO {
         this.isbn = isbn;
     }
 
-    public Set<BookCollectionDTO> getCollections() {
-        return collections;
+    public List<Long> getCollectionIds() {
+        return collectionIds;
     }
 
-    public void addCollection(BookCollectionDTO collection) {
-        collections.add(collection);
+    public void setCollectionIds(List<Long> collectionIds) {
+        this.collectionIds = collectionIds;
     }
 
-    public void setCollections(Set<BookCollectionDTO> collections) {
-        this.collections = collections;
+    public void addCollectionId(Long id) {
+        collectionIds.add(id);
     }
 
     @Override

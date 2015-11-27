@@ -1,9 +1,8 @@
 package cz.muni.fi.pa165.entity;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
 
 /**
  * Entity representing a collection of books in a library
@@ -30,7 +28,7 @@ public class BookCollection {
 
     @Column
     @ManyToMany
-    private Set<Book> books = new HashSet<>();
+    private List<Book> books = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -48,14 +46,14 @@ public class BookCollection {
         this.name = name;
     }
 
-    public Set<Book> getBooks() {
-        return Collections.unmodifiableSet(books);
+    public List<Book> getBooks() {
+        return Collections.unmodifiableList(books);
     }
 
     public void addBook(Book book) {
         this.books.add(book);
     }
-    
+
     public void removeBook(Book book) {
         this.books.remove(books);
     }
