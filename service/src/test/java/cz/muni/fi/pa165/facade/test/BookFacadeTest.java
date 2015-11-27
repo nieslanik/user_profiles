@@ -42,17 +42,17 @@ public class BookFacadeTest {
     public void testCreate() {
         ArgumentCaptor<Book> captor = ArgumentCaptor.forClass(Book.class);
 
-        CreateBookDTO bookDto = new CreateBookDTO();
-        bookDto.setName("Hlava 22");
-        bookDto.setAuthorName("Joseph Heller");
-        bookDto.setIsbn(123l);
+        CreateBookDTO createBookDto = new CreateBookDTO();
+        createBookDto.setName("Hlava 22");
+        createBookDto.setAuthorName("Joseph Heller");
+        createBookDto.setIsbn(123l);
 
-        facade.createBook(bookDto);
+        facade.createBook(createBookDto);
         verify(bookService).create(captor.capture());
         Book entity = captor.getValue();
-        assertEquals(bookDto.getName(), entity.getName());
-        assertEquals(bookDto.getAuthorName(), entity.getAuthorName());
-        assertEquals(bookDto.getIsbn(), entity.getIsbn());
+        assertEquals(createBookDto.getName(), entity.getName());
+        assertEquals(createBookDto.getAuthorName(), entity.getAuthorName());
+        assertEquals(createBookDto.getIsbn(), entity.getIsbn());
     }
 
     @Test
@@ -106,19 +106,9 @@ public class BookFacadeTest {
     public void testSetState() {
         Book book = new Book();
         book.setId(3l);
-
-        bookService.create(book);
+        book.setState(BookState.NEW);
+        when(bookService.findById(book.getId())).thenReturn(book);
         facade.setState(book.getId(), BookState.LIGHT_DAMAGE);
-        verify(bookService).setState(book, BookState.LIGHT_DAMAGE);
-    }
-
-    @Test(expected = LibraryServiceException.class)
-    public void testSetStateWithLessDamageThenBefore() {
-        Book book = new Book();
-        book.setId(1l);
-
-        bookService.create(book);
-        facade.setState(book.getId(), BookState.HEAVY_DAMAGE);
-        facade.setState(book.getId(), BookState.NEW);
+        verify(bookService).setState(bookService.findById(book.getId()), BookState.LIGHT_DAMAGE);
     }
 }
