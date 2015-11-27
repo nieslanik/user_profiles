@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.facade.test;
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.entity.Book;
+import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.exceptions.LibraryServiceException;
 import cz.muni.fi.pa165.facade.BookFacade;
 import cz.muni.fi.pa165.service.BookCollectionService;
 import cz.muni.fi.pa165.service.BookService;
@@ -48,7 +50,9 @@ public class BookFacadeTest {
         facade.createBook(bookDto);
         verify(bookService).create(captor.capture());
         Book entity = captor.getValue();
-        assertEquals(bookDto, entity);
+        assertEquals(bookDto.getName(), entity.getName());
+        assertEquals(bookDto.getAuthorName(), entity.getAuthorName());
+        assertEquals(bookDto.getIsbn(), entity.getIsbn());
     }
 
     @Test
@@ -86,4 +90,35 @@ public class BookFacadeTest {
         assertEquals(books.size(), facade.findAll().size());
     }
 
+    @Test
+    public void testFindByName() {
+        Long id = new Long(1);
+        Book book = new Book();
+        book.setId(id);
+        book.setName("Joseph Heller");
+        List<Book> books = new ArrayList<>();
+        books.add(book);
+        when(bookService.findByName(book.getName())).thenReturn(books);
+        assertEquals(books.size(), facade.findByName(book.getName()).size());
+    }
+
+    @Test
+    public void testSetState() {
+        Book book = new Book();
+        book.setId(3l);
+
+        bookService.create(book);
+        facade.setState(book.getId(), BookState.LIGHT_DAMAGE);
+        verify(bookService).setState(book, BookState.LIGHT_DAMAGE);
+    }
+
+    @Test(expected = LibraryServiceException.class)
+    public void testSetStateWithLessDamageThenBefore() {
+        Book book = new Book();
+        book.setId(1l);
+
+        bookService.create(book);
+        facade.setState(book.getId(), BookState.HEAVY_DAMAGE);
+        facade.setState(book.getId(), BookState.NEW);
+    }
 }
