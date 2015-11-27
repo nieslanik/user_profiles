@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
- * Created by Juraj Tomko on 11/23/2015.
+ * @author Juraj Tomko on 11/23/2015.
  */
 @Service
 public class MemberServiceImpl implements MemberService {
