@@ -26,6 +26,7 @@ import cz.muni.fi.pa165.service.MemberServiceImpl;
 /**
  *
  * @author xkubist
+ * @email m.kubistel@gmail.com
  */
 public class MemberServiceTest {
     @Mock
