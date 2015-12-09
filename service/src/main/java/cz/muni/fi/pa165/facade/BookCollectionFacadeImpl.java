@@ -34,17 +34,21 @@ public class BookCollectionFacadeImpl implements BookCollectionFacade {
     private Mapper mapper;
 
     @Override
-    public void createBookCollection(CreateBookCollectionDTO bookCollection) {
+    public Long createBookCollection(CreateBookCollectionDTO bookCollection) {
         BookCollection entity = mapper.map(bookCollection, BookCollection.class);
         for (Long id : bookCollection.getBookIds()) {
             entity.addBook(bookService.findById(id));
         }
         service.create(entity);
+        return entity.getId();
     }
 
     @Override
     public BookCollectionDTO findById(Long id) {
-        return mapper.map(service.findById(id), BookCollectionDTO.class);
+        BookCollection entity = service.findById(id);
+        if (entity == null)
+            return null;
+        return mapper.map(entity, BookCollectionDTO.class);
     }
 
     @Override

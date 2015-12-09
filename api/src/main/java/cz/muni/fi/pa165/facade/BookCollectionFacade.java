@@ -14,8 +14,9 @@ public interface BookCollectionFacade {
     /**
      * Persists book collection into database
      * @param bookCollection entity to be persisted
+     * @return new collection id
      */
-     void createBookCollection(CreateBookCollectionDTO bookCollection);
+     Long createBookCollection(CreateBookCollectionDTO bookCollection);
      
     /**
      * Returns book collection with given id or null
