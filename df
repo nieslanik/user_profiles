@@ -1,0 +1,455 @@
+[33mcommit 877c3be78e92bddabca21a133b6349b219224a62[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Wed Dec 9 17:52:14 2015 +0100
+
+    Basic controller for BookCollection
+
+[33mcommit 4dc14a331dc1b734a2c9155a02148a657e34e31f[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Wed Dec 9 17:51:34 2015 +0100
+
+    Return id from BCFacade.create
+
+[33mcommit a875079dd72d3025644fbaf7e6f039fab7da795f[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Wed Dec 9 17:28:27 2015 +0100
+
+    Placeholder JSP
+
+[33mcommit 21aa64f0d8c0faa4e757a96ce50662ec58d58839[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Wed Dec 9 17:28:09 2015 +0100
+
+    Configure jsp lookup
+
+[33mcommit 855111f26d5d72a6129dafc258454c62ea771e4b[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Wed Dec 9 13:47:05 2015 +0100
+
+    Add configuration for web
+    
+    Fixes #49
+
+[33mcommit 2b5891bc632ac013690dd015cc220b8d8dcd797e[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Wed Dec 9 13:46:41 2015 +0100
+
+    Add dependencies to web pom
+
+[33mcommit e6051edfe6439897bef43b9c39b03bc15eef7d5a[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Tue Dec 8 13:28:39 2015 +0100
+
+    Add web module
+
+[33mcommit cd23cc4665ffaff59221a9fd57d263ab4e29f172[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Tue Dec 8 13:23:25 2015 +0100
+
+    Use spring bom, update spring version
+
+[33mcommit f40b1028d3e8a1c675f6a1178cb13eeb7265819b[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Tue Dec 8 13:13:00 2015 +0100
+
+    Remove test deps from api/pom
+
+[33mcommit 10c27b2f2757bfa407b33c70a3391b144eeedee8[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 23:41:55 2015 +0100
+
+    fix of tests
+
+[33mcommit 5f2d1f955c5e177d15748259255eff7254deb29f[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 23:36:03 2015 +0100
+
+    fix of tests
+
+[33mcommit bfbbb9876e27109878fce37a8ae08c11dae44f22[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 23:29:59 2015 +0100
+
+    fix of tests
+
+[33mcommit 84214754112477101b28ecaa823319473c19b303[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 23:25:55 2015 +0100
+
+    fix of javadoc
+
+[33mcommit 91bc8f778cb8c4381cfc4a69165afa949a3532c4[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 23:23:06 2015 +0100
+
+    fix of test
+
+[33mcommit e3c59773ed383cdf54fb9d0296ebda9eff4110f1[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 23:10:22 2015 +0100
+
+    added tests for BookCollectionFacade and BookCollectionService
+
+[33mcommit 32f1d82c1f3af9e6bba387a9a3c486742dc46895[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 23:05:20 2015 +0100
+
+    Test password hashing better
+
+[33mcommit addcdaf127dc2c30e2e4b68c88e0d8f7ef3f8ebb[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 22:48:16 2015 +0100
+
+    Fix invalid javadoc
+
+[33mcommit 9a2aad87d8d8025da7ca54ee8c8eb34db6cdcc04[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 22:27:32 2015 +0100
+
+    removed all <email@mail.com> from @author tag
+
+[33mcommit dd72d30d57e255cad50644faaf847f6c04fd90f9[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 22:16:08 2015 +0100
+
+    fix of Javadoc @author
+
+[33mcommit a974779c75f4ff9639d5dc5e42b37c3c717a920c[m
+Merge: cfed607 09ad4cc
+Author: Jakub Peschel <410368@mail.muni.cz>
+Date:   Fri Nov 27 21:55:06 2015 +0100
+
+    Merge pull request #33 from msimacek/kuba
+    
+    Fix for bookCollectionFacadeTest
+
+[33mcommit 09ad4cc7d7c051737093b9eb09c9f5e022bb8d3e[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 21:52:07 2015 +0100
+
+    fixed Javadoc
+
+[33mcommit 4981d23d774273e89deea5e7fb6cb8a225d083fd[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 21:02:52 2015 +0100
+
+    fix of warns in <>
+
+[33mcommit cfed6079cde254d081fddde4d6dc8b64cd2a3240[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 21:45:27 2015 +0100
+
+    Enable spring's exception translation
+
+[33mcommit f4837b732eede3b5708b63a499fa2650c2e1ed57[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 21:06:12 2015 +0100
+
+    Add missing "private"
+
+[33mcommit 93a73daae1cfa1501fdac2993b621afe23ecbe0c[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 20:43:55 2015 +0100
+
+    Fix for bookCollectionFacadeTest
+
+[33mcommit d7a1883f36dea5c9ca47eea851e4f57559f4d0f1[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 19:18:35 2015 +0100
+
+    Fix BookCollectionFacadeImpl.create
+
+[33mcommit c9729cf00f529fc15ff92b47b22ed5aea8b11f4a[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 19:13:31 2015 +0100
+
+    Cleanup
+
+[33mcommit 4a2f62d409118bd20a48f6f9f2578c2e3a9889a6[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 19:12:51 2015 +0100
+
+    Fix BookCollectionFacadeImpl.create
+
+[33mcommit b22b6f05359b088545e45a06ed99b9cd2563f0ec[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 19:12:24 2015 +0100
+
+    Consistently use List for entity and DAO collection attributes
+
+[33mcommit a0fe9a9b187ab76d2942031a6d1c823f0fb0925a[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 19:10:21 2015 +0100
+
+    Have only bookIds in CreateBookCollectionDTO
+
+[33mcommit ba6aac2192b1a8e89823da0426849cf6f6fce281[m
+Author: Juraj Tomko <duri.tomko@gmail.com>
+Date:   Fri Nov 27 16:47:54 2015 +0100
+
+    [Fix] fixed tests in BookFacadeTest
+
+[33mcommit 0c3342d1efa813772d44b1f20f2fa887083f0f50[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Fri Nov 27 15:19:38 2015 +0100
+
+    add addBookToCollection and removeBookFromCollection
+
+[33mcommit 169bac11ee9cc1b63461beac81589ec1afbe9337[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Fri Nov 27 15:17:49 2015 +0100
+
+    add addBookToCollection and removeBookFromCollection
+
+[33mcommit f71bfc5bf2b4a32617e9f7991a99f1958d58f4dc[m
+Merge: ee3962d 68499a8
+Author: Michael Šimáček <msimacek@redhat.com>
+Date:   Fri Nov 27 14:42:49 2015 +0100
+
+    Merge pull request #32 from msimacek/kuba
+    
+    Kuba
+
+[33mcommit ee3962d48909f09c5f39621644bf8a592f84ec2d[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 14:20:08 2015 +0100
+
+    Fix BookState comparison
+
+[33mcommit b0d7c86e2b6e9187aa4a5d5dcd680c28b13efd33[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Fri Nov 27 14:28:36 2015 +0100
+
+    add email to MemberServiceTest
+
+[33mcommit b06902a32e562cbae4f52d2276626feb576a6755[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Fri Nov 27 14:28:15 2015 +0100
+
+    add email to MemberFacadeTest
+
+[33mcommit 7e0a453c5f1ba9cd83921bc54926381a5df13775[m
+Merge: 3566113 daeffb8
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Fri Nov 27 14:10:52 2015 +0100
+
+    Merge origin/master
+
+[33mcommit 35661139727e475e068329b025d870e78e9c3030[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Fri Nov 27 14:09:22 2015 +0100
+
+    fix bugs in MemberFacadeTest
+
+[33mcommit a033dfc19f3478a482cdec36701e697d3ff4dda7[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Fri Nov 27 14:09:02 2015 +0100
+
+    fix bugs in MemberServiceTest
+
+[33mcommit daeffb8b814ec1089b82cab8cb325fb00112282d[m
+Author: Juraj Tomko <duri.tomko@gmail.com>
+Date:   Fri Nov 27 13:32:47 2015 +0100
+
+    [Add] added more tests to BookFacadeTest
+
+[33mcommit 97891696bb9835f3d23b2f207f09789fe136c489[m
+Author: Juraj Tomko <duri.tomko@gmail.com>
+Date:   Fri Nov 27 12:48:03 2015 +0100
+
+    [Add] added bookfacade tests
+
+[33mcommit 5e8f462e2e54d57f94226b3ad59fc650a1061022[m
+Author: Juraj Tomko <duri.tomko@gmail.com>
+Date:   Fri Nov 27 06:50:38 2015 +0100
+
+    [Add] added tests for BookService
+
+[33mcommit 68499a839826f3c3b333f24b6ab22f3b3ac0bf5d[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Fri Nov 27 00:35:01 2015 +0100
+
+    added tests for bookCollectionFacade
+
+[33mcommit 58eb318929b47015653eb74321a84713f8bac79c[m
+Author: Jakub Peschel <jakubpeschel@gmail.com>
+Date:   Thu Nov 26 22:40:11 2015 +0100
+
+    added BookCollectionServiceTest
+
+[33mcommit 365811be595faf196404172f44cdba3b40e8561f[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Fri Nov 27 00:06:34 2015 +0100
+
+    Fix MemberServiceTest
+
+[33mcommit cf6cd0f71312ac97fdac6f7c5509fe46f85de8cf[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 23:53:27 2015 +0100
+
+    Don't use DI in service tests
+
+[33mcommit 2d68742629e9f4549f7a4821a477346d9edf8f7c[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 23:35:24 2015 +0100
+
+    Make BookCollectionDao.findByName return single item
+
+[33mcommit 479cc36dd8a4ed4e2c98fba1a933bc284d4461a0[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 22:25:50 2015 +0100
+
+    Extend LoanFacadeTest
+
+[33mcommit 3954388b8e9c4e57582f42df33dda91dbd51a179[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 21:58:18 2015 +0100
+
+    Adjust DTO relationships
+
+[33mcommit 641809368b8f931b89910b509c45a462cd19567b[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 21:57:52 2015 +0100
+
+    Make Loan fields consistent
+
+[33mcommit c08811b7a1f5be5a631aaaed4ff0a6b255a43d82[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 21:24:56 2015 +0100
+
+    Fix typo
+
+[33mcommit d6b6738c26cd98eb8f780aff9d2679e42dee310a[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 21:24:40 2015 +0100
+
+    Remove forgotten debug print
+
+[33mcommit 97a58ba0e3270328d31040d2ee5cc0f9920a6481[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 19:56:21 2015 +0100
+
+    Remove misplaced file
+
+[33mcommit 1ef523f27dff5cf76375bf273d9588601b82290c[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 19:09:30 2015 +0100
+
+    add remove book method to BookCollection
+
+[33mcommit c5bd3086ee381748401e369e8542d19c275a421f[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 19:09:12 2015 +0100
+
+    add addBook and remove book method to BookCollectionServiceImpl
+
+[33mcommit 10c6a5dc63a337c2dbc2d954ff553de650f70353[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 19:08:46 2015 +0100
+
+    add addBook and remove book method to BookCollectionService
+
+[33mcommit 69404c24087533edc38236f82b42426cd50929b7[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 18:55:35 2015 +0100
+
+    fix bug in BookCollectionDaoImpl class
+
+[33mcommit 10de15f61e5c1bcc1d1cca38bd0aeed37b2bb9fd[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 18:55:19 2015 +0100
+
+    fix bug in BookCollectionDao class
+
+[33mcommit 6a596e36b0b74f88825b011ba0a1164d36bbf1ae[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 18:49:23 2015 +0100
+
+    add MemberFacadeTest class
+
+[33mcommit e05632b922df7a755f692e57fbe182f30d4f709b[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 17:44:38 2015 +0100
+
+    change MemberServiceTest class
+
+[33mcommit 4b227ba2101e84cef8eda23cdd1b9550dfd881a1[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 16:17:38 2015 +0100
+
+    change MemberServiceTest class
+
+[33mcommit f6ec58cd3e825c0b8f4b86bb8cd3e52f654b2e4b[m
+Merge: b6df875 37c15c4
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 16:16:33 2015 +0100
+
+    Merge branch 'master' of https://github.com/msimacek/PA165-LibraryManager.git
+
+[33mcommit b6df87583b0e8ee271be94c91c5fedf403001de9[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 16:15:30 2015 +0100
+
+    change MemberServiceTest class
+
+[33mcommit 37c15c4b0108cfb232e468f5e6706e4ed97b5b06[m
+Merge: a6d861c c13f2b2
+Author: Juraj Tomko <duri.tomko@gmail.com>
+Date:   Thu Nov 26 16:15:22 2015 +0100
+
+    Merge branch 'master' of https://github.com/msimacek/PA165-LibraryManager
+
+[33mcommit a6d861cbcd187c03e8bb65aa394681a4b3732acf[m
+Author: Juraj Tomko <duri.tomko@gmail.com>
+Date:   Thu Nov 26 16:15:12 2015 +0100
+
+    [Fix] added isAdmin to MemberDTO
+
+[33mcommit c13f2b2621ee2a61895c03b4b32323305d7b26d8[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 16:02:34 2015 +0100
+
+    Add missing test for BookCollection.findByName
+
+[33mcommit 4cd32aa3da4336dbd1b57b7e3b99fe8c8fbc7f62[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 15:51:08 2015 +0100
+
+    Add LoanFacadeTest
+
+[33mcommit 7213d2e9f1f6d649048f443e5d83bdebe80d68be[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 15:50:51 2015 +0100
+
+    Create ListMapper
+
+[33mcommit d681051d3048e1daba6aea7c4aa087193f8be132[m
+Merge: 7f96e89 7f5eb54
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 14:59:57 2015 +0100
+
+    Merge branch 'master' of https://github.com/msimacek/PA165-LibraryManager
+
+[33mcommit 7f96e8924497db4bae0b7afc534dbd87d392d3aa[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 14:59:51 2015 +0100
+
+     blob
+
+[33mcommit 3e2adf5af475f8816cd57a5c90fbbd2fc44ef581[m
+Author: xkubist <m.kubistel@gmail.com>
+Date:   Thu Nov 26 14:54:44 2015 +0100
+
+    add MemberServiceTest class
+
+[33mcommit 7f5eb546f0c1a1a4906dbd8bb735e7afb97ce191[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 14:54:07 2015 +0100
+
+    Actually commit CreateLoanDTO
+
+[33mcommit b0cc62fe033de4456aad8f59d0c074ca35f7a3de[m
+Author: Michael Simacek <msimacek@redhat.com>
+Date:   Thu Nov 26 14:50:26 2015 +0100
+
+    Replace broken NewLoanDTO with CreateLoanDTO

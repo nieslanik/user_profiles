@@ -55,7 +55,8 @@ public class MemberFacadeImpl implements MemberFacade {
 
     @Override
     public void registerMember(MemberRegisterDTO memberReg) {
-        service.registerMember(service.findById(memberReg.getMember().getId()), memberReg.getPassword());
+        Member member = mapper.map(memberReg.getMember(), Member.class);
+        service.registerMember(member, memberReg.getPassword());
     }
 
     @Override

@@ -28,11 +28,11 @@ public class Loan {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date loanDate;
     @Column(nullable = false)
-    private boolean returned;
+    private boolean returned = false;
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date returnDate;
-    @Column(nullable = false)
+    @Column
     private BookState returnBookState;
 
     @ManyToOne
