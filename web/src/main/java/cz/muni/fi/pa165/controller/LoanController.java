@@ -59,10 +59,8 @@ public class LoanController {
         return "redirect:" + "/loans/list";
     }
 
-    private Date getCurrentDate() {
-        Calendar calendar = Calendar.getInstance();
-        return calendar.getTime();
-    }
+    //@RequestMapping(value = "/return/{id}", method = RequestMethod.POST)
+    //public String returnLoan(@P)
 
     private void createTestData() {
         CreateBookDTO createBook = new CreateBookDTO();
