@@ -54,8 +54,6 @@ public class LoanController {
                              RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         createTestData();
 
-        createLoan.setLoanDate(getCurrentDate());
-        createLoan.setReturnDate(getCurrentDate());
         loanFacade.createLoan(createLoan);
         redirectAttributes.addFlashAttribute("alert_success", "New loan was created");
         return "redirect:" + "/loans/list";

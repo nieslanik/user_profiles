@@ -12,24 +12,6 @@ public class CreateLoanDTO {
 
     private Long memberId;
     private Long bookId;
-    private Date loanDate;
-    private Date returnDate;
-
-    public Date getLoanDate() {
-        return loanDate;
-    }
-
-    public void setLoanDate(Date loanDate) {
-        this.loanDate = loanDate;
-    }
-
-    public Date getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
-    }
 
     public Long getMemberId() {
         return memberId;
@@ -51,52 +33,37 @@ public class CreateLoanDTO {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
-        result = prime * result + ((memberId == null) ? 0 : memberId.hashCode());
-        result = prime * result + ((loanDate == null) ? 0 : loanDate.hashCode());
-        result = prime * result + ((returnDate == null) ? 0 : returnDate.hashCode());
+        result = prime * result + ((getBookId() == null) ? 0 : getBookId().hashCode());
+        result = prime * result + ((getMemberId() == null) ? 0 : getMemberId().hashCode());
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass()) {
+        }
+        if (!(obj instanceof CreateLoanDTO)) {
             return false;
         }
         CreateLoanDTO other = (CreateLoanDTO) obj;
-        if (bookId == null) {
-            if (other.bookId != null) {
+        if (getBookId() == null) {
+            if (other.getBookId() != null) {
                 return false;
             }
-        } else if (!bookId.equals(other.bookId)) {
+        } else if (!getBookId().equals(other.getBookId())) {
             return false;
         }
-        if (memberId == null) {
-            if (other.memberId != null) {
+        if (getMemberId() == null) {
+            if (other.getMemberId() != null) {
                 return false;
             }
-        } else if (!memberId.equals(other.memberId)) {
-            return false;
-        }
-        if (loanDate == null) {
-            if (other.loanDate != null) {
-                return false;
-            }
-        } else if (!loanDate.equals(other.loanDate)) {
-            return false;
-        }
-        if (returnDate == null) {
-            if (other.loanDate != null) {
-                return false;
-            }
-        } else if (!returnDate.equals(other.returnDate)) {
+        } else if (!getMemberId().equals(other.getMemberId())) {
             return false;
         }
         return true;
     }
-
 }

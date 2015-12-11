@@ -29,7 +29,7 @@ public class Loan {
     private Date loanDate;
     @Column(nullable = false)
     private boolean returned = false;
-    @Column(nullable = false)
+    @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date returnDate;
     @Column
@@ -137,5 +137,4 @@ public class Loan {
             return false;
         return true;
     }
-
 }

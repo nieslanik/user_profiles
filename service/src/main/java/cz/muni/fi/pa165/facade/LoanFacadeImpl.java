@@ -64,7 +64,6 @@ public class LoanFacadeImpl implements LoanFacade {
 
     @Override
     public void returnLoan(Long id, BookState returnState) {
-
         loanService.returnLoan(id, returnState);
     }
 
