@@ -38,13 +38,14 @@ public class LoanFacadeImpl implements LoanFacade {
     private BookService bookService;
 
     @Override
-    public void createLoan(CreateLoanDTO loan) {
+    public Long createLoan(CreateLoanDTO loan) {
         Loan newLoan = mapper.map(loan, Loan.class);
         Member member = memberService.findById(loan.getMemberId());
         newLoan.setMember(member);
         Book book = bookService.findById(loan.getBookId());
         newLoan.setBook(book);
         loanService.create(newLoan);
+        return newLoan.getId();
     }
 
     @Override

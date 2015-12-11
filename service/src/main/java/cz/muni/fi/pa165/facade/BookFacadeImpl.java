@@ -32,12 +32,13 @@ public class BookFacadeImpl implements BookFacade {
     private BookCollectionService collectionService;
 
     @Override
-    public void createBook(CreateBookDTO book) {
+    public Long createBook(CreateBookDTO book) {
         Book entity = mapper.map(book, Book.class);
         for (Long id : book.getCollectionIds()) {
             entity.addCollection(collectionService.findById(id));
         }
         service.create(entity);
+        return entity.getId();
     }
 
     @Override
