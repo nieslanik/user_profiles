@@ -18,11 +18,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        .bs-example {
-            margin: 20px;
-        }
-    </style>
 </head>
 <body>
 
@@ -50,19 +45,19 @@
             <td><c:out value="${loan.member.givenName} ${loan.member.surname}"/></td>
             <td><c:out value="${loan.book.name}"/></td>
             <td><c:choose>
-                <c:when test="${loan.book.state == BookState.NEW}">
+                <c:when test="${loan.book.state.getValue() eq 'new'}">
                     new
                 </c:when>
-                <c:when test="${loan.book.state == BookState.LIGHT_DAMAGE}">
+                <c:when test="${loan.book.state.getValue() eq 'light_damage'}">
                     light damage
                 </c:when>
-                <c:when test="${loan.book.state == BookState.MEDIUM_DAMAGE}">
+                <c:when test="${loan.book.state.getValue() eq 'medium_damage'}">
                     medium damage
                 </c:when>
-                <c:when test="${loan.book.state == BookState.HEAVY_DAMAGE}">
+                <c:when test="${loan.book.state.getValue() eq 'heavy_damage'}">
                     heavy damage
                 </c:when>
-                <c:when test="${loan.book.state == BookState.REMOVED}">
+                <c:when test="${loan.book.state.getValue() eq 'removed'}">
                     removed
                 </c:when>
                 <c:otherwise>
@@ -70,7 +65,9 @@
                 </c:otherwise>
             </c:choose></td>
             <td>
-                <a href="#myModal" class="btn btn-sm btn-primary" data-toggle="modal">Return</a>
+                <c:if test="${!loan.returned}">
+                <a href="#myModal" class="returnTableBtn btn-sm btn-primary" data-toggle="modal" data-loan-id=${loan.id}>Return</a>
+                </c:if>
             <td>
             </td>
         </tr>
@@ -98,7 +95,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="cancel-btn" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="return-btn" class="btn btn-primary">Return</button>
+                    <button type="button" id="confirm-btn" class="btn btn-primary">Confirm</button>
                 </div>
             </div>
         </div>
@@ -106,14 +103,23 @@
 
     <script>
         $(function () {
-            $('#return-btn').click(function () {
+            $('#confirm-btn').click(function () {
                 var element = document.getElementById('statepicker');
                 var state = element[element.selectedIndex].value;
+                var loanId = $('#confirm-btn').attr('loan-id');
+                var url = '/loans/return/' + loanId + "?bookStateCode=" + state;
+                window.location.replace(url);
                 $('#myModal').modal('hide');
-                alert(state.toString());
             });
 
         });
+
+        $(function () {
+            $('.returnTableBtn').click(function () {
+                var loanId = $(this).data('loan-id');
+                $("#confirm-btn").attr('loan-id', loanId);
+            })
+        })
     </script>
 
 

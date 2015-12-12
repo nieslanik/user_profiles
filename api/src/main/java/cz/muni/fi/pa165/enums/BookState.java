@@ -10,21 +10,31 @@ public enum BookState {
     /**
      * No damage
      * */
-    NEW,
+    NEW("new"),
     /**
      * Lightly damaged
      * */
-    LIGHT_DAMAGE,
+    LIGHT_DAMAGE("light_damage"),
     /**
      * Medium level of damage
      * */
-    MEDIUM_DAMAGE,
+    MEDIUM_DAMAGE("medium_damage"),
     /**
      * Heavily damaged
      * */
-    HEAVY_DAMAGE,
+    HEAVY_DAMAGE("heavy_damage"),
     /**
      * Removed from database, possibly missing
      * */
-    REMOVED
+    REMOVED("removed");
+
+    private final String value;
+
+    BookState(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }

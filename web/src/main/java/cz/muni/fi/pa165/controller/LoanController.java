@@ -8,9 +8,7 @@ import cz.muni.fi.pa165.facade.LoanFacade;
 import cz.muni.fi.pa165.facade.MemberFacade;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -59,8 +57,22 @@ public class LoanController {
         return "redirect:" + "/loans/list";
     }
 
-    //@RequestMapping(value = "/return/{id}", method = RequestMethod.POST)
-    //public String returnLoan(@P)
+    @RequestMapping(value = "/return/{id}", method = RequestMethod.GET)
+    public String returnLoan(@PathVariable("id") Long id, @RequestParam int bookStateCode, Model model) {
+        BookState bookState;
+        switch (bookStateCode) {
+            case 2: bookState = BookState.LIGHT_DAMAGE; break;
+            case 3: bookState = BookState.MEDIUM_DAMAGE; break;
+            case 4: bookState = BookState.HEAVY_DAMAGE; break;
+            case 5: bookState = BookState.REMOVED; break;
+            case 1:
+            default:
+                bookState = BookState.NEW; break;
+        }
+        loanFacade.returnLoan(id, bookState);
+        model.addAttribute("loans", loanFacade.findAll());
+        return "loan/list";
+    }
 
     private void createTestData() {
         CreateBookDTO createBook = new CreateBookDTO();
