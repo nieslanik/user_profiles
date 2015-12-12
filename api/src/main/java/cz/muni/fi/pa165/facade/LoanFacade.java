@@ -16,8 +16,9 @@ public interface LoanFacade {
      * Persists loan into database
      *
      * @param loan loan object to be created
+     * @return new loan id
      */
-    void createLoan(CreateLoanDTO loan);
+    Long createLoan(CreateLoanDTO loan);
 
     /**
      * Returns loan with given id or null

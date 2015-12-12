@@ -18,8 +18,9 @@ public interface BookFacade {
      *
      * @param book
      *            book to be persisted
+     * @return new book id
      */
-    void createBook(CreateBookDTO book);
+    Long createBook(CreateBookDTO book);
 
     /**
      * Returns book with given id or null

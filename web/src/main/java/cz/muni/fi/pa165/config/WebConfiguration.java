@@ -9,9 +9,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import cz.muni.fi.pa165.sample.SampleDataConfiguration;
+
 @Configuration
 @EnableWebMvc
-@Import(ServiceConfiguration.class)
+@Import(SampleDataConfiguration.class)
 @ComponentScan(basePackages = "cz.muni.fi.pa165.controller")
 class WebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
