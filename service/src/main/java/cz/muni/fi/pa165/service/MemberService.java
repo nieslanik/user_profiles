@@ -28,6 +28,13 @@ public interface MemberService {
     List<Member> findAll();
 
     /**
+     * Finds members by name
+     * @param name of member
+     * @return list of members
+     */
+    List<Member> findByName(String name);
+
+    /**
      * Removes member from database
      *
      * @param member entity to be removed

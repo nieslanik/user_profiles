@@ -40,6 +40,11 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     @Override
+    public List<Member> findByName(String name) {
+        return em.createQuery("from Member where givenName = :name or surname = :name", Member.class).setParameter("name", name).getResultList();
+    }
+
+    @Override
     public void delete(Member member) {
         em.remove(findById(member.getId()));
     }

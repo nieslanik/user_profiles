@@ -35,6 +35,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public List<Member> findByName(String name) {
+        return memberDao.findByName(name);
+    }
+
+    @Override
     public void deleteMember(Member member) {
         memberDao.delete(member);
     }

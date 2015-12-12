@@ -38,6 +38,11 @@ public class MemberFacadeImpl implements MemberFacade {
     }
 
     @Override
+    public List<MemberDTO> findByName(String name) {
+        return mapper.map(service.findByName(name), MemberDTO.class);
+    }
+
+    @Override
     public void deleteMember(Long id) {
         service.deleteMember(service.findById(id));
     }

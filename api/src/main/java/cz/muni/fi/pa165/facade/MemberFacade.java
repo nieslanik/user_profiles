@@ -26,6 +26,13 @@ public interface MemberFacade {
     List<MemberDTO> findAll();
 
     /**
+     * Finds members by name
+     * @param name of member
+     * @return list of members
+     */
+    List<MemberDTO> findByName(String name);
+
+    /**
      * Removes member
      * @param id member id
      */

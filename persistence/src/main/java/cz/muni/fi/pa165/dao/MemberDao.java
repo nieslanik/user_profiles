@@ -41,6 +41,13 @@ public interface MemberDao {
     List<Member> findAll();
 
     /**
+     * Finds members by name
+     * @param name of member
+     * @return list of members
+     */
+    List<Member> findByName(String name);
+
+    /**
      * Removes given Member from the database
      * @param member member to be deleted
      **/
