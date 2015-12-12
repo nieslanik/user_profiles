@@ -14,19 +14,22 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
-import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.facade.BookCollectionFacade;
+import cz.muni.fi.pa165.facade.BookFacade;
 
 @Controller
 @RequestMapping("/collection")
 public class BookCollectionController {
 
     @Inject
-    BookCollectionFacade facade;
-    
+    private BookCollectionFacade collectionFacade;
+
+    @Inject
+    private BookFacade bookFacade;
+
     @RequestMapping("/{id}")
     public String showCollection(@PathVariable long id, Model model) {
-        BookCollectionDTO dto = facade.findById(id);
+        BookCollectionDTO dto = collectionFacade.findById(id);
         if (dto == null)
             return "404";
         model.addAttribute("collection", dto);
@@ -35,7 +38,8 @@ public class BookCollectionController {
 
     @RequestMapping(path = "/create", method = RequestMethod.GET)
     public String createCollectionView(Model model) {
-        model.addAttribute("createCollection", new CreateBookDTO());
+        model.addAttribute("createCollection", new CreateBookCollectionDTO());
+        model.addAttribute("allBooks", bookFacade.findAll());
         return "create_collection";
     }
 
@@ -45,7 +49,7 @@ public class BookCollectionController {
         if (result.hasErrors()) {
             return "create_collection";
         }
-        Long id = facade.createBookCollection(dto);
+        Long id = collectionFacade.createBookCollection(dto);
         return "redirect:" + id;
     }
 }

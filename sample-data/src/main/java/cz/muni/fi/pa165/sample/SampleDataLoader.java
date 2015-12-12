@@ -26,12 +26,11 @@ public class SampleDataLoader {
     MemberFacade memberFacade;
 
     public void createSampleData() {
-        Long b1 = book("東方文花帖", "射命丸 文", 4758010374L);
-        bookCollection("Manga", b1);
-
+        Long b1 = book("東方文花帖", "ZUN", 4758010374L);
+        Long b2 = book("東方紫香花", "ZUN", 9780400101194L);
+        Long b3 = book("東方求聞史紀", "ZUN", 4758010633L);
+        bookCollection("Manga", b1, b2, b3);
         createMember();
-        Long b2 = book("kniha", "autor", 12345L);
-        bookCollection("collection", b2);
     }
 
     private Long book(String name, String authorName, Long isbn) {
