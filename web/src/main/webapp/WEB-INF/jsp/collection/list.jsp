@@ -1,30 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
-<x:base>
-    <jsp:attribute name="title">
-        <c:out value="${collection.name}" /> - book collection details
-    </jsp:attribute>
+<x:base title="Book collection listing">
     <jsp:attribute name="content">
         <h1>
-            <c:out value="${collection.name}" /> - book collection details
+            Book collection listing
         </h1>
         <div class="panel panel-default">
-        <div class="panel-heading">Books in collection</div>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Author</th>
-                        <th>ISBN</th>
+                        <th>Book count</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="book" items="${collection.books}">
+                    <c:forEach var="collection" items="${collections}">
                         <tr>
-                            <td><c:out value="${book.name}" /></td>
-                            <td><c:out value="${book.authorName}" /></td>
-                            <td><c:out value="${book.isbn}" /></td>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/collection/${collection.id}">
+                                    <c:out value="${collection.name}" />
+                                </a>
+                            </td>
+                            <td><c:out value="${collection.books.size()}" /></td>
                         </tr>
                     </c:forEach>
                 </tbody>

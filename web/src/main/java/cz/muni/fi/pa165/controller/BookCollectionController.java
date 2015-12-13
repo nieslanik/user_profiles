@@ -27,6 +27,12 @@ public class BookCollectionController {
     @Inject
     private BookFacade bookFacade;
 
+    @RequestMapping("/list")
+    public String listCollections(Model model) {
+        model.addAttribute("collections", collectionFacade.findAll());
+        return "collection/list";
+    }
+
     @RequestMapping("/{id}")
     public String showCollection(@PathVariable long id, Model model) {
         BookCollectionDTO dto = collectionFacade.findById(id);
