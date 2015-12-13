@@ -23,6 +23,11 @@ public interface BookCollectionService {
      */
     void delete(BookCollection b);
     /**
+     * Update book collectoin
+     * @param collection to be updated
+     */
+    void update(BookCollection b);
+    /**
      * update the BookCollection from database
      * 
      * @return list of all book collections
