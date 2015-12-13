@@ -33,21 +33,21 @@ public class BookCollectionController {
         if (dto == null)
             return "404";
         model.addAttribute("collection", dto);
-        return "show_collection";
+        return "collection/show";
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.GET)
     public String createCollectionView(Model model) {
         model.addAttribute("createCollection", new CreateBookCollectionDTO());
         model.addAttribute("allBooks", bookFacade.findAll());
-        return "create_collection";
+        return "collection/create";
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public String createCollection(@Valid @ModelAttribute CreateBookCollectionDTO dto, BindingResult result,
             Model model, UriComponentsBuilder uri) {
         if (result.hasErrors()) {
-            return "create_collection";
+            return "collection/create";
         }
         Long id = collectionFacade.createBookCollection(dto);
         return "redirect:" + id;
