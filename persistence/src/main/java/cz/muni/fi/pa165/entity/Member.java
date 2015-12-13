@@ -39,7 +39,7 @@ public class Member {
     @Temporal(TemporalType.DATE)
     private Date registrationDate;
 
-    @OneToMany
+    @OneToMany(mappedBy="member")
     private List<Loan> loans = new ArrayList<>();
 
     private String passwordHash;
