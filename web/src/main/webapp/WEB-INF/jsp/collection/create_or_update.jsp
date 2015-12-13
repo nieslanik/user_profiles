@@ -20,6 +20,15 @@
                         });
                 $("#selected-books").val(data.join(","));
             }
+            function filterBooks(field) {
+                $("#available-table tbody tr").each(function() {
+                    if ($(this).find("td").text().indexOf(field.value) >= 0) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
             $(function() {
                 var selected = $("#selected-books").val().split(',');
                 $("#available-table tbody tr").each(function() {
@@ -27,6 +36,7 @@
                         selectRow(this);
                     }
                 });
+                filterBooks($("#filter"));
             });
         </script>
     </jsp:attribute>
@@ -52,7 +62,7 @@
                                 <div class="col-xs-6">
                                     <%-- TODO filter --%>
                                     <div class="input-group">
-                                        <input type="text" id="filter"
+                                        <input type="text" id="filter" onKeyUp="filterBooks(this)"
                                             placeholder="Filter" class="form-control" />
                                         <span class="input-group-addon"> <i
                                             class="glyphicon glyphicon-filter"> </i>
