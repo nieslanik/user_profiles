@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
+import cz.muni.fi.pa165.dto.UpdateBookCollectionDTO;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
 import cz.muni.fi.pa165.service.BookCollectionService;
@@ -77,4 +78,23 @@ public class BookCollectionFacadeImpl implements BookCollectionFacade {
 
     }
 
+    @Override
+    public void updateBookCollection(UpdateBookCollectionDTO dto) {
+        // we overwrite everything, so it's not needed to fetch original entity
+        BookCollection collection = mapper.map(dto, BookCollection.class);
+        for (Long id: dto.getBookIds()) {
+            collection.addBook(bookService.findById(id));
+        }
+        service.update(collection);
+    }
+
+    @Override
+    public UpdateBookCollectionDTO findByIdForUpdate(Long id) {
+        BookCollection entity = service.findById(id);
+        UpdateBookCollectionDTO dto = mapper.map(entity, UpdateBookCollectionDTO.class);
+        for (Book book: entity.getBooks()) {
+            dto.getBookIds().add(book.getId());
+        }
+        return dto;
+    }
 }

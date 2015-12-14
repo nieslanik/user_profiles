@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.facade;
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
+import cz.muni.fi.pa165.dto.UpdateBookCollectionDTO;
+
 import java.util.List;
 
 /**
@@ -50,5 +52,18 @@ public interface BookCollectionFacade {
      * @param bookDto DTO object representing book to be removed
      */
     void removeBookFromCollection(Long id,BookDTO bookDto);
-    
+
+    /**
+     * Update book collection and its contents
+     * 
+     * @param dto object to update collection
+     */
+    void updateBookCollection(UpdateBookCollectionDTO dto);
+
+    /**
+     * Finds collection by id for update operation
+     * @param id collection id
+     * @return update dto for collection
+     */
+    UpdateBookCollectionDTO findByIdForUpdate(Long id);
 }

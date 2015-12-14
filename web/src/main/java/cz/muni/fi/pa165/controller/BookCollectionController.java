@@ -14,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
+import cz.muni.fi.pa165.dto.UpdateBookCollectionDTO;
 import cz.muni.fi.pa165.facade.BookCollectionFacade;
 import cz.muni.fi.pa165.facade.BookFacade;
 
@@ -44,18 +45,38 @@ public class BookCollectionController {
 
     @RequestMapping(path = "/create", method = RequestMethod.GET)
     public String createCollectionView(Model model) {
-        model.addAttribute("createCollection", new CreateBookCollectionDTO());
+        model.addAttribute("action", "Create");
+        model.addAttribute("collection", new CreateBookCollectionDTO());
         model.addAttribute("allBooks", bookFacade.findAll());
-        return "collection/create";
+        return "collection/create_or_update";
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public String createCollection(@Valid @ModelAttribute CreateBookCollectionDTO dto, BindingResult result,
             Model model, UriComponentsBuilder uri) {
         if (result.hasErrors()) {
-            return "collection/create";
+            return "collection/create_or_update";
         }
         Long id = collectionFacade.createBookCollection(dto);
         return "redirect:" + id;
+    }
+
+    @RequestMapping(path = "{id}/update", method = RequestMethod.GET)
+    public String updateCollectionView(@PathVariable long id, Model model) {
+        model.addAttribute("action", "Modify");
+        model.addAttribute("collection", collectionFacade.findByIdForUpdate(id));
+        model.addAttribute("allBooks", bookFacade.findAll());
+        return "collection/create_or_update";
+    }
+
+    @RequestMapping(path = "{id}/update", method = RequestMethod.POST)
+    public String updateCollection(@Valid @ModelAttribute UpdateBookCollectionDTO dto, BindingResult result,
+            Model model, UriComponentsBuilder uri) {
+        if (result.hasErrors()) {
+            return "collection/create_or_update";
+        }
+        // TODO nonexistent id
+        collectionFacade.updateBookCollection(dto);
+        return "redirect:";
     }
 }

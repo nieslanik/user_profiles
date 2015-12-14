@@ -54,4 +54,9 @@ public class BookCollectionServiceImpl implements BookCollectionService {
         coll.removeBook(book);
         bookCollectionDao.update(coll);
     }
+
+    @Override
+    public void update(BookCollection b) {
+        bookCollectionDao.update(b);
+    }
 }

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
-<x:base title="Create book collection">
+<x:base title="${action} book collection">
     <jsp:attribute name="head">
         <script>
             function selectRow(row) {
@@ -20,11 +20,29 @@
                         });
                 $("#selected-books").val(data.join(","));
             }
+            function filterBooks(field) {
+                $("#available-table tbody tr").each(function() {
+                    if ($(this).find("td").text().indexOf(field.value) >= 0) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+            $(function() {
+                var selected = $("#selected-books").val().split(',');
+                $("#available-table tbody tr").each(function() {
+                    if ($.inArray(this.getAttribute("data-book-id"), selected) >= 0) {
+                        selectRow(this);
+                    }
+                });
+                filterBooks($("#filter"));
+            });
         </script>
     </jsp:attribute>
     <jsp:attribute name="content">
-        <h1>Create new book collection</h1>
-        <form:form method="POST" modelAttribute="createCollection"
+        <h1>${action} book collection</h1>
+        <form:form method="POST" modelAttribute="collection"
             onSubmit="prepareBooks()">
             <div class="form-group">
                 <form:label path="name">Name</form:label>
@@ -44,7 +62,7 @@
                                 <div class="col-xs-6">
                                     <%-- TODO filter --%>
                                     <div class="input-group">
-                                        <input type="text" id="filter"
+                                        <input type="text" id="filter" onKeyUp="filterBooks(this)"
                                             placeholder="Filter" class="form-control" />
                                         <span class="input-group-addon"> <i
                                             class="glyphicon glyphicon-filter"> </i>
@@ -90,8 +108,8 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" name="bookIds" id="selected-books" />
-            <button type="submit" class="btn btn-default">Create book collection</button>
+            <form:hidden path="bookIds" id="selected-books"/>
+            <button type="submit" class="btn btn-default">${action} book collection</button>
         </form:form>
 </jsp:attribute>
 </x:base>
