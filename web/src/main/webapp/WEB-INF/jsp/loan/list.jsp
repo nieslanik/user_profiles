@@ -55,10 +55,11 @@
                     <c:otherwise>
                         -
                     </c:otherwise>
-                </c:choose></td>
+                </c:choose>
+                </td>
                 <td>
                     <c:if test="${!loan.returned}">
-                    <a href="#myModal" class="returnTableBtn btn-md btn-primary" data-toggle="modal"
+                    <a href="#myModal" class="returnTableBtn btn-primary btn-sm" data-toggle="modal"
                        data-loan-id=${loan.id}>Return</a>
                     </c:if>
                 <td>

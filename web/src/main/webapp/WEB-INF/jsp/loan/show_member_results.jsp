@@ -32,7 +32,7 @@
                     <td><c:out value="${member.email}"/></td>
                     <td>
                         <a href="${pageContext.request.contextPath}/loans/new?memberId=${member.id}&bookId=${param.book}"
-                           class="btn btn-md">Choose</a>
+                           class="btn btn-primary btn-sm">Choose</a>
                     <td>
                     </td>
                 </tr>

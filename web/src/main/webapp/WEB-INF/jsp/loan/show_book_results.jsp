@@ -52,10 +52,11 @@
                         <c:otherwise>
                             -
                         </c:otherwise>
-                    </c:choose></td>
+                    </c:choose>
+                    </td>
                     <td>
                         <a href="${pageContext.request.contextPath}/loans/new?bookId=${book.id}&memberId=${param.member}"
-                           class="btn btn-md">Choose</a>
+                           class="btn btn-primary btn-sm">Choose</a>
                     <td>
                     </td>
                 </tr>
