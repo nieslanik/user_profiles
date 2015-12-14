@@ -60,7 +60,7 @@
         </c:otherwise>
       </c:choose></td>
       <td>
-        <a href="/loans/new?bookId=${book.id}&memberId=${param.member}" class="btn btn-primary">Choose</a>
+        <a href="${pageContext.request.contextPath}/loans/new?bookId=${book.id}&memberId=${param.member}" class="btn btn-primary">Choose</a>
       <td>
       </td>
     </tr>

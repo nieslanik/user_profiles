@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.enums;
 
+import cz.muni.fi.pa165.constants.BookStateConstants;
+
 /**
  * Enum representig possible state/condition which a book can have
  * 
@@ -10,23 +12,23 @@ public enum BookState {
     /**
      * No damage
      * */
-    NEW("new"),
+    NEW(BookStateConstants.NEW),
     /**
      * Lightly damaged
      * */
-    LIGHT_DAMAGE("light_damage"),
+    LIGHT_DAMAGE(BookStateConstants.LIGHT_DAMAGE),
     /**
      * Medium level of damage
      * */
-    MEDIUM_DAMAGE("medium_damage"),
+    MEDIUM_DAMAGE(BookStateConstants.MEDIUM_DAMAGE),
     /**
      * Heavily damaged
      * */
-    HEAVY_DAMAGE("heavy_damage"),
+    HEAVY_DAMAGE(BookStateConstants.HEAVY_DAMAGE),
     /**
      * Removed from database, possibly missing
      * */
-    REMOVED("removed");
+    REMOVED(BookStateConstants.REMOVED);
 
     private final String value;
 

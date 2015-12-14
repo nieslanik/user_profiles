@@ -39,7 +39,7 @@
       <td><c:out value="${member.surname}"/></td>
       <td><c:out value="${member.email}"/></td>
       <td>
-        <a href="/loans/new?memberId=${member.id}&bookId=${param.book}" class="btn btn-primary">Choose</a>
+        <a href="${pageContext.request.contextPath}/loans/new?memberId=${member.id}&bookId=${param.book}" class="btn btn-primary">Choose</a>
       <td>
       </td>
     </tr>

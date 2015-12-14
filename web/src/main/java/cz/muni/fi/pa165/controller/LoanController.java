@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.controller;
 
+import cz.muni.fi.pa165.constants.BookStateConstants;
 import cz.muni.fi.pa165.dto.*;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.enums.BookState;
@@ -43,12 +44,12 @@ public class LoanController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newLoan(@RequestParam(defaultValue = "0") long bookId, @RequestParam(defaultValue = "0") long memberId, Model model) {
-        if (bookId > 0) {
+    public String newLoan(@RequestParam(required = false) Long bookId, @RequestParam(required = false) Long memberId, Model model) {
+        if (bookId != null) {
             BookDTO book = bookFacade.findById(bookId);
             model.addAttribute("book", book);
         }
-        if (memberId > 0) {
+        if (memberId != null) {
             MemberDTO member = memberFacade.findById(memberId);
             model.addAttribute("member", member);
         }
@@ -71,26 +72,27 @@ public class LoanController {
     }
 
     @RequestMapping(value = "/return/{id}", method = RequestMethod.GET)
-    public String returnLoan(@PathVariable("id") Long id, @RequestParam int bookStateCode, Model model) {
+    public String returnLoan(@PathVariable("id") Long id, @RequestParam String bookStateStr, Model model) {
         BookState bookState;
-        switch (bookStateCode) {
-            case 2:
+        switch (bookStateStr) {
+            case BookStateConstants.LIGHT_DAMAGE:
                 bookState = BookState.LIGHT_DAMAGE;
                 break;
-            case 3:
+            case BookStateConstants.MEDIUM_DAMAGE:
                 bookState = BookState.MEDIUM_DAMAGE;
                 break;
-            case 4:
+            case BookStateConstants.HEAVY_DAMAGE:
                 bookState = BookState.HEAVY_DAMAGE;
                 break;
-            case 5:
+            case BookStateConstants.REMOVED:
                 bookState = BookState.REMOVED;
                 break;
-            case 1:
+            case BookStateConstants.NEW:
             default:
                 bookState = BookState.NEW;
                 break;
         }
+
         loanFacade.returnLoan(id, bookState);
         model.addAttribute("loans", loanFacade.findAll());
         return "loan/list";

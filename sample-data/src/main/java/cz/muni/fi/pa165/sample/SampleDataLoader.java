@@ -29,6 +29,7 @@ public class SampleDataLoader {
         Long b1 = book("東方文花帖", "ZUN", 4758010374L);
         Long b2 = book("東方紫香花", "ZUN", 9780400101194L);
         Long b3 = book("東方求聞史紀", "ZUN", 4758010633L);
+        Long b4 = book("kniha", "ujo", 1234L);
         bookCollection("Manga", b1, b2, b3);
         createMember();
     }

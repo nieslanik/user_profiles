@@ -87,11 +87,11 @@
             <div class="modal-body">
                 <p>Choose state in which book was returned.</p>
                 <select id="statepicker" data-container="body">
-                    <option value="1">No damage</option>
-                    <option value="2">Light damaged</option>
-                    <option value="3">Medium damaged</option>
-                    <option value="4">Heavily damaged</option>
-                    <option value="5">Not returned</option>
+                    <option value="new">No damage</option>
+                    <option value="light_damage">Light damaged</option>
+                    <option value="medium_damage">Medium damaged</option>
+                    <option value="heavy_damage">Heavily damaged</option>
+                    <option value="removed">Not returned</option>
                 </select>
             </div>
             <div class="modal-footer">
@@ -108,7 +108,7 @@
             var element = document.getElementById('statepicker');
             var state = element[element.selectedIndex].value;
             var loanId = $('#confirm-btn').attr('loan-id');
-            var url = '/loans/return/' + loanId + "?bookStateCode=" + state;
+            var url = "${pageContext.request.contextPath}/loans/return/" + loanId + "?bookStateStr=" + state;
             window.location.replace(url);
             $('#myModal').modal('hide');
         });
