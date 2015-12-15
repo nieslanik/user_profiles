@@ -71,7 +71,7 @@ public interface MemberFacade {
      * @param memberReg DTO object containing registration data
      * @return id of new member
      */
-    Long registerMember(MemberRegisterDTO memberReg);
+    Long registerMember(RegisterMemberDTO memberReg);
 
     /**
      * Checks if member has admin permissions

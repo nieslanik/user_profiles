@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberAuthenticateDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
-import cz.muni.fi.pa165.dto.MemberRegisterDTO;
+import cz.muni.fi.pa165.dto.RegisterMemberDTO;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.facade.MemberFacade;
@@ -44,18 +44,12 @@ public class MemberFacadeTest {
     @Test
     public void testCreate() {
         ArgumentCaptor<Member> captorMember = ArgumentCaptor.forClass(Member.class);
-        ArgumentCaptor<String> captorPassword = ArgumentCaptor.forClass(String.class);
-        Member member = new Member();
-        member.setId(1L);
-        MemberDTO memDto=new MemberDTO();
-        memDto.setId(1L);
-        MemberRegisterDTO memreg= new MemberRegisterDTO();
-        memreg.setMember(memDto);
-        when(memberServiceMock.findById(1L)).thenReturn(member);
+        RegisterMemberDTO memreg= new RegisterMemberDTO();
+        memreg.setGivenName("a");
+        memreg.setPassword("1234");
         facade.registerMember(memreg);
-        verify(memberServiceMock).registerMember(captorMember.capture(),captorPassword.capture());
-        Member entity = captorMember.getValue();
-        assertSame(1L,entity.getId());
+        verify(memberServiceMock).registerMember(captorMember.capture(), eq("1234"));
+        assertEquals("a", captorMember.getValue().getGivenName());
     }
 
     @Test

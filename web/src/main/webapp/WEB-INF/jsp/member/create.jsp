@@ -8,19 +8,19 @@
         <form:form method="POST" modelAttribute="createMember">
             <div class="form-group">
                 <div class="form-group">
-                    <form:label path="member.givenName">Given name</form:label>
-                    <form:input path="member.givenName" type="text" cssClass="form-control" />
-                    <form:errors path="member.givenName" />
+                    <form:label path="givenName">Given name</form:label>
+                    <form:input path="givenName" type="text" cssClass="form-control" />
+                    <form:errors path="givenName" />
                 </div>
                 <div class="form-group">
-                    <form:label path="member.surname">Surname</form:label>
-                    <form:input path="member.surname" type="text" cssClass="form-control" />
-                    <form:errors path="member.surname" />
+                    <form:label path="surname">Surname</form:label>
+                    <form:input path="surname" type="text" cssClass="form-control" />
+                    <form:errors path="surname" />
                 </div>
                 <div class="form-group">
-                    <form:label path="member.email">E-mail</form:label>
-                    <form:input path="member.email" type="email" cssClass="form-control" />
-                    <form:errors path="member.email" />
+                    <form:label path="email">E-mail</form:label>
+                    <form:input path="email" type="email" cssClass="form-control" />
+                    <form:errors path="email" />
                 </div>
                 <div class="form-group">
                     <form:label path="password">Password</form:label>

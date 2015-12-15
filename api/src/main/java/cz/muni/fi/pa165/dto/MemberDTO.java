@@ -4,8 +4,8 @@ import java.util.Date;
 
 /**
  * Data Transfer object for Member entity
- * 
- * @author Juraj Tomko 
+ *
+ * @author Juraj Tomko
  */
 public class MemberDTO {
 
@@ -54,7 +54,7 @@ public class MemberDTO {
     public Date getRegistrationDate() {
         return registrationDate;
     }
-    
+
     public void setRegistrationDate(Date date) {
         this.registrationDate = date;
     }
@@ -119,5 +119,5 @@ public class MemberDTO {
             return false;
         }
         return true;
-    }    
+    }
 }

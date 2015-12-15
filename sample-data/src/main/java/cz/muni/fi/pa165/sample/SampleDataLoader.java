@@ -9,7 +9,7 @@ import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.dto.CreateLoanDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
-import cz.muni.fi.pa165.dto.MemberRegisterDTO;
+import cz.muni.fi.pa165.dto.RegisterMemberDTO;
 import cz.muni.fi.pa165.facade.BookCollectionFacade;
 import cz.muni.fi.pa165.facade.BookFacade;
 import cz.muni.fi.pa165.facade.LoanFacade;
@@ -24,16 +24,16 @@ public class SampleDataLoader {
     private BookFacade bookFacade;
 
     @Inject
-    MemberFacade memberFacade;
-    
+    private MemberFacade memberFacade;
+
     @Inject
-    LoanFacade loanFacade;
+    private LoanFacade loanFacade;
 
     public void createSampleData() {
         Long b1 = book("東方文花帖", "ZUN", 4758010374L);
         Long b2 = book("東方紫香花", "ZUN", 9780400101194L);
         Long b3 = book("東方求聞史紀", "ZUN", 4758010633L);
-        Long b4 = book("kniha", "ujo", 1234L);
+        book("kniha", "ujo", 1234L);
         bookCollection("Manga", b1, b2, b3);
         createMember();
     }
@@ -54,19 +54,16 @@ public class SampleDataLoader {
     }
 
     private void createMember() {
-        MemberDTO member = new MemberDTO();
-        member.setEmail("email@email.com");
-        member.setGivenName("peter");
-        member.setSurname("cibula");
-
-        MemberRegisterDTO memberRegister = new MemberRegisterDTO();
-        memberRegister.setMember(member);
-        memberRegister.setPassword("12345");       
+        RegisterMemberDTO memberRegister = new RegisterMemberDTO();
+        memberRegister.setEmail("email@email.com");
+        memberRegister.setGivenName("peter");
+        memberRegister.setSurname("cibula");
+        memberRegister.setPassword("12345");
         Long memberId = memberFacade.registerMember(memberRegister);
         createLoan(memberId);
     }
-    
-    private void createLoan(Long memberId){
+
+    private void createLoan(Long memberId) {
         CreateLoanDTO loan = new CreateLoanDTO();
         loan.setBookId(1L);
         loan.setMemberId(memberId);

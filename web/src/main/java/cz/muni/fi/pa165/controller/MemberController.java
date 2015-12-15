@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
-import cz.muni.fi.pa165.dto.MemberRegisterDTO;
+import cz.muni.fi.pa165.dto.RegisterMemberDTO;
 import cz.muni.fi.pa165.facade.MemberFacade;
 
 @Controller
@@ -49,12 +49,12 @@ public class MemberController {
 
     @RequestMapping(path = "/create", method = RequestMethod.GET)
     public String createMemberView(Model model) {
-        model.addAttribute("createMember", new MemberRegisterDTO());
+        model.addAttribute("createMember", new RegisterMemberDTO());
         return "member/create";
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public String createMember(@Valid @ModelAttribute MemberRegisterDTO dto, BindingResult result, Model model) {
+    public String createMember(@Valid @ModelAttribute RegisterMemberDTO dto, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "member/create";
         }
