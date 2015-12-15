@@ -3,6 +3,9 @@ package cz.muni.fi.pa165.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * DTO for BookCollection updates
  *
@@ -10,6 +13,9 @@ import java.util.List;
  */
 public class UpdateBookCollectionDTO {
     private Long id;
+
+    @NotNull
+    @Size(min = 1, max = 50)
     private String name;
     private List<Long> bookIds = new ArrayList<>();
 

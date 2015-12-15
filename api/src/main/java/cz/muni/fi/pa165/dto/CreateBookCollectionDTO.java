@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * Data Transfer object for create of BookCollection entity
  * 
  * @author xkubist
  */
 public class CreateBookCollectionDTO {
-
+    @NotNull
+    @Size(min = 1, max = 50)
     private String name;
     private List<Long> bookIds = new ArrayList<>();
 

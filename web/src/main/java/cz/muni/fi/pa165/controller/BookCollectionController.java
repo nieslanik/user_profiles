@@ -45,16 +45,18 @@ public class BookCollectionController {
     @RequestMapping(path = "/create", method = RequestMethod.GET)
     public String createCollectionView(Model model) {
         model.addAttribute("action", "Create");
-        model.addAttribute("collection", new CreateBookCollectionDTO());
+        if (!model.containsAttribute("collection")) {
+            model.addAttribute("collection", new CreateBookCollectionDTO());
+        }
         model.addAttribute("allBooks", bookFacade.findAll());
         return "collection/create_or_update";
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public String createCollection(@Valid @ModelAttribute CreateBookCollectionDTO dto, BindingResult result,
-            Model model) {
+    public String createCollection(@Valid @ModelAttribute("collection") CreateBookCollectionDTO dto,
+            BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "collection/create_or_update";
+            return createCollectionView(model);
         }
         Long id = collectionFacade.createBookCollection(dto);
         return "redirect:" + id;
@@ -63,16 +65,20 @@ public class BookCollectionController {
     @RequestMapping(path = "{id}/update", method = RequestMethod.GET)
     public String updateCollectionView(@PathVariable long id, Model model) {
         model.addAttribute("action", "Modify");
-        model.addAttribute("collection", collectionFacade.findByIdForUpdate(id));
+        if (!model.containsAttribute("collection")) {
+            model.addAttribute("collection", collectionFacade.findByIdForUpdate(id));
+        }
         model.addAttribute("allBooks", bookFacade.findAll());
         return "collection/create_or_update";
     }
 
+    // id path parameter is there just for consistency, but is ignored. DTO's id
+    // is used instead
     @RequestMapping(path = "{id}/update", method = RequestMethod.POST)
-    public String updateCollection(@Valid @ModelAttribute UpdateBookCollectionDTO dto, BindingResult result,
-            Model model) {
+    public String updateCollection(@Valid @ModelAttribute("collection") UpdateBookCollectionDTO dto,
+            BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "collection/create_or_update";
+            return updateCollectionView(dto.getId(), model);
         }
         // TODO nonexistent id
         collectionFacade.updateBookCollection(dto);
