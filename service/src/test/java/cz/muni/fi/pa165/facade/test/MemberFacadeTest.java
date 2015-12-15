@@ -111,13 +111,13 @@ public class MemberFacadeTest {
     
     @Test
     public void testCorrectAuthenticate() {
-        Long l1 = Long.valueOf(1);
+        String email = "email@email.com";
         Member member = new Member();
-        member.setId(l1);
+        member.setEmail(email);
         MemberAuthenticateDTO memauth = new MemberAuthenticateDTO();
-        memauth.setMemberId(l1);
+        memauth.setMemberEmail(email);
         memauth.setPassword("OhFreddledGruntbugglyThyMicturationsAreToMe");
-        when(memberServiceMock.findById(l1)).thenReturn(member);
+        when(memberServiceMock.findByEmail(email)).thenReturn(member);
         when((memberServiceMock.authenticateMember(member, "OhFreddledGruntbugglyThyMicturationsAreToMe"))).thenReturn(Boolean.TRUE);
         assertSame(facade.authenticateMember(memauth),Boolean.TRUE);
     }  

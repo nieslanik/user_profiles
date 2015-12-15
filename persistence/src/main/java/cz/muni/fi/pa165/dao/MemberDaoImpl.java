@@ -12,10 +12,11 @@ import cz.muni.fi.pa165.entity.Member;
 /**
  * Data access object for Member entity
  *
- * @author Jakub Peschel 
+ * @author Jakub Peschel
  */
 @Repository
 public class MemberDaoImpl implements MemberDao {
+
     @PersistenceContext
     private EntityManager em;
 
@@ -26,7 +27,7 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public void update(Member member) {
-        em.merge(member);    
+        em.merge(member);
     }
 
     @Override
@@ -45,8 +46,13 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     @Override
+    public List<Member> findByEmail(String email) {
+        return em.createQuery("from Member where email = :email", Member.class).setParameter("email", email).getResultList();
+    }
+
+    @Override
     public void delete(Member member) {
         em.remove(findById(member.getId()));
     }
-    
+
 }

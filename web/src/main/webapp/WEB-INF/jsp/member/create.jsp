@@ -7,13 +7,17 @@
         <h1>Register new member</h1>
         <form:form method="POST" modelAttribute="createMember">
             <div class="form-group">
-                <form:input path="member.givenName" type="text" placeholder="*Username" cssClass="form-control" />
+                <form:label path="member.givenName">Username</form:label>
+                <form:input path="member.givenName" type="text" cssClass="form-control" />
                 <form:errors path="member.givenName" />
-                <form:input path="member.surname" type="text" placeholder=" Surname" cssClass="form-control" />
+                <form:label path="member.surname">Surname</form:label>
+                <form:input path="member.surname" type="text" cssClass="form-control" />
                 <form:errors path="member.surname" />
-                <form:input path="member.email" type="email" placeholder="*E-mail" cssClass="form-control" />
+                <form:label path="member.email">E-mail</form:label>
+                <form:input path="member.email" type="email" cssClass="form-control" />
                 <form:errors path="member.email" />
-                <form:input path="password" type="password" placeholder="*Password" cssClass="form-control" />
+                <form:label path="password">Password</form:label>
+                <form:input path="password" type="password" cssClass="form-control" />
                 <form:errors path="password" />
             </div>
             <button type="submit" class="btn btn-default">Register!</button>

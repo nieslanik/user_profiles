@@ -38,6 +38,11 @@ public class MemberFacadeImpl implements MemberFacade {
     }
 
     @Override
+    public MemberDTO findByEmail(String email) {
+        return mapper.map(service.findByEmail(email), MemberDTO.class);
+    }
+
+    @Override
     public List<MemberDTO> findByName(String name) {
         return mapper.map(service.findByName(name), MemberDTO.class);
     }
@@ -55,7 +60,8 @@ public class MemberFacadeImpl implements MemberFacade {
 
     @Override
     public boolean authenticateMember(MemberAuthenticateDTO memberAuth) {
-        return service.authenticateMember(service.findById(memberAuth.getMemberId()), memberAuth.getPassword());
+
+        return service.authenticateMember(service.findByEmail(memberAuth.getMemberEmail()), memberAuth.getPassword());
     }
 
     @Override

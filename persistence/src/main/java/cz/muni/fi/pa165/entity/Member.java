@@ -31,7 +31,7 @@ public class Member {
 
     private String surname;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)

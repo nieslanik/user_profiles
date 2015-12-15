@@ -41,6 +41,16 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Member findByEmail(String email) {
+        List<Member> result = memberDao.findByEmail(email);
+        if (!result.isEmpty()) {
+            return result.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public void deleteMember(Member member) {
         memberDao.delete(member);
     }
@@ -53,6 +63,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean authenticateMember(Member member, String unencryptedPassword) {
+        if (member == null) {
+            return false;
+        }
         return member.getPasswordHash().equals(makeSha1Hash(unencryptedPassword));
     }
 
@@ -77,8 +90,7 @@ public class MemberServiceImpl implements MemberService {
             crypt.reset();
             crypt.update(password.getBytes("UTF-8"));
             return new BigInteger(1, crypt.digest()).toString(16);
-        }
-        catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);

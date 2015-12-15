@@ -16,23 +16,45 @@
         Date of registration: <fmt:formatDate value="${member.registrationDate}" pattern="yyyy-MM-dd"/><br/>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Loans</div>
+            <div class="panel-heading">Active Loans</div>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Book</th>
                         <th>Loan Date</th>
-                        <th>Returned</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${loans}" var="loan">
+                    <c:forEach items="${activeloans}" var="loan">
                         <tr>
                             <td><c:out value="${loan.id}" /></td>
                             <td><c:out value="${loan.book.name}"/></td>
                             <td><fmt:formatDate value="${loan.loanDate}" pattern="yyyy-MM-dd"/></td>
-                            <td>${loan.returned ? 'Returned' : 'Loaned'}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">Returned Loans</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Book</th>
+                        <th>Loan Date</th>
+                        <th>Return Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${returnedloans}" var="loan">
+                        <tr>
+                            <td><c:out value="${loan.id}" /></td>
+                            <td><c:out value="${loan.book.name}"/></td>
+                            <td><fmt:formatDate value="${loan.loanDate}" pattern="yyyy-MM-dd"/></td>
+                            <td><fmt:formatDate value="${loan.returnDate}" pattern="yyyy-MM-dd"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>

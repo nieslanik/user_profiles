@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import cz.muni.fi.pa165.dto.MemberDTO;
 import cz.muni.fi.pa165.dto.MemberRegisterDTO;
 import cz.muni.fi.pa165.facade.MemberFacade;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,9 +32,21 @@ public class MemberController {
         if (dto == null)
             return "404";
         List<LoanDTO> allLoans = facade.getAllLoans(dto.getId());
+        List<LoanDTO> activeLoans = new ArrayList<>();
+        List<LoanDTO> returnedLoans = new ArrayList<>();
+        for(LoanDTO loan : allLoans){
+            if(loan.getReturned()){
+                returnedLoans.add(loan);
+            }else{
+                activeLoans.add(loan);
+            }
+        }
         System.out.println("Number of loans: " + allLoans.size());
+        System.out.println("Number of active loans: " + activeLoans.size());
+        System.out.println("Number of returned loans: " + returnedLoans.size());
         model.addAttribute("member", dto);
-        model.addAttribute("loans", allLoans);
+        model.addAttribute("activeloans", activeLoans);
+        model.addAttribute("returnedloans", returnedLoans);
         return "member/show";
     }
 

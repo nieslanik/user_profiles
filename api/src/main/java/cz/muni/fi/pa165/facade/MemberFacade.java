@@ -6,14 +6,14 @@ import java.util.List;
 
 /**
  * Facade layer for Member entity
- * 
+ *
  * @author Juraj Tomko
  */
-
 public interface MemberFacade {
 
     /**
      * Finds member by id
+     *
      * @param id member id
      * @return member dto or null
      */
@@ -21,12 +21,22 @@ public interface MemberFacade {
 
     /**
      * Returns all members
+     *
      * @return list of members
      */
     List<MemberDTO> findAll();
 
     /**
      * Finds members by name
+     *
+     * @param email of member
+     * @return list of members
+     */
+    MemberDTO findByEmail(String email);
+
+    /**
+     * Finds members by name
+     *
      * @param name of member
      * @return list of members
      */
@@ -34,12 +44,14 @@ public interface MemberFacade {
 
     /**
      * Removes member
+     *
      * @param id member id
      */
     void deleteMember(Long id);
 
     /**
      * Returns all loans made by member
+     *
      * @param id member id
      * @return list of loans
      */
@@ -47,6 +59,7 @@ public interface MemberFacade {
 
     /**
      * Makes authentization of member
+     *
      * @param memberAuth DTO object containing authentication data
      * @return true if authorization passed, else false
      */
@@ -54,6 +67,7 @@ public interface MemberFacade {
 
     /**
      * Registers new member
+     *
      * @param memberReg DTO object containing registration data
      * @return id of new member
      */
@@ -61,6 +75,7 @@ public interface MemberFacade {
 
     /**
      * Checks if member has admin permissions
+     *
      * @param id member id
      * @return boolean
      */
