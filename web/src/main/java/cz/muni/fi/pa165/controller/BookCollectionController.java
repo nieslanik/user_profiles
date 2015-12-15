@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
@@ -53,7 +52,7 @@ public class BookCollectionController {
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public String createCollection(@Valid @ModelAttribute CreateBookCollectionDTO dto, BindingResult result,
-            Model model, UriComponentsBuilder uri) {
+            Model model) {
         if (result.hasErrors()) {
             return "collection/create_or_update";
         }
@@ -71,12 +70,18 @@ public class BookCollectionController {
 
     @RequestMapping(path = "{id}/update", method = RequestMethod.POST)
     public String updateCollection(@Valid @ModelAttribute UpdateBookCollectionDTO dto, BindingResult result,
-            Model model, UriComponentsBuilder uri) {
+            Model model) {
         if (result.hasErrors()) {
             return "collection/create_or_update";
         }
         // TODO nonexistent id
         collectionFacade.updateBookCollection(dto);
         return "redirect:";
+    }
+
+    @RequestMapping(path = "{id}/delete", method = RequestMethod.POST)
+    public String deleteCollection(@PathVariable long id) {
+        collectionFacade.delete(id);
+        return "redirect:/collection/list";
     }
 }

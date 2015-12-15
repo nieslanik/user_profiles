@@ -29,6 +29,13 @@
                     </c:forEach>
                 </tbody>
             </table>
-    </div>
+        </div>
+        <form action="${pageContext.request.contextPath}/collection/${collection.id}/update">
+            <button class="btn btn-default">Modify collection</button>
+        </form>
+        <form action="${pageContext.request.contextPath}/collection/${collection.id}/delete" method="POST"
+                onSubmit="return confirm('Are you sure you want to permanently delete the collection?')">
+            <button class="btn btn-default">Delete collection</button>
+        </form>
     </jsp:attribute>
 </x:base>
