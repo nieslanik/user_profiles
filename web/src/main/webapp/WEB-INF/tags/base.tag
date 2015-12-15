@@ -14,6 +14,13 @@
 <link rel='stylesheet'
     href='${pageContext.request.contextPath}/webjars/patternfly/2.6.0/dist/css/patternfly-additions.min.css'>
 <script src="${pageContext.request.contextPath}/webjars/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<style>
+    .key {
+        font-weight: bold;
+        width: 0;
+        white-space: nowrap;
+    }
+</style>
 <title>${title}</title>
 <jsp:invoke fragment="head" />
 </head>

@@ -29,6 +29,7 @@ public class Member {
     @Column(nullable = false)
     private String givenName;
 
+    @Column(nullable = false)
     private String surname;
 
     @Column(nullable = false, unique = true)

@@ -20,27 +20,17 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String init(Model model) {
-        System.out.println("login init");
-        model.addAttribute(
-                "member",
-                new MemberAuthenticateDTO()
-        );
+        model.addAttribute("member", new MemberAuthenticateDTO());
         return "login/login";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String submit(Model model, @ModelAttribute("loginModel") @Valid MemberAuthenticateDTO memberInfo) {
-        System.out.println("login send");
         if (userFacade.authenticateMember(memberInfo)) {
-            return "redirect:" + "/";
+            return "redirect:/";
         } else {
-            model.addAttribute("err",
-                    "Wrong credentials."
-            );
-            model.addAttribute(
-                    "member",
-                    new MemberAuthenticateDTO()
-            );
+            model.addAttribute("err", "Wrong credentials.");
+            model.addAttribute("member", new MemberAuthenticateDTO());
             return "login/login";
         }
 
