@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.dto;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Data Transfer object for create of Loan entity
  * 
@@ -8,7 +10,10 @@ package cz.muni.fi.pa165.dto;
  */
 public class CreateLoanDTO {
 
+    @NotNull
     private Long memberId;
+
+    @NotNull
     private Long bookId;
 
     public Long getMemberId() {

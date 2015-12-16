@@ -6,16 +6,20 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * DTO for BookCollection updates
  *
  * @author Michael Simacek
  */
 public class UpdateBookCollectionDTO {
-    private Long id;
 
     @NotNull
-    @Size(min = 1, max = 50)
+    private Long id;
+
+    @NotBlank
+    @Size(max = 50)
     private String name;
     private List<Long> bookIds = new ArrayList<>();
 

@@ -74,7 +74,7 @@ public class BookController {
     public String createBook(@Valid @ModelAttribute("createBook") CreateBookDTO dto, BindingResult result,
           Model model, UriComponentsBuilder uri){
       if (result.hasErrors()) {
-            return "create_book";}
+            return "book/create_book";}
       Long id = bookFacade.createBook(dto);
       return "redirect:" + id; 
       

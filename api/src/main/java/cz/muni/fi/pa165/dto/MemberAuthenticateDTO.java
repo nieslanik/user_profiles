@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * Data Transfer object for authentication of Member entity
  * 
@@ -7,7 +9,10 @@ package cz.muni.fi.pa165.dto;
  */
 public class MemberAuthenticateDTO {
 
+    @NotBlank
     private String memberEmail;
+
+    @NotBlank
     private String password;
 
     public MemberAuthenticateDTO() {
