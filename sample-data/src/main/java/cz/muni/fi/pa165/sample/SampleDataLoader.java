@@ -16,6 +16,7 @@ import cz.muni.fi.pa165.facade.MemberFacade;
 
 @Named
 public class SampleDataLoader {
+
     @Inject
     private BookCollectionFacade collectionFacade;
 
@@ -32,9 +33,10 @@ public class SampleDataLoader {
         Long b1 = book("東方文花帖", "ZUN", 4758010374L);
         Long b2 = book("東方紫香花", "ZUN", 9780400101194L);
         Long b3 = book("東方求聞史紀", "ZUN", 4758010633L);
-        book("kniha", "ujo", 1234L);
+        Long b4 = book("kniha", "ujo", 1234L);
         bookCollection("Manga", b1, b2, b3);
-        createMember();
+        Long memberId = createMember();
+        Long loanId = createLoan(memberId, b4);
     }
 
     private Long book(String name, String authorName, Long isbn) {
@@ -52,20 +54,19 @@ public class SampleDataLoader {
         return collectionFacade.createBookCollection(dto);
     }
 
-    private void createMember() {
+    private Long createMember() {
         RegisterMemberDTO memberRegister = new RegisterMemberDTO();
         memberRegister.setEmail("email@email.com");
         memberRegister.setGivenName("peter");
         memberRegister.setSurname("cibula");
         memberRegister.setPassword("12345");
-        Long memberId = memberFacade.registerMember(memberRegister);
-        createLoan(memberId);
+        return memberFacade.registerMember(memberRegister);
     }
 
-    private void createLoan(Long memberId) {
+    private Long createLoan(Long memberId, Long bookId) {
         CreateLoanDTO loan = new CreateLoanDTO();
-        loan.setBookId(1L);
+        loan.setBookId(bookId);
         loan.setMemberId(memberId);
-        loanFacade.createLoan(loan);
+        return loanFacade.createLoan(loan);
     }
 }

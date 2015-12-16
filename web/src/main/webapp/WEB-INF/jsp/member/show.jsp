@@ -8,10 +8,10 @@
 </c:set>
 <x:base>
     <jsp:attribute name="title">
-        ${name} - member detail
+        ${name} ${surname} - member detail
     </jsp:attribute>
     <jsp:attribute name="content">
-        <h1>${name}</h1>
+        <h1>${name} ${surname}</h1>
         <table class="table table-default">
             <tr>
                 <td class="key">ID</td>
