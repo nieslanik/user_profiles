@@ -59,7 +59,7 @@ public class SampleDataLoader {
         bookCollection("Science Fiction & Fantasy", b15, b16, b17, b18, b19, b20);
 
         Long b21 = book("The Nightingale", "Kristin Hannah", 9780312577223L);
-        Long b22 = book("Fates and Furies: A Novel", "Lauren Groff", 978-1594634475L);
+        Long b22 = book("Fates and Furies: A Novel", "Lauren Groff", 9781594634475L);
         Long b23 = book("Beatlebone", "Kevin Barry", 9780385540292L);
         Long b24 = book("The Ice Storm: A Novel", "Rick Moody", 9780316706001L);
         Long b25 = book("All the Light We Cannot See", "Anthony Doerr", 9781476746586L);
