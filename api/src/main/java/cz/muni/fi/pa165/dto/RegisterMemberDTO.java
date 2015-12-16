@@ -1,14 +1,31 @@
 package cz.muni.fi.pa165.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * Data Transfer object for registeration of Member entity
  * 
  * @author Juraj Tomko
  */
 public class RegisterMemberDTO {
+    @NotBlank
+    @Size(max = 50)
     private String givenName;
+
+    @NotBlank
+    @Size(max = 50)
     private String surname;
+
+    @NotNull
+    @Email
     private String email;
+
+    @NotBlank
+    @Size(min = 6, max = 50)
     private String password;
 
     public String getGivenName() {

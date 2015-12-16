@@ -3,6 +3,11 @@ package cz.muni.fi.pa165.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * Data Transfer object for create of Book entity
  * 
@@ -11,8 +16,15 @@ import java.util.List;
  */
 public class CreateBookDTO {
 
+    @NotBlank
+    @Size(max = 50)
     private String name;
+
+    @NotBlank
+    @Size(max = 50)
     private String authorName;
+
+    @NotNull
     private Long isbn;
     private List<Long> collectionIds = new ArrayList<>();
 

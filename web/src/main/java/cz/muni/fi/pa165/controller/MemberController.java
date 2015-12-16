@@ -55,7 +55,7 @@ public class MemberController {
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public String createMember(@Valid @ModelAttribute RegisterMemberDTO dto, BindingResult result, Model model) {
+    public String createMember(@Valid @ModelAttribute("createMember") RegisterMemberDTO dto, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "member/create";
         }
