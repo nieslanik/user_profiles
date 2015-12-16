@@ -83,4 +83,13 @@ public class MemberServiceImpl implements MemberService {
         member.setPasswordHash(encoder.encode(password));
         memberDao.create(member);
     }
+
+    @Override
+    public void makeAdmin(Member member) {
+        if (member == null) {
+            throw new LibraryServiceException("Member doesn't exist");
+        }
+        member.setIsAdmin(true);
+        memberDao.update(member);
+    }
 }

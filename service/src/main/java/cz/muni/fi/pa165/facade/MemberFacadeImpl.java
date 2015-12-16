@@ -60,7 +60,6 @@ public class MemberFacadeImpl implements MemberFacade {
 
     @Override
     public boolean authenticateMember(MemberAuthenticateDTO memberAuth) {
-
         return service.authenticateMember(service.findByEmail(memberAuth.getMemberEmail()), memberAuth.getPassword());
     }
 
@@ -74,5 +73,10 @@ public class MemberFacadeImpl implements MemberFacade {
     @Override
     public boolean isAdmin(Long id) {
         return service.findById(id).isAdmin();
+    }
+
+    @Override
+    public void makeAdmin(Long id) {
+        service.makeAdmin(service.findById(id));
     }
 }

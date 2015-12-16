@@ -80,4 +80,10 @@ public interface MemberFacade {
      * @return boolean
      */
     boolean isAdmin(Long id);
+
+    /**
+     * Makes user admin
+     * @param id of user
+     */
+    void makeAdmin(Long id);
 }

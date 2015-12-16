@@ -82,4 +82,10 @@ public interface MemberService {
      * @return whether member is an admin
      */
     boolean isAdmin(Member member);
+
+    /**
+     * Makes user admin
+     * @param member to make admin
+     */
+    void makeAdmin(Member member);
 }
