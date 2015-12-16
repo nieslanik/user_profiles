@@ -11,21 +11,34 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
 <%@ page import="cz.muni.fi.pa165.enums.BookState" %>
 
-<x:base title="Members search result">
+<x:base title="Change book state">
     <jsp:attribute name="content">
-	<form method="POST">
-                    <div>Name: <c:out value="${book.name}"/></div>
-                    <div>Author Name: <c:out value="${book.authorName}"/></div>
-                    <div>ISBN: <c:out value="${book.isbn}"/></div>
-                    <div>
-                        <label for="state">State</label>
-                        <select name="state" >
+        <form method="POST">
+        <table class="table table-default">
+            <tr>
+                <td class="key">Name</td>
+                <td><c:out value="${book.name}" /></td>
+            </tr>
+            <tr>
+                <td class="key">Author</td>
+                <td><c:out value="${book.authorName}" /></td>
+            </tr>
+            <tr>
+                <td class="key">ISBN</td>
+                <td><c:out value="${book.isbn}"/></td>
+            </tr>
+            <tr>
+                 <td><label for="state">State</label></td>
+                 <td>
+                     <select name="state" >
                             <c:forEach var="s" items="${availableStates}">
                                 <option value="${s}">${s}</option>
                             </c:forEach>
-                        </select>
-		</div>
+                     </select>
+                 </td>
 		<button type="submit">Change state</button>
-	</form>
+            </tr>
+	</table>
+        </form>
     </jsp:attribute>
 </x:base>
