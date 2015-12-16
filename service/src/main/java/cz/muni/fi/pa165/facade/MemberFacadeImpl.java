@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberAuthenticateDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
-import cz.muni.fi.pa165.dto.MemberRegisterDTO;
+import cz.muni.fi.pa165.dto.RegisterMemberDTO;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.service.MemberService;
 
@@ -38,6 +38,11 @@ public class MemberFacadeImpl implements MemberFacade {
     }
 
     @Override
+    public MemberDTO findByEmail(String email) {
+        return mapper.map(service.findByEmail(email), MemberDTO.class);
+    }
+
+    @Override
     public List<MemberDTO> findByName(String name) {
         return mapper.map(service.findByName(name), MemberDTO.class);
     }
@@ -55,13 +60,15 @@ public class MemberFacadeImpl implements MemberFacade {
 
     @Override
     public boolean authenticateMember(MemberAuthenticateDTO memberAuth) {
-        return service.authenticateMember(service.findById(memberAuth.getMemberId()), memberAuth.getPassword());
+
+        return service.authenticateMember(service.findByEmail(memberAuth.getMemberEmail()), memberAuth.getPassword());
     }
 
     @Override
-    public void registerMember(MemberRegisterDTO memberReg) {
-        Member member = mapper.map(memberReg.getMember(), Member.class);
+    public Long registerMember(RegisterMemberDTO memberReg) {
+        Member member = mapper.map(memberReg, Member.class);
         service.registerMember(member, memberReg.getPassword());
+        return member.getId();
     }
 
     @Override

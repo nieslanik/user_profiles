@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 /**
  * Entity representing single member of the library
- * 
+ *
  * @author Juraj Tomko
  */
 @Entity
@@ -32,17 +32,18 @@ public class Member {
     @Column(nullable = false)
     private String surname;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date registrationDate;
 
-    @OneToMany(mappedBy="member")
-    private List<Loan> loans = new ArrayList<>();
-
+    @Column(nullable = false)
     private String passwordHash;
+
+    @OneToMany(mappedBy = "member")
+    private List<Loan> loans = new ArrayList<>();
 
     @Column(nullable = false)
     private boolean isAdmin = false;

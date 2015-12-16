@@ -7,24 +7,25 @@ package cz.muni.fi.pa165.dto;
  */
 public class MemberAuthenticateDTO {
 
-    private Long memberId;
+    private String memberEmail;
     private String password;
 
     public MemberAuthenticateDTO() {
     }
 
-    public MemberAuthenticateDTO(Long memberId, String password) {
-        this.memberId = memberId;
+    public MemberAuthenticateDTO(String memberEmail, String password) {
+        this.memberEmail = memberEmail;
         this.password = password;
     }
 
-    public Long getMemberId() {
-        return memberId;
+    public String getMemberEmail() {
+        return memberEmail;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setMemberEmail(String memberEmail) {
+        this.memberEmail = memberEmail;
     }
+
 
     public String getPassword() {
         return password;

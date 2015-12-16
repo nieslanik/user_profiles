@@ -36,7 +36,7 @@
                         selectRow(this);
                     }
                 });
-                filterBooks($("#filter"));
+                filterBooks($("#filter")[0]);
             });
         </script>
     </jsp:attribute>

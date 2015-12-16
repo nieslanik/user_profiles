@@ -8,7 +8,7 @@ import cz.muni.fi.pa165.entity.Member;
 /**
  * Service layer for Member entity
  *
- * @author Juraj Tomko 
+ * @author Juraj Tomko
  */
 public interface MemberService {
 
@@ -29,6 +29,15 @@ public interface MemberService {
 
     /**
      * Finds members by name
+     *
+     * @param email of member
+     * @return list of members
+     */
+    Member findByEmail(String email);
+
+    /**
+     * Finds members by name
+     *
      * @param name of member
      * @return list of members
      */
@@ -40,7 +49,6 @@ public interface MemberService {
      * @param member entity to be removed
      */
     void deleteMember(Member member);
-
 
     /**
      * Returns all loans of member
@@ -61,6 +69,7 @@ public interface MemberService {
 
     /**
      * Registers member
+     *
      * @param member to registerMember
      * @param unhashedPassword password string
      */
@@ -68,6 +77,7 @@ public interface MemberService {
 
     /**
      * Checks if member is admin
+     *
      * @param member to check
      * @return whether member is an admin
      */

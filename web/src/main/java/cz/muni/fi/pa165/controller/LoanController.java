@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.controller;
 
 import cz.muni.fi.pa165.constants.BookStateConstants;
 import cz.muni.fi.pa165.dto.*;
-import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.facade.BookFacade;
 import cz.muni.fi.pa165.facade.LoanFacade;
@@ -14,9 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -1,7 +1,5 @@
 package cz.muni.fi.pa165.dto;
 
-import java.util.Date;
-
 /**
  * Data Transfer object for create of Loan entity
  * 

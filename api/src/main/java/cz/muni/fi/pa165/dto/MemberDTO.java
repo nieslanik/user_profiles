@@ -1,13 +1,15 @@
 package cz.muni.fi.pa165.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Data Transfer object for Member entity
- * 
- * @author Juraj Tomko 
+ *
+ * @author Juraj Tomko
  */
-public class MemberDTO {
+public class MemberDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String givenName;
@@ -15,6 +17,7 @@ public class MemberDTO {
     private String email;
     private Date registrationDate;
     private boolean isAdmin;
+    private String passwordHash;
 
     public MemberDTO() {
     }
@@ -55,16 +58,24 @@ public class MemberDTO {
         return registrationDate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setRegistrationDate(Date date) {
+        this.registrationDate = date;
     }
 
     public boolean isAdmin() {
         return isAdmin;
     }
 
-    public void setIsAdmin(boolean isAdmin) {
+    public void setAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     @Override
