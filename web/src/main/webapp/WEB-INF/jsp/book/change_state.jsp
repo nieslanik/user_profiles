@@ -17,17 +17,12 @@
                     <div>Name: <c:out value="${book.name}"/></div>
                     <div>Author Name: <c:out value="${book.authorName}"/></div>
                     <div>ISBN: <c:out value="${book.isbn}"/></div>
-		<div>   
+                    <div>
                         <label for="state">State</label>
                         <select name="state" >
-                        
-                        <%
-                        BookState state=(BookState)pageContext.findAttribute("state");    
-                        for(BookState bookState:BookState.values()){
-                            if(bookState.compareTo(state)>=0){%>
-                            <option value="<%=bookState%>"><%=bookState%></option>
-                            
-                        <%}}%>
+                            <c:forEach var="s" items="${availableStates}">
+                                <option value="${s}">${s}</option>
+                            </c:forEach>
                         </select>
 		</div>
 		<button type="submit">Change state</button>

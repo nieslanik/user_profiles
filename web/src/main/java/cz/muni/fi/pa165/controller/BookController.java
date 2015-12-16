@@ -11,6 +11,8 @@ import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.facade.BookFacade;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
  import javax.validation.Valid;
@@ -101,8 +103,16 @@ public class BookController {
        logger.debug("changeState(book={})", book);
        System.out.println(""+book);
 
+       List<BookState> availableStates = new ArrayList<>();
+       for (BookState s: BookState.values()) {
+           if (s.compareTo(book.getState()) >= 0) {
+               availableStates.add(s);
+           }
+       }
+
        model.addAttribute("book",book);
        model.addAttribute("state",book.getState());
+       model.addAttribute("availableStates", availableStates);
        return "book/change_state"; 
 
     }
