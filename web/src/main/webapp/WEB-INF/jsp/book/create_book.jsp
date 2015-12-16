@@ -14,21 +14,21 @@
 		<div class="form-group">
                         <div class="form-group">
                                 <form:label path="name">Name</form:label>
-				<form:input path="name" />
+				<form:input path="name" cssClass="form-control"/>
 				<form:errors path="name" />
 			</div>
                         
                         
 			<div class="form-group">
                                 <form:label path="authorName">Author Name</form:label>
-				<form:input path="authorName" />
+				<form:input path="authorName" cssClass="form-control"/>
 				<form:errors path="authorName" />
 			</div>
                         
                         
 			<div class="form-group">
                                 <form:label path="isbn">ISBN</form:label>
-				<form:input path="isbn" />
+				<form:input path="isbn" cssClass="form-control"/>
 				<form:errors path="isbn" />
 			</div>
 		</div>
