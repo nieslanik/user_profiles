@@ -49,7 +49,7 @@ public class BookController {
         
         logger.debug("rest getBooks");
         model.addAttribute("books",bookFacade.findAll());
-        return "show_all";
+        return "book/show_all";
     }
     
     
@@ -64,7 +64,7 @@ public class BookController {
             return "404";
         }
         model.addAttribute("book",book);
-        return "show_book";
+        return "book/show_book";
     }
     
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -80,7 +80,7 @@ public class BookController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createBook(Model model){
        model.addAttribute("createBook", new CreateBookDTO());
-       return "create_book"; 
+       return "book/create_book"; 
     }
 
      @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
@@ -103,7 +103,7 @@ public class BookController {
 
        model.addAttribute("book",book);
        model.addAttribute("state",book.getState());
-       return "change_state"; 
+       return "book/change_state"; 
 
     }
 
