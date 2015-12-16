@@ -29,10 +29,12 @@
                             <td><c:out value="${book.name}" /></td>
                             <td><c:out value="${book.authorName}" /></td>
                             <td><c:out value="${book.isbn}" /></td>
+                            <td><a href="update/${book.id}" class="btn">Change state</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
+        <a href="create" class="btn">Create Book</a>
         </div>          
     </jsp:attribute>
 </x:base>
