@@ -1,20 +1,17 @@
 package cz.muni.fi.pa165.service;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import cz.muni.fi.pa165.dao.MemberDao;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.exceptions.LibraryServiceException;
-
-import javax.inject.Inject;
-
-import org.springframework.stereotype.Service;
-
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author Juraj Tomko on 11/23/2015.
@@ -22,6 +19,9 @@ import java.util.List;
 @Service
 public class MemberServiceImpl implements MemberService {
 
+    @Inject
+    private PasswordEncoder encoder;
+    
     @Inject
     private MemberDao memberDao;
 
@@ -66,7 +66,7 @@ public class MemberServiceImpl implements MemberService {
         if (member == null) {
             return false;
         }
-        return member.getPasswordHash().equals(makeSha1Hash(unencryptedPassword));
+        return member.getPasswordHash().equals(encoder.encode(unencryptedPassword));
     }
 
     @Override
@@ -80,20 +80,7 @@ public class MemberServiceImpl implements MemberService {
             throw new LibraryServiceException("Password may not be empty");
         }
         member.setRegistrationDate(new Date());
-        member.setPasswordHash(makeSha1Hash(password));
+        member.setPasswordHash(encoder.encode(password));
         memberDao.create(member);
-    }
-
-    private String makeSha1Hash(String password) {
-        try {
-            MessageDigest crypt = MessageDigest.getInstance("SHA-1");
-            crypt.reset();
-            crypt.update(password.getBytes("UTF-8"));
-            return new BigInteger(1, crypt.digest()).toString(16);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

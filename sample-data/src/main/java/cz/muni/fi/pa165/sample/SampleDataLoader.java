@@ -8,7 +8,6 @@ import javax.inject.Named;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.dto.CreateLoanDTO;
-import cz.muni.fi.pa165.dto.MemberDTO;
 import cz.muni.fi.pa165.dto.RegisterMemberDTO;
 import cz.muni.fi.pa165.facade.BookCollectionFacade;
 import cz.muni.fi.pa165.facade.BookFacade;

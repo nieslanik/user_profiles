@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import cz.muni.fi.pa165.dao.MemberDao;
 import cz.muni.fi.pa165.entity.Book;
@@ -30,6 +31,9 @@ import cz.muni.fi.pa165.service.MemberServiceImpl;
 public class MemberServiceTest {
     @Mock
     private MemberDao memberMock;
+    
+    @Mock
+    private PasswordEncoder passwordMock;
 
     @InjectMocks
     MemberService service = new MemberServiceImpl();
@@ -45,7 +49,11 @@ public class MemberServiceTest {
         member.setEmail("BerUska15@pokec.sk");
         member.setIsAdmin(Boolean.TRUE);
         Date date = new Date(0);
-        member.setRegistrationDate(date);       
+        member.setRegistrationDate(date);
+        when(passwordMock.encode("totoJeNajneprelomitelnejsieHesloNaSvete"))
+            .thenReturn("fb9f91a6279185848d4d67fcf5e79d5dd8af8f0");
+        when(passwordMock.encode("totoJeNajsieHesloNaSvete"))
+            .thenReturn("f1d2d2f924e986ac86fdf7b36c94bcdf32beec1");
     }
     
     @Test
