@@ -13,7 +13,8 @@
 <link rel='stylesheet' href='${contextPath}/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
 <link rel='stylesheet' href='${contextPath}/webjars/patternfly/2.6.0/dist/css/patternfly.min.css'>
 <link rel='stylesheet' href='${contextPath}/webjars/patternfly/2.6.0/dist/css/patternfly-additions.min.css'>
-<script src="${contextPath}/webjars/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script src="${contextPath}/webjars/jquery/2.1.4/jquery.min.js"></script>
+<script src='${contextPath}/webjars/bootstrap/3.3.6/js/bootstrap.min.js'></script>
 <style>
 .key {
     font-weight: bold;
