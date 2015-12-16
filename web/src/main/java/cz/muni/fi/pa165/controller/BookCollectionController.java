@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
 import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
 import cz.muni.fi.pa165.dto.UpdateBookCollectionDTO;
+import cz.muni.fi.pa165.exceptions.NotFoundException;
 import cz.muni.fi.pa165.facade.BookCollectionFacade;
 import cz.muni.fi.pa165.facade.BookFacade;
 
@@ -37,7 +38,7 @@ public class BookCollectionController {
     public String showCollection(@PathVariable long id, Model model) {
         BookCollectionDTO dto = collectionFacade.findById(id);
         if (dto == null)
-            return "404";
+            throw new NotFoundException();
         model.addAttribute("collection", dto);
         return "collection/show";
     }

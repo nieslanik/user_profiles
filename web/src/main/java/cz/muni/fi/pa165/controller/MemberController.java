@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
 import cz.muni.fi.pa165.dto.RegisterMemberDTO;
+import cz.muni.fi.pa165.exceptions.NotFoundException;
 import cz.muni.fi.pa165.facade.MemberFacade;
 
 @Controller
@@ -30,7 +31,7 @@ public class MemberController {
     public String showMember(@PathVariable long id, Model model) {
         MemberDTO dto = facade.findById(id);
         if (dto == null)
-            return "404";
+            throw new NotFoundException();
         List<LoanDTO> allLoans = facade.getAllLoans(dto.getId());
         List<LoanDTO> activeLoans = new ArrayList<>();
         List<LoanDTO> returnedLoans = new ArrayList<>();

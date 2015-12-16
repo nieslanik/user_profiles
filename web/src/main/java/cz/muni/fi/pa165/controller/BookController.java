@@ -10,6 +10,7 @@
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.exceptions.NotFoundException;
 import cz.muni.fi.pa165.facade.BookFacade;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class BookController {
 
         BookDTO book = bookFacade.findById(id);
         if (book == null) {
-            return "404";
+            throw new NotFoundException();
         }
         model.addAttribute("book",book);
         return "book/show_book";
@@ -97,7 +98,7 @@ public class BookController {
        BookDTO book = bookFacade.findById(id);
        String state;
         if (book == null) {
-            return "404";
+            throw new NotFoundException();
         }
        logger.debug("changeState({})", id);
        logger.debug("changeState(book={})", book);
