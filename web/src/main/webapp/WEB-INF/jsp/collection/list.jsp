@@ -18,7 +18,7 @@
                     <c:forEach var="collection" items="${collections}">
                         <tr>
                             <td>
-                                <a href="${pageContext.request.contextPath}/collection/${collection.id}">
+                                <a href="${collection.id}">
                                     <c:out value="${collection.name}" />
                                 </a>
                             </td>

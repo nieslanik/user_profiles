@@ -29,8 +29,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/webjars/**").permitAll()
-        .anyRequest().authenticated()
+        http.csrf().disable()
+        .authorizeRequests().antMatchers("/", "/webjars/**").permitAll()
+                            .regexMatchers("/collection/\\d+", "/collection/list", "/books/\\d+", "/books/list").permitAll()
+                            .anyRequest().hasRole("ADMIN")
         .and().formLogin().loginPage("/login").permitAll();
     }
 }

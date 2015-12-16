@@ -21,9 +21,9 @@ public class MemberUserDetailsAdapter implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("user"));
-        if (dto.isAdmin()) {
-            authorities.add(new SimpleGrantedAuthority("admin"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        if (true || dto.isAdmin()) { // FIXME temporary
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
         return authorities;
     }
