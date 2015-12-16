@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
 <x:base>
     <jsp:attribute name="title">
@@ -30,12 +31,14 @@
                 </tbody>
             </table>
         </div>
-        <form action="${pageContext.request.contextPath}/collection/${collection.id}/update">
-            <button class="btn btn-default">Modify collection</button>
-        </form>
-        <form action="${pageContext.request.contextPath}/collection/${collection.id}/delete" method="POST"
-                onSubmit="return confirm('Are you sure you want to permanently delete the collection?')">
-            <button class="btn btn-default">Delete collection</button>
-        </form>
+        <sec:authorize access="hasRole('ADMIN')">
+            <form action="${collection.id}/update">
+                <button class="btn btn-default">Modify collection</button>
+            </form>
+            <form action="${collection.id}/delete" method="POST"
+                    onSubmit="return confirm('Are you sure you want to permanently delete the collection?')">
+                <button class="btn btn-default">Delete collection</button>
+            </form>
+        </sec:authorize>
     </jsp:attribute>
 </x:base>

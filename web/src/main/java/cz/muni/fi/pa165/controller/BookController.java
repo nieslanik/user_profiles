@@ -44,7 +44,7 @@ public class BookController {
     private BookFacade bookFacade;
 
     
-    @RequestMapping(value="/all")
+    @RequestMapping(value="/list")
     public String getAll(Model model){
         
         logger.debug("rest getBooks");
