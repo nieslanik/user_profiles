@@ -1,29 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <x:base>
     <jsp:attribute name="title">
-        Login
+        Log in
     </jsp:attribute>
     <jsp:attribute name="content">
-        <h1>Login</h1>
-        <form:form method="post" modelAttribute="member">
+        <h1>Log in</h1>
+        <c:if test="${param.error != null}">
+        <div>Invalid credentials.</div>
+    </c:if>
+        <form method="POST">
             <div class="form-group">
-                <form:label path="memberEmail">E-mail: </form:label>
-                <form:input path="memberEmail" type="text" cssClass="form-control"/>
-                <form:errors path="memberEmail" />
+                <label for="username">E-mail:</label>
+                <input name="username" type="text" class="form-control" />
 
-                <form:label path="password">Password: </form:label>
-                <form:input path="password" type="password" cssClass="form-control"/>
-                <form:errors path="password" />
+                <label for="password">Password:</label>
+                <input name="password" type="password" class="form-control" />
             </div>
-            <input type="submit" value="Submit" /><br/>
-
-            <div class="alert alert-danger">
-                <c:out value="${err}" />
-            </div>
-
-        </form:form>
+            <button type="submit" class="btn btn-default">Log in</button>
+        </form>
     </jsp:attribute>
 </x:base>
