@@ -70,8 +70,9 @@
         </div>
 
         <div cssClass="form-control"> <!-- check na vlastníka a admina-->
-            <button id="updateButton" onclick="window.location.href='./${member.id}/update'" class="btn btn-default">Update member</button>
-            
+
+            <a href="${member.id}/update" class="btn btn-default">Update member</a>
+
         </div>
 
     </jsp:attribute>

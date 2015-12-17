@@ -5,7 +5,7 @@
 <x:base title="${action} member">
     <jsp:attribute name="content">
         <h1>${action} member</h1>
-        <form:form method="POST" modelAttribute="createMember">
+        <form:form method="POST" modelAttribute="member">
             <div class="form-group">
                 <div class="form-group">
                     <form:label path="givenName">Given name</form:label>

@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberAuthenticateDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
-import cz.muni.fi.pa165.dto.RegisterMemberDTO;
+import cz.muni.fi.pa165.dto.InputMemberDTO;
 import cz.muni.fi.pa165.entity.Loan;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.facade.MemberFacade;
@@ -44,7 +44,7 @@ public class MemberFacadeTest {
     @Test
     public void testCreate() {
         ArgumentCaptor<Member> captorMember = ArgumentCaptor.forClass(Member.class);
-        RegisterMemberDTO memreg= new RegisterMemberDTO();
+        InputMemberDTO memreg= new InputMemberDTO();
         memreg.setGivenName("a");
         memreg.setPassword("1234");
         facade.registerMember(memreg);

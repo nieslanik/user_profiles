@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
-import cz.muni.fi.pa165.dto.RegisterMemberDTO;
-import cz.muni.fi.pa165.dto.UpdateMemberDTO;
+import cz.muni.fi.pa165.dto.InputMemberDTO;
 import cz.muni.fi.pa165.exceptions.NotFoundException;
 import cz.muni.fi.pa165.facade.MemberFacade;
+import org.springframework.validation.FieldError;
 
 @Controller
 @RequestMapping("/member")
@@ -52,16 +52,20 @@ public class MemberController {
 
     @RequestMapping(path = "/create", method = RequestMethod.GET)
     public String createMemberView(Model model) {
-        model.addAttribute("member", new RegisterMemberDTO());
+        model.addAttribute("member", new InputMemberDTO());
         model.addAttribute("action", "Create");
         return "member/create_or_update";
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public String createMember(@Valid @ModelAttribute("member") RegisterMemberDTO dto, BindingResult result, Model model) {
+    public String createMember(@Valid @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model) {
+        if (dto.getPassword() == null || dto.getPassword().length() <= 6 || dto.getPassword().length() > 60) {
+            result.addError(new FieldError("member", "password", "Password must have between 6 and 50 characters."));
+        }
         if (result.hasErrors()) {
             return "member/create_or_update";
         }
+
         Long id = facade.registerMember(dto);
         return "redirect:" + id;
     }
@@ -70,21 +74,29 @@ public class MemberController {
     public String updateMemberView(@PathVariable long id, Model model) {
 
         model.addAttribute("action", "Update");
-        UpdateMemberDTO memberDTO = facade.findByIdForUpdate(id);
+        InputMemberDTO memberDTO = facade.findByIdForUpdate(id);
         model.addAttribute("member", memberDTO);
         return "member/create_or_update";
     }
 
     @RequestMapping(path = "/{id}/update", method = RequestMethod.POST)
-    public String updateMember(@PathVariable long id, @Valid @ModelAttribute("member") UpdateMemberDTO dto, BindingResult result, Model model) {
+    public String updateMember(@PathVariable long id, @Valid @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "member/create_or_update";
         }
+        MemberDTO memberDTO = facade.findById(id);
         if (false)/* TODO: check na admina */ {
-            MemberDTO memberDTO = facade.findById(id);
             dto.setIsAdmin(memberDTO.isAdmin());
         }
-        facade.updateMember(dto);
-        return "redirect:" + id;
+        facade.updateMember(id, dto);
+
+        return "redirect:";
+    }
+
+    @RequestMapping(path = "/list", method = RequestMethod.GET)
+    public String listView(Model model) {
+        List<MemberDTO> members = facade.findAll();
+        model.addAttribute("members", members);
+        return "member/list";
     }
 }

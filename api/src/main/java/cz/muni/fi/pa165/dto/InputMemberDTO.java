@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * 
  * @author Juraj Tomko
  */
-public class RegisterMemberDTO {
+public class InputMemberDTO {
     @NotBlank
     @Size(max = 50)
     private String givenName;
@@ -24,8 +24,6 @@ public class RegisterMemberDTO {
     @Email
     private String email;
 
-    @NotBlank
-    @Size(min = 6, max = 50)
     private String password;
     
     private boolean isAdmin;
@@ -84,9 +82,9 @@ public class RegisterMemberDTO {
             return true;
         if (obj == null)
             return false;
-        if (!(obj instanceof RegisterMemberDTO))
+        if (!(obj instanceof InputMemberDTO))
             return false;
-        RegisterMemberDTO other = (RegisterMemberDTO) obj;
+        InputMemberDTO other = (InputMemberDTO) obj;
         if (email == null) {
             if (other.email != null)
                 return false;
