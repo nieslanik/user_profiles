@@ -7,6 +7,9 @@
 
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.enums.BookState;
@@ -14,6 +17,7 @@ import cz.muni.fi.pa165.facade.BookFacade;
 
 
 import java.util.List;
+import java.util.logging.Level;
 import javax.inject.Inject;
 
 
@@ -26,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 
 
 @RestController
@@ -37,9 +42,17 @@ public class BookRestController {
     private BookFacade bookFacade;
 
     
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BookDTO> getAll(){
-        return bookFacade.findAll();
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    public String getAll(){
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = "";
+        try {
+            json = ow.writeValueAsString(bookFacade.findAll());
+        } catch (JsonProcessingException ex) {
+            java.util.logging.Logger.getLogger(BookRestController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return json;
     }
     
     
@@ -70,5 +83,5 @@ public class BookRestController {
        System.out.println(""+state);
        bookFacade.setState(id,BookState.valueOf(state)); 
     }
-
+    
 }
