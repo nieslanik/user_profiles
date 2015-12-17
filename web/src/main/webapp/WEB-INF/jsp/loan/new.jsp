@@ -23,12 +23,8 @@
             }
 
             .textField {
-                margin-right: 20px
-            }
-
-            .searchField {
                 padding-left: 20px;
-                padding-right : 20px;
+                padding-right: 20px;
             }
         </style>
 
@@ -40,20 +36,22 @@
                 </td>
                 <td>
                     <div class="textField">
-                        <input class="list-group-item" type="text" placeholder="No item" readonly value="${book.name}"/>
+                        <input class="list-group-item" style="width: 400px;" type="text" placeholder="No item" value="${book.name}" readonly/>
                     </div>
                 </td>
                 <td>
-                    <form:form method="GET" action="${pageContext.request.contextPath}/loans/find_book">
-                        <div class="searchField">
-                            <input id="book" class="list-group-item" name="book" type="text"
+                    <form method="GET" action="${pageContext.request.contextPath}/loans/find_book">
+                        <div class="input-group menu-search">
+                            <input id="book" type="text" class="form-control" name="book"
                                    placeholder="Search books"/>
-                            <input id="member" name="member" hidden="true" type="text" value="${member.id}"/>
+                            <input id="member" type="text" name="member" hidden="true" value="${member.id}"/>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
                         </div>
-                    </form:form>
-                </td>
-                <td>
-                    <button type="submit" class="btn btn-primary">Find</button>
+                    </form>
                 </td>
             </tr>
             <tr>
@@ -62,21 +60,22 @@
                 </td>
                 <td>
                     <div class="textField">
-                        <input class="list-group-item" type="text" placeholder="No item" readonly
-                               value="${member.givenName}"/>
+                        <input class="list-group-item" style="width: 400px;" type="text" placeholder="No item" value="${member.givenName}" readonly/>
                     </div>
                 </td>
                 <td>
-                    <form:form method="GET" action="${pageContext.request.contextPath}/loans/find_member">
-                        <div class="searchField">
-                            <input id="member" class="list-group-item" name="member" type="text"
+                    <form method="GET" action="${pageContext.request.contextPath}/loans/find_member">
+                        <div class="input-group menu-search">
+                            <input type="text" id="member" class="form-control" name="member"
                                    placeholder="Search members"/>
                             <input id="book" name="book" hidden="true" type="text" value="${book.id}"/>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
                         </div>
-                    </form:form>
-                </td>
-                <td>
-                    <button type="submit" class="btn btn-primary">Find</button>
+                    </form>
                 </td>
             </tr>
             <tr>
@@ -84,16 +83,30 @@
                 <td>
                     <form:form method="POST" action="${pageContext.request.contextPath}/loans/create"
                                modelAttribute="createLoan">
-                        <div class="textField">
+                        <div>
                             <input id="memberId" name="memberId" hidden="true" type="text" value="${member.id}"/>
                             <input id="bookId" name="bookId" hidden="true" type="text" value="${book.id}"/>
                         </div>
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" style="margin-left: 20px; margin-top: 20px" class="btn btn-primary">Create</button>
                     </form:form>
+                </td>
+                <td>
                 </td>
             </tr>
             </tbody>
         </table>
+
+        <script>
+            function removeBook() {
+                var url = "${pageContext.request.contextPath}/loans/new/?member=" + ${member.id};
+                window.location.replace(url);
+            }
+
+            function removeMember() {
+                var url = "${pageContext.request.contextPath}/loans/new/?book=" + ${book.id};
+                window.location.replace(url);
+            }
+        </script>
 
     </jsp:attribute>
 </x:base>

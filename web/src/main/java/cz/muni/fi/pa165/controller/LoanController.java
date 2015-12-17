@@ -6,6 +6,8 @@ import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.facade.BookFacade;
 import cz.muni.fi.pa165.facade.LoanFacade;
 import cz.muni.fi.pa165.facade.MemberFacade;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +36,17 @@ public class LoanController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listLoans(Model model) {
-        List<LoanDTO> loans = loanFacade.findAll();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        MemberDTO member = memberFacade.findByEmail(username);
+
+        List<LoanDTO> loans;
+        if (member.isAdmin()) {
+            loans = loanFacade.findAll();
+        } else {
+            loans = memberFacade.getAllLoans(member.getId());
+        }
+
         model.addAttribute("loans", loans);
         return "loan/list";
     }
@@ -58,40 +70,35 @@ public class LoanController {
     public String createLoan(@ModelAttribute("createLoan") CreateLoanDTO createLoan, Model model,
                              RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         if (createLoan.getMemberId() == null || createLoan.getBookId() == null) {
-            redirectAttributes.addFlashAttribute("message", "Member or book has not been chosen");
-            return "redirect:/loans/new";
+            redirectAttributes.addFlashAttribute("alert_warning", "Member or book has not been chosen");
+            return "redirect:" + uriBuilder.path("/loans/create").toUriString();
         }
 
-        loanFacade.createLoan(createLoan);
-        redirectAttributes.addFlashAttribute("alert_success", "New loan was created");
-        return "redirect:" + "/loans/list";
+        Long id = loanFacade.createLoan(createLoan);
+        redirectAttributes.addFlashAttribute("alert_success", "New loan with id = " + id +  " was created");
+        return "redirect:" + uriBuilder.path("/loans/list").toUriString();
     }
 
-    @RequestMapping(value = "/return/{id}", method = RequestMethod.GET)
-    public String returnLoan(@PathVariable("id") Long id, @RequestParam String bookStateStr, Model model) {
-        BookState bookState;
-        switch (bookStateStr) {
-            case BookStateConstants.LIGHT_DAMAGE:
-                bookState = BookState.LIGHT_DAMAGE;
-                break;
-            case BookStateConstants.MEDIUM_DAMAGE:
-                bookState = BookState.MEDIUM_DAMAGE;
-                break;
-            case BookStateConstants.HEAVY_DAMAGE:
-                bookState = BookState.HEAVY_DAMAGE;
-                break;
-            case BookStateConstants.REMOVED:
-                bookState = BookState.REMOVED;
-                break;
-            case BookStateConstants.NEW:
-            default:
-                bookState = BookState.NEW;
-                break;
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public String deleteLoan(@PathVariable("id") Long id, RedirectAttributes redirectAttributes,
+                             UriComponentsBuilder uriBuilder) {
+        try {
+            loanFacade.delete(id);
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("alert_warning", "Loan doesn't exist");
+            return "redirect:" + uriBuilder.path("/loans/list").toUriString();
         }
+        redirectAttributes.addFlashAttribute("alert_success", "Loan with id = " + id + " was successfuly deleted");
+        return "redirect:" + uriBuilder.path("loans/list").toUriString();
+    }
 
+    @RequestMapping(value = "/return/{id}", method = RequestMethod.POST)
+    public String returnLoan(@PathVariable("id") Long id, @ModelAttribute BookState bookState, Model model,
+                             RedirectAttributes redirectAttrs, UriComponentsBuilder uriBuilder) {
         loanFacade.returnLoan(id, bookState);
         model.addAttribute("loans", loanFacade.findAll());
-        return "loan/list";
+        redirectAttrs.addFlashAttribute("alert_success", "Loan with id = " + id + " was successfuly returned");
+        return "redirect:" + uriBuilder.path("loans/list").toUriString();
     }
 
     @RequestMapping(value = "/find_book", method = RequestMethod.GET)
