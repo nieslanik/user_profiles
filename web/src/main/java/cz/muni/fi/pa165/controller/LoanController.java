@@ -93,8 +93,26 @@ public class LoanController {
     }
 
     @RequestMapping(value = "/return/{id}", method = RequestMethod.POST)
-    public String returnLoan(@PathVariable("id") Long id, @ModelAttribute BookState bookState, Model model,
+    public String returnLoan(@PathVariable("id") Long id, @RequestParam String bookStateStr, Model model,
                              RedirectAttributes redirectAttrs, UriComponentsBuilder uriBuilder) {
+        BookState bookState;
+        switch (bookStateStr) {
+            case BookStateConstants.NEW :
+                bookState = BookState.NEW;
+                break;
+            case BookStateConstants.LIGHT_DAMAGE:
+                bookState = BookState.LIGHT_DAMAGE;
+                break;
+            case BookStateConstants.MEDIUM_DAMAGE:
+                bookState = BookState.MEDIUM_DAMAGE;
+                break;
+            case BookStateConstants.HEAVY_DAMAGE:
+                bookState = BookState.HEAVY_DAMAGE;
+                break;
+            default:
+            case BookStateConstants.REMOVED:
+                bookState = BookState.REMOVED;
+        }
         loanFacade.returnLoan(id, bookState);
         model.addAttribute("loans", loanFacade.findAll());
         redirectAttrs.addFlashAttribute("alert_success", "Loan with id = " + id + " was successfuly returned");
