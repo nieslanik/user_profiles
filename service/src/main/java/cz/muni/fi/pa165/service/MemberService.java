@@ -88,4 +88,11 @@ public interface MemberService {
      * @param member to make admin
      */
     void makeAdmin(Member member);
+    
+    /**
+     * Update member
+     * @param member to be updated
+     * @param newPasswd new password
+     */
+    void update(Member member, String newPasswd);
 }

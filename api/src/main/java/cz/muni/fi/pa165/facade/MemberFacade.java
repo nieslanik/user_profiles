@@ -18,6 +18,14 @@ public interface MemberFacade {
      * @return member dto or null
      */
     MemberDTO findById(Long id);
+    
+    /**
+     * Finds member by id
+     *
+     * @param id member id
+     * @return member dto or null
+     */
+    UpdateMemberDTO findByIdForUpdate(Long id);
 
     /**
      * Returns all members
@@ -86,4 +94,10 @@ public interface MemberFacade {
      * @param id of user
      */
     void makeAdmin(Long id);
+    
+    /**
+     * Makes user admin
+     * @param member
+     */
+    void updateMember(UpdateMemberDTO member);
 }

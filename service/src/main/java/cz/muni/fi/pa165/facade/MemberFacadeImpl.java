@@ -11,6 +11,7 @@ import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberAuthenticateDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
 import cz.muni.fi.pa165.dto.RegisterMemberDTO;
+import cz.muni.fi.pa165.dto.UpdateMemberDTO;
 import cz.muni.fi.pa165.entity.Member;
 import cz.muni.fi.pa165.service.MemberService;
 
@@ -78,5 +79,21 @@ public class MemberFacadeImpl implements MemberFacade {
     @Override
     public void makeAdmin(Long id) {
         service.makeAdmin(service.findById(id));
+    }
+
+    @Override
+    public UpdateMemberDTO findByIdForUpdate(Long id) {
+        Member entity = service.findById(id);
+        UpdateMemberDTO dto = mapper.map(entity, UpdateMemberDTO.class);
+        return dto;
+    }
+
+    @Override
+    public void updateMember(UpdateMemberDTO memberToUpdate) {
+        Member member = service.findById(memberToUpdate.getId());
+        member.setGivenName(memberToUpdate.getGivenName());
+        member.setSurname(memberToUpdate.getSurname());
+        member.setIsAdmin(memberToUpdate.isIsAdmin());
+        service.update(member, memberToUpdate.getNewPassword());
     }
 }

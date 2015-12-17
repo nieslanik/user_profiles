@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Inject
     private PasswordEncoder encoder;
-    
+
     @Inject
     private MemberDao memberDao;
 
@@ -90,6 +90,14 @@ public class MemberServiceImpl implements MemberService {
             throw new LibraryServiceException("Member doesn't exist");
         }
         member.setIsAdmin(true);
+        memberDao.update(member);
+    }
+
+    @Override
+    public void update(Member member, String newPasswd) {
+        if (!newPasswd.isEmpty()) {
+            member.setPasswordHash(encoder.encode(newPasswd));
+        }
         memberDao.update(member);
     }
 }

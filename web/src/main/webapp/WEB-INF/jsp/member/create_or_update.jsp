@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
-<x:base title="Sign up">
+<x:base title="${action} member">
     <jsp:attribute name="content">
-        <h1>Sign up</h1>
+        <h1>${action} member</h1>
         <form:form method="POST" modelAttribute="createMember">
             <div class="form-group">
                 <div class="form-group">
@@ -27,8 +27,13 @@
                     <form:input path="password" type="password" cssClass="form-control" />
                     <form:errors path="password" />
                 </div>
+                <div role="ADMIN" class="form-group">
+                    <form:label path="isAdmin">Is member admin? </form:label>
+                    <form:checkbox path="isAdmin" cssClass="form-control" />
+                    <form:errors path="isAdmin" />
+                </div>
             </div>
-            <button type="submit" class="btn btn-default">Register</button>
+            <button type="submit" class="btn btn-default">${action} member</button>
         </form:form>
     </jsp:attribute>
 </x:base>

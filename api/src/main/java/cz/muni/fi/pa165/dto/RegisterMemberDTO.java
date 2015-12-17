@@ -27,6 +27,8 @@ public class RegisterMemberDTO {
     @NotBlank
     @Size(min = 6, max = 50)
     private String password;
+    
+    private boolean isAdmin;
 
     public String getGivenName() {
         return givenName;
@@ -60,6 +62,14 @@ public class RegisterMemberDTO {
         this.password = password;
     }
 
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -68,7 +78,7 @@ public class RegisterMemberDTO {
         return result;
     }
 
-    @Override
+     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -83,5 +93,10 @@ public class RegisterMemberDTO {
         } else if (!email.equals(other.email))
             return false;
         return true;
-    }
+    } 
 }
+
+
+
+
+   

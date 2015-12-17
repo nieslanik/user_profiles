@@ -8,10 +8,10 @@
 </c:set>
 <x:base>
     <jsp:attribute name="title">
-        ${name} ${surname} - member detail
+        ${name} - member detail
     </jsp:attribute>
     <jsp:attribute name="content">
-        <h1>${name} ${surname}</h1>
+        <h1>${name}</h1>
         <table class="table table-default">
             <tr>
                 <td class="key">ID</td>
@@ -68,5 +68,11 @@
                 </tbody>
             </table>
         </div>
+
+        <div cssClass="form-control"> <!-- check na vlastníka a admina-->
+            <button id="updateButton" onclick="window.location.href='./${member.id}/update'" class="btn btn-default">Update member</button>
+            
+        </div>
+
     </jsp:attribute>
 </x:base>
