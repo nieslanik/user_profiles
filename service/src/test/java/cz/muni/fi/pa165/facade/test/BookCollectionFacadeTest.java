@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
 import cz.muni.fi.pa165.dto.BookDTO;
-import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
+import cz.muni.fi.pa165.dto.InputBookCollectionDTO;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
 import cz.muni.fi.pa165.enums.BookState;
@@ -45,7 +45,7 @@ public class BookCollectionFacadeTest {
     @Test
     public void testCreate() {
         ArgumentCaptor<BookCollection> captor = ArgumentCaptor.forClass(BookCollection.class);
-        CreateBookCollectionDTO collection = new CreateBookCollectionDTO();
+        InputBookCollectionDTO collection = new InputBookCollectionDTO();
         String name = "Test";
         collection.setName(name);
         List<Long> bookIds = new ArrayList<>();

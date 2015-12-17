@@ -66,5 +66,5 @@ public interface MemberDao {
      * @param member member to be deleted
      *
      */
-    void delete(Member member);
+    void delete(Member member);   
 }

@@ -2,16 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="name">
     <c:out value="${member.givenName}" />
     <c:out value="${member.surname}" />
 </c:set>
 <x:base>
     <jsp:attribute name="title">
-        ${name} ${surname} - member detail
+        ${name} - member detail
     </jsp:attribute>
     <jsp:attribute name="content">
-        <h1>${name} ${surname}</h1>
+        <h1>${name}</h1>
         <table class="table table-default">
             <tr>
                 <td class="key">ID</td>
@@ -68,5 +69,13 @@
                 </tbody>
             </table>
         </div>
+        <sec:authorize access="hasRole('ADMIN')">
+            <div cssClass="form-control">
+
+                <a href="${member.id}/update" class="btn btn-default">Update member</a>
+
+            </div>
+        </sec:authorize> 
+
     </jsp:attribute>
 </x:base>

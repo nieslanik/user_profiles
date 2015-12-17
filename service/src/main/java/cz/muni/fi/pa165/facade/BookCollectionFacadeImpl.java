@@ -11,8 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.muni.fi.pa165.dto.BookCollectionDTO;
 import cz.muni.fi.pa165.dto.BookDTO;
-import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
-import cz.muni.fi.pa165.dto.UpdateBookCollectionDTO;
+import cz.muni.fi.pa165.dto.InputBookCollectionDTO;
 import cz.muni.fi.pa165.entity.Book;
 import cz.muni.fi.pa165.entity.BookCollection;
 import cz.muni.fi.pa165.service.BookCollectionService;
@@ -35,7 +34,7 @@ public class BookCollectionFacadeImpl implements BookCollectionFacade {
     private Mapper mapper;
 
     @Override
-    public Long createBookCollection(CreateBookCollectionDTO bookCollection) {
+    public Long createBookCollection(InputBookCollectionDTO bookCollection) {
         BookCollection entity = mapper.map(bookCollection, BookCollection.class);
         for (Long id : bookCollection.getBookIds()) {
             entity.addBook(bookService.findById(id));
@@ -75,26 +74,25 @@ public class BookCollectionFacadeImpl implements BookCollectionFacade {
     @Override
     public void removeBookFromCollection(Long id, BookDTO bookDto) {
         service.removeBookFromCollection(id, mapper.map(bookDto, Book.class));
-
     }
 
     @Override
-    public void updateBookCollection(UpdateBookCollectionDTO dto) {
-        // we overwrite everything, so it's not needed to fetch original entity
-        BookCollection collection = mapper.map(dto, BookCollection.class);
-        for (Long id: dto.getBookIds()) {
-            collection.addBook(bookService.findById(id));
+    public void updateBookCollection(Long id, InputBookCollectionDTO dto) {
+        BookCollection collection = service.findById(id);
+        // TODO not found
+        mapper.map(dto, collection);
+        for (Long bookId: dto.getBookIds()) {
+            collection.addBook(bookService.findById(bookId));
         }
         service.update(collection);
     }
 
     @Override
-    public UpdateBookCollectionDTO findByIdForUpdate(Long id) {
-        BookCollection entity = service.findById(id);
-        UpdateBookCollectionDTO dto = mapper.map(entity, UpdateBookCollectionDTO.class);
-        for (Book book: entity.getBooks()) {
-            dto.getBookIds().add(book.getId());
+    public InputBookCollectionDTO forUpdate(BookCollectionDTO dto) {
+        InputBookCollectionDTO inputDto = mapper.map(dto, InputBookCollectionDTO.class);
+        for (BookDTO book: dto.getBooks()) {
+            inputDto.getBookIds().add(book.getId());
         }
-        return dto;
+        return inputDto;
     }
 }

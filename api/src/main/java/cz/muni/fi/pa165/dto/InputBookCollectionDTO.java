@@ -9,11 +9,12 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
- * Data Transfer object for create of BookCollection entity
- * 
+ * Data Transfer object for creation and modifications of BookCollection entity
+ *
  * @author xkubist
  */
-public class CreateBookCollectionDTO {
+public class InputBookCollectionDTO {
+
     @NotBlank
     @Size(max = 50)
     private String name;
@@ -50,7 +51,7 @@ public class CreateBookCollectionDTO {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final CreateBookCollectionDTO other = (CreateBookCollectionDTO) obj;
+        final InputBookCollectionDTO other = (InputBookCollectionDTO) obj;
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }

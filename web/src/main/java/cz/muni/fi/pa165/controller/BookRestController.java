@@ -11,7 +11,6 @@ import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.facade.BookFacade;
-import java.util.Collections;
 
 
 import java.util.List;

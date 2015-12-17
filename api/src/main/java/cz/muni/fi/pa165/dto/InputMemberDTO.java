@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * 
  * @author Juraj Tomko
  */
-public class RegisterMemberDTO {
+public class InputMemberDTO {
     @NotBlank
     @Size(max = 50)
     private String givenName;
@@ -24,9 +24,9 @@ public class RegisterMemberDTO {
     @Email
     private String email;
 
-    @NotBlank
-    @Size(min = 6, max = 50)
     private String password;
+    
+    private boolean admin;
 
     public String getGivenName() {
         return givenName;
@@ -60,6 +60,14 @@ public class RegisterMemberDTO {
         this.password = password;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.admin = isAdmin;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -68,20 +76,25 @@ public class RegisterMemberDTO {
         return result;
     }
 
-    @Override
+     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
-        if (!(obj instanceof RegisterMemberDTO))
+        if (!(obj instanceof InputMemberDTO))
             return false;
-        RegisterMemberDTO other = (RegisterMemberDTO) obj;
+        InputMemberDTO other = (InputMemberDTO) obj;
         if (email == null) {
             if (other.email != null)
                 return false;
         } else if (!email.equals(other.email))
             return false;
         return true;
-    }
+    } 
 }
+
+
+
+
+   

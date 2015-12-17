@@ -18,6 +18,14 @@ public interface MemberFacade {
      * @return member dto or null
      */
     MemberDTO findById(Long id);
+    
+    /**
+     * Finds member by id
+     *
+     * @param id member id
+     * @return member dto or null
+     */
+    InputMemberDTO findByIdForUpdate(Long id);
 
     /**
      * Returns all members
@@ -71,7 +79,7 @@ public interface MemberFacade {
      * @param memberReg DTO object containing registration data
      * @return id of new member
      */
-    Long registerMember(RegisterMemberDTO memberReg);
+    Long registerMember(InputMemberDTO memberReg);
 
     /**
      * Checks if member has admin permissions
@@ -86,4 +94,12 @@ public interface MemberFacade {
      * @param id of user
      */
     void makeAdmin(Long id);
+    
+    /**
+     * Update user
+     * 
+     * @param id 
+     * @param member
+     */
+    void updateMember(Long id, InputMemberDTO member);
 }
