@@ -3,9 +3,24 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
 <x:base title="${action} member">
+    <jsp:attribute name="head">
+        <script>
+            function checkPassword() {
+                var password = document.getElementById("password").value;
+                var passwordConfirm = document.getElementById("passwordConfirmation").value;
+                if (password && passwordConfirm && password !== passwordConfirm) {
+                    document.getElementById("errormsgpassword").style.display = "block";
+                    return false;
+                }else{
+                    document.getElementById("errormsgpassword").style.display = "none";
+                    return true;
+                }
+            }
+        </script>
+    </jsp:attribute>
     <jsp:attribute name="content">
         <h1>${action} member</h1>
-        <form:form method="POST" modelAttribute="member">
+        <form:form method="POST" onSubmit="return checkPassword()" modelAttribute="member">
             <div class="form-group">
                 <div class="form-group">
                     <form:label path="givenName">Given name</form:label>
@@ -24,8 +39,15 @@
                 </div>
                 <div class="form-group">
                     <form:label path="password">Password</form:label>
-                    <form:input path="password" type="password" cssClass="form-control" />
+                    <form:input path="password" id="password" type="password" cssClass="form-control" />
                     <form:errors path="password" />
+                </div>
+                <div class="form-group">
+                    <label for="passwordConfirmation">Password Confirmation</label>
+                    <input id="passwordConfirmation" type="password" class="form-control" />
+                    <div id="errormsgpassword" style="display: none">
+                        Passwords are not same.
+                    </div>
                 </div>
                 <div role="ADMIN" class="form-group">
                     <form:label path="isAdmin">Is member admin? </form:label>

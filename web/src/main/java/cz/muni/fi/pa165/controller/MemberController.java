@@ -52,7 +52,9 @@ public class MemberController {
 
     @RequestMapping(path = "/create", method = RequestMethod.GET)
     public String createMemberView(Model model) {
-        model.addAttribute("member", new InputMemberDTO());
+        if (!model.containsAttribute("member")) {
+            model.addAttribute("member", new InputMemberDTO());
+        }
         model.addAttribute("action", "Create");
         return "member/create_or_update";
     }
@@ -63,7 +65,7 @@ public class MemberController {
             result.addError(new FieldError("member", "password", "Password must have between 6 and 50 characters."));
         }
         if (result.hasErrors()) {
-            return "member/create_or_update";
+            return createMemberView(model);
         }
 
         Long id = facade.registerMember(dto);
@@ -86,7 +88,7 @@ public class MemberController {
         }
         MemberDTO memberDTO = facade.findById(id);
         if (false)/* TODO: check na admina */ {
-            dto.setIsAdmin(memberDTO.isAdmin());
+            dto.setAdmin(memberDTO.isAdmin());
         }
         facade.updateMember(id, dto);
 

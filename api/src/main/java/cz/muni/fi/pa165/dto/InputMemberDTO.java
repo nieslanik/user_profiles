@@ -26,7 +26,7 @@ public class InputMemberDTO {
 
     private String password;
     
-    private boolean isAdmin;
+    private boolean admin;
 
     public String getGivenName() {
         return givenName;
@@ -60,12 +60,12 @@ public class InputMemberDTO {
         this.password = password;
     }
 
-    public boolean isIsAdmin() {
-        return isAdmin;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setAdmin(boolean isAdmin) {
+        this.admin = isAdmin;
     }
 
     @Override

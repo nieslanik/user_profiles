@@ -92,7 +92,7 @@ public class MemberFacadeImpl implements MemberFacade {
         Member member = service.findById(id);
         member.setGivenName(memberToUpdate.getGivenName());
         member.setSurname(memberToUpdate.getSurname());
-        member.setIsAdmin(memberToUpdate.isIsAdmin());
+        member.setIsAdmin(memberToUpdate.isAdmin());
         service.update(member, memberToUpdate.getPassword());
     }
 }
