@@ -95,18 +95,5 @@
             </tr>
             </tbody>
         </table>
-
-        <script>
-            function removeBook() {
-                var url = "${pageContext.request.contextPath}/loans/new/?member=" + ${member.id};
-                window.location.replace(url);
-            }
-
-            function removeMember() {
-                var url = "${pageContext.request.contextPath}/loans/new/?book=" + ${book.id};
-                window.location.replace(url);
-            }
-        </script>
-
     </jsp:attribute>
 </x:base>
