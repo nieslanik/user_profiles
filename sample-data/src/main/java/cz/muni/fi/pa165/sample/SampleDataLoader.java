@@ -5,7 +5,7 @@ import java.util.Arrays;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import cz.muni.fi.pa165.dto.CreateBookCollectionDTO;
+import cz.muni.fi.pa165.dto.InputBookCollectionDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.dto.CreateLoanDTO;
 import cz.muni.fi.pa165.dto.RegisterMemberDTO;
@@ -131,7 +131,7 @@ public class SampleDataLoader {
     }
 
     private Long bookCollection(String name, Long... ids) {
-        CreateBookCollectionDTO dto = new CreateBookCollectionDTO();
+        InputBookCollectionDTO dto = new InputBookCollectionDTO();
         dto.setName(name);
         dto.setBookIds(Arrays.asList(ids));
         return collectionFacade.createBookCollection(dto);
