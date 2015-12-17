@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
 <x:base title="${action} member">
     <jsp:attribute name="head">
@@ -49,11 +50,13 @@
                         Passwords are not same.
                     </div>
                 </div>
-                <div role="ADMIN" class="form-group">
-                    <form:label path="isAdmin">Is member admin? </form:label>
-                    <form:checkbox path="isAdmin" cssClass="form-control" />
-                    <form:errors path="isAdmin" />
-                </div>
+                <sec:authorize access="hasRole('admin')">
+                    <div class="form-group">
+                        <form:label path="isAdmin">Is member admin? </form:label>
+                        <form:checkbox path="isAdmin" cssClass="form-control" />
+                        <form:errors path="isAdmin" />
+                    </div>
+                </sec:authorize>
             </div>
             <button type="submit" class="btn btn-default">${action} member</button>
         </form:form>

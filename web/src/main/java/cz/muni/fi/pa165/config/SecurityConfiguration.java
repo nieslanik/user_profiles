@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.config;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Inject
     private PasswordEncoder passwordEncoder;
 
-    @Override
+    @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
@@ -30,9 +31,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-        .authorizeRequests().antMatchers("/", "/webjars/**").permitAll()
-                            .regexMatchers("/collection/\\d+", "/collection/list", "/books/\\d+", "/books/list").permitAll()
-                            .anyRequest().hasRole("ADMIN")
+        .authorizeRequests().regexMatchers("/member/\\d+", "/member/\\d+/update").authenticated() // secured in controller
+                            .antMatchers("**/create", "**/update", "**/delete", "/loans/**", "/member/list").hasRole("ADMIN")
+                            .anyRequest().permitAll()
         .and().formLogin().loginPage("/login").permitAll();
     }
 }
