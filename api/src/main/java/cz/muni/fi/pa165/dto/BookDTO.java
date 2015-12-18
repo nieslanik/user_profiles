@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cz.muni.fi.pa165.enums.BookState;
@@ -74,6 +75,16 @@ public class BookDTO {
             }
         }
         return false;
+    }
+
+    public List<BookState> getPossibleStateTransitions() {
+        List<BookState> availableStates = new ArrayList<>();
+        for (BookState s : BookState.values()) {
+            if (s.compareTo(state) >= 0) {
+                availableStates.add(s);
+            }
+        }
+        return availableStates;
     }
 
     @Override
