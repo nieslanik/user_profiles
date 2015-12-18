@@ -59,6 +59,9 @@
                     <li><a href="${contextPath}/loans/list">Loans</a></li>
                     <li><a href="${contextPath}/member/list">Members</a></li>
                 </sec:authorize>
+                <sec:authorize access="hasRole('USER')">
+                    <li><a href="${contextPath}/member/<sec:authentication property="principal.dto.id" />">My profile</a></li>
+                </sec:authorize>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
