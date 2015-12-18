@@ -18,8 +18,12 @@
 <script>
     $(function () {
         var inputField = $("#filter")
+        var initialVal = /filter=([^&]*)/.exec(location.search)[1]
+        if (initialVal) {
+            inputField.val(initialVal);
+        }
         if (inputField.length == 0) return;
-        inputField.keyup(function () {
+        var filterFn = function () {
             $(".filtered tbody tr").each(function() {
                 if ($(this).find("td").text().indexOf(inputField.val()) >= 0) {
                     $(this).show();
@@ -27,7 +31,9 @@
                     $(this).hide();
                 }
             });
-        });
+        }
+        inputField.keyup(filterFn);
+        filterFn();
     });
 </script>
 <style>
@@ -66,9 +72,9 @@
                 </c:choose>
 
                 <li>
-                    <form role="search" class="navbar-form" action="TODO">
+                    <form role="search" class="navbar-form" action="<c:url value="/books/list" />">
                         <div class="input-group menu-search">
-                            <input name="query" type="text" class="form-control" placeholder="Search books" /> <span
+                            <input name="filter" type="text" class="form-control" placeholder="Search books" /> <span
                                 class="input-group-btn">
                                 <button type="submit" class="btn btn-default">
                                     <span class="glyphicon glyphicon-search"></span>

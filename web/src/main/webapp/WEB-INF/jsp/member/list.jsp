@@ -11,8 +11,8 @@
         <h1>Members</h1>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Members</div>
-            <table class="table">
+            <x:filter/>
+            <table class="table filtered">
                 <thead>
                     <tr>
                         <th>Name</th>
