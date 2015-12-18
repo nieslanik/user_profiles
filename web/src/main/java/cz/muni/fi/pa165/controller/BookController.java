@@ -23,8 +23,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author xkubist

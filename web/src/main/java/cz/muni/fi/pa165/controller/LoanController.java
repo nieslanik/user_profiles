@@ -6,7 +6,6 @@ import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.facade.BookFacade;
 import cz.muni.fi.pa165.facade.LoanFacade;
 import cz.muni.fi.pa165.facade.MemberFacade;
-import org.hibernate.annotations.SourceType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
