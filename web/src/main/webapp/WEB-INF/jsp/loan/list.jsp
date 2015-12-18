@@ -58,14 +58,13 @@
                         </td>
                         <td>
                             <c:if test="${member.isAdmin()}">
-                            <c:if test="${!loan.returned}">
-                            <a href="#myModal" class="returnTableBtn btn btn-default" data-toggle="modal"
-                               data-loan-id=${loan.id}>Return</a>
-                            </c:if>
+                                <c:if test="${!loan.returned}">
+                                    <a href="${pageContext.request.contextPath}/loans/return_view?id=${loan.id}" class="btn btn-default">Return</a>
+                                </c:if>
 
-                            <form method="post" action="${pageContext.request.contextPath}/loans/delete/${loan.id}">
-                                <button type="submit" class="btn btn-default">Delete</button>
-                            </form>
+                                <form method="post" action="${pageContext.request.contextPath}/loans/delete/${loan.id}">
+                                    <button type="submit" class="btn btn-default">Delete</button>
+                                </form>
                             </c:if>
                         <td>
                         </td>
@@ -78,54 +77,5 @@
         <a href="${pageContext.request.contextPath}/loans/new" class="btn btn-default">New loan</a>
     </c:if>
 
-    <!-- Modal HTML -->
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Book returning</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Choose state in which book was returned.</p>
-                    <select id="statepicker" data-container="body">
-                        <option value="new">No damage</option>
-                        <option value="light_damage">Light damaged</option>
-                        <option value="medium_damage">Medium damaged</option>
-                        <option value="heavy_damage">Heavily damaged</option>
-                        <option value="removed">Removed</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="cancel-btn" class="btn btn-default" data-dismiss="modal">Cancel
-                    </button>
-                    <button type="button" id="confirm-btn" class="btn btn-primary">Confirm</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        $(function () {
-            $('#confirm-btn').click(function () {
-                var element = document.getElementById('statepicker');
-                var state = element[element.selectedIndex].value;
-                var loanId = $('#confirm-btn').attr('loan-id');
-                var url = "${pageContext.request.contextPath}/loans/return/" + loanId;
-                $('#myModal').modal('hide');
-
-                $.post(url, {bookStateStr: state}, function (data) {
-                    window.location.reload();
-                });
-            });
-        });
-
-        $(function () {
-            $('.returnTableBtn').click(function () {
-                var loanId = $(this).data('loan-id');
-                $("#confirm-btn").attr('loan-id', loanId);
-            })
-        })
-    </script>
 </jsp:attribute>
 </x:base>

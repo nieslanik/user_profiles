@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.controller;
 
-import cz.muni.fi.pa165.constants.BookStateConstants;
 import cz.muni.fi.pa165.dto.*;
 import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.facade.BookFacade;
@@ -96,30 +95,25 @@ public class LoanController {
     }
 
     @RequestMapping(value = "/return/{id}", method = RequestMethod.POST)
-    public String returnLoan(@PathVariable("id") Long id, @RequestParam String bookStateStr, Model model,
+    public String returnLoan(@PathVariable("id") Long id, @ModelAttribute BookState bookState, Model model,
                              RedirectAttributes redirectAttrs, UriComponentsBuilder uriBuilder) {
-        BookState bookState;
-        switch (bookStateStr) {
-            case BookStateConstants.NEW :
-                bookState = BookState.NEW;
-                break;
-            case BookStateConstants.LIGHT_DAMAGE:
-                bookState = BookState.LIGHT_DAMAGE;
-                break;
-            case BookStateConstants.MEDIUM_DAMAGE:
-                bookState = BookState.MEDIUM_DAMAGE;
-                break;
-            case BookStateConstants.HEAVY_DAMAGE:
-                bookState = BookState.HEAVY_DAMAGE;
-                break;
-            default:
-            case BookStateConstants.REMOVED:
-                bookState = BookState.REMOVED;
-        }
         loanFacade.returnLoan(id, bookState);
         model.addAttribute("loans", loanFacade.findAll());
         redirectAttrs.addFlashAttribute("alert_success", "Loan with id = " + id + " was successfuly returned");
         return "redirect:" + uriBuilder.path("loans/list").toUriString();
+    }
+    @RequestMapping(value = "/return_view", method = RequestMethod.GET)
+    public String returnLoanView(@RequestParam("id") Long id, Model model, RedirectAttributes redirectAtts,
+                                 UriComponentsBuilder uriBuilder) {
+        LoanDTO loan;
+        try {
+            loan = loanFacade.findById(id);
+        } catch (Exception e) {
+            redirectAtts.addFlashAttribute("alert_warning", "Loan with id = " + id + " doesn't exist");
+            return "redirect:" + uriBuilder.path("/loans/return_view").toUriString();
+        }
+        model.addAttribute("loan", loan);
+        return "loan/book_return_state";
     }
 
     @RequestMapping(value = "/find_book", method = RequestMethod.GET)
