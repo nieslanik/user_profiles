@@ -30,8 +30,8 @@
                     <td>${loan.returned ? 'Returned' : 'Loaned'}</td>
                     <td>${loan.returnDate == null ? '-' : ''} <fmt:formatDate value="${loan.returnDate}"
                                                                               pattern="yyyy-MM-dd"/></td>
-                    <td><c:out value="${loan.member.givenName} ${loan.member.surname}"/></td>
-                    <td><c:out value="${loan.book.name}"/></td>
+                    <td><a href="<c:url value="/member/${loan.member.id}"/>"><c:out value="${loan.member.givenName} ${loan.member.surname}" /></a></td>
+                    <td><a href="<c:url value="/books/${loan.book.id}"/>"><c:out value="${loan.book.name}" /></a></td>
                     <td><c:choose>
                         <c:when test="${loan.returnBookState.getValue() eq 'new'}">
                             new
@@ -56,12 +56,12 @@
                     <td>
                         <c:if test="${member.isAdmin()}">
                             <c:if test="${!loan.returned}">
-                                <a href="#myModal" class="returnTableBtn btn" data-toggle="modal"
+                                <a href="#myModal" class="returnTableBtn btn btn-default" data-toggle="modal"
                                    data-loan-id=${loan.id}>Return</a>
                             </c:if>
 
                             <form method="post" action="${pageContext.request.contextPath}/loans/delete/${loan.id}">
-                                <button type="submit" class="btn">Delete</button>
+                                <button type="submit" class="btn btn-default">Delete</button>
                             </form>
                         </c:if>
                     <td>
@@ -72,7 +72,7 @@
         </table>
 
         <c:if test="${member.isAdmin()}">
-            <a href="${pageContext.request.contextPath}/loans/new" class="btn">New loan</a>
+            <a href="${pageContext.request.contextPath}/loans/new" class="btn btn-default">New loan</a>
         </c:if>
 
     <!-- Modal HTML -->
