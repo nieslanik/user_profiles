@@ -55,7 +55,7 @@ public class BookCollection {
     }
 
     public void removeBook(Book book) {
-        this.books.remove(books);
+        this.books.remove(book);
     }
 
     @Override

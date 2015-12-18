@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import cz.muni.fi.pa165.enums.BookState;
 
@@ -42,8 +46,15 @@ public class Book {
     @ManyToMany(mappedBy = "books")
     private List<BookCollection> collections = new ArrayList<>();
 
+    @PreRemove
+    private void preDelete() {
+        for (BookCollection coll: collections) {
+            coll.removeBook(this);
+        }
+    }
+
     @OneToMany(mappedBy = "book")
-    // OneToMany because we want to keep history of loans
+    @Cascade(CascadeType.DELETE)
     private List<Loan> loans = new ArrayList<>();
 
     public Long getId() {
