@@ -23,6 +23,7 @@ import cz.muni.fi.pa165.dto.CreateLoanDTO;
 import cz.muni.fi.pa165.dto.LoanDTO;
 import cz.muni.fi.pa165.dto.MemberDTO;
 import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.exceptions.LibraryServiceException;
 import cz.muni.fi.pa165.exceptions.NotFoundException;
 import cz.muni.fi.pa165.facade.BookFacade;
 import cz.muni.fi.pa165.facade.LoanFacade;
@@ -87,22 +88,25 @@ public class LoanController {
             return "redirect:" + uriBuilder.path("/loans/create").toUriString();
         }
 
-        Long id = loanFacade.createLoan(createLoan);
-        redirectAttributes.addFlashAttribute("alert_success", "New loan with id = " + id + " was created");
+        loanFacade.createLoan(createLoan);
+        redirectAttributes.addFlashAttribute("alert_success", "New loan was created");
         return "redirect:" + uriBuilder.path("/loans/list").toUriString();
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String deleteLoan(@PathVariable("id") Long id, RedirectAttributes redirectAttributes,
-            UriComponentsBuilder uriBuilder) {
+            UriComponentsBuilder uriBuilder, @RequestParam String redir, HttpServletRequest request) {
         try {
             loanFacade.delete(id);
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("alert_warning", "Loan doesn't exist");
-            return "redirect:" + uriBuilder.path("/loans/list").toUriString();
+        } catch (LibraryServiceException e) {
+            throw new NotFoundException("Loan with id = " + id + " doesn't exist");
         }
-        redirectAttributes.addFlashAttribute("alert_success", "Loan with id = " + id + " was successfuly deleted");
-        return "redirect:" + uriBuilder.path("loans/list").toUriString();
+        redirectAttributes.addFlashAttribute("alert_success", "Loan was successfuly deleted");
+        if (redir != null) {
+            redir = redir.substring(request.getContextPath().length());
+            return "redirect:" + redir;
+        }
+        return "redirect:/list";
     }
 
     @RequestMapping(value = "/return/{id}", method = RequestMethod.POST)

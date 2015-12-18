@@ -53,7 +53,8 @@
                                      </c:url>" class="btn btn-default">Return</a>
                         </c:if>
 
-                        <form method="post" style="display:inline" "action="<c:url value="/loans/delete/${loan.id}" />">
+                        <form method="post" style="display:inline" action="<c:url value="/loans/delete/${loan.id}" />">
+                            <input type="hidden" name="redir" value="${requestScope['javax.servlet.forward.request_uri']}"/>
                             <button type="submit" class="btn btn-default">Delete</button>
                         </form></td>
                 </sec:authorize>
