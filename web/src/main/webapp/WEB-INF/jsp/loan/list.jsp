@@ -9,67 +9,73 @@
 <x:base title="Loan listing">
     <jsp:attribute name="content">
         <div class="panel-heading">Loans</div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Loan date</th>
-                <th>State</th>
-                <th>Return date</th>
-                <th>Member</th>
-                <th>Book</th>
-                <th>Book return state</th>
-            </tr>
-            </thead>
 
-            <tbody>
-            <c:forEach items="${loans}" var="loan">
+        <jsp:attribute name="loansTable">
+            <%@ attribute name="loans" %>
+            <table class="table">
+                <thead>
                 <tr>
-                    <td>${loan.id}</td>
-                    <td><fmt:formatDate value="${loan.loanDate}" pattern="yyyy-MM-dd"/></td>
-                    <td>${loan.returned ? 'Returned' : 'Loaned'}</td>
-                    <td>${loan.returnDate == null ? '-' : ''} <fmt:formatDate value="${loan.returnDate}"
-                                                                              pattern="yyyy-MM-dd"/></td>
-                    <td><a href="<c:url value="/member/${loan.member.id}"/>"><c:out value="${loan.member.givenName} ${loan.member.surname}" /></a></td>
-                    <td><a href="<c:url value="/books/${loan.book.id}"/>"><c:out value="${loan.book.name}" /></a></td>
-                    <td><c:choose>
-                        <c:when test="${loan.returnBookState.getValue() eq 'new'}">
-                            new
-                        </c:when>
-                        <c:when test="${loan.returnBookState.getValue() eq 'light_damage'}">
-                            light damage
-                        </c:when>
-                        <c:when test="${loan.returnBookState.getValue() eq 'medium_damage'}">
-                            medium damage
-                        </c:when>
-                        <c:when test="${loan.returnBookState.getValue() eq 'heavy_damage'}">
-                            heavy damage
-                        </c:when>
-                        <c:when test="${loan.returnBookState.getValue() eq 'removed'}">
-                            removed
-                        </c:when>
-                        <c:otherwise>
-                            -
-                        </c:otherwise>
-                    </c:choose>
-                    </td>
-                    <td>
-                        <c:if test="${member.isAdmin()}">
+                    <th>Id</th>
+                    <th>Loan date</th>
+                    <th>State</th>
+                    <th>Return date</th>
+                    <th>Member</th>
+                    <th>Book</th>
+                    <th>Book return state</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <c:forEach items="${loans}" var="loan">
+                    <tr>
+                        <td>${loan.id}</td>
+                        <td><fmt:formatDate value="${loan.loanDate}" pattern="yyyy-MM-dd"/></td>
+                        <td>${loan.returned ? 'Returned' : 'Loaned'}</td>
+                        <td>${loan.returnDate == null ? '-' : ''} <fmt:formatDate value="${loan.returnDate}"
+                                                                                  pattern="yyyy-MM-dd"/></td>
+                        <td><a href="<c:url value="/member/${loan.member.id}"/>"><c:out
+                                value="${loan.member.givenName} ${loan.member.surname}"/></a></td>
+                        <td><a href="<c:url value="/books/${loan.book.id}"/>"><c:out value="${loan.book.name}"/></a>
+                        </td>
+                        <td><c:choose>
+                            <c:when test="${loan.returnBookState.getValue() eq 'new'}">
+                                new
+                            </c:when>
+                            <c:when test="${loan.returnBookState.getValue() eq 'light_damage'}">
+                                light damage
+                            </c:when>
+                            <c:when test="${loan.returnBookState.getValue() eq 'medium_damage'}">
+                                medium damage
+                            </c:when>
+                            <c:when test="${loan.returnBookState.getValue() eq 'heavy_damage'}">
+                                heavy damage
+                            </c:when>
+                            <c:when test="${loan.returnBookState.getValue() eq 'removed'}">
+                                removed
+                            </c:when>
+                            <c:otherwise>
+                                -
+                            </c:otherwise>
+                        </c:choose>
+                        </td>
+                        <td>
+                            <c:if test="${member.isAdmin()}">
                             <c:if test="${!loan.returned}">
-                                <a href="#myModal" class="returnTableBtn btn btn-default" data-toggle="modal"
-                                   data-loan-id=${loan.id}>Return</a>
+                            <a href="#myModal" class="returnTableBtn btn btn-default" data-toggle="modal"
+                               data-loan-id=${loan.id}>Return</a>
                             </c:if>
 
                             <form method="post" action="${pageContext.request.contextPath}/loans/delete/${loan.id}">
                                 <button type="submit" class="btn btn-default">Delete</button>
                             </form>
-                        </c:if>
-                    <td>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                            </c:if>
+                        <td>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            </jsp:attribute>
 
         <c:if test="${member.isAdmin()}">
             <a href="${pageContext.request.contextPath}/loans/new" class="btn btn-default">New loan</a>
