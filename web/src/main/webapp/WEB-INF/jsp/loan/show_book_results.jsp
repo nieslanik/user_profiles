@@ -56,7 +56,7 @@
                     </td>
                     <td>
                         <a href="${pageContext.request.contextPath}/loans/new?bookId=${book.id}&memberId=${param.member}"
-                           class="btn btn-primary btn-sm">Choose</a>
+                           class="btn">Choose</a>
                     <td>
                     </td>
                 </tr>

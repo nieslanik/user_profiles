@@ -87,7 +87,7 @@
                             <input id="memberId" name="memberId" hidden="true" type="text" value="${member.id}"/>
                             <input id="bookId" name="bookId" hidden="true" type="text" value="${book.id}"/>
                         </div>
-                        <button type="submit" style="margin-left: 20px; margin-top: 20px" class="btn btn-primary">Create</button>
+                        <button type="submit" style="margin-left: 20px; margin-top: 20px" class="btn">Create</button>
                     </form:form>
                 </td>
                 <td>
