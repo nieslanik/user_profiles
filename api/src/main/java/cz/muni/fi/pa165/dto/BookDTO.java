@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import cz.muni.fi.pa165.enums.BookState;
 
 /**
@@ -18,6 +20,8 @@ public class BookDTO {
     private String authorName;
     private Long isbn;
     private BookState state;
+
+    @JsonIgnore
     private List<LoanDTO> loans;
 
     public Long getId() {
@@ -77,6 +81,7 @@ public class BookDTO {
         return false;
     }
 
+    @JsonIgnore
     public List<BookState> getPossibleStateTransitions() {
         List<BookState> availableStates = new ArrayList<>();
         for (BookState s : BookState.values()) {
