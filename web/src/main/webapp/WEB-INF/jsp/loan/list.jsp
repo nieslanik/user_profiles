@@ -15,6 +15,7 @@
             <div class="alert alert-warning" role="alert"><c:out value="${alert_warning}"/></div>
         </c:if>
 
+        <div class="panel-heading">Loans</div>
         <table class="table">
             <thead>
             <tr>
