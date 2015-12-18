@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ import cz.muni.fi.pa165.exceptions.NotFoundException;
 import cz.muni.fi.pa165.exceptions.WebSecurityException;
 import cz.muni.fi.pa165.facade.MemberFacade;
 import cz.muni.fi.pa165.security.MemberUserDetailsAdapter;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 @RequestMapping("/member")
@@ -81,14 +84,22 @@ public class MemberController {
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public String createMember(@AuthenticationPrincipal MemberUserDetailsAdapter currentUser,
-            @Valid @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model) {
+            @Valid @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model,
+                               RedirectAttributes redirectAttrs, UriComponentsBuilder uriBuilder) {
         if (result.hasErrors()) {
             return createMemberView(model);
         }
         checkCanSetAdmin(currentUser, dto);
 
-        Long id = facade.registerMember(dto);
-        return "redirect:/member/" + id;
+        Long id;
+        try {
+            id = facade.registerMember(dto);
+        } catch (DataIntegrityViolationException e) {
+            redirectAttrs.addFlashAttribute("alert_warning", "Member with given email address already exists.");
+            return "redirect:" + uriBuilder.path("/member/list").toUriString();
+        }
+        redirectAttrs.addFlashAttribute("alert_success", "Member with id = " + id + " was successfuly created.");
+        return "redirect:" + uriBuilder.path("/member/{id}").buildAndExpand(id).encode().toUriString();
     }
 
     @RequestMapping(path = "/{id}/update", method = RequestMethod.GET)
@@ -105,7 +116,8 @@ public class MemberController {
 
     @RequestMapping(path = "/{id}/update", method = RequestMethod.POST)
     public String updateMember(@AuthenticationPrincipal MemberUserDetailsAdapter currentUser, @PathVariable long id,
-            @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model) {
+            @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model,
+                               RedirectAttributes redirectAttrs, UriComponentsBuilder uriBuilder) {
         checkCanView(currentUser, id);
 
         // placeholder to pass validation if we don't alter the password
@@ -125,7 +137,8 @@ public class MemberController {
         checkCanSetAdmin(currentUser, dto);
         facade.updateMember(id, dto);
 
-        return "redirect:/member/" + id;
+        redirectAttrs.addFlashAttribute("alert_success", "Member with id = " + id + " was successfuly updated");
+        return "redirect:" + uriBuilder.path("/member/{id}").buildAndExpand(id).encode().toUriString();
     }
 
     @RequestMapping(path = "/list", method = RequestMethod.GET)

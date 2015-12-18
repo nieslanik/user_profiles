@@ -65,6 +65,14 @@
             </ul>
         </div>
     </nav>
-    <div class="container"><jsp:invoke fragment="content" /></div>
+    <div class="container">
+        <c:if test="${not empty alert_success}">
+            <div class="alert alert-success" role="alert"><c:out value="${alert_success}"/></div>
+        </c:if>
+        <c:if test="${not empty alert_warning}">
+            <div class="alert alert-warning" role="alert"><c:out value="${alert_warning}"/></div>
+        </c:if>
+        <jsp:invoke fragment="content" />
+    </div>
 </body>
 </html>
