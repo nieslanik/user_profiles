@@ -34,6 +34,10 @@
                 <div class="panel-heading">Loan history</div>
                 <x:loanTable loans="${book.loans}" showMember="true" showReturn="true"/>
             </div>
+            <form action="delete/${book.id}" method="POST" style="display:inline"
+                    onSubmit="return confirm('Are you sure you want to permanently delete the collection?')">
+                <button class="btn btn-default">Delete book</button>
+            </form>
         </sec:authorize>
     </jsp:attribute>
 </x:base>
