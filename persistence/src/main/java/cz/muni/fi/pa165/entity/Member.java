@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  * Entity representing single member of the library
@@ -43,6 +45,7 @@ public class Member {
     private String passwordHash;
 
     @OneToMany(mappedBy = "member")
+    @Cascade(CascadeType.DELETE)
     private List<Loan> loans = new ArrayList<>();
 
     @Column(nullable = false)

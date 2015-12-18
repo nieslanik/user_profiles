@@ -55,4 +55,4 @@ public class MemberDaoImpl implements MemberDao {
         em.remove(findById(member.getId()));
     }
 
-}
+}	

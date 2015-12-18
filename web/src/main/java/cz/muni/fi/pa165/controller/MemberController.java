@@ -85,7 +85,7 @@ public class MemberController {
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public String createMember(@AuthenticationPrincipal MemberUserDetailsAdapter currentUser,
             @Valid @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model,
-                               RedirectAttributes redirectAttrs, UriComponentsBuilder uriBuilder) {
+            RedirectAttributes redirectAttrs, UriComponentsBuilder uriBuilder) {
         if (result.hasErrors()) {
             return createMemberView(model);
         }
@@ -117,7 +117,7 @@ public class MemberController {
     @RequestMapping(path = "/{id}/update", method = RequestMethod.POST)
     public String updateMember(@AuthenticationPrincipal MemberUserDetailsAdapter currentUser, @PathVariable long id,
             @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model,
-                               RedirectAttributes redirectAttrs, UriComponentsBuilder uriBuilder) {
+            RedirectAttributes redirectAttrs, UriComponentsBuilder uriBuilder) {
         checkCanView(currentUser, id);
 
         // placeholder to pass validation if we don't alter the password
@@ -146,5 +146,12 @@ public class MemberController {
         List<MemberDTO> members = facade.findAll();
         model.addAttribute("members", members);
         return "member/list";
+    }
+
+    @RequestMapping(path = "/{id}/delete")
+    public String deleteMember(@AuthenticationPrincipal MemberUserDetailsAdapter currentUser, @PathVariable long id, Model model) {
+        checkCanView(currentUser, id);
+        facade.deleteMember(id);
+        return "redirect:/";
     }
 }
