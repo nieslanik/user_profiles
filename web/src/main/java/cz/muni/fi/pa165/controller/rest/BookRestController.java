@@ -22,6 +22,7 @@ import cz.muni.fi.pa165.controller.BookController;
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.enums.BookState;
+import cz.muni.fi.pa165.exceptions.LibraryServiceException;
 import cz.muni.fi.pa165.exceptions.NotFoundException;
 import cz.muni.fi.pa165.facade.BookFacade;
 
@@ -60,10 +61,27 @@ public class BookRestController {
 
     @RequestMapping(value = "/{id}/state", method = RequestMethod.PUT)
     public ResponseEntity<Void> changeBookState(@PathVariable long id, @RequestBody String state) {
-        bookFacade.setState(id, BookState.valueOf(state));
+        BookDTO dto = bookFacade.findById(id);
+        if (dto == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        try {
+            bookFacade.setState(id, BookState.valueOf(state));
+        } catch (LibraryServiceException ex) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         // response as per
         // http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.6
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @RequestMapping(value = "/{id}", method=RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteBook(@PathVariable long id) {
+        BookDTO dto = bookFacade.findById(id);
+        if (dto == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        bookFacade.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
