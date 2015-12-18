@@ -89,7 +89,6 @@ public class BookController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String changeState(@PathVariable long id, Model model) {
         BookDTO book = bookFacade.findById(id);
-        String state;
 
         if (book == null) {
             throw new NotFoundException();
@@ -98,16 +97,8 @@ public class BookController {
         logger.debug("changeState(book={})", book);
         System.out.println("" + book);
 
-        List<BookState> availableStates = new ArrayList<>();
-        for (BookState s : BookState.values()) {
-            if (s.compareTo(book.getState()) >= 0) {
-                availableStates.add(s);
-            }
-        }
-
         model.addAttribute("book", book);
         model.addAttribute("state", book.getState());
-        model.addAttribute("availableStates", availableStates);
         return "book/change_state";
 
     }

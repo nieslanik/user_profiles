@@ -31,7 +31,7 @@
                  <td><label for="state">State</label></td>
                  <td>
                      <select name="state" class="form-control">
-                            <c:forEach var="s" items="${availableStates}">
+                            <c:forEach var="s" items="${book.possibleStateTransitions}">
                                 <option value="${s}">${s.value}</option>
                             </c:forEach>
                      </select>
