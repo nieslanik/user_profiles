@@ -10,7 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +29,10 @@ import cz.muni.fi.pa165.security.MemberUserDetailsAdapter;
 public class MemberController {
 
     @Inject
-    MemberFacade facade;
+    private MemberFacade facade;
+
+    @Inject
+    private Validator validator;
 
     private void checkCanView(MemberUserDetailsAdapter currentUser, long id) {
         if (!(currentUser.getDto().getId() == id || currentUser.getDto().isAdmin())) {
@@ -79,9 +82,6 @@ public class MemberController {
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public String createMember(@AuthenticationPrincipal MemberUserDetailsAdapter currentUser,
             @Valid @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model) {
-        if (dto.getPassword() == null || dto.getPassword().length() <= 6 || dto.getPassword().length() > 60) {
-            result.addError(new FieldError("member", "password", "Password must have between 6 and 50 characters."));
-        }
         if (result.hasErrors()) {
             return createMemberView(model);
         }
@@ -96,18 +96,32 @@ public class MemberController {
             Model model) {
         checkCanView(currentUser, id);
         model.addAttribute("action", "Update");
-        InputMemberDTO memberDTO = facade.findByIdForUpdate(id);
-        model.addAttribute("member", memberDTO);
+        if (!model.containsAttribute("member")) {
+            InputMemberDTO memberDTO = facade.findByIdForUpdate(id);
+            model.addAttribute("member", memberDTO);
+        }
         return "member/create_or_update";
     }
 
     @RequestMapping(path = "/{id}/update", method = RequestMethod.POST)
     public String updateMember(@AuthenticationPrincipal MemberUserDetailsAdapter currentUser, @PathVariable long id,
-            @Valid @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model) {
+            @ModelAttribute("member") InputMemberDTO dto, BindingResult result, Model model) {
         checkCanView(currentUser, id);
-        if (result.hasErrors()) {
-            return "member/create_or_update";
+
+        // placeholder to pass validation if we don't alter the password
+        final String KEEP_PASSWORD = "__keep_existing__";
+        if (dto.getPassword() == null || dto.getPassword().isEmpty()) {
+            dto.setPassword(KEEP_PASSWORD);
         }
+        validator.validate(dto, result);
+        if (result.hasErrors()) {
+            return updateMemberView(currentUser, id, model);
+        }
+        // intentionally comparing by identity
+        if (dto.getPassword() == KEEP_PASSWORD) {
+            dto.setPassword(null);
+        }
+
         checkCanSetAdmin(currentUser, dto);
         facade.updateMember(id, dto);
 

@@ -25,6 +25,10 @@
                 <td class="key">Date of registration</td>
                 <td><fmt:formatDate value="${member.registrationDate}" pattern="yyyy-MM-dd" /></td>
             </tr>
+            <tr>
+                <td class="key">Administrator</td>
+                <td><c:out value="${member.admin}" /></td>
+            </tr>
         </table>
 
         <div class="panel panel-default">
