@@ -73,6 +73,6 @@
             </table>
         </div>
         <a href="${member.id}/update" class="btn btn-default">Update member</a>
-
+        <a href="${member.id}/delete" class="btn btn-default">Delete member</a>
     </jsp:attribute>
 </x:base>
