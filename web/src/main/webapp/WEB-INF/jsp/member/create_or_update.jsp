@@ -1,18 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
 <x:base title="${action} member">
     <jsp:attribute name="head">
         <script>
             function checkPassword() {
-                var password = document.getElementById("password").value;
-                var passwordConfirm = document.getElementById("passwordConfirmation").value;
-                if (password && passwordConfirm && password !== passwordConfirm) {
-                    document.getElementById("errormsgpassword").style.display = "block";
+                if ($("#password").val() !== $("#passwordConfirmation").val()) {
+                    $("#passwordError").css("display", "inline");
                     return false;
-                }else{
-                    document.getElementById("errormsgpassword").style.display = "none";
+                } else {
                     return true;
                 }
             }
@@ -43,17 +41,20 @@
                     <form:errors path="password" />
                 </div>
                 <div class="form-group">
-                    <label for="passwordConfirmation">Password Confirmation</label>
+                    <label for="passwordConfirmation">Password confirmation</label>
                     <input id="passwordConfirmation" type="password" class="form-control" />
-                    <div id="errormsgpassword" style="display: none">
-                        Passwords are not same.
+                    <span id="passwordError" style="display: none">
+                        Passwords do not match
+                    </span>
+                </div>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <div class="checkbox">
+                        <form:label path="admin">
+                            <form:checkbox path="admin" /> Should have administrative priviledges
+                        </form:label>
+                        <form:errors path="admin" />
                     </div>
-                </div>
-                <div role="ADMIN" class="form-group">
-                    <form:label path="isAdmin">Is member admin? </form:label>
-                    <form:checkbox path="isAdmin" cssClass="form-control" />
-                    <form:errors path="isAdmin" />
-                </div>
+                </sec:authorize>
             </div>
             <button type="submit" class="btn btn-default">${action} member</button>
         </form:form>

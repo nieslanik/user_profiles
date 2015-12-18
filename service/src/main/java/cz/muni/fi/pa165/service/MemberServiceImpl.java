@@ -95,7 +95,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void update(Member member, String newPasswd) {
-        if (!newPasswd.isEmpty()) {
+        if (newPasswd != null) {
             member.setPasswordHash(encoder.encode(newPasswd));
         }
         memberDao.update(member);

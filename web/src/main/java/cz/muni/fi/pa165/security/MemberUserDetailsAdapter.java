@@ -18,6 +18,14 @@ public class MemberUserDetailsAdapter implements UserDetails {
         this.dto = dto;
     }
 
+    public MemberDTO getDto() {
+        return dto;
+    }
+
+    public void setDto(MemberDTO dto) {
+        this.dto = dto;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();

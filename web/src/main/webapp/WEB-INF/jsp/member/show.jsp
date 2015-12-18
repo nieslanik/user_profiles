@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="name">
     <c:out value="${member.givenName}" />
     <c:out value="${member.surname}" />
@@ -25,6 +24,10 @@
             <tr>
                 <td class="key">Date of registration</td>
                 <td><fmt:formatDate value="${member.registrationDate}" pattern="yyyy-MM-dd" /></td>
+            </tr>
+            <tr>
+                <td class="key">Administrator</td>
+                <td><c:out value="${member.admin}" /></td>
             </tr>
         </table>
 
@@ -69,13 +72,7 @@
                 </tbody>
             </table>
         </div>
-        <sec:authorize access="hasRole('ADMIN')">
-            <div cssClass="form-control">
-
-                <a href="${member.id}/update" class="btn btn-default">Update member</a>
-
-            </div>
-        </sec:authorize> 
+        <a href="${member.id}/update" class="btn btn-default">Update member</a>
 
     </jsp:attribute>
 </x:base>

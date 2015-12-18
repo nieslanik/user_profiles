@@ -24,8 +24,10 @@ public class InputMemberDTO {
     @Email
     private String email;
 
+    @NotBlank
+    @Size(min = 6, max = 50)
     private String password;
-    
+
     private boolean admin;
 
     public String getGivenName() {
@@ -76,7 +78,7 @@ public class InputMemberDTO {
         return result;
     }
 
-     @Override
+    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -91,10 +93,5 @@ public class InputMemberDTO {
         } else if (!email.equals(other.email))
             return false;
         return true;
-    } 
+    }
 }
-
-
-
-
-   
