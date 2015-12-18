@@ -31,7 +31,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-        .authorizeRequests().regexMatchers("/member/\\d+", "/member/\\d+/update").authenticated() // secured in controller
+        .authorizeRequests().antMatchers("/rest/**").permitAll()
+                            .regexMatchers("/member/\\d+", "/member/\\d+/update").authenticated() // secured in controller
                             .antMatchers("/**/create", "/**/update", "/**/delete", "/loans/**", "/member/list").hasRole("ADMIN")
                             .anyRequest().permitAll()
         .and().formLogin().loginPage("/login").permitAll();
