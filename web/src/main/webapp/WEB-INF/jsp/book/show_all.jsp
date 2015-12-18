@@ -15,12 +15,7 @@
 <x:base title="Library book listing">
     <jsp:attribute name="content">
         <h1>Books</h1>
-        <form>
-            <div class="input-group">
-                <input type="text" id="filter" placeholder="Filter" class="form-control" />
-                <span class="input-group-addon"> <i class="glyphicon glyphicon-filter"> </i></span>
-            </div>
-        </form>
+        <x:filter/>
         <table class="table table-default filtered">
             <thead>
                 <tr>
