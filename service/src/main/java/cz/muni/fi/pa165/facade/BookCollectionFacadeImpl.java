@@ -79,8 +79,8 @@ public class BookCollectionFacadeImpl implements BookCollectionFacade {
     @Override
     public void updateBookCollection(Long id, InputBookCollectionDTO dto) {
         BookCollection collection = service.findById(id);
-        // TODO not found
         mapper.map(dto, collection);
+        collection.setBooks(new ArrayList<>());
         for (Long bookId: dto.getBookIds()) {
             collection.addBook(bookService.findById(bookId));
         }

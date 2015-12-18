@@ -58,6 +58,10 @@ public class BookCollection {
         this.books.remove(book);
     }
 
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

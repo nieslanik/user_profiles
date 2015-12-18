@@ -78,9 +78,9 @@ public class BookCollectionController {
         if (result.hasErrors()) {
             return updateCollectionView(id, model);
         }
-        // TODO nonexistent id
+        System.out.println(dto.getBookIds());
         collectionFacade.updateBookCollection(id, dto);
-        return "redirect:";
+        return "redirect:/collection/" + id;
     }
 
     @RequestMapping(path = "{id}/delete", method = RequestMethod.POST)
