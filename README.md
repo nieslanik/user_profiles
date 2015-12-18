@@ -8,25 +8,29 @@ Library Manager is project of information system for a public library. The syste
 Our project provide Rest api for Book entity.
 
 Rest api provide this functions:
-getAll()
-getBook()
-createBook()
-changeBookState()
+ - getAll()
+ - getBook()
+ - createBook()
+ - changeBookState()
 
 ## How to use these functions:
 
-getAll()
-Available on address: http://localhost:8080/pa165/rest/books as GET request.
+getAll():  
+Available on address: http://localhost:8080/pa165/rest/books as GET request.  
 You can use this curl: curl -X GET http://localhost:8080/pa165/rest/books
 
-getBook()
-Available on address: http://localhost:8080/pa165/rest/books/{number of book} as GET request.
+getBook():  
+Available on address: http://localhost:8080/pa165/rest/books/{id of book} as GET request.  
 You can use this curl: curl -X http://localhost:8080/pa165/rest/books/1
 
-createBook()
-Available on address: http://localhost:8080/pa165/rest/books as POST request.
-You can use this curl: curl -X POST
+createBook():  
+Available on address: http://localhost:8080/pa165/rest/books as POST request.  
+You can use this curl: curl -X POST -i -H "Content-Type: application/json" --data '{"name":"name","authorName":"author","isbn":"196L","collectionIds":[1,2,3]}' http://localhost:8080/pa165/rest/books
 
-changeBookState()
-Available on address: http://localhost:8080/pa165/rest/books as PUT request.
-You can use this curl: curl -x PUT -i -H "Content-Type: application/json" --data '{"value":"4500","currency":"CZK"}' http://localhost:8080/eshop-rest/products/4
+changeBookState():  
+Available on address: http://localhost:8080/pa165/rest/books/{id of book}/state as PUT request.  
+You can use this curl: curl -x PUT -i -H "Content-Type: application/json" --data '{"state":"New"}' http://localhost:8080/pa165/rest/books/1/state
+
+deleteBook():  
+Available on address: http://localhost:8080/pa165/rest/books/{id of book} as DELETE request.  
+You can use this curl: curl -i -X DELETE http://localhost:8080/pa165/rest/books/1
