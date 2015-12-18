@@ -130,7 +130,9 @@ public class LoanController {
         List<BookDTO> foundBooks = new ArrayList<>();
         for (BookDTO item : allBooks) {
             if (item.getName().toLowerCase().contains(book.toLowerCase()) ||
-                    item.getAuthorName().toLowerCase().contains(book.toLowerCase())) {
+                    item.getAuthorName().toLowerCase().contains(book.toLowerCase()) ||
+                    book.toLowerCase().contains(item.getName().toLowerCase()) ||
+                    book.toLowerCase().contains(item.getAuthorName().toLowerCase())) {
                 foundBooks.add(item);
             }
             if (book.matches(regex)) {
@@ -153,6 +155,8 @@ public class LoanController {
         for (MemberDTO item : allMembers) {
             if (member.toLowerCase().contains(item.getSurname().toLowerCase()) ||
                     member.toLowerCase().contains(item.getGivenName().toLowerCase()) ||
+                    item.getSurname().toLowerCase().contains(member.toLowerCase()) ||
+                    item.getGivenName().toLowerCase().contains(member.toLowerCase()) ||
                     member.toLowerCase().equals(item.getEmail().toLowerCase())) {
                 foundMembers.add(item);
             }
