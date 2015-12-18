@@ -55,8 +55,15 @@
                     </c:choose>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/loans/new?bookId=${book.id}&memberId=${param.member}"
-                           class="btn btn-default">Choose</a>
+                        <c:choose>
+                            <c:when test="${book.loaned}">
+                                Already loaned
+                            </c:when>
+                            <c:otherwise>
+                                <a href="${pageContext.request.contextPath}/loans/new?bookId=${book.id}&memberId=${param.member}"
+                                    class="btn btn-default">Choose</a>
+                            </c:otherwise>
+                        </c:choose>
                     <td>
                     </td>
                 </tr>
