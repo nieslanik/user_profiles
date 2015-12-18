@@ -18,14 +18,14 @@
 <script>
     $(function () {
         var inputField = $("#filter")
-        var initialVal = /filter=([^&]*)/.exec(location.search)[1]
-        if (initialVal) {
-            inputField.val(initialVal);
-        }
         if (inputField.length == 0) return;
+        var initialVal = /filter=([^&]*)/.exec(location.search)
+        if (initialVal) {
+            inputField.val(initialVal[1]);
+        }
         var filterFn = function () {
             $(".filtered tbody tr").each(function() {
-                if ($(this).find("td").text().indexOf(inputField.val()) >= 0) {
+                if ($(this).find("td").text().toLowerCase().indexOf(inputField.val().toLowerCase()) >= 0) {
                     $(this).show();
                 } else {
                     $(this).hide();

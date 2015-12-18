@@ -44,11 +44,13 @@
                 <c:if test="${showReturn}">
                     <td>${loan.returnDate == null ? '-' : ''}<fmt:formatDate value="${loan.returnDate}"
                             pattern="yyyy-MM-dd" /></td>
-                    <td>${loan.returnBookState}</td>
+                    <td>${loan.returnBookState.value}</td>
                 </c:if>
                 <sec:authorize access="hasRole('ADMIN')">
                     <td><c:if test="${!loan.returned}">
-                            <a href="<c:url value="/loans/return/${loan.id}" />" class="btn btn-default">Return</a>
+                            <a href="<c:url value="/loans/return/${loan.id}">
+                                            <c:param name="redir">${requestScope['javax.servlet.forward.request_uri']}</c:param>
+                                     </c:url>" class="btn btn-default">Return</a>
                         </c:if>
 
                         <form method="post" style="display:inline" "action="<c:url value="/loans/delete/${loan.id}" />">

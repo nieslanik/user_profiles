@@ -36,7 +36,7 @@
                         <td><c:out value="${book.authorName}" /></td>
                         <td><c:out value="${book.isbn}" /></td>
                         <sec:authorize access="hasRole('ADMIN')">
-                            <td><a href="update/${book.id}" class="btn btn-default">Change state</a></td>
+                            <td><a href="<c:url value="books/update/${book.id}" />" class="btn btn-default">Change state</a></td>
                         </sec:authorize>
                     </tr>
                 </c:forEach>

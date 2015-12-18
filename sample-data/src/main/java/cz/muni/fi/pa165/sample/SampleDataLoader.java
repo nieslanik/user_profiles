@@ -50,7 +50,7 @@ public class SampleDataLoader {
         Long b14 = book("Not in God's Name: Confronting Religious Violence", "Jonathan Sacks", 9780805243345L);
         bookCollection("History", b9, b10, b11, b12, b13, b14);
 
-        Long b15 = book("A Knight of the Seven Kingdoms (A Song of Ice and Fire", "George R. R. Martin", 9780345533487L);
+        Long b15 = book("A Knight of the Seven Kingdoms (A Song of Ice and Fire)", "George R. R. Martin", 9780345533487L);
         Long b16 = book("Six of Crows", "Leigh Bardugo", 9781627792127L);
         Long b17 = book("Seveneves: A Novel", "Neal Stephenson", 9780062190376L);
         Long b18 = book("The Martian", "Andy Weir", 9780553418026L);
