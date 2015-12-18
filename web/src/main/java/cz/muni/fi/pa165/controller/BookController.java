@@ -78,7 +78,6 @@ public class BookController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public String changeBookState(@PathVariable long id, String state,
                                   Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttrs) {
-        System.out.println("" + state);
         bookFacade.setState(id, BookState.valueOf(state));
         redirectAttrs.addFlashAttribute("alert_success", "Book state was successfuly updated.");
         return "redirect:" + uriBuilder.path("/books/{id}").buildAndExpand(id).encode().toUriString();
@@ -93,7 +92,6 @@ public class BookController {
         }
         logger.debug("changeState({})", id);
         logger.debug("changeState(book={})", book);
-        System.out.println("" + book);
 
         model.addAttribute("book", book);
         model.addAttribute("state", book.getState());

@@ -18,7 +18,6 @@ public class CharacterEncodingFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         request.setCharacterEncoding("utf-8");
-        System.out.println("encoded url = " + request.getRequestURI());
         filterChain.doFilter(request, response);
     }
 

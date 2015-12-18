@@ -78,7 +78,6 @@ public class BookCollectionController {
         if (result.hasErrors()) {
             return updateCollectionView(id, model);
         }
-        System.out.println(dto.getBookIds());
         collectionFacade.updateBookCollection(id, dto);
         return "redirect:/collection/" + id;
     }

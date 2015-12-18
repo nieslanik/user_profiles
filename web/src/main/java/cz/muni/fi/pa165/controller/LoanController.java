@@ -160,7 +160,6 @@ public class LoanController {
     @RequestMapping(value = "/find_member", method = RequestMethod.GET)
     public String findMember(@RequestParam String member, Model model) {
         List<MemberDTO> allMembers = memberFacade.findAll();
-        System.out.println("member = " + member);
 
         List<MemberDTO> foundMembers = new ArrayList<>();
         for (MemberDTO item : allMembers) {
