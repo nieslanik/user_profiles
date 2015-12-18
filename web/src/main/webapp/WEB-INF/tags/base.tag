@@ -15,6 +15,21 @@
 <link rel='stylesheet' href='${contextPath}/webjars/patternfly/2.6.0/dist/css/patternfly-additions.min.css'>
 <script src="${contextPath}/webjars/jquery/2.1.4/jquery.min.js"></script>
 <script src='${contextPath}/webjars/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+<script>
+    $(function () {
+        var inputField = $("#filter")
+        if (inputField.length == 0) return;
+        inputField.keyup(function () {
+            $(".filtered tbody tr").each(function() {
+                if ($(this).find("td").text().indexOf(inputField.val()) >= 0) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 <style>
 .key {
     font-weight: bold;

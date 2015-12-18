@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.dto;
 
+import java.util.List;
+
 import cz.muni.fi.pa165.enums.BookState;
 
 /**
@@ -15,6 +17,7 @@ public class BookDTO {
     private String authorName;
     private Long isbn;
     private BookState state;
+    private List<LoanDTO> loans;
 
     public Long getId() {
         return id;
@@ -54,6 +57,23 @@ public class BookDTO {
 
     public void setState(BookState state) {
         this.state = state;
+    }
+
+    public List<LoanDTO> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<LoanDTO> loans) {
+        this.loans = loans;
+    }
+
+    public boolean isLoaned() {
+        for (LoanDTO loan: loans) {
+            if (!loan.getReturned()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

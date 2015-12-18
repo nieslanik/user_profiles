@@ -10,6 +10,7 @@
 <%@ page import="cz.muni.fi.pa165.enums.BookState" %>
 <x:base title="Members search result">
     <jsp:attribute name="content">
+    <h1>Create new book</h1>
 	<form:form method="POST" modelAttribute="createBook">
 		<div class="form-group">
                         <div class="form-group">
@@ -32,7 +33,7 @@
 				<form:errors path="isbn" />
 			</div>
 		</div>
-		<button type="submit">Create book </button>
+		<button type="submit" class="btn btn-default">Create book </button>
         </form:form>
 	
     </jsp:attribute>
