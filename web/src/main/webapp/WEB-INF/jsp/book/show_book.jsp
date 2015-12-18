@@ -32,32 +32,7 @@
         <sec:authorize access="hasRole('ADMIN')">
             <div class="panel panel-default">
                 <div class="panel-heading">Loan history</div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Member name</th>
-                            <th>Email</th>
-                            <th>Loan date</th>
-                            <th>Return date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${book.loans}" var="loan">
-                            <tr>
-                                <td>
-                                    <a href="<c:url value="/member/${loan.member.id}"/>">
-                                        <c:out value="${loan.member.givenName}" /> <c:out value="${loan.member.surname}" />
-                                    </a>
-                                </td>
-                                <td><c:out value="${loan.member.email}" /></td>
-                                <td><fmt:formatDate value="${loan.loanDate}" pattern="yyyy-MM-dd" /></td>
-                                <td>
-                                    <fmt:formatDate value="${loan.returnDate}" pattern="yyyy-MM-dd" />
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                <x:loanTable loans="${book.loans}" showMember="true" showReturn="true"/>
             </div>
         </sec:authorize>
     </jsp:attribute>

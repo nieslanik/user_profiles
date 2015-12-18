@@ -33,44 +33,12 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">Active loans</div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Book</th>
-                        <th>Loan Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${activeloans}" var="loan">
-                        <tr>
-                            <td><c:out value="${loan.book.name}" /></td>
-                            <td><fmt:formatDate value="${loan.loanDate}" pattern="yyyy-MM-dd" /></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            <x:loanTable loans="${activeloans}" showBook="true"/>
         </div>
 
         <div class="panel panel-default">
             <div class="panel-heading">Returned loans</div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Book</th>
-                        <th>Loan late</th>
-                        <th>Return late</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${returnedloans}" var="loan">
-                        <tr>
-                            <td><c:out value="${loan.book.name}" /></td>
-                            <td><fmt:formatDate value="${loan.loanDate}" pattern="yyyy-MM-dd" /></td>
-                            <td><fmt:formatDate value="${loan.returnDate}" pattern="yyyy-MM-dd" /></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            <x:loanTable loans="${returnedloans}" showBook="true" showReturn="true"/>
         </div>
         <a href="${member.id}/update" class="btn btn-default">Update member</a>
 

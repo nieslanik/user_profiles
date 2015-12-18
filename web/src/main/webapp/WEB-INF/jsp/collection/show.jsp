@@ -32,10 +32,10 @@
             </table>
         </div>
         <sec:authorize access="hasRole('ADMIN')">
-            <form action="${collection.id}/update">
+            <form action="${collection.id}/update" style="display:inline">
                 <button class="btn btn-default">Modify collection</button>
             </form>
-            <form action="${collection.id}/delete" method="POST"
+            <form action="${collection.id}/delete" method="POST" style="display:inline"
                     onSubmit="return confirm('Are you sure you want to permanently delete the collection?')">
                 <button class="btn btn-default">Delete collection</button>
             </form>
