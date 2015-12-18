@@ -35,7 +35,7 @@
                 <x:loanTable loans="${book.loans}" showMember="true" showReturn="true"/>
             </div>
             <form action="delete/${book.id}" method="POST" style="display:inline"
-                    onSubmit="return confirm('Are you sure you want to permanently delete the collection?')">
+                    onSubmit="return confirm('Are you sure you want to permanently delete the book?')">
                 <button class="btn btn-default">Delete book</button>
             </form>
         </sec:authorize>
