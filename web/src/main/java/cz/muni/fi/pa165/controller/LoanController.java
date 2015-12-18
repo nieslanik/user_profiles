@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -123,15 +124,41 @@ public class LoanController {
 
     @RequestMapping(value = "/find_book", method = RequestMethod.GET)
     public String findBook(@RequestParam String book, Model model) {
-        List<BookDTO> books = bookFacade.findByName(book);
-        model.addAttribute("books", books);
+        List<BookDTO> allBooks = bookFacade.findAll();
+
+        String regex = "[0-9]+";
+        List<BookDTO> foundBooks = new ArrayList<>();
+        for (BookDTO item : allBooks) {
+            if (item.getName().toLowerCase().contains(book.toLowerCase()) ||
+                    item.getAuthorName().toLowerCase().contains(book.toLowerCase())) {
+                foundBooks.add(item);
+            }
+            if (book.matches(regex)) {
+                if (item.getIsbn().equals(Long.valueOf(book))) {
+                    foundBooks.add(item);
+                }
+            }
+        }
+
+        model.addAttribute("books", foundBooks);
         return "loan/show_book_results";
     }
 
     @RequestMapping(value = "/find_member", method = RequestMethod.GET)
     public String findMember(@RequestParam String member, Model model) {
-        List<MemberDTO> members = memberFacade.findByName(member);
-        model.addAttribute("members", members);
+        List<MemberDTO> allMembers = memberFacade.findAll();
+        System.out.println("member = " + member);
+
+        List<MemberDTO> foundMembers = new ArrayList<>();
+        for (MemberDTO item : allMembers) {
+            if (member.toLowerCase().contains(item.getSurname().toLowerCase()) ||
+                    member.toLowerCase().contains(item.getGivenName().toLowerCase()) ||
+                    member.toLowerCase().equals(item.getEmail().toLowerCase())) {
+                foundMembers.add(item);
+            }
+        }
+
+        model.addAttribute("members", foundMembers);
         return "loan/show_member_results";
     }
 }
