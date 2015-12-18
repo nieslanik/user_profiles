@@ -100,4 +100,10 @@ public class BookController {
         return "book/change_state";
 
     }
+    
+    @RequestMapping(path = "delete/{id}", method = RequestMethod.POST)
+    public String deleteCollection(@PathVariable long id) {
+        bookFacade.delete(id);
+        return "redirect:/books/list";
+    }
 }
