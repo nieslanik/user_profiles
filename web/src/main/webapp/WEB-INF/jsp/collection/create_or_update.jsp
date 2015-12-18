@@ -20,15 +20,6 @@
                         });
                 $("#selected-books").val(data.join(","));
             }
-            function filterBooks(field) {
-                $("#available-table tbody tr").each(function() {
-                    if ($(this).find("td").text().indexOf(field.value) >= 0) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            }
             $(function() {
                 var selected = $("#selected-books").val().split(',');
                 $("#available-table tbody tr").each(function() {
@@ -36,7 +27,6 @@
                         selectRow(this);
                     }
                 });
-                filterBooks($("#filter")[0]);
             });
         </script>
     </jsp:attribute>
@@ -62,8 +52,7 @@
                                 <div class="col-xs-6">
                                     <%-- TODO filter --%>
                                     <div class="input-group">
-                                        <input type="text" id="filter" onKeyUp="filterBooks(this)"
-                                            placeholder="Filter" class="form-control" />
+                                        <input type="text" id="filter" placeholder="Filter" class="form-control" />
                                         <span class="input-group-addon"> <i
                                             class="glyphicon glyphicon-filter"> </i>
                                         </span>
@@ -71,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table table-hover" id="available-table">
+                        <table class="table filtered" id="available-table">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -95,7 +84,7 @@
                 <div class="col-xs-6">
                     <div class="panel panel-default" id="selected-panel">
                         <div class="panel-heading">Selected books</div>
-                        <table class="table table-hover" id="selected-table">
+                        <table class="table" id="selected-table">
                             <thead>
                                 <tr>
                                     <th>Name</th>

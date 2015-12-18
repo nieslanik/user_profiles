@@ -13,7 +13,7 @@
 
 <x:base title="Change book state">
     <jsp:attribute name="content">
-        <form method="POST">
+        <form method="POST" action="<c:url value="/books/update/${id}" />">
         <table class="table table-default">
             <tr>
                 <td class="key">Name</td>
@@ -30,15 +30,15 @@
             <tr>
                  <td><label for="state">State</label></td>
                  <td>
-                     <select name="state" >
+                     <select name="state" class="form-control">
                             <c:forEach var="s" items="${availableStates}">
-                                <option value="${s}">${s}</option>
+                                <option value="${s}">${s.value}</option>
                             </c:forEach>
                      </select>
                  </td>
-		<button type="submit">Change state</button>
             </tr>
-	</table>
+        </table>
+        <button type="submit" class="btn btn-default">Change state</button>
         </form>
     </jsp:attribute>
 </x:base>

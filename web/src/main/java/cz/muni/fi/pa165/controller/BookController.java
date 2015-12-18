@@ -4,33 +4,27 @@
  */
 package cz.muni.fi.pa165.controller;
 
-
 import cz.muni.fi.pa165.dto.BookDTO;
 import cz.muni.fi.pa165.dto.CreateBookDTO;
 import cz.muni.fi.pa165.enums.BookState;
 import cz.muni.fi.pa165.exceptions.NotFoundException;
 import cz.muni.fi.pa165.facade.BookFacade;
-
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import javax.inject.Inject;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author xkubist
@@ -43,7 +37,6 @@ public class BookController {
 
     @Inject
     private BookFacade bookFacade;
-
 
     @RequestMapping(value = "/list")
     public String getAll(Model model) {
@@ -97,6 +90,7 @@ public class BookController {
     public String changeState(@PathVariable long id, Model model) {
         BookDTO book = bookFacade.findById(id);
         String state;
+
         if (book == null) {
             throw new NotFoundException();
         }
@@ -115,5 +109,6 @@ public class BookController {
         model.addAttribute("state", book.getState());
         model.addAttribute("availableStates", availableStates);
         return "book/change_state";
+
     }
 }

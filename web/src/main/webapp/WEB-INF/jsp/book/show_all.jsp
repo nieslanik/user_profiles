@@ -4,37 +4,51 @@
     Author     : xkubist
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="x"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page import="cz.muni.fi.pa165.dto.BookDTO,java.util.List"%>
 
-<x:base title="Members search result">
-    <jsp:attribute name="content"> 
-        <div class="panel-heading">Books</div>
-            <table class="table">
-                <thead>
+<x:base title="Library book listing">
+    <jsp:attribute name="content">
+        <h1>Books</h1>
+        <form>
+            <div class="input-group">
+                <input type="text" id="filter" placeholder="Filter" class="form-control" />
+                <span class="input-group-addon"> <i class="glyphicon glyphicon-filter"> </i></span>
+            </div>
+        </form>
+        <table class="table table-default filtered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <th></th>
+                    </sec:authorize>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="book" items="${books}">
                     <tr>
-                        <th>Name</th>
-                        <th>Author</th>
-                        <th>ISBN</th>
+                        <td>
+                            <a href="<c:url value="/books/${book.id}"/>"><c:out value="${book.name}" /></a>
+                        </td>
+                        <td><c:out value="${book.authorName}" /></td>
+                        <td><c:out value="${book.isbn}" /></td>
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <td><a href="update/${book.id}" class="btn btn-default">Change state</a></td>
+                        </sec:authorize>
                     </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="book" items="${books}">
-                        <tr>
-                            <td><c:out value="${book.name}" /></td>
-                            <td><c:out value="${book.authorName}" /></td>
-                            <td><c:out value="${book.isbn}" /></td>
-                            <td><a href="update/${book.id}" class="btn">Change state</a></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        <a href="create" class="btn">Create Book</a>
-        </div>          
+                </c:forEach>
+            </tbody>
+        </table>
+        <sec:authorize access="hasRole('ADMIN')">
+            <a href="<c:url value="/books/create"/>" class="btn btn-default">Create Book</a>
+        </sec:authorize>
     </jsp:attribute>
 </x:base>

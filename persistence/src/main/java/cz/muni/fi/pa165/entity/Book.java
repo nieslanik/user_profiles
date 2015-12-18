@@ -42,7 +42,7 @@ public class Book {
     @ManyToMany(mappedBy = "books")
     private List<BookCollection> collections = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "book")
     // OneToMany because we want to keep history of loans
     private List<Loan> loans = new ArrayList<>();
 

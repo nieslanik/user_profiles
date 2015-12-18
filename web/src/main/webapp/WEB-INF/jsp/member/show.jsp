@@ -32,7 +32,7 @@
         </table>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Active Loans</div>
+            <div class="panel-heading">Active loans</div>
             <table class="table">
                 <thead>
                     <tr>
@@ -52,13 +52,13 @@
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading">Returned Loans</div>
+            <div class="panel-heading">Returned loans</div>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Book</th>
-                        <th>Loan Date</th>
-                        <th>Return Date</th>
+                        <th>Loan late</th>
+                        <th>Return late</th>
                     </tr>
                 </thead>
                 <tbody>
