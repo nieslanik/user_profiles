@@ -17,20 +17,20 @@ Rest api provide this functions:
 
 getAll():  
 Available on address: http://localhost:8080/pa165/rest/books as GET request.  
-You can use this curl: curl -X GET http://localhost:8080/pa165/rest/books
+You can use this curl: curl -X GET http://localhost:8080/pa165/rest/books/
 
 getBook():  
 Available on address: http://localhost:8080/pa165/rest/books/{id of book} as GET request.  
-You can use this curl: curl -X http://localhost:8080/pa165/rest/books/1
+You can use this curl: curl -X GET http://localhost:8080/pa165/rest/books/1
 
 createBook():  
 Available on address: http://localhost:8080/pa165/rest/books as POST request.  
-You can use this curl: curl -X POST -i -H "Content-Type: application/json" --data '{"name":"name","authorName":"author","isbn":"196L","collectionIds":[1,2,3]}' http://localhost:8080/pa165/rest/books
+You can use this curl: curl -X POST -i -H "Content-Type: application/json" --data '{"name":"name","authorName":"author","isbn":196,"collectionIds":[1,2,3]}' http://localhost:8080/pa165/rest/books/
 
 changeBookState():  
 Available on address: http://localhost:8080/pa165/rest/books/{id of book}/state as PUT request.  
-You can use this curl: curl -x PUT -i -H "Content-Type: application/json" --data '{"state":"New"}' http://localhost:8080/pa165/rest/books/1/state
+You can use this curl: curl -X PUT -i --data LIGHT_DAMAGE http://localhost:8080/pa165/rest/books/1/state
 
 deleteBook():  
 Available on address: http://localhost:8080/pa165/rest/books/{id of book} as DELETE request.  
-You can use this curl: curl -i -X DELETE http://localhost:8080/pa165/rest/books/1
+You can use this curl: curl -X DELETE i http://127.0.0.1:8080/pa165/rest/books/1
