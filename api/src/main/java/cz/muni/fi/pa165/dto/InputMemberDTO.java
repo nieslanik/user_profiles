@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.dto;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -20,7 +19,7 @@ public class InputMemberDTO {
     @Size(max = 50)
     private String surname;
 
-    @NotNull
+    @NotBlank
     @Email
     private String email;
 
