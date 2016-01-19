@@ -11,8 +11,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel='stylesheet' href='${contextPath}/webjars/bootstrap/3.3.6/css/bootstrap.min.css'>
-<link rel='stylesheet' href='${contextPath}/webjars/patternfly/2.6.0/dist/css/patternfly.min.css'>
-<link rel='stylesheet' href='${contextPath}/webjars/patternfly/2.6.0/dist/css/patternfly-additions.min.css'>
+<link rel='stylesheet' href='${contextPath}/webjars/patternfly/2.8.0/dist/css/patternfly.min.css'>
+<link rel='stylesheet' href='${contextPath}/webjars/patternfly/2.8.0/dist/css/patternfly-additions.min.css'>
+<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,latin-ext'/>
 <script src="${contextPath}/webjars/jquery/2.1.4/jquery.min.js"></script>
 <script src='${contextPath}/webjars/bootstrap/3.3.6/js/bootstrap.min.js'></script>
 <script>
