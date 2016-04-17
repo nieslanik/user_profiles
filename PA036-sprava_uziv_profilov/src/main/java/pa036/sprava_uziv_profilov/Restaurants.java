@@ -7,6 +7,7 @@
 package pa036.sprava_uziv_profilov;
 
 import java.util.List;
+import pa036.profiles.entity.Restaurant;
 
 /**
  *

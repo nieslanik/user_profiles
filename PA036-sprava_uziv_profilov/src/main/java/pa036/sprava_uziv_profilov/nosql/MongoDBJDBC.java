@@ -7,8 +7,8 @@ package pa036.sprava_uziv_profilov.nosql;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
-import com.sun.org.apache.xml.internal.resolver.helpers.Debug;
-import java.net.UnknownHostException;
+import pa036.profiles.entity.Account;
+
 
 /**
  *
@@ -20,11 +20,33 @@ public class MongoDBJDBC
     {
         try 
         { 
-            MongoClient mongoClient = new MongoClient( "localhost" ); 
-            DB database = mongoClient.getDB( "myDatabase" ); 
-            System.out.println("f");
+            /*MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
+            MongoDatabase database = mongoClient.getDatabase("test");
+
+
+            System.out.println("Connexion réussie");
+            //database.createCollection("Collection");
+
+            Document document = new Document( "name", "Fred").append("age", "28");
+            
+            MongoCollection<Document> c = database.getCollection("Collection"); 
+            c.insertOne(document);
+            
+            System.out.println("Une nouvelle collection des objets" + c.count());*/
+            
+            Account u = new Account();
+            u.setEmployee_acount(true);
+            u.setUsername("1stmato");
+            u.setPassword("password");
+            u.setUi_lang("français");
+            
+            UserPersistence p = new UserPersistence();
+            p.create(u);
+            //System.out.println(p.findAll().find().first());
+            System.out.println(p.findByName("1stmato"));
+        
         } 
-        catch (UnknownHostException ex) 
+        catch (Exception ex) 
         {
             System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
         }
