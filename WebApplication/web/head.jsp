@@ -13,10 +13,12 @@
         <title>Head</title>
     </head>
     <body>
-        <img src="logo.svg" alt="logo" >
+        <img src="logo.svg" alt="logo">
         <div id="head"> 
-            <h3>Login user: <%= request.getParameter("username") %></h3> 
-            <input type="buttonn" value="Log out" name="noLogin" />
+            <h3>Login user: <% if(session.getAttribute("username")!= null) {
+                session.getAttribute("username").toString();
+                }   %></h3> 
+             <a href="index.html" id="logButton">Log out</a>
             <h3>Number of login users: </h3>
             
         </div>
