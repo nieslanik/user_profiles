@@ -45,7 +45,8 @@ public class UserPersistence
     }
 
     
-    public void update(Account u) {
+    public void update(Account u) 
+    {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
         String.class);
         coll.updateById(u.getId(), u);
@@ -68,7 +69,8 @@ public class UserPersistence
     }
 
     
-    public Account findById(String id) {
+    public Account findById(String id) 
+    {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
         String.class);
         return coll.findOneById(id);
