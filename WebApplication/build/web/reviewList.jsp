@@ -14,7 +14,7 @@
     </head>
     <body>
         <%@include file="head.jsp" %>
-        <h3>obrazek</h3>
+        <img src="restaurant.jpg" alt="restaurant" width="90%" height="300px"/>
          <h1><%= request.getParameter("name") %></h1> 
          <h3><%= request.getParameter("score") %></h3>
         <table>    
@@ -30,7 +30,7 @@
         </table>
                     
         <h2>Add yours!</h2> 
-            <form name="addReview" action="addReview.jsp">
+            <form name="addReview" action="addReview">
             <input type="text" name="review" />
             <br/>
             Your score:

@@ -99,6 +99,33 @@ input[type=buttonn]
     
 }
 
+#restButton
+{  
+    padding: 10px 10px;
+    margin: 0 0;
+    width: 100px;
+    cursor: pointer;
+    box-sizing: border-box;  
+    background-color: darkblue;
+    color: white;
+    position: relative;
+    left: 100%;
+    text-decoration: none;
+    
+}
+
+#logButton
+{  
+    padding: 5px 5px;
+    margin: 0 0;
+    width: 80px;
+    cursor: pointer;
+    box-sizing: border-box;  
+    text-decoration: none;
+    border: 1px solid blue;
+    
+}
+
 div#head
 {
     color: black;
