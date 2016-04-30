@@ -5,6 +5,7 @@
  */
 package pa036.sprava_uziv_profilov.nosql.persistence;
 
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -42,7 +43,9 @@ public class RestaurantPersistenceTest {
     }
     
     @After
-    public void tearDown() {
+    public void tearDown() 
+    {
+        rp.RemoveAll();
     }
 
     /**
@@ -142,6 +145,21 @@ public class RestaurantPersistenceTest {
         Restaurant gotR = rp.findById(savedR.getId());
         Assert.assertEquals(savedR.getId(), gotR.getId());
         Assert.assertEquals(savedR.getName(), gotR.getName());
+    }
+    
+    @Test
+    public void testFindAll() 
+    {
+        System.out.println("find all");
+        Restaurant r = new Restaurant();
+        r.setName("fsddsf");
+        Restaurant r2 = new Restaurant();
+        r2.setName("dfhdf");
+        rp.create(r);
+        rp.create(r2);
+        List<Restaurant> restaurants = rp.findAll();
+        System.out.println(restaurants);
+        Assert.assertEquals(restaurants.size(), 2);
     }
     
 }

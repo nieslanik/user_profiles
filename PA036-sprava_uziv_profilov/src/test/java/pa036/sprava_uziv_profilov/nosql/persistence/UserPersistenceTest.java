@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.mongojack.DBCursor;
 import pa036.sprava_uziv_profilov.nosql.entities.Account;
 
 /**
@@ -41,6 +42,7 @@ public class UserPersistenceTest {
     
     @After
     public void tearDown() {
+        p.RemoveAll();
     }
 
     /**
@@ -99,6 +101,7 @@ public class UserPersistenceTest {
         System.out.println(accounts);
         Assert.assertEquals(accounts.size(), 1);
     }
+    
     @org.junit.Test
     public void testFindAll() 
     {

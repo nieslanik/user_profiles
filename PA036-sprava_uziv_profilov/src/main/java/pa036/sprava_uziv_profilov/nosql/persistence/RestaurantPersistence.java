@@ -9,6 +9,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+import java.util.List;
 import org.bson.types.ObjectId;
 import org.mongojack.DBCursor;
 
@@ -97,5 +98,19 @@ public class RestaurantPersistence
         JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
         String.class);
         return coll.findOneById(id);
+    }
+    
+    public List<Restaurant> findAll() 
+    {
+        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
+        String.class);
+        return coll.find().toArray();
+    }
+    
+    public void RemoveAll()
+    {
+        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
+        String.class);
+        coll.drop();
     }
 }
