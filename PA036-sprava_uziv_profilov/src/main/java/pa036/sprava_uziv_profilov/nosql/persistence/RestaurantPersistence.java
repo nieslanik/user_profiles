@@ -5,7 +5,9 @@
  */
 package pa036.sprava_uziv_profilov.nosql.persistence;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import org.bson.types.ObjectId;
 
@@ -45,7 +47,14 @@ public class RestaurantPersistence
     {
        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
         String.class);
-       //coll.updateById(restaurantId, DBUpdate.pull("reviews", new));//not finished yet
+
+       //BasicDBObject obj = new BasicDBObject("_id", restaurantId);
+       BasicDBObject ids = new BasicDBObject("id", reviewId);
+       //BasicDBObject docs = new BasicDBObject("reviews", ids);
+       //BasicDBObject pull = new BasicDBObject("$pull", docs);
+       WriteResult r =coll.updateById(restaurantId, DBUpdate.pull("reviews", ids));
+       //WriteResult r = coll.update(obj, pull);//not finished yet
+       System.out.println(r.toString());
     }
     
     

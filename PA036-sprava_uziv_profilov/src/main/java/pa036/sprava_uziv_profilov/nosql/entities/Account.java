@@ -31,7 +31,7 @@ public class Account {
 
     private String ui_lang;
 
-    private char[] acces_rights;
+    private String acces_rights;
 
     private String ui_settings;
 
@@ -72,7 +72,7 @@ public class Account {
         return ui_lang;
     }
 
-    public char[] getAcces_rights() {
+    public String getAcces_rights() {
         return acces_rights;
     }
 
@@ -113,8 +113,8 @@ public class Account {
         this.ui_lang = ui_lang;
     }
 
-    public void setAcces_rights(char[] acces_rights) {
-        this.acces_rights = acces_rights;
+    public void setAcces_rights(String access_rights) {
+        this.acces_rights = access_rights;
     }
 
     public void setUi_settings(String ui_settings) {

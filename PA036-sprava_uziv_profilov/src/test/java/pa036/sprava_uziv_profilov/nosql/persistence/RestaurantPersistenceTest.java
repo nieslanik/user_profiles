@@ -71,6 +71,28 @@ public class RestaurantPersistenceTest {
     }
     
     @Test
+    public void testRemoveReview() 
+    {
+        System.out.println("removeReview");
+        Restaurant r = new Restaurant();
+        r.setName("Restauracia");
+        Restaurant savedR = rp.create(r);
+        Review re = new Review();
+        re.setText("Blablabla");
+        Review re2 = new Review();
+        re2.setText("Ça marche !");
+        rp.AddReview(savedR.getId(), re);
+        rp.AddReview(savedR.getId(), re2);
+        System.out.println(rp.findById(savedR.getId()).getReviews().size());
+        
+        
+        rp.RemoveReview(savedR.getId(), re.getId());
+        
+        System.out.println(rp.findById(savedR.getId()).getReviews().size());
+        System.out.println("The text: " + rp.findById(savedR.getId()).getReviews().get(0).getText());
+    }
+    
+    @Test
      public void testFindById() 
      {
         System.out.println("findById");
