@@ -10,6 +10,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import org.bson.types.ObjectId;
+import org.mongojack.DBCursor;
 
 import org.mongojack.DBUpdate;
 import org.mongojack.JacksonDBCollection;
@@ -27,6 +28,7 @@ public class RestaurantPersistence
 {    private MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
     //private MongoDatabase database = mongoClient.getDatabase("test");
     private DB database = mongoClient.getDB("test");
+    
     public Restaurant create(Restaurant r) 
     {
         JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
@@ -35,7 +37,21 @@ public class RestaurantPersistence
         return result.getSavedObject();
     }
     
-    public void AddReview(String restaurantId, Review r)
+    public void remove(String restaurantId)
+    {
+        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
+        String.class);
+        coll.removeById(restaurantId);
+    }
+    
+    public void update(Restaurant r)
+    {
+        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
+        String.class);
+        coll.updateById(r.getId(), r);
+    }
+    
+    public void addReview(String restaurantId, Review r)
     {
        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
         String.class);
@@ -43,7 +59,7 @@ public class RestaurantPersistence
        coll.updateById(restaurantId, DBUpdate.push("reviews", r));
     }
     
-    public void RemoveReview(String restaurantId, String reviewId)
+    public void removeReview(String restaurantId, String reviewId)
     {
        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
         String.class);
@@ -52,9 +68,27 @@ public class RestaurantPersistence
        BasicDBObject ids = new BasicDBObject("id", reviewId);
        //BasicDBObject docs = new BasicDBObject("reviews", ids);
        //BasicDBObject pull = new BasicDBObject("$pull", docs);
-       WriteResult r =coll.updateById(restaurantId, DBUpdate.pull("reviews", ids));
+       WriteResult r = coll.updateById(restaurantId, DBUpdate.pull("reviews", ids));
        //WriteResult r = coll.update(obj, pull);//not finished yet
        System.out.println(r.toString());
+    }
+    
+    /**
+     * Gets average rating of the selected restaurant
+     * @param restaurantId
+     * @return average rating of the selected restaurant
+     */
+    public double getRating(String restaurantId)
+    {
+        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
+        String.class);
+        int ratingSum = 0;
+        Restaurant r = findById(restaurantId);
+        for(Review re : r.getReviews())
+        {
+            ratingSum += re.getRating();
+        }
+        return (double) ratingSum / r.getReviews().size();
     }
     
     

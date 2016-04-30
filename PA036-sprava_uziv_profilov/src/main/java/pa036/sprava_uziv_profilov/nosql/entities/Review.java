@@ -26,6 +26,16 @@ public class Review {
     
     private int restaurant_id;
     private int user_id;
+    private int rating;
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) 
+    {
+        this.rating = rating;
+    }
 
     /*@ObjectId
     @JsonProperty("_id")*/

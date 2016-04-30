@@ -66,7 +66,7 @@ public class RestaurantPersistenceTest {
         Restaurant savedR = rp.create(r);
         Review re = new Review();
         re.setText("Blablabla");
-        rp.AddReview(savedR.getId(), re);
+        rp.addReview(savedR.getId(), re);
         System.out.println(rp.findById(savedR.getId()).getReviews().get(0).getId());
     }
     
@@ -81,15 +81,55 @@ public class RestaurantPersistenceTest {
         re.setText("Blablabla");
         Review re2 = new Review();
         re2.setText("Ça marche !");
-        rp.AddReview(savedR.getId(), re);
-        rp.AddReview(savedR.getId(), re2);
+        rp.addReview(savedR.getId(), re);
+        rp.addReview(savedR.getId(), re2);
         System.out.println(rp.findById(savedR.getId()).getReviews().size());
         
         
-        rp.RemoveReview(savedR.getId(), re.getId());
+        rp.removeReview(savedR.getId(), re.getId());
         
         System.out.println(rp.findById(savedR.getId()).getReviews().size());
         System.out.println("The text: " + rp.findById(savedR.getId()).getReviews().get(0).getText());
+    }
+    
+    @Test
+    public void testUpdate()
+    {
+        System.out.println("update");
+        Restaurant r = new Restaurant();
+        r.setName("Restaurant");
+        Restaurant savedR = rp.create(r);
+        savedR.setName("Changed");
+        rp.update(savedR);
+        Assert.assertEquals(savedR.getName(), rp.findById(savedR.getId()).getName());
+    }
+    
+    @Test
+    public void testRemove()
+    {
+        System.out.println("remove");
+        Restaurant r = new Restaurant();
+        r.setName("Restauracia");
+        Restaurant savedR = rp.create(r);
+        rp.remove(savedR.getId());
+    }
+    @Test
+    public void testGetRating()
+    {
+        System.out.println("getRating");
+        Restaurant r = new Restaurant();
+        r.setName("Restauracia");
+        Restaurant savedR = rp.create(r);
+        Review re = new Review();
+        re.setText("Blablabla");
+        re.setRating(2);
+        Review re2 = new Review();
+        re2.setText("Ça marche !");
+        re2.setRating(1);
+        rp.addReview(savedR.getId(), re);
+        rp.addReview(savedR.getId(), re2);
+        double rating = rp.getRating(savedR.getId());
+        Assert.assertEquals(1.5, rating,0.001);
     }
     
     @Test
