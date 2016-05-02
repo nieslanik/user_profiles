@@ -26,7 +26,8 @@ import pa036.sprava_uziv_profilov.nosql.entities.Review;
  * @author Mato
  */
 public class RestaurantPersistence 
-{    private MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
+{    
+    private MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
     //private MongoDatabase database = mongoClient.getDatabase("test");
     private DB database = mongoClient.getDB("test");
     
@@ -52,11 +53,12 @@ public class RestaurantPersistence
         coll.updateById(r.getId(), r);
     }
     
-    public void addReview(String restaurantId, Review r)
+    public void addReview(String restaurantId, Review r, String userId)
     {
        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
         String.class);
        r.setId(ObjectId.get().toString());
+       r.setUserId(userId);
        coll.updateById(restaurantId, DBUpdate.push("reviews", r));
     }
     

@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.mongojack.DBRef;
 import org.mongojack.ObjectId;
 /**
  *
@@ -25,7 +26,7 @@ public class Review {
     private String text;
     
     private int restaurant_id;
-    private int user_id;
+    private String userId;
     private int rating;
 
     public int getRating() {
@@ -58,8 +59,8 @@ public class Review {
         this.restaurant_id = restaurant_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(String user_id) {
+        this.userId = user_id;
     }
 
 
@@ -71,8 +72,8 @@ public class Review {
         return restaurant_id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getUserId() {
+        return userId;
     }
 
     @Override
@@ -80,7 +81,7 @@ public class Review {
         int hash = 5;
         hash = 97 * hash + this.id.hashCode();
         hash = 97 * hash + this.restaurant_id;
-        hash = 97 * hash + this.user_id;
+        hash = 97 * hash + this.userId.hashCode();
         hash = 97 * hash + this.text.hashCode();
         return hash;
     }
@@ -103,7 +104,7 @@ public class Review {
         if (this.restaurant_id != other.restaurant_id) {
             return false;
         }
-        if (this.user_id != other.user_id) {
+        if (this.userId != other.userId) {
             return false;
         }
         if(!(this.text).equals(other.text))

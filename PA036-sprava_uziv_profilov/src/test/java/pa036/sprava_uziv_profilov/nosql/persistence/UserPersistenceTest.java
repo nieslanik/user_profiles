@@ -57,6 +57,7 @@ public class UserPersistenceTest {
         u.setPassword("password");
         u.setUi_lang("français");
         Account savedU = p.create(u);
+        System.out.println("THE id: " + savedU.getId());
     }
     
     @org.junit.Test

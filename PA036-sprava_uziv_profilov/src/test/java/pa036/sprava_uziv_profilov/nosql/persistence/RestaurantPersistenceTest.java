@@ -24,7 +24,7 @@ import pa036.sprava_uziv_profilov.nosql.entities.Review;
 public class RestaurantPersistenceTest {
     
     private RestaurantPersistence rp;
-    
+
     public RestaurantPersistenceTest() 
     {
         rp = new RestaurantPersistence();
@@ -69,8 +69,9 @@ public class RestaurantPersistenceTest {
         Restaurant savedR = rp.create(r);
         Review re = new Review();
         re.setText("Blablabla");
-        rp.addReview(savedR.getId(), re);
+        rp.addReview(savedR.getId(), re, "Here is the user's id.");
         System.out.println(rp.findById(savedR.getId()).getReviews().get(0).getId());
+        System.out.println(re.getUserId());
     }
     
     @Test
@@ -84,8 +85,8 @@ public class RestaurantPersistenceTest {
         re.setText("Blablabla");
         Review re2 = new Review();
         re2.setText("Ça marche !");
-        rp.addReview(savedR.getId(), re);
-        rp.addReview(savedR.getId(), re2);
+        rp.addReview(savedR.getId(), re, "Here is the id of user");
+        rp.addReview(savedR.getId(), re2, "Here is the id of user");
         System.out.println(rp.findById(savedR.getId()).getReviews().size());
         
         
@@ -129,8 +130,8 @@ public class RestaurantPersistenceTest {
         Review re2 = new Review();
         re2.setText("Ça marche !");
         re2.setRating(1);
-        rp.addReview(savedR.getId(), re);
-        rp.addReview(savedR.getId(), re2);
+        rp.addReview(savedR.getId(), re, "Here is the id of user");
+        rp.addReview(savedR.getId(), re2, "Here is the id of user");
         double rating = rp.getRating(savedR.getId());
         Assert.assertEquals(1.5, rating,0.001);
     }
