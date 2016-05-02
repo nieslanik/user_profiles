@@ -17,20 +17,22 @@
         <img src="restaurant.jpg" alt="restaurant" width="90%" height="300px"/>
          <h1><%= request.getParameter("name") %></h1> 
          <h3><%= request.getParameter("score") %></h3>
-        <table>    
+        <table>    -
             <c:forEach items="${reviewList}" var="reviews">
                 <tr>
+                    <td><c:out value="${reviewList.id}"/> </td>
                     <td><c:out value="${reviewList.user_id}"/> </td>
                     <td><c:out value="${reviewList.text}"/> 
                         <br/>
                         <c:out value="${reviewList.score}"/>
                     </td>  
+                    <td><a href="addReview.jsp/delete?id=${reviewList.id}" id="restButton">Delete</a> </td>
                 </tr>
             </c:forEach>           
         </table>
                     
         <h2>Add yours!</h2> 
-            <form name="addReview" action="addReview">
+            <form name="addReview" action="reviewList/add" method="post">
             <input type="text" name="review" />
             <br/>
             Your score:
@@ -44,6 +46,11 @@
             <br/>
             <input type="submit" value="OK" /> 
         </form>
+        <d:if test="${not empty chyba}">
+            <div style="border: solid 1px red; background-color: yellow; padding: 10px">
+                <d:out value="${chyba}"/>
+            </div>
+        </d:if>
                     
     </body>
 </html>

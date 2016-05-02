@@ -11,6 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="./style.css" rel="stylesheet" type="text/css">
         <title>Head</title>
+        <script>
+            document.onmousemove = function () {
+                   // posli update 
+            };
+        </script>
     </head>
     <body>
         <img src="logo.svg" alt="logo">
