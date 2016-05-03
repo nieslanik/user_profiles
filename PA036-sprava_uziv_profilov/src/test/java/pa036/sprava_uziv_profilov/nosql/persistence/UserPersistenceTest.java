@@ -98,9 +98,9 @@ public class UserPersistenceTest {
         u.setPassword("password");
         u.setUi_lang("français");
         p.create(u);
-        List<Account> accounts = p.findByName("1stmato");
-        System.out.println(accounts);
-        Assert.assertEquals(accounts.size(), 1);
+        Account account = p.findByName("1stmato");
+        System.out.println(account.getUsername());
+        Assert.assertEquals(account.getUsername(), "1stmato");
     }
     
     @org.junit.Test

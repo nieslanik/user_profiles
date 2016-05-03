@@ -63,11 +63,11 @@ public class UserPersistence
     }
 
     
-    public List<Account> findByName(String name) 
+    public Account findByName(String name) 
     {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
         String.class);
-        return coll.find(DBQuery.is("username", name)).toArray();
+        return coll.findOne(DBQuery.is("username", name));//coll.find(DBQuery.is("username", name)).toArray().get(0);
     }
 
     
