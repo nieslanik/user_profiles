@@ -36,7 +36,7 @@ public class ReviewPersistence {
         em.merge(f);
     }
     
-    
+    /*
     public List<Review> findAll() {
         return em.createQuery("select f from Review f", Review.class).getResultList();
     }
@@ -50,7 +50,7 @@ public class ReviewPersistence {
         else
             return result.get(0);
     }
-
+*/
     
     public Review findById(Long id) {
         return em.find(Review.class, id);

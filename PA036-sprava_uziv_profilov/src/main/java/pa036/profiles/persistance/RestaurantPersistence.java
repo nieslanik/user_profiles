@@ -36,7 +36,7 @@ public class RestaurantPersistence {
         em.merge(r);
     }
     
-    
+    /*
     public List<Restaurant> findAll() {
         return em.createQuery("select r from Restaurant r", Restaurant.class).getResultList();
     }
@@ -50,7 +50,7 @@ public class RestaurantPersistence {
         else
             return result.get(0);
     }
-
+*/
     
     public Restaurant findById(Long id) {
         return em.find(Restaurant.class, id);

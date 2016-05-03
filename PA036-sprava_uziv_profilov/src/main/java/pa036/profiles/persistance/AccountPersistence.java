@@ -38,7 +38,7 @@ public class AccountPersistence {
         em.merge(u);
     }
     
-    
+    /*
     public List<Account> findAll() {
         return em.createQuery("select u from Account u", Account.class).getResultList();
     }
@@ -52,7 +52,7 @@ public class AccountPersistence {
         else
             return result.get(0);
     }
-
+*/
     
     public Account findById(Long id) {
         return em.find(Account.class, id);
