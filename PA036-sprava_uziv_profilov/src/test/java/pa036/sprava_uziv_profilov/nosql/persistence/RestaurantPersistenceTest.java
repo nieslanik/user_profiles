@@ -124,18 +124,38 @@ public class RestaurantPersistenceTest {
         Restaurant r = new Restaurant();
         r.setName("Restauracia");
         Restaurant savedR = rp.create(r);
+        
+        Restaurant r2 = new Restaurant();
+        r2.setName("Restauracia2");
+        Restaurant savedR2 = rp.create(r2);
+        Review re5 = new Review();
+        re5.setText("Blablabla");
+        re5.setRating(2);
+        rp.addReview(savedR2.getId(), re5, "sfafas");
+        
         Review re = new Review();
         re.setText("Blablabla");
         re.setRating(2);
         Review re2 = new Review();
         re2.setText("Ça marche !");
         re2.setRating(1);
+        Review re3 = new Review();
+        re3.setText("Ce resto est super bien ! Cinq étoiles...");
+        re3.setRating(5);
         rp.addReview(savedR.getId(), re, "Here is the id of user");
         rp.addReview(savedR.getId(), re2, "Here is the id of user");
+        rp.addReview(savedR.getId(), re3, "Here is the id of user");
         double rating = rp.getRating(savedR.getId());
-        Assert.assertEquals(1.5, rating,0.001);
+        double rating2 = rp.getRating(savedR2.getId());
+        Assert.assertEquals(2.66, rating,0.01);
+        Assert.assertEquals(2.0, rating2,0.01);
     }
-    
+    /*@Test
+    public void testGetTop10()
+    {
+        System.out.println("getTop10");
+        rp.getTop10();
+    }*/
     @Test
      public void testFindById() 
      {
