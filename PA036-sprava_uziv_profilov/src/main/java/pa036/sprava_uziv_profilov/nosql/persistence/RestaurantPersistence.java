@@ -11,7 +11,9 @@ import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import java.util.List;
 import org.bson.types.ObjectId;
+import org.mongojack.Aggregation;
 import org.mongojack.DBCursor;
+import org.mongojack.DBQuery;
 
 import org.mongojack.DBUpdate;
 import org.mongojack.JacksonDBCollection;
@@ -86,7 +88,7 @@ public class RestaurantPersistence
         JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
         String.class);
         int ratingSum = 0;
-        Restaurant r = findById(restaurantId);
+        Restaurant r = findById(restaurantId);        
         for(Review re : r.getReviews())
         {
             ratingSum += re.getRating();
@@ -100,6 +102,13 @@ public class RestaurantPersistence
         JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
         String.class);
         return coll.findOneById(id);
+    }
+    
+    public Restaurant findByName(String name) 
+    {
+        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
+        String.class);
+        return coll.findOne(DBQuery.is("name", name));
     }
     
     public List<Restaurant> findAll() 
