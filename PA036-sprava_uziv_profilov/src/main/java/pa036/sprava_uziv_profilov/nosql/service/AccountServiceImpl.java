@@ -54,7 +54,7 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public List<Account> findByName(String name) {
+    public Account findByName(String name) {
         return userPersistence.findByName(name);
     }
 

@@ -5,6 +5,11 @@
  */
 package pa036.sprava_uziv_profilov.nosql.facade;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +35,30 @@ public class AccountFacadeImpl implements AccountFacade{
     
     @Override
     public Boolean login(String username, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Account account = accountService.findByName(username);
+        if(account.getPassword().equals(password)){
+            Calendar calendar = Calendar.getInstance();
+            //set timestamp
+            Timestamp logon_last_timestamp = new java.sql.Timestamp(calendar.getTime().getTime());
+            account.setLogon_last_timestamp(logon_last_timestamp);
+            //set logon status
+            account.setLogon_status(1);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public Boolean logout(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            Account account = accountService.findByName(username);
+            if(account.getLogon_status() == 1){
+                account.setLogon_status(0);
+                return true;
+            }else{
+                return false;
+            }
+            
     }
 
     @Override
@@ -45,9 +68,9 @@ public class AccountFacadeImpl implements AccountFacade{
         account.setPassword(password);
         account.setEmployee_acount(employee);
         
-        List<Account> accounts = accountService.findByName(username);
+        Account compare = accountService.findByName(username);
         
-        if (accounts.size() == 0){
+        if (compare == null){
             accountService.registerAccount(account, password);
             return true;
         }else{            

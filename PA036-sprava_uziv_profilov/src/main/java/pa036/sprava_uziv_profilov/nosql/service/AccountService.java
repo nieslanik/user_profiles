@@ -27,6 +27,6 @@ public interface AccountService {
 
     void delete(Account account);
     
-    List<Account> findByName(String name); 
+    Account findByName(String name); 
 
 }

@@ -6,8 +6,8 @@
 package pa036.sprava_uziv_profilov.nosql.facade;
 
 import java.util.List;
-import pa036.profiles.entity.Restaurant;
-import pa036.profiles.entity.Review;
+import pa036.sprava_uziv_profilov.nosql.entities.Restaurant;
+import pa036.sprava_uziv_profilov.nosql.entities.Review;
 
 /**
  *
