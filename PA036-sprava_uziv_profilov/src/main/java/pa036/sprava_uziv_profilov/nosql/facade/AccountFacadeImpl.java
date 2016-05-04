@@ -79,13 +79,22 @@ public class AccountFacadeImpl implements AccountFacade{
     }
     @Override
     public int userStatus(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Account account = accountService.findByName(username);
+        return account.getLogon_status();
     }
 
     @Override
     public int numberOfLogin() {
         List<Account> accounts = accountService.findAll();
-        return accounts.size();
+        
+        int result = 0;
+        
+        for (Account account : accounts){
+            if(account.getLogon_status() == 1){
+                result++;
+            }
+        }
+        return result;
     }
     
 }

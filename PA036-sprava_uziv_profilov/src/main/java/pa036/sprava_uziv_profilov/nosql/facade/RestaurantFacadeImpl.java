@@ -64,22 +64,19 @@ public class RestaurantFacadeImpl implements RestaurantFacade{
     }
 
     @Override
-    public boolean addReview(String description, int score) {
-        //chyba restauracia
-        //restaurantService.addReview(restaurantId, review, userId);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeReview(int id) {
-        //restaurantService.removeReview(restaurantId, reviewId);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Review> getReviews(String name) {
         Restaurant r = restaurantService.findById(name);
         return r.getReviews();
+    }
+
+    @Override
+    public boolean addReview(String description, int score, int restaurantId, int accountId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removeReview(int restaurantId, int reviewid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
