@@ -6,15 +6,18 @@
 package pa036.sprava_uziv_profilov.nosql.persistence;
 
 import com.mongodb.AggregationOutput;
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.mongojack.Aggregation;
+import org.mongojack.AggregationResult;
 import org.mongojack.DBCursor;
 import org.mongojack.DBQuery;
 
@@ -123,28 +126,51 @@ public class RestaurantPersistence
   
     }
     
-    /*public void getTop10()
+    public List<Restaurant> getTop10()
     {
-        DBCollection coll = database.getCollection("Restaurants");
-        
+        //DBCollection coll = database.getCollection("Restaurants");
+        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
+        String.class);
         DBObject unwind = new BasicDBObject("$unwind", "$reviews");
-
+        
+        DBObject project1 = new BasicDBObject("$project", new BasicDBObject("name", 1));
+        
         // build the $group operations
         DBObject groupFields = new BasicDBObject("_id", "$_id");
+
         groupFields.put("avg_rating", new BasicDBObject("$avg", "$reviews.rating"));
-
+        
+        DBObject project = new BasicDBObject("$project", new BasicDBObject("_id", 1));
+        DBObject project2 = new BasicDBObject("$project", new BasicDBObject("avg_rating", 0));
+        DBObject project3 = new BasicDBObject("$project", new BasicDBObject("root", "$$ROOT"));
         DBObject group = new BasicDBObject("$group", groupFields);
-        List<DBObject> pipeline = Arrays.asList( unwind, group);
+        
+        DBObject sort = new BasicDBObject("$sort", new BasicDBObject("avg_rating", -1));
+        
+        DBObject limit = new BasicDBObject("$limit", 10);
+        //List<DBObject> pipeline = Arrays.asList( unwind, group, sort, limit);
 
-        AggregationOutput output = coll.aggregate(pipeline);
-        double r = -1;
-        for (DBObject result : output.results()) {
-            System.out.println(result);
-            r = (double) result.get("avg_rating");
+        Aggregation<Restaurant> aggregation = new Aggregation<>(Restaurant.class, unwind,  group,  sort, limit, project );
+        /*AggregationOutput output = coll.aggregate(pipeline);
+        double r = -1;*/
+        AggregationResult<Restaurant> result = coll.aggregate(aggregation);
+        
+        List<Restaurant> topRestaurants = new ArrayList<Restaurant>();
+        
+        for(DBObject r: result.getAggregationOutput().results())
+        {
+            topRestaurants.add(findById(r.get("_id").toString()));
+            System.out.println(r.get("_id"));
         }
-        System.out.println(r);
+        return topRestaurants;//result.results();
+        //List<Restaurant> restaurants = result.getAggregationOutput().results();
+        //for (DBObject res : result.results()) {
+        //    System.out.println(res);
+            //r = (double) result.get("avg_rating");
+        //}
+        //System.out.println(r);
         //return r;
-    }*/
+    }
     
     public Restaurant findById(String id) 
     {

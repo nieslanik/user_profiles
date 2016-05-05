@@ -150,12 +150,56 @@ public class RestaurantPersistenceTest {
         Assert.assertEquals(2.66, rating,0.01);
         Assert.assertEquals(2.0, rating2,0.01);
     }
-    /*@Test
+    @Test
     public void testGetTop10()
     {
         System.out.println("getTop10");
-        rp.getTop10();
-    }*/
+        Restaurant r = new Restaurant();
+        r.setName("Restauracia");
+        Restaurant savedR = rp.create(r);
+        System.out.println("2.66: " + savedR.getId());
+        
+        Restaurant r2 = new Restaurant();
+        r2.setName("Restauracia2");
+        for(int i = 0; i < 10; i++)
+        {
+        Restaurant savedR2 = rp.create(r2);
+        System.out.println("2: " + savedR2.getId());
+        Review re5 = new Review();
+        re5.setText("Blablabla");
+        re5.setRating(2);
+        rp.addReview(savedR2.getId(), re5, "sfafas");
+        }
+        Restaurant r3 = new Restaurant();
+        r3.setName("Restauracia2");
+        Restaurant savedR3 = rp.create(r3);
+        System.out.println("4.5, Restauracia 2: " + savedR3.getId());
+        Review re6 = new Review();
+        re6.setText("Blablabla");
+        re6.setRating(4);
+        Review re7 = new Review();
+        re7.setText("Blablabla");
+        re7.setRating(5);
+        rp.addReview(savedR3.getId(), re6, "sfafas");
+        rp.addReview(savedR3.getId(), re7, "sfafas");
+        
+        Review re = new Review();
+        re.setText("Blablabla");
+        re.setRating(2);
+        Review re2 = new Review();
+        re2.setText("Ça marche !");
+        re2.setRating(1);
+        Review re3 = new Review();
+        re3.setText("Ce resto est super bien ! Cinq étoiles...");
+        re3.setRating(5);
+        rp.addReview(savedR.getId(), re, "Here is the id of user");
+        rp.addReview(savedR.getId(), re2, "Here is the id of user");
+        rp.addReview(savedR.getId(), re3, "Here is the id of user");
+        List<Restaurant> topRestaurants = rp.getTop10();
+        Assert.assertEquals(topRestaurants.size(), 10);
+        Assert.assertEquals(topRestaurants.get(0).getId(), savedR3.getId());
+        Assert.assertEquals(topRestaurants.get(1).getId(), savedR.getId());
+    }
     @Test
      public void testFindById() 
      {
