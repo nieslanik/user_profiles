@@ -16,7 +16,8 @@
   <modules>
     <module>persistence</module>
     <module>sample-data</module>
-    <module>../join_project/user_profiles/PA036-sprava_uziv_profilov</module>
+    <module>PA036-sprava_uziv_profilov</module>
+    <module>Webmaven</module>
   </modules>
 
   <build>

@@ -1,9 +1,0 @@
-target/
-nbproject/
-.eclipse/
-.idea/
-.settings/
-.project
-.classpath
-*.iml
-*.log

@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Wed May 04 19:33:25 CEST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0154-7cd4-d85e-0000039f6160 
+on database directory memory:C:\Users\Mojmir\Documents\GitHub\PA165-LibraryManager\persistence\testdb with class loader sun.misc.Launcher$AppClassLoader@75b84c92 
+Loaded from file:/C:/Users/Mojmir/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_65-b17
+user.dir=C:\Users\Mojmir\Documents\GitHub\PA165-LibraryManager\persistence
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
