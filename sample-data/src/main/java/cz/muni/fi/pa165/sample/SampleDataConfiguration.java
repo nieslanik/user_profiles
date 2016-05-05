@@ -11,7 +11,7 @@ import cz.muni.fi.pa165.config.ServiceConfiguration;
 
 @Configuration
 @Import(ServiceConfiguration.class)
-@ComponentScan("cz.muni.fi.pa165.sample")
+@ComponentScan("cz.muni.fi.pa036.sample")
 public class SampleDataConfiguration {
     @Inject
     private SampleDataLoader loader;
