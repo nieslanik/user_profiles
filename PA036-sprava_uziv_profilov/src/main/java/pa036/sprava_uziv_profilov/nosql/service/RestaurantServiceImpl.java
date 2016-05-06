@@ -23,7 +23,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 
     @Autowired
     private RestaurantPersistence restaurantPersistence;
-    
+
     @Override
     public Restaurant create(Restaurant r) {
         return restaurantPersistence.create(r);
@@ -60,6 +60,11 @@ public class RestaurantServiceImpl implements RestaurantService{
     }
 
     @Override
+    public Restaurant findByName (String name){
+        return restaurantPersistence.findByName(name);
+    }
+
+    @Override
     public List<Restaurant> findAll() {
         return restaurantPersistence.findAll();
     }
@@ -68,5 +73,12 @@ public class RestaurantServiceImpl implements RestaurantService{
     public void RemoveAll() {
        restaurantPersistence.RemoveAll();
     }
-    
+
+    public void setRestaurantPersistence(RestaurantPersistence restaurantPersistence) {
+        this.restaurantPersistence = restaurantPersistence;
+    }
+
+    public RestaurantPersistence getRestaurantPersistence() {
+        return restaurantPersistence;
+    }
 }

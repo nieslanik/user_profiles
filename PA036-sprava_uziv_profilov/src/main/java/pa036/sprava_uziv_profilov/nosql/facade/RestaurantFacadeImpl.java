@@ -31,8 +31,24 @@ public class RestaurantFacadeImpl implements RestaurantFacade{
     
     @Autowired
     private RestaurantService restaurantService;
-    
-    
+
+
+    public AccountService getAccountService() {
+        return accountService;
+    }
+
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    public RestaurantService getRestaurantService() {
+        return restaurantService;
+    }
+
+    public void setRestaurantService(RestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
+    }
+
     @Override
     public List<Restaurant> topRestaurants() {
 
@@ -65,7 +81,7 @@ public class RestaurantFacadeImpl implements RestaurantFacade{
 
     @Override
     public List<Review> getReviews(String name) {
-        Restaurant r = restaurantService.findById(name);
+        Restaurant r = restaurantService.findByName(name);
         return r.getReviews();
     }
 

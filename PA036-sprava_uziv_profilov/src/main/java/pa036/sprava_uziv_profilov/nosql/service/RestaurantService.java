@@ -32,7 +32,8 @@ public interface RestaurantService {
     
     
     Restaurant findById(String id) ;
-    
+    Restaurant findByName(String name) ;
+
     List<Restaurant> findAll() ;
     
     void RemoveAll();
