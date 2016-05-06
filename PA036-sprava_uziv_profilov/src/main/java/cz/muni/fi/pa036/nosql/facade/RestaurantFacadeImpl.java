@@ -22,81 +22,76 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author xnieslan
  */
-@Service
-@Transactional
 public class RestaurantFacadeImpl implements RestaurantFacade{
 
     @Autowired
     private AccountService accountService;
-    
+
     @Autowired
     private RestaurantService restaurantService;
-    
-    
+
+
+    public AccountService getAccountService() {
+        return accountService;
+    }
+
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    public RestaurantService getRestaurantService() {
+        return restaurantService;
+    }
+
+    public void setRestaurantService(RestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
+    }
+
     @Override
     public List<Restaurant> topRestaurants() {
 
-        HashMap<Restaurant,Double> map = new HashMap<>();
-        ValueComparator bvc =  new ValueComparator(map);
-        TreeMap<Restaurant,Double> sorted_map = new TreeMap<>(bvc);
-
-        List<Restaurant> restaurants = restaurantService.findAll();
-        for (Restaurant r : restaurants){
-            double score = restaurantService.getRating(r.getName());
-            
-            map.put(r, score);
-        }
-        
-        sorted_map.putAll(map);
-
-        List<Restaurant> result = null;
-        for (Restaurant r : sorted_map.keySet()){
-            result.add(r);
-        }
-        
-        return result;
+        return restaurantService.getTopRestaurants();
     }
-    
 
     @Override
     public int averageScore(String name) {
+
         return (int) restaurantService.getRating(name);
     }
 
     @Override
     public List<Review> getReviews(String name) {
-        Restaurant r = restaurantService.findById(name);
+        Restaurant r = restaurantService.findByName(name);
         return r.getReviews();
     }
 
     @Override
     public boolean addReview(String description, int score, int restaurantId, int accountId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        if (description != null && score != 0 && restaurantId != 0 && accountId != 0) {
 
+            String restaurantStringId = Integer.toString(restaurantId);
+            String accountStringId = Integer.toString(accountId);
+
+            Review review = new Review();
+            review.setRating(score);
+            review.setRestaurant_id(restaurantId);
+            review.setText(description);
+            review.setUserId(accountStringId);
+
+            restaurantService.addReview(restaurantStringId, review, accountStringId);
+            return true;
+        }
+        return false;
+    }
     @Override
     public boolean removeReview(int restaurantId, int reviewid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (restaurantId != 0 && reviewid != 0) {
+            String restaurantStringId = Integer.toString(restaurantId);
+            String reviewStringId = Integer.toString(reviewid);
+
+            restaurantService.removeReview(restaurantStringId, reviewStringId);
+            return true;
+        }
+        return  false;
     }
-    
-}
-
-
-
-class ValueComparator implements Comparator<Restaurant> {
-
-    Map<Restaurant, Double> base;
-    public ValueComparator(Map<Restaurant, Double> base) {
-        this.base = base;
-    }
-
-    // Note: this comparator imposes orderings that are inconsistent with equals.    
-    public int compare(Restaurant a, Restaurant b) {
-        if (base.get(a) >= base.get(b)) {
-            return -1;
-        } else {
-            return 1;
-        } // returning 0 would merge keys
-    }
-      
 }
