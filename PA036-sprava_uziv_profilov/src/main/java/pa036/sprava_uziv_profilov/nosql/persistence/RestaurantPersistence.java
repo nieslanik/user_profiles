@@ -61,13 +61,14 @@ public class RestaurantPersistence
         coll.updateById(r.getId(), r);
     }
     
-    public void addReview(String restaurantId, Review r, String userId)
+    public Review addReview(String restaurantId, Review r, String userId)
     {
        JacksonDBCollection<Restaurant, String> coll = JacksonDBCollection.wrap(database.getCollection("Restaurants"), Restaurant.class,
         String.class);
        r.setId(ObjectId.get().toString());
        r.setUserId(userId);
        coll.updateById(restaurantId, DBUpdate.push("reviews", r));
+       return r;
     }
     
     public void removeReview(String restaurantId, String reviewId)

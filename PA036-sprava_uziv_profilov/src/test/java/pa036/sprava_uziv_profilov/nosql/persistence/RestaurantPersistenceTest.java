@@ -69,9 +69,10 @@ public class RestaurantPersistenceTest {
         Restaurant savedR = rp.create(r);
         Review re = new Review();
         re.setText("Blablabla");
-        rp.addReview(savedR.getId(), re, "Here is the user's id.");
+        Review review = rp.addReview(savedR.getId(), re, "Here is the user's id.");
         System.out.println(rp.findById(savedR.getId()).getReviews().get(0).getId());
         System.out.println(re.getUserId());
+        System.out.println("ID of the review: " + review.getId());
     }
     
     @Test
