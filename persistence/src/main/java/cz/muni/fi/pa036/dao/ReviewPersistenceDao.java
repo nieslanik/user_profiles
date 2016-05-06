@@ -26,4 +26,6 @@ public interface ReviewPersistenceDao {
     Review findById(Long id);
     
     List<Review> findByRestaurantId(Long id);
+    
+    List<Review> findByAccountId(Long id);
 }

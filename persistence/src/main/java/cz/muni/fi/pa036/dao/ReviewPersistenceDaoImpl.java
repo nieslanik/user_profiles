@@ -62,4 +62,10 @@ public class ReviewPersistenceDaoImpl implements ReviewPersistenceDao{
                 .setParameter("id", id).getResultList();
             return result;
     }
+    
+    public List<Review> findByAccountId(Long id){
+        List<Review> result = em.createQuery("from Review where user_id = :id", Review.class)
+                .setParameter("id", id).getResultList();
+            return result;
+    }
 }
