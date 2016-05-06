@@ -1,0 +1,59 @@
+package cz.muni.fi.pa036.sql.service;
+
+import cz.muni.fi.pa036.dao.AccountPersistenceDao;
+import cz.muni.fi.pa036.entity.Account;
+
+import java.util.List;
+
+/**
+ * Created by xnieslan on 06.05.2016.
+ */
+public class AccountServiceSQLImpl implements AccountServiceSQL {
+
+    private AccountPersistenceDao accountPersistenceDao;
+
+    public AccountPersistenceDao getAccountPersistenceDao() {
+        return accountPersistenceDao;
+    }
+
+    public void setAccountPersistenceDao(AccountPersistenceDao accountPersistenceDao) {
+        this.accountPersistenceDao = accountPersistenceDao;
+    }
+
+    @Override
+    public Account registerAccount(Account account, String unencryptedPassword) {
+        account.setPassword(unencryptedPassword);
+        //return accountPersistenceDao.create(account);
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<Account> findAll() {
+        return accountPersistenceDao.findAll();
+    }
+
+    @Override
+    public Account findById(int accountId) {
+        return accountPersistenceDao.findById(1l);
+    }
+
+    @Override
+    public boolean authenticate(Account account, String password) {
+        return accountPersistenceDao.findByName(account.getUsername()).getPassword().equals(password);
+    }
+
+    @Override
+    public void update(Account account) {
+        accountPersistenceDao.update(account);
+    }
+
+    @Override
+    public void delete(Account account) {
+        accountPersistenceDao.delete(account);
+    }
+
+    @Override
+    public Account findByName(String name) {
+        return accountPersistenceDao.findByName(name);
+    }
+}

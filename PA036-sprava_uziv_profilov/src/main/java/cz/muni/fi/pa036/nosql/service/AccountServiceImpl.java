@@ -32,6 +32,7 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public Account registerAccount(Account account, String unencryptedPassword) {
+        account.setPassword(unencryptedPassword);
         return userPersistence.create(account);
     }
 
@@ -47,7 +48,8 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public boolean authenticate(Account account, String password) {
-        return account.getPassword().equals(password);
+
+        return userPersistence.findByName(account.getUsername()).getPassword().equals(password);
     }
 
     @Override

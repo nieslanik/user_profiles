@@ -20,7 +20,7 @@ public class RestaurantDTO {
 
     private String name;
 
-    private List<Review>reviews = new ArrayList<>();
+    private List<ReviewDTO>reviews = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -38,11 +38,11 @@ public class RestaurantDTO {
         this.name = name;
     }
 
-    public List<Review> getReviews() {
+    public List<ReviewDTO> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<Review> reviews) {
+    public void setReviews(List<ReviewDTO> reviews) {
         this.reviews = reviews;
     }
 
