@@ -14,8 +14,7 @@ import java.util.List;
  * @author Mojmir
  */
 public interface AccountPersistenceDao {
-   void create(Account u); 
-   //return Account;
+   Account create(Account u);
     
    void delete(Account u);
 
@@ -25,5 +24,5 @@ public interface AccountPersistenceDao {
 
    Account findByName(String name);
 
-   Account findById(Long id);
+   Account findById(int id);
 }

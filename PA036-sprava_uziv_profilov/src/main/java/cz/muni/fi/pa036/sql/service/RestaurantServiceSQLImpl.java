@@ -28,6 +28,7 @@ public class RestaurantServiceSQLImpl implements RestaurantServiceSQL {
 
     @Override
     public Restaurant create(Restaurant r) {
+
         return restaurantPersistenceDao.create(r);
     }
 
@@ -38,6 +39,7 @@ public class RestaurantServiceSQLImpl implements RestaurantServiceSQL {
 
     @Override
     public void update(Restaurant r) {
+
         restaurantPersistenceDao.update(r);
     }
 
@@ -51,21 +53,20 @@ public class RestaurantServiceSQLImpl implements RestaurantServiceSQL {
     }
 
     @Override
-    public void removeReview(int restaurantId, Long reviewId) {
+    public void removeReview(int restaurantId, int reviewId) {
         reviewPersistenceDao.delete(reviewPersistenceDao.findById(reviewId));
     }
 
     @Override
     public double getRating(int restaurantId) {
-        throw new UnsupportedOperationException();
-
-//        return restaurantPersistenceDao.getRating(restaurantId);
+        return restaurantPersistenceDao.getRating(restaurantId);
     }
 
 
 
     @Override
     public Restaurant findById(int id) {
+
         return restaurantPersistenceDao.findById(id);
     }
 
@@ -76,15 +77,13 @@ public class RestaurantServiceSQLImpl implements RestaurantServiceSQL {
 
     @Override
     public List<Restaurant> findAll() {
+
         return restaurantPersistenceDao.findAll();
     }
 
     @Override
-    public void RemoveAll() {
-    }
-
-    @Override
     public List<Restaurant> getTopRestaurants() {
-        return null;
+        throw new UnsupportedOperationException();
+
     }
 }

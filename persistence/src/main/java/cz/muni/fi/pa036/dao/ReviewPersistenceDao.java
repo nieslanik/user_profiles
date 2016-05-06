@@ -21,11 +21,9 @@ public interface ReviewPersistenceDao {
     
     List<Review> findAll();
 
-    Review findByName(String name);
-
-    Review findById(Long id);
+    Review findById(int id);
     
-    List<Review> findByRestaurantId(Long id);
+    List<Review> findByRestaurantId(int id);
     
-    List<Review> findByAccountId(Long id);
+    List<Review> findByAccountId(int id);
 }

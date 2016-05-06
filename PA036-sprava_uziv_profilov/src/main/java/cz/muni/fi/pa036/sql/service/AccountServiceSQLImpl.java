@@ -23,8 +23,7 @@ public class AccountServiceSQLImpl implements AccountServiceSQL {
     @Override
     public Account registerAccount(Account account, String unencryptedPassword) {
         account.setPassword(unencryptedPassword);
-        //return accountPersistenceDao.create(account);
-        throw new UnsupportedOperationException();
+        return accountPersistenceDao.create(account);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class AccountServiceSQLImpl implements AccountServiceSQL {
 
     @Override
     public Account findById(int accountId) {
-        return accountPersistenceDao.findById(1l);
+        return accountPersistenceDao.findById(accountId);
     }
 
     @Override
@@ -44,16 +43,19 @@ public class AccountServiceSQLImpl implements AccountServiceSQL {
 
     @Override
     public void update(Account account) {
+
         accountPersistenceDao.update(account);
     }
 
     @Override
     public void delete(Account account) {
+
         accountPersistenceDao.delete(account);
     }
 
     @Override
     public Account findByName(String name) {
+
         return accountPersistenceDao.findByName(name);
     }
 }

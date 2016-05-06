@@ -39,31 +39,27 @@ public class ReviewPersistenceDaoImpl implements ReviewPersistenceDao{
     
     @Override
     public List<Review> findAll() {
+
         return em.createQuery("select f from Review f", Review.class).getResultList();
     }
 
+
+
     @Override
-    public Review findByName(String name) {
-        List<Review> result = em.createQuery("from Review where name = :name", Review.class)
-                .setParameter("name", name).getResultList();
-        if (result.isEmpty())
-            return null;
-        else
-            return result.get(0);
+    public Review findById(int id) {
+
+        return em.find(Review.class, id);
     }
 
     @Override
-    public Review findById(Long id) {
-        return em.find(Review.class, id);
-    }
-    
-    public List<Review> findByRestaurantId(Long id){
+    public List<Review> findByRestaurantId(int id){
         List<Review> result = em.createQuery("from Review where restaurant_id = :id", Review.class)
                 .setParameter("id", id).getResultList();
             return result;
     }
-    
-    public List<Review> findByAccountId(Long id){
+
+    @Override
+    public List<Review> findByAccountId(int id){
         List<Review> result = em.createQuery("from Review where user_id = :id", Review.class)
                 .setParameter("id", id).getResultList();
             return result;

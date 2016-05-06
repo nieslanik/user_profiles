@@ -25,8 +25,9 @@ public class AccountPersistenceDaoImpl implements AccountPersistenceDao{
     
    
     @Override
-    public void create(Account u) {
+    public Account create(Account u) {
         em.persist(u);
+        return u;
     }
 
     @Override
@@ -55,8 +56,8 @@ public class AccountPersistenceDaoImpl implements AccountPersistenceDao{
     }
 
     @Override
-    public Account findById(Long id) {
-        return em.find(Account.class, id.intValue());
+    public Account findById(int id) {
+        return em.find(Account.class, id);
     }
 }
 
