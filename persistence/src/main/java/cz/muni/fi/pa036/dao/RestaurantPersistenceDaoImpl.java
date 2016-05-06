@@ -54,7 +54,7 @@ public class RestaurantPersistenceDaoImpl implements RestaurantPersistenceDao {
     }
 
     @Override
-    public Restaurant findById(Long id) {
+    public Restaurant findById(int id) {
         return em.find(Restaurant.class, id);
     }
     
