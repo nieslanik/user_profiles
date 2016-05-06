@@ -50,28 +50,9 @@ public class RestaurantFacadeImpl implements RestaurantFacade{
     @Override
     public List<Restaurant> topRestaurants() {
 
-        HashMap<Restaurant,Double> map = new HashMap<>();
-        ValueComparator bvc =  new ValueComparator(map);
-        TreeMap<Restaurant,Double> sorted_map = new TreeMap<>(bvc);
-
-        List<Restaurant> restaurants = restaurantService.findAll();
-        for (Restaurant r : restaurants){
-            double score = restaurantService.getRating(r.getName());
-            
-            map.put(r, score);
-        }
-        
-        sorted_map.putAll(map);
-
-        List<Restaurant> result = null;
-        for (Restaurant r : sorted_map.keySet()){
-            result.add(r);
-        }
-        
-        return result;
+        return restaurantService.getTopRestaurants();
     }
     
-
     @Override
     public int averageScore(String name) {
 
@@ -113,24 +94,4 @@ public class RestaurantFacadeImpl implements RestaurantFacade{
         }
         return  false;
     }
-}
-
-
-
-class ValueComparator implements Comparator<Restaurant> {
-
-    Map<Restaurant, Double> base;
-    public ValueComparator(Map<Restaurant, Double> base) {
-        this.base = base;
-    }
-
-    // Note: this comparator imposes orderings that are inconsistent with equals.    
-    public int compare(Restaurant a, Restaurant b) {
-        if (base.get(a) >= base.get(b)) {
-            return -1;
-        } else {
-            return 1;
-        } // returning 0 would merge keys
-    }
-      
 }

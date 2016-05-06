@@ -72,6 +72,11 @@ public class RestaurantServiceImpl implements RestaurantService{
        restaurantPersistence.RemoveAll();
     }
 
+    @Override
+    public List<Restaurant> getTopRestaurants() {
+        return restaurantPersistence.getTop10();
+    }
+
     public void setRestaurantPersistence(RestaurantPersistence restaurantPersistence) {
         this.restaurantPersistence = restaurantPersistence;
     }
