@@ -22,8 +22,6 @@ import pa036.sprava_uziv_profilov.nosql.service.RestaurantService;
  *
  * @author xnieslan
  */
-@Service
-@Transactional
 public class AccountFacadeImpl implements AccountFacade{
 
     @Autowired

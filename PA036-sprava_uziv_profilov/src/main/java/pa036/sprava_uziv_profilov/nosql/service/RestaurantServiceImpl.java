@@ -17,8 +17,6 @@ import pa036.sprava_uziv_profilov.nosql.persistence.RestaurantPersistence;
  *
  * @author xnieslan
  */
-@Service
-@Transactional
 public class RestaurantServiceImpl implements RestaurantService{
 
     @Autowired

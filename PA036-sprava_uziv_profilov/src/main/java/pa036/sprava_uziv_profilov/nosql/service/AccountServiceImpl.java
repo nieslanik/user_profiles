@@ -16,8 +16,6 @@ import pa036.sprava_uziv_profilov.nosql.persistence.UserPersistence;
  *
  * @author xnieslan
  */
-@Service
-@Transactional
 public class AccountServiceImpl implements AccountService{
 
     @Autowired

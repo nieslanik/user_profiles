@@ -22,8 +22,6 @@ import pa036.sprava_uziv_profilov.nosql.service.RestaurantService;
  *
  * @author xnieslan
  */
-@Service
-@Transactional
 public class RestaurantFacadeImpl implements RestaurantFacade{
 
     @Autowired
@@ -76,6 +74,7 @@ public class RestaurantFacadeImpl implements RestaurantFacade{
 
     @Override
     public int averageScore(String name) {
+
         return (int) restaurantService.getRating(name);
     }
 
@@ -87,14 +86,33 @@ public class RestaurantFacadeImpl implements RestaurantFacade{
 
     @Override
     public boolean addReview(String description, int score, int restaurantId, int accountId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        if (description != null && score != 0 && restaurantId != 0 && accountId != 0) {
 
+            String restaurantStringId = Integer.toString(restaurantId);
+            String accountStringId = Integer.toString(accountId);
+
+            Review review = new Review();
+            review.setRating(score);
+            review.setRestaurant_id(restaurantId);
+            review.setText(description);
+            review.setUserId(accountStringId);
+
+            restaurantService.addReview(restaurantStringId, review, accountStringId);
+            return true;
+        }
+        return false;
+    }
     @Override
     public boolean removeReview(int restaurantId, int reviewid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (restaurantId != 0 && reviewid != 0) {
+            String restaurantStringId = Integer.toString(restaurantId);
+            String reviewStringId = Integer.toString(reviewid);
+
+            restaurantService.removeReview(restaurantStringId, reviewStringId);
+            return true;
+        }
+        return  false;
     }
-    
 }
 
 
