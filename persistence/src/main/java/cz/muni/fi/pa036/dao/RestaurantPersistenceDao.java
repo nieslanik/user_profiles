@@ -31,7 +31,7 @@ public interface RestaurantPersistenceDao {
     
     Restaurant findById(Long id);
     
-    double getRating(String restaurantId);
+    double getRating(int restaurantId);
     
     
 }

@@ -59,9 +59,9 @@ public class RestaurantPersistenceDaoImpl implements RestaurantPersistenceDao {
     }
     
     @Override
-    public double getRating(String restaurantId){
+    public double getRating(int restaurantId){
         final ReviewPersistenceDao rep= new ReviewPersistenceDaoImpl();
-        List<Review>list =rep.findByRestaurantId(Long.parseLong(restaurantId));
+        List<Review>list =rep.findByRestaurantId(new Long(restaurantId));
         Long rate=0L;
         for(int i=0;i<list.size();i++){
             rate+=new Long(list.get(i).getRestaurant_id());
