@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.sample;
+package cz.muni.fi.pa036.sample;
 
 import cz.muni.fi.pa036.dao.AccountPersistenceDao;
 import cz.muni.fi.pa036.dao.RestaurantPersistenceDao;

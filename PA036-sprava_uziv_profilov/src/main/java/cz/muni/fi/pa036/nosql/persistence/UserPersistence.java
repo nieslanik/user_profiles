@@ -7,7 +7,7 @@ package cz.muni.fi.pa036.nosql.persistence;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
-import cz.muni.fi.pa036.nosq.entities.Account;
+import cz.muni.fi.pa036.nosql.entities.Account;
 import java.util.List;
 import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;

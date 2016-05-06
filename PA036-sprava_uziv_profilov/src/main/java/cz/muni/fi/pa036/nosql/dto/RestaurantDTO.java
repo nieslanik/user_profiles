@@ -8,7 +8,7 @@ package cz.muni.fi.pa036.nosql.dto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import cz.muni.fi.pa036.nosq.entities.Review;
+import cz.muni.fi.pa036.nosql.entities.Review;
 
 /**
  *

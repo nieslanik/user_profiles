@@ -13,8 +13,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import cz.muni.fi.pa036.nosq.entities.Restaurant;
-import cz.muni.fi.pa036.nosq.entities.Review;
+import cz.muni.fi.pa036.nosql.entities.Restaurant;
+import cz.muni.fi.pa036.nosql.entities.Review;
 import cz.muni.fi.pa036.nosql.persistence.RestaurantPersistence;
 
 /**

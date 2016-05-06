@@ -5,8 +5,8 @@
  */
 package cz.muni.fi.pa036.nosql.facade;
 
-import cz.muni.fi.pa036.nosq.entities.Restaurant;
-import cz.muni.fi.pa036.nosq.entities.Review;
+import cz.muni.fi.pa036.nosql.entities.Restaurant;
+import cz.muni.fi.pa036.nosql.entities.Review;
 import cz.muni.fi.pa036.nosql.service.AccountService;
 import cz.muni.fi.pa036.nosql.service.RestaurantService;
 import java.util.Comparator;

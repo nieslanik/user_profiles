@@ -5,8 +5,8 @@
  */
 package cz.muni.fi.pa036.nosql.service;
 
-import cz.muni.fi.pa036.nosq.entities.Restaurant;
-import cz.muni.fi.pa036.nosq.entities.Review;
+import cz.muni.fi.pa036.nosql.entities.Restaurant;
+import cz.muni.fi.pa036.nosql.entities.Review;
 import cz.muni.fi.pa036.nosql.persistence.RestaurantPersistence;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package cz.muni.fi.pa036.nosql.service;
 
-import cz.muni.fi.pa036.nosq.entities.Account;
-import cz.muni.fi.pa036.nosq.entities.Restaurant;
-import cz.muni.fi.pa036.nosq.entities.Review;
+import cz.muni.fi.pa036.nosql.entities.Account;
+import cz.muni.fi.pa036.nosql.entities.Restaurant;
+import cz.muni.fi.pa036.nosql.entities.Review;
 import cz.muni.fi.pa036.nosql.dto.AccountDTO;
 import cz.muni.fi.pa036.nosql.dto.RestaurantDTO;
 import cz.muni.fi.pa036.nosql.dto.ReviewDTO;

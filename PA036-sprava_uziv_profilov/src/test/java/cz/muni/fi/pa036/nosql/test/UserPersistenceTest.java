@@ -5,7 +5,7 @@
  */
 package cz.muni.fi.pa036.nosql.test;
 
-import cz.muni.fi.pa036.nosq.entities.Account;
+import cz.muni.fi.pa036.nosql.entities.Account;
 import cz.muni.fi.pa036.nosql.persistence.UserPersistence;
 import java.util.List;
 import org.junit.After;

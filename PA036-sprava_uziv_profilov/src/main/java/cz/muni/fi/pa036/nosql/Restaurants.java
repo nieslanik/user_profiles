@@ -6,8 +6,8 @@
 
 package cz.muni.fi.pa036.nosql;
 
-import cz.muni.fi.pa036.nosq.entities.Restaurant;
-import cz.muni.fi.pa036.nosq.entities.Review;
+import cz.muni.fi.pa036.nosql.entities.Restaurant;
+import cz.muni.fi.pa036.nosql.entities.Review;
 import java.util.List;
 
 /**

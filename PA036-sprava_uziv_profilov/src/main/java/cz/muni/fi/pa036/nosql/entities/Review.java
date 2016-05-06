@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa036.nosq.entities;
+package cz.muni.fi.pa036.nosql.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import cz.muni.fi.pa036.entity.*;
