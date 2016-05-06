@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <!-- Persistence -->
+    <bean id="restaurantPersistence" class="cz.muni.fi.pa036.nosql.persistence.RestaurantPersistence" />
+
+    <bean id="userPersistence" class="cz.muni.fi.pa036.nosql.persistence.UserPersistence" />
+
+    <!-- Service-->
+    <bean id="restaurantService" class="cz.muni.fi.pa036.nosql.service.RestaurantServiceImpl">
+       <property name="restaurantPersistence" ref="restaurantPersistence" />
+    </bean>
+
+    <bean id="accountService" class="cz.muni.fi.pa036.nosql.service.AccountServiceImpl" >
+        <property name="userPersistence" ref="userPersistence" />
+    </bean>
+
+    <!-- Facade -->
+    <bean id="restaurantFacade" class="cz.muni.fi.pa036.nosql.facade.RestaurantFacadeImpl">
+
+        <property name="accountService" ref="accountService"/>
+        <property name="restaurantService" ref="restaurantService"/>
+
+    </bean>
+
+</beans>

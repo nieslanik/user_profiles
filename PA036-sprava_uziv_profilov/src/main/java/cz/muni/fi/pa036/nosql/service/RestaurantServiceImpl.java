@@ -17,13 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author xnieslan
  */
-@Service
-@Transactional
 public class RestaurantServiceImpl implements RestaurantService{
 
     @Autowired
     private RestaurantPersistence restaurantPersistence;
-    
+
     @Override
     public Restaurant create(Restaurant r) {
         return restaurantPersistence.create(r);
@@ -60,13 +58,30 @@ public class RestaurantServiceImpl implements RestaurantService{
     }
 
     @Override
+    public Restaurant findByName (String name){
+        return restaurantPersistence.findByName(name);
+    }
+
+    @Override
     public List<Restaurant> findAll() {
         return restaurantPersistence.findAll();
     }
 
     @Override
     public void RemoveAll() {
-       restaurantPersistence.RemoveAll();
+        restaurantPersistence.RemoveAll();
     }
-    
+
+    @Override
+    public List<Restaurant> getTopRestaurants() {
+        return restaurantPersistence.getTop10();
+    }
+
+    public void setRestaurantPersistence(RestaurantPersistence restaurantPersistence) {
+        this.restaurantPersistence = restaurantPersistence;
+    }
+
+    public RestaurantPersistence getRestaurantPersistence() {
+        return restaurantPersistence;
+    }
 }

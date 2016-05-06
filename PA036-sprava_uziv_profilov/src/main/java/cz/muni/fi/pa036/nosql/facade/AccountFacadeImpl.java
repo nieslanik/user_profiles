@@ -18,22 +18,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 /**
  *
  * @author xnieslan
  */
-@Service
-@Transactional
 public class AccountFacadeImpl implements AccountFacade{
 
     @Autowired
     private AccountService accountService;
-    
+
     @Autowired
     private RestaurantService restaurantService;
-    
-    
+
+
     @Override
     public Boolean login(String username, String password) {
         Account account = accountService.findByName(username);
@@ -52,14 +49,14 @@ public class AccountFacadeImpl implements AccountFacade{
 
     @Override
     public Boolean logout(String username) {
-            Account account = accountService.findByName(username);
-            if(account.getLogon_status() == 1){
-                account.setLogon_status(0);
-                return true;
-            }else{
-                return false;
-            }
-            
+        Account account = accountService.findByName(username);
+        if(account.getLogon_status() == 1){
+            account.setLogon_status(0);
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     @Override
@@ -68,13 +65,13 @@ public class AccountFacadeImpl implements AccountFacade{
         account.setUsername(username);
         account.setPassword(password);
         account.setEmployee_acount(employee);
-        
+
         Account compare = accountService.findByName(username);
-        
+
         if (compare == null){
             accountService.registerAccount(account, password);
             return true;
-        }else{            
+        }else{
             return false;
         }
     }
@@ -87,9 +84,9 @@ public class AccountFacadeImpl implements AccountFacade{
     @Override
     public int numberOfLogin() {
         List<Account> accounts = accountService.findAll();
-        
+
         int result = 0;
-        
+
         for (Account account : accounts){
             if(account.getLogon_status() == 1){
                 result++;
@@ -97,5 +94,5 @@ public class AccountFacadeImpl implements AccountFacade{
         }
         return result;
     }
-    
+
 }

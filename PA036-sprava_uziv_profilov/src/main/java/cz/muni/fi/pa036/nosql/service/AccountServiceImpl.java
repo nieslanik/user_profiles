@@ -17,13 +17,19 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author xnieslan
  */
-@Service
-@Transactional
 public class AccountServiceImpl implements AccountService{
 
     @Autowired
     private UserPersistence userPersistence;
-    
+
+    public UserPersistence getUserPersistence() {
+        return userPersistence;
+    }
+
+    public void setUserPersistence(UserPersistence userPersistence) {
+        this.userPersistence = userPersistence;
+    }
+
     @Override
     public Account registerAccount(Account account, String unencryptedPassword) {
         return userPersistence.create(account);

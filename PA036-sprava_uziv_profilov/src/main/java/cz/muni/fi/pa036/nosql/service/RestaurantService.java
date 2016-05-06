@@ -21,21 +21,25 @@ import org.mongojack.WriteResult;
  */
 public interface RestaurantService {
     Restaurant create(Restaurant r);
-   
+
     void remove(String restaurantId);
-    
+
     void update(Restaurant r);
-    
+
     void addReview(String restaurantId, Review r, String userId);
-    
+
     void removeReview(String restaurantId, String reviewId);
+
     double getRating(String restaurantId);
-    
-    
+
     Restaurant findById(String id) ;
-    
+
+    Restaurant findByName(String name) ;
+
     List<Restaurant> findAll() ;
-    
+
     void RemoveAll();
+
+    List<Restaurant> getTopRestaurants();
     
 }

@@ -13,68 +13,67 @@ import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
 
-
 /**
  *
  * @author Mato
  */
-public class UserPersistence 
+public class UserPersistence
 {
     private MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
     //private MongoDatabase database = mongoClient.getDatabase("test");
     private DB database = mongoClient.getDB("test");
-    public Account create(Account u) 
+    public Account create(Account u)
     {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
-        String.class);
+                String.class);
         WriteResult<Account, String> result = coll.insert(u);
         return result.getSavedObject();
     }
 
-    
-    public void delete(Account u) 
+
+    public void delete(Account u)
     {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
-        String.class);
+                String.class);
         coll.removeById(u.getId());
     }
 
-    
-    public void update(Account u) 
+
+    public void update(Account u)
     {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
-        String.class);
+                String.class);
         coll.updateById(u.getId(), u);
     }
-    
-    
-    public List<Account> findAll() 
+
+
+    public List<Account> findAll()
     {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
-        String.class);
+                String.class);
         return coll.find().toArray();
     }
 
-    
-    public Account findByName(String name) 
+
+    public Account findByName(String name)
     {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
-        String.class);
+                String.class);
         return coll.findOne(DBQuery.is("username", name));//coll.find(DBQuery.is("username", name)).toArray().get(0);
     }
 
-    
-    public Account findById(String id) 
+
+    public Account findById(String id)
     {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
-        String.class);
+                String.class);
         return coll.findOneById(id);
     }
-    
+
     public void RemoveAll()
     {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
-        String.class);
+                String.class);
         coll.drop();
     }
 

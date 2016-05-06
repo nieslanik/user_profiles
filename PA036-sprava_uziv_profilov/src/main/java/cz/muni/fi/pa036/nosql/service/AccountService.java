@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface AccountService {
 
-    
+
     Account registerAccount(Account account, String unencryptedPassword);
 
     List<Account> findAll();
@@ -27,7 +27,7 @@ public interface AccountService {
     void update(Account account);
 
     void delete(Account account);
-    
-    Account findByName(String name); 
+
+    Account findByName(String name);
 
 }
