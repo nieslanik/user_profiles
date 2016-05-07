@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-@RequestMapping("/registerr.jsp")
+@RequestMapping("/register.jsp")
 //@WebServlet(name = "registerServlet", urlPatterns = {"/register.jsp"})
 public class RegisterServlet  {
      

@@ -19,22 +19,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author akaren
  */
-@WebServlet(urlPatterns = {"/loginCheck.jsp"})
-public class RestaurantServlet extends HttpServlet {
-    
+//@WebServlet(urlPatterns = {"/loginCheck.jsp"})
+@Controller
+@RequestMapping("/loginCheck.jsp")
+public class RestaurantServlet {
     
     @Autowired
     private RestaurantFacade myFacade;
     
     @Autowired
     private AccountFacade loginFacade;
+
+    public void setMyFacade(RestaurantFacade myFacade) {
+        this.myFacade = myFacade;
+    }
+
+    public void setLoginFacade(AccountFacade loginFacade) {
+        this.loginFacade = loginFacade;
+    }
+
+    public RestaurantFacade getMyFacade() {
+        return myFacade;
+    }
+
+    public AccountFacade getLoginFacade() {
+        return loginFacade;
+    }
+    
+   
   
-      @Override
+    /*
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<RestaurantDTO> list = myFacade.topRestaurants();
@@ -45,12 +66,11 @@ public class RestaurantServlet extends HttpServlet {
      // RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
      // rd.forward(request, response);
         
-     
-    }
+    
+    }*/
 
-       @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+       
+    protected String doPost(HttpServletRequest request){
         
           
        String name = request.getAttribute("username").toString();
@@ -66,20 +86,10 @@ public class RestaurantServlet extends HttpServlet {
        
       if(loginFacade.login(name, password)) {
            request.getSession().setAttribute("username", name);
-           RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
-           rd.forward(request, response);
-       }
-       
-       else {
-            request.setAttribute("errorMessage", "Invalid user or password");
-            RequestDispatcher rd = request.getRequestDispatcher("/");
-            rd.forward(request, response); 
-         
-       }     
-     
-            
-       
-        try {
+          // RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
+          // rd.forward(request, response);
+           
+            try {
            List<RestaurantDTO> list = myFacade.topRestaurants();
            
            request.getSession().setAttribute("restList", list);
@@ -87,11 +97,23 @@ public class RestaurantServlet extends HttpServlet {
            int logins =  loginFacade.numberOfLogin();
            request.getSession().setAttribute("logins", logins);
            
-           RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
-           rd.forward(request, response);
+           return "/outline.jsp";
+          // RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
+          // rd.forward(request, response);
         } catch (Exception e) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
-        }
+          //  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+        } 
+           return "/outline.jsp";
+       }
+       
+       else {
+            request.setAttribute("errorMessage", "Invalid user or password");
+            return "/";
+           // RequestDispatcher rd = request.getRequestDispatcher("/");
+           // rd.forward(request, response); 
+         
+       }     
+       
               
     }
 
