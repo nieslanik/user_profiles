@@ -6,11 +6,13 @@
 
 import cz.muni.fi.pa036.nosql.entities.Restaurant;
 import cz.muni.fi.pa036.nosql.entities.Review;
-import cz.muni.fi.pa036.nosql.facade.RestaurantFacade;
+import cz.muni.fi.pa036.facade.RestaurantFacade;
 import cz.muni.fi.pa036.nosql.persistence.RestaurantPersistence;
 import cz.muni.fi.pa036.nosql.service.RestaurantService;
+import cz.muni.fi.pa036.sql.dao.RestaurantPersistenceDao;
 import cz.muni.fi.pa036.sql.dao.RestaurantPersistenceDaoImpl;
 import cz.muni.fi.pa036.sql.dao.ReviewPersistenceDaoImpl;
+import cz.muni.fi.pa036.sql.service.RestaurantServiceSQL;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,17 +42,14 @@ public class RestaurantServiceImplTest {
     private RestaurantFacade restaurantFacade;
 
     @Autowired
-    private RestaurantPersistenceDaoImpl restaurantPersistenceDao;
+    private RestaurantServiceSQL restaurantServiceSQL;
 
-    private ReviewPersistenceDaoImpl reviewPersistenceDao = new ReviewPersistenceDaoImpl();
-
-
-    public RestaurantPersistenceDaoImpl getRestaurantPersistenceDao() {
-        return restaurantPersistenceDao;
+    public RestaurantServiceSQL getRestaurantServiceSQL() {
+        return restaurantServiceSQL;
     }
 
-    public void setRestaurantPersistenceDao(RestaurantPersistenceDaoImpl restaurantPersistenceDao) {
-        this.restaurantPersistenceDao = restaurantPersistenceDao;
+    public void setRestaurantServiceSQL(RestaurantServiceSQL restaurantServiceSQL) {
+        this.restaurantServiceSQL = restaurantServiceSQL;
     }
 
     public RestaurantFacade getRestaurantFacade() {

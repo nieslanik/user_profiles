@@ -13,7 +13,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -63,21 +63,21 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-     <dependency>
-	<groupId>org.hibernate.javax.persistence</groupId>
-	<artifactId>hibernate-jpa-2.0-api</artifactId>
-	<version>1.0.1.Final</version>
-</dependency>
-<dependency>
-	<groupId>javax.persistence</groupId>
-	<artifactId>persistence-api</artifactId>
-	<version>1.0.2</version>
-</dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+        </dependency>
 
 
 
-        
-        
+
+
     </dependencies>
 
     <build>
