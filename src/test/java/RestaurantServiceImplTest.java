@@ -18,8 +18,13 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +38,7 @@ import static org.junit.Assert.assertTrue;
 @ContextConfiguration(locations = "classpath:/ApplicationContext.xml")
 public class RestaurantServiceImplTest {
 
+
     @Autowired
     private RestaurantService restaurantService;
 
@@ -44,6 +50,17 @@ public class RestaurantServiceImplTest {
 
     @Autowired
     private RestaurantServiceSQL restaurantServiceSQL;
+
+    @Autowired
+    private RestaurantPersistenceDao restaurantPersistenceDao;
+
+    public RestaurantPersistenceDao getRestaurantPersistenceDao() {
+        return restaurantPersistenceDao;
+    }
+
+    public void setRestaurantPersistenceDao(RestaurantPersistenceDao restaurantPersistenceDao) {
+        this.restaurantPersistenceDao = restaurantPersistenceDao;
+    }
 
     public RestaurantServiceSQL getRestaurantServiceSQL() {
         return restaurantServiceSQL;

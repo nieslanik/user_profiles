@@ -23,8 +23,15 @@ public class AccountPersistenceDaoImpl implements AccountPersistenceDao{
     
     @PersistenceContext
     private EntityManager em;
-    
-   
+
+    public EntityManager getEm() {
+        return em;
+    }
+
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+
     @Override
     public Account create(Account u) {
         em.persist(u);
