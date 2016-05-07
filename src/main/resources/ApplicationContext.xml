@@ -32,6 +32,10 @@
         <property name="reviewPersistenceDao" ref="reviewDaoImpl" />
         <property name="restaurantPersistenceDao" ref="restaurantDaoImpl" />
     </bean>
+    <bean id="reviewServiceSQL" class="cz.muni.fi.pa036.sql.service.ReviewServiceSQLImpl" >
+        <property name="reviewPersistenceDao" ref="reviewDaoImpl" />
+    </bean>
+
 
 
     <!-- ...............................Facade................................................. -->
@@ -40,6 +44,19 @@
 
         <property name="accountService" ref="accountService"/>
         <property name="restaurantService" ref="restaurantService"/>
+        <property name="restaurantServiceSQL" ref="restaurantServiceSQL"/>
+        <property name="accountServiceSQL" ref="accountServiceSQL" />
+        <property name="reviewServiceSQL" ref="reviewServiceSQL"/>
+
+    </bean>
+
+
+    <bean id="accountFacade" class="cz.muni.fi.pa036.facade.AccountFacadeImpl">
+
+        <property name="accountService" ref="accountService"/>
+        <property name="restaurantService" ref="restaurantService"/>
+        <property name="restaurantServiceSQL" ref="restaurantServiceSQL"/>
+        <property name="accountServiceSQL" ref="accountServiceSQL" />
 
     </bean>
 

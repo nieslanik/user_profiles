@@ -24,7 +24,7 @@ public class Review {
     private String id;
     private String text;
     
-    private int restaurant_id;
+    private String restaurant_id;
     private String userId;
     private int rating;
 
@@ -54,7 +54,11 @@ public class Review {
         this.text = text;
     }
 
-    public void setRestaurant_id(int restaurant_id) {
+    public String getRestaurant_id() {
+        return restaurant_id;
+    }
+
+    public void setRestaurant_id(String restaurant_id) {
         this.restaurant_id = restaurant_id;
     }
 
@@ -67,10 +71,6 @@ public class Review {
         return text;
     }
 
-    public int getRestaurant_id() {
-        return restaurant_id;
-    }
-
     public String getUserId() {
         return userId;
     }
@@ -79,7 +79,7 @@ public class Review {
     public int hashCode() {
         int hash = 5;
         hash = 97 * hash + this.id.hashCode();
-        hash = 97 * hash + this.restaurant_id;
+        hash = 97 * hash + this.restaurant_id.hashCode();
         hash = 97 * hash + this.userId.hashCode();
         hash = 97 * hash + this.text.hashCode();
         return hash;

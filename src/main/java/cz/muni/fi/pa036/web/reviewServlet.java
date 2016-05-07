@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa036.web;
 
+import cz.muni.fi.pa036.dto.ReviewDTO;
 import cz.muni.fi.pa036.nosql.entities.Review;
 import cz.muni.fi.pa036.facade.RestaurantFacade;
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class reviewServlet extends HttpServlet {
        String name = (String) request.getAttribute("name");
        String score = (String) request.getAttribute("score"); 
          
-       List<Review> listReview = myFacade.getReviews(name);
+       List<ReviewDTO> listReview = myFacade.getReviews(name);
        request.getSession().setAttribute("reviewList", listReview);
       
     }

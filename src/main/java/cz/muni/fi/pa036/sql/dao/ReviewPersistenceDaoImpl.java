@@ -23,8 +23,10 @@ public class ReviewPersistenceDaoImpl implements ReviewPersistenceDao{
     private EntityManager em;
     
     @Override
-    public void create(Review f) {
+    public Review create(Review f) {
+
         em.persist(f);
+        return f;
     }
 
     @Override

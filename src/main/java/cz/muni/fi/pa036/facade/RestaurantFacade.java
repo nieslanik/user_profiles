@@ -40,14 +40,14 @@ public interface RestaurantFacade {
 * @param score
 * @return Boolean This returns success of adding new review.
 */
- boolean addReview (String description, int score, int restaurantId, int accountId);
+ boolean addReview (String description, int score, String restaurantId, String accountId);
  
  /**
 * This method is used to remove new review
 * @param id
 * @return Boolean This returns success of removing review.
 */
- boolean removeReview (int restaurantId, int reviewid);
+ boolean removeReview (String restaurantId, String reviewId);
  
  /**
 * This method is used to get list of reviews to one restaurant.

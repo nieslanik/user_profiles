@@ -11,6 +11,9 @@ import cz.muni.fi.pa036.nosql.service.RestaurantService;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
+
+import cz.muni.fi.pa036.sql.service.AccountServiceSQL;
+import cz.muni.fi.pa036.sql.service.RestaurantServiceSQL;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -23,71 +26,170 @@ public class AccountFacadeImpl implements AccountFacade{
     private AccountService accountService;
 
     @Autowired
-    private RestaurantService restaurantService;    
+    private RestaurantService restaurantService;
 
+    @Autowired
+    private RestaurantServiceSQL restaurantServiceSQL;
+
+    @Autowired
+    private AccountServiceSQL accountServiceSQL;
+
+    public AccountService getAccountService() {
+        return accountService;
+    }
+
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    public RestaurantService getRestaurantService() {
+        return restaurantService;
+    }
+
+    public void setRestaurantService(RestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
+    }
+
+    public RestaurantServiceSQL getRestaurantServiceSQL() {
+        return restaurantServiceSQL;
+    }
+
+    public void setRestaurantServiceSQL(RestaurantServiceSQL restaurantServiceSQL) {
+        this.restaurantServiceSQL = restaurantServiceSQL;
+    }
+
+    public AccountServiceSQL getAccountServiceSQL() {
+        return accountServiceSQL;
+    }
+
+    public void setAccountServiceSQL(AccountServiceSQL accountServiceSQL) {
+        this.accountServiceSQL = accountServiceSQL;
+    }
 
     @Override
     public Boolean login(String username, String password) {
-        Account account = accountService.findByName(username);
-        if(account.getPassword().equals(password)){
-            Calendar calendar = Calendar.getInstance();
-            //set timestamp
-            Timestamp logon_last_timestamp = new java.sql.Timestamp(calendar.getTime().getTime());
-            account.setLogon_last_timestamp(logon_last_timestamp);
-            //set logon status
-            account.setLogon_status(1);
-            return true;
+        if(ChooseDB.noSQL) {
+            Account account = accountService.findByName(username);
+            if (account.getPassword().equals(password)) {
+                Calendar calendar = Calendar.getInstance();
+                //set timestamp
+                Timestamp logon_last_timestamp = new java.sql.Timestamp(calendar.getTime().getTime());
+                account.setLogon_last_timestamp(logon_last_timestamp);
+                //set logon status
+                account.setLogon_status(1);
+                return true;
+            } else {
+                return false;
+            }
         }else{
-            return false;
+            cz.muni.fi.pa036.sql.entities.Account account = accountServiceSQL.findByName(username);
+            if (account.getPassword().equals(password)) {
+                Calendar calendar= Calendar.getInstance();
+                //set timestamp
+                Timestamp logon_last_timestamp = new java.sql.Timestamp(calendar.getTime().getTime());
+                account.setLogon_last_timestamp(logon_last_timestamp);
+                //set logon status
+                account.setLogon_status(1);
+                return true;
+            } else {
+                return false;
+            }
+
+
         }
     }
 
     @Override
     public Boolean logout(String username) {
-        Account account = accountService.findByName(username);
-        if(account.getLogon_status() == 1){
-            account.setLogon_status(0);
-            return true;
+        if (ChooseDB.noSQL) {
+            Account account = accountService.findByName(username);
+            if (account.getLogon_status() == 1) {
+                account.setLogon_status(0);
+                return true;
+            } else {
+                return false;
+            }
         }else{
-            return false;
+            cz.muni.fi.pa036.sql.entities.Account account = accountServiceSQL.findByName(username);
+            if (account.getLogon_status() == 1) {
+                account.setLogon_status(0);
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }
 
     @Override
     public Boolean register(String username, String password, Boolean employee) {
-        Account account = new Account();
-        account.setUsername(username);
-        account.setPassword(password);
-        account.setEmployee_acount(employee);
+        if (ChooseDB.noSQL) {
+            Account account = new Account();
+            account.setUsername(username);
+            account.setPassword(password);
+            account.setEmployee_acount(employee);
 
-        Account compare = accountService.findByName(username);
+            Account compare = accountService.findByName(username);
 
-        if (compare == null){
-            accountService.registerAccount(account, password);
-            return true;
+            if (compare == null) {
+                accountService.registerAccount(account, password);
+                return true;
+            } else {
+                return false;
+            }
         }else{
-            return false;
+            cz.muni.fi.pa036.sql.entities.Account account = new cz.muni.fi.pa036.sql.entities.Account();
+            account.setUsername(username);
+            account.setPassword(password);
+            account.setEmployee_acount(employee);
+
+            cz.muni.fi.pa036.sql.entities.Account compare = accountServiceSQL.findByName(username);
+
+            if (compare == null) {
+                accountServiceSQL.registerAccount(account, password);
+                return true;
+            } else {
+                return false;
+            }
         }
     }
     @Override
     public int userStatus(String username) {
-        Account account = accountService.findByName(username);
-        return account.getLogon_status();
+        if (ChooseDB.noSQL){
+            Account account = accountService.findByName(username);
+            return account.getLogon_status();
+        }else{
+            cz.muni.fi.pa036.sql.entities.Account account = accountServiceSQL.findByName(username);
+            return account.getLogon_status();
+        }
     }
 
     @Override
     public int numberOfLogin() {
-        List<Account> accounts = accountService.findAll();
+        if (ChooseDB.noSQL) {
+            List<Account> accounts = accountService.findAll();
 
-        int result = 0;
+            int result = 0;
 
-        for (Account account : accounts){
-            if(account.getLogon_status() == 1){
-                result++;
+            for (Account account : accounts) {
+                if (account.getLogon_status() == 1) {
+                    result++;
+                }
             }
-        }
-        return result;
-    }
+            return result;
 
+        }else{
+
+            List<cz.muni.fi.pa036.sql.entities.Account> accounts = accountServiceSQL.findAll();
+
+            int result = 0;
+
+            for (cz.muni.fi.pa036.sql.entities.Account account : accounts) {
+                if (account.getLogon_status() == 1) {
+                    result++;
+                }
+            }
+            return result;
+    }
+    }
 }

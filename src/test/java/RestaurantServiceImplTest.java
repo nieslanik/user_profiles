@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import cz.muni.fi.pa036.dto.ReviewDTO;
 import cz.muni.fi.pa036.nosql.entities.Restaurant;
 import cz.muni.fi.pa036.nosql.entities.Review;
 import cz.muni.fi.pa036.facade.RestaurantFacade;
@@ -126,7 +127,7 @@ public class RestaurantServiceImplTest {
         //restaurantService.create(r);
 
 
-        List<Review> result = restaurantFacade.getReviews("Restauracia");
+        List<ReviewDTO> result = restaurantFacade.getReviews("Restauracia");
 
         assertTrue(result.size() == 1);
 

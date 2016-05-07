@@ -13,7 +13,7 @@ import java.util.List;
  * @author Mojmir
  */
 public interface ReviewPersistenceDao {
-    void create(Review f);
+    Review create(Review f);
 
     void delete(Review f);
 

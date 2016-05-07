@@ -16,7 +16,7 @@ public class ReviewDTO {
     private String id;
     private String text;
     
-    private int restaurant_id;
+    private String restaurant_id;
     private String userId;
     private int rating;
 
@@ -36,11 +36,11 @@ public class ReviewDTO {
         this.text = text;
     }
 
-    public int getRestaurant_id() {
+    public String getRestaurant_id() {
         return restaurant_id;
     }
 
-    public void setRestaurant_id(int restaurant_id) {
+    public void setRestaurant_id(String restaurant_id) {
         this.restaurant_id = restaurant_id;
     }
 
@@ -65,7 +65,7 @@ public class ReviewDTO {
         int hash = 3;
         hash = 79 * hash + Objects.hashCode(this.id);
         hash = 79 * hash + Objects.hashCode(this.text);
-        hash = 79 * hash + this.restaurant_id;
+        hash = 79 * hash + this.restaurant_id.hashCode();
         hash = 79 * hash + Objects.hashCode(this.userId);
         hash = 79 * hash + this.rating;
         return hash;
