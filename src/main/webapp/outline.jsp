@@ -24,7 +24,7 @@
                         <br/>
                         Super cool restaurace nejen pro obyčejné lidi, ale i vegetariány, bezlepkáře  a jiné podivíny. 
                         <br/>
-                         <a href="reviewList.jsp?name=${restaurant.name}&?score=${restaurant.score}&?id=${restaurant.id}" id="restButton">See Reviews!</a> 
+                         <a href="reviewList.jsp?name=${restaurant.name}&?id=${restaurant.id}" id="restButton">See Reviews!</a> 
                     </td>  
                 </tr>
             </c:forEach>           

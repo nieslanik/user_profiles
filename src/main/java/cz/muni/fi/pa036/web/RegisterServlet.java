@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/register.jsp")
-//@WebServlet(name = "registerServlet", urlPatterns = {"/register.jsp"})
 public class RegisterServlet  {
      
     private  AccountFacade myFacade;
@@ -53,19 +52,14 @@ public class RegisterServlet  {
 
             if(myFacade.register(name, password, employee)) {
                 request.getSession().setAttribute("username", name);
-               // RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
                 return "/outline.jsp";
             }
             else {
                request.setAttribute("errorMessage", "Invalid username or password");
-            //   RequestDispatcher rd = request.getRequestDispatcher("/");
-            //   rd.forward(request, response); 
                return "/";
             }
         }
-        catch(Exception e){
-            //response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
-           
+        catch(Exception e){   
         }
         return "";
     }

@@ -16,9 +16,9 @@
         <%@include file="head.jsp" %>
         <img src="restaurant.jpg" alt="restaurant" width="90%" height="300px"/>
         <h1><%= request.getParameter("name") %></h1>
-        <h3><%= request.getParameter("score") %></h3>
+        <h3>${sessionScope.averageScore}</h3> 
         <form action="products" method="get">
-        <table>    -
+        <table>    
             <c:forEach items="${sessionScope.reviewList}" var="reviews">
                 <tr>
                     <td><c:out value="${reviewList.id}"/></td>
@@ -27,14 +27,14 @@
                         <br/>
                         <c:out value="${reviewList.rating}"/>
                     </td>  
-                    <td><a href="addReview.jsp/delete?id=${reviewList.id}&idRest=${reviewList.restaurant_id}" id="restButton">Delete</a> </td>
+                    <td><a href="addReview.jsp/delete/${reviewList.id}/${reviewList.restaurant_id}" id="restButton">Delete</a> </td>
                 </tr>
             </c:forEach>           
         </table>
         </form>
                     
         <h2>Add yours!</h2> 
-            <form name="addReview" action="reviewList/add" method="post">
+            <form name="addReview" action="addReview.jsp/add/${reviewList.restaurant_id}" method="post">
             <input type="text" name="review" />
             <br/>
             Your score:

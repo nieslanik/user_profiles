@@ -6,62 +6,48 @@
 package cz.muni.fi.pa036.web;
 
 import cz.muni.fi.pa036.dto.ReviewDTO;
-import cz.muni.fi.pa036.nosql.entities.Review;
 import cz.muni.fi.pa036.facade.RestaurantFacade;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author akaren
  */
-@WebServlet(name = "reviewServlet", urlPatterns = {"/reviewList.jsp"})
-public class ReviewServlet extends HttpServlet {
-
-      @Autowired
+@Controller
+@RequestMapping("/reviewList.jsp")
+public class ReviewServlet {
+    
+    @Autowired
     private RestaurantFacade myFacade;
-  
+
+    public RestaurantFacade getMyFacade() {
+        return myFacade;
+    }
+
+    public void setMyFacade(RestaurantFacade myFacade) {
+        this.myFacade = myFacade;
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request) {
        String name = (String) request.getAttribute("name");
        String score = (String) request.getAttribute("score"); 
-         
+       String id = (String) request.getAttribute("id"); 
        List<ReviewDTO> listReview = myFacade.getReviews(name);
-       request.getSession().setAttribute("reviewList", listReview);
+       request.getSession().setAttribute("reviewList", listReview);    
+       request.getSession().setAttribute("averageScore", myFacade.averageScore(name));
+       
       
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-
  
 }

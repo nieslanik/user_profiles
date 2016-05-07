@@ -21,12 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
  * @author akaren
  */
-//@WebServlet(urlPatterns = {"/loginCheck.jsp"})
 @Controller
 @RequestMapping("/loginCheck.jsp")
 public class RestaurantServlet {
@@ -53,23 +53,8 @@ public class RestaurantServlet {
         return loginFacade;
     }
     
-   
-  
-    /*
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        List<RestaurantDTO> list = myFacade.topRestaurants();
-        request.getSession().setAttribute("restList", list);
-           
-      //  System.out.println(list.toString());
-        
-     // RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
-     // rd.forward(request, response);
-        
-    
-    }*/
 
-       
+   @RequestMapping(method = RequestMethod.POST)    
     protected String doPost(HttpServletRequest request){
         
           
@@ -86,8 +71,6 @@ public class RestaurantServlet {
        
       if(loginFacade.login(name, password)) {
            request.getSession().setAttribute("username", name);
-          // RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
-          // rd.forward(request, response);
            
             try {
            List<RestaurantDTO> list = myFacade.topRestaurants();
@@ -98,14 +81,12 @@ public class RestaurantServlet {
            request.getSession().setAttribute("logins", logins);
            
            return "/outline.jsp";
-          // RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
-          // rd.forward(request, response);
+
         } catch (Exception e) {
           //  response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         } 
            return "/outline.jsp";
-       }
-       
+       }       
        else {
             request.setAttribute("errorMessage", "Invalid user or password");
             return "/";
