@@ -12,19 +12,31 @@
         <link href="./style.css" rel="stylesheet" type="text/css">
         <title>Head</title>
         <script>
-            document.onmousemove = function () {
-                   // posli update 
-            };
+            document.onmousemove = checkLogin();
+             
+             setInterval(checkLogin(), 180 * 1000); // 180 * 1000 milsec
+             
+             function checkLogin(){
+                     // posli update 
+                 var time = new Date().getMinutes();
+                 if(sessionStorage.getItem('time') === null){
+                    oldTime = sessionStorage.setItem('time',  time);
+                 }
+                 else {
+                     if(time - oldTime > 3){
+                         var x = document.getElementById("logOutButton");
+                         x.click();
+                     }
+                 }
+              }
         </script>
     </head>
     <body>
         <img src="logo.svg" alt="logo">
         <div id="head"> 
-            <h3>Login user: <% if(session.getAttribute("username")!= null) {
-                session.getAttribute("username").toString();
-                }   %></h3> 
+            <h3>Login user: ${sessionScope.username}</h3> 
              <a href="index.html" id="logButton">Log out</a>
-            <h3>Number of login users: </h3>
+            <h3>Number of login users: ${sessionScope.logins} </h3>
             
         </div>
     </body>

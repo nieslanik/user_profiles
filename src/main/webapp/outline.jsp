@@ -20,11 +20,11 @@
                 <tr>
                     <td><img src="restaurant.jpg" alt="restaurant" width="400px" height="200px"/></td>
                 
-                    <td width="60%"><c:out value="${restaurant.name}"/> <?-- - <c:out value="${restaurant.score}"/>--?>
+                    <td width="60%"><c:out value="${restaurant.name}" id="${restaurant.id}"/> 
                         <br/>
-                        <c:out value="${restaurant.description}"/>
+                        Super cool restaurace nejen pro obyčejné lidi, ale i vegetariány, bezlepkáře  a jiné podivíny. 
                         <br/>
-                         <a href="reviewList.jsp?name=${restaurant.name}&?score=${restaurant.score}" id="restButton">See Reviews!</a> 
+                         <a href="reviewList.jsp?name=${restaurant.name}&?score=${restaurant.score}&?id=${restaurant.id}" id="restButton">See Reviews!</a> 
                     </td>  
                 </tr>
             </c:forEach>           
