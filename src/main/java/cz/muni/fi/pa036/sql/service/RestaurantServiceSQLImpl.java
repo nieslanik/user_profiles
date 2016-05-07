@@ -6,7 +6,7 @@ import cz.muni.fi.pa036.sql.dao.ReviewPersistenceDao;
 import cz.muni.fi.pa036.sql.entities.Restaurant;
 import cz.muni.fi.pa036.sql.entities.Review;
 import java.util.List;
-import java.util.stream.Stream;
+//import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
