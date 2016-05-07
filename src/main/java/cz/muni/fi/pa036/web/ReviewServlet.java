@@ -5,9 +5,12 @@
  */
 package cz.muni.fi.pa036.web;
 
-import cz.muni.fi.pa036.facade.AccountFacade;
+import cz.muni.fi.pa036.dto.ReviewDTO;
+import cz.muni.fi.pa036.nosql.entities.Review;
+import cz.muni.fi.pa036.facade.RestaurantFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,13 +23,13 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author akaren
  */
-@WebServlet(name = "registerServlet", urlPatterns = {"/register.jsp"})
-public class registerServlet extends HttpServlet {
+@WebServlet(name = "reviewServlet", urlPatterns = {"/reviewList.jsp"})
+public class ReviewServlet extends HttpServlet {
 
-     
-    @Autowired
-    private AccountFacade myFacade;
-    
+      @Autowired
+    private RestaurantFacade myFacade;
+  
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -38,7 +41,12 @@ public class registerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+       String name = (String) request.getAttribute("name");
+       String score = (String) request.getAttribute("score"); 
+         
+       List<ReviewDTO> listReview = myFacade.getReviews(name);
+       request.getSession().setAttribute("reviewList", listReview);
+      
     }
 
     /**
@@ -53,21 +61,7 @@ public class registerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       String name = (String) request.getAttribute("username");
-       String password = (String) request.getAttribute("password");
-       Boolean employee =  Boolean.parseBoolean(request.getAttribute("employee").toString());
-       
-       if(myFacade.register(name, password, employee)) {
-           request.getSession().setAttribute("username", name);
-           RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
-           rd.forward(request, response);
-       }
-       
-       else {
-           //TODO error
-       }
     }
 
  
-
 }

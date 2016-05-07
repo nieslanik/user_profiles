@@ -1,9 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : 7.5.2016, 15:50:01
+    Author     : akaren
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,9 +24,15 @@ and open the template in the editor.
                <input type="password" name="password" />
                <br/>
                <input type="submit" value="OK" /> 
-           </form>
-            
+           </form>           
         </div>
+        <%
+            if(null!=request.getAttribute("errorMessage"))
+            {
+                out.println(request.getAttribute("errorMessage"));
+            }
+        %>
+        
         <div id="nologin">
             <h2>You don't have an account?</h2>
              <a href="registration.jsp">Register</a>
@@ -33,5 +41,5 @@ and open the template in the editor.
              <a href="outline.jsp">Enter</a>
         </div>
     </body>
+    
 </html>
-

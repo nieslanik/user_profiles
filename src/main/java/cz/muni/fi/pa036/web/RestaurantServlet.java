@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa036.web;
 
+import cz.muni.fi.pa036.dto.RestaurantDTO;
 import cz.muni.fi.pa036.facade.AccountFacade;
 import cz.muni.fi.pa036.facade.RestaurantFacade;
 import java.io.IOException;
@@ -36,8 +37,15 @@ public class RestaurantServlet extends HttpServlet {
       @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
-           rd.forward(request, response);
+        List<RestaurantDTO> list = myFacade.topRestaurants();
+        request.getSession().setAttribute("restList", list);
+           
+      //  System.out.println(list.toString());
+        
+     // RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
+     // rd.forward(request, response);
+        
+     
     }
 
        @Override
@@ -63,20 +71,28 @@ public class RestaurantServlet extends HttpServlet {
        }
        
        else {
-           //TODO error
+            request.setAttribute("errorMessage", "Invalid user or password");
+            RequestDispatcher rd = request.getRequestDispatcher("/");
+            rd.forward(request, response); 
+         
        }     
      
             
-       /*
+       
         try {
-           List<Restaurant> list = myFacade.topRestaurants();
+           List<RestaurantDTO> list = myFacade.topRestaurants();
+           
            request.getSession().setAttribute("restList", list);
+           
+           int logins =  loginFacade.numberOfLogin();
+           request.getSession().setAttribute("logins", logins);
+           
            RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
            rd.forward(request, response);
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
-         */      
+              
     }
 
  
