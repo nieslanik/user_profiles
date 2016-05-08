@@ -8,6 +8,7 @@ import cz.muni.fi.pa036.nosql.persistence.RestaurantPersistence;
 import cz.muni.fi.pa036.nosql.service.RestaurantService;
 import cz.muni.fi.pa036.sql.dao.RestaurantPersistenceDao;
 import cz.muni.fi.pa036.sql.service.RestaurantServiceSQL;
+import cz.muni.fi.pa036.sql.spring.SpringContext;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import static org.junit.Assert.assertTrue;
  * Created by xnieslan on 07.05.2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:/ApplicationContext.xml")
+@ContextConfiguration(classes = SpringContext.class)
 public class FacadeTest {
 
     @Autowired

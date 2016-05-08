@@ -15,11 +15,13 @@ import java.util.List;
 import cz.muni.fi.pa036.sql.service.AccountServiceSQL;
 import cz.muni.fi.pa036.sql.service.RestaurantServiceSQL;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author xnieslan
  */
+@Service
 public class AccountFacadeImpl implements AccountFacade{
 
     @Autowired

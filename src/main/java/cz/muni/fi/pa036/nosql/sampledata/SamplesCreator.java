@@ -13,11 +13,13 @@ import cz.muni.fi.pa036.nosql.persistence.UserPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Mato
  */
+@Service
 public class SamplesCreator {
     private RestaurantPersistence rp;
     private UserPersistence up;
