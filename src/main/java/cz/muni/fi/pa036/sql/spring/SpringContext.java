@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("cz.muni.fi.pa036.sql.dao")
+@ComponentScan("cz.muni.fi.pa036")
 public class SpringContext {
     /**
      * Creates entityManagerFactory for this configuration
@@ -31,7 +31,7 @@ public class SpringContext {
     @Singleton
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-        factoryBean.setPersistenceUnitName("cz.muni.fi.pa036.sql.dao.test");
+        factoryBean.setPersistenceUnitName("cz.muni.fi.pa036.sql.test");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         factoryBean.setJpaVendorAdapter(vendorAdapter);
         factoryBean.afterPropertiesSet();

@@ -19,11 +19,13 @@ import cz.muni.fi.pa036.sql.service.RestaurantServiceSQL;
 import cz.muni.fi.pa036.sql.service.ReviewServiceSQL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.transform.impl.InterceptFieldCallback;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author xnieslan
  */
+@Service
 public class RestaurantFacadeImpl implements RestaurantFacade{
 
     @Autowired

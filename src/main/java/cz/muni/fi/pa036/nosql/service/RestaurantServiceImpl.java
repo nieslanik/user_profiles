@@ -10,11 +10,13 @@ import cz.muni.fi.pa036.nosql.entities.Review;
 import cz.muni.fi.pa036.nosql.persistence.RestaurantPersistence;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author xnieslan
  */
+@Service
 public class RestaurantServiceImpl implements RestaurantService{
 
     @Autowired

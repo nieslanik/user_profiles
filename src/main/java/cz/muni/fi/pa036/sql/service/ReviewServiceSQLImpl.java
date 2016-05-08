@@ -5,10 +5,12 @@ import cz.muni.fi.pa036.sql.entities.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by xnieslan on 07.05.2016.
  */
+@Service
 public class ReviewServiceSQLImpl implements ReviewServiceSQL {
 
     @Autowired

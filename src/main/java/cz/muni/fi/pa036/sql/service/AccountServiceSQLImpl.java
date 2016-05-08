@@ -4,10 +4,12 @@ import cz.muni.fi.pa036.sql.dao.AccountPersistenceDao;
 import cz.muni.fi.pa036.sql.entities.Account;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by xnieslan on 06.05.2016.
  */
+@Service
 public class AccountServiceSQLImpl implements AccountServiceSQL {
     
     @Autowired

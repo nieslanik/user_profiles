@@ -1,12 +1,12 @@
-package cz.muni.fi.pa036.sql.dao.test;
+package cz.muni.fi.pa036.sql.test;
 
 
  
 import static org.junit.Assert.*;
 import org.junit.Test;
  
-import cz.muni.fi.pa036.sql.dao.RestaurantPersistenceDao;
-import cz.muni.fi.pa036.sql.entities.Restaurant;
+import cz.muni.fi.pa036.sql.dao.AccountPersistenceDao;
+import cz.muni.fi.pa036.sql.entities.Account;
 import cz.muni.fi.pa036.sql.spring.SpringContext;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,70 +24,72 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringContext.class)
 @Transactional
- public class RestaurantPersistenceDaoTest {
+ public class AccountPersistenceDaoTest {
      @PersistenceContext
      private EntityManager em;
      
      
      @Inject
-     private RestaurantPersistenceDao rp;
+     private AccountPersistenceDao ap;
      
-     private Restaurant rest;
+     private Account acc;
      @Before
       public void prepareData(){
-         rest= new Restaurant();
-         rest.setName("Hotel California");
-         rp.create(rest);
+         acc= new Account();
+         acc.setUsername("Freddie Mercuri");
+         acc.setPassword("THESHOWMUSTGOON!");
+         ap.create(acc);
       }
      
      @Test
      @Transactional
      public void testCreate() {
-         Restaurant rest1 = new Restaurant();
-         rest1.setName("Burger King");
-         rp.create(rest1);
-         assertNotNull(rest1.getId());
+         Account acc1 = new Account();
+         acc1.setUsername("Alojz Novak");
+         acc1.setPassword("THISISPASSWORD!");
+         ap.create(acc1);
+         assertNotNull(acc1.getId());
      }
  
      @Test
      @Transactional
      public void testUpdate() {
-         rest.setName("changed");
-         rp.update(rest);
-         assertEquals("changed", rp.findById(rest.getId()).getName());
+         acc.setUsername("changed");
+         ap.update(acc);
+         assertEquals("changed", ap.findById(acc.getId()).getUsername());
      }
  
      @Test
      public void testFindById() {
-         assertSame(rest, rp.findById(rest.getId()));
-         assertNull(rp.findById(999));
+         assertSame(acc, ap.findById(acc.getId()));
+         assertNull(ap.findById(999));
      }
  
      @Test
      public void testFindByName(){
-         assertEquals(rest, rp.findByName(rest.getName()));
-         assertNull(rp.findByName("nonexistent"));
+         assertEquals(acc, ap.findByName(acc.getUsername()));
+         assertNull(ap.findByName("nonexistent"));
      }
  
      @Test
      public void testFindAll() {
-         Set<Restaurant> expected = new HashSet<>();
-         expected.add(rest);
-         Set<Restaurant> actual = new HashSet<>(rp.findAll());
+         Set<Account> expected = new HashSet<>();
+         expected.add(acc);
+         Set<Account> actual = new HashSet<>(ap.findAll());
          assertEquals(expected, actual);
      }
  
      @Test
      public void testDelete() {
-         rp.delete(rest);
-         assertNull(rp.findById(rest.getId()));
+         ap.delete(acc);
+         assertNull(ap.findById(acc.getId()));
      }
  
      @Test(expected = DataAccessException.class)
      public void testDeleteNonexistent() {
-         Restaurant newAcc = new Restaurant();
+         Account newAcc = new Account();
          newAcc.setId(100);
-         newAcc.setName("evil");
-         rp.delete(newAcc);
+         newAcc.setUsername("evil");
+         ap.delete(newAcc);
      }
  }

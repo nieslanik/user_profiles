@@ -1,4 +1,4 @@
-package cz.muni.fi.pa036.sql.dao.test;
+package cz.muni.fi.pa036.sql.test;
 
 
  

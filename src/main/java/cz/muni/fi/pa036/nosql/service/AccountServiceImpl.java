@@ -9,12 +9,15 @@ import cz.muni.fi.pa036.nosql.entities.Account;
 import cz.muni.fi.pa036.nosql.persistence.UserPersistence;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 
 /**
  *
  * @author xnieslan
  */
+@Service
 public class AccountServiceImpl implements AccountService{
 
     @Autowired

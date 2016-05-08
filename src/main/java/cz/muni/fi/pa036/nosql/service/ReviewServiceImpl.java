@@ -5,10 +5,13 @@
  */
 package cz.muni.fi.pa036.nosql.service;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author xnieslan
  */
+@Service
 public class ReviewServiceImpl {
     
 }

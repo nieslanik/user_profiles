@@ -18,17 +18,19 @@ import java.util.Arrays;
 import java.util.List;
 import org.bson.types.ObjectId;
 import org.mongojack.*;
+import org.springframework.stereotype.Service;
 
 
 /**
  *
  * @author Mato
  */
+@Service
 public class RestaurantPersistence
 {
-    private MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
+    final private MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
     //private MongoDatabase database = mongoClient.getDatabase("test");
-    private DB database = mongoClient.getDB("test");
+    final private DB database = mongoClient.getDB("test");
 
     public Restaurant create(Restaurant r)
     {

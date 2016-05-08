@@ -8,10 +8,12 @@ import cz.muni.fi.pa036.sql.entities.Review;
 import java.util.List;
 //import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by xnieslan on 06.05.2016.
  */
+@Service
 public class RestaurantServiceSQLImpl implements RestaurantServiceSQL {
     
     @Autowired

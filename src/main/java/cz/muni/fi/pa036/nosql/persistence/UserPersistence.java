@@ -12,16 +12,18 @@ import java.util.List;
 import org.mongojack.DBQuery;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Mato
  */
+@Service
 public class UserPersistence
 {
-    private MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
+    final private MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
     //private MongoDatabase database = mongoClient.getDatabase("test");
-    private DB database = mongoClient.getDB("test");
+    final private DB database = mongoClient.getDB("test");
     public Account create(Account u)
     {
         JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
