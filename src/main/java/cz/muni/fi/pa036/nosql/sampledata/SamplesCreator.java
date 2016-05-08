@@ -27,6 +27,17 @@ public class SamplesCreator {
         rp = new RestaurantPersistence();
         up = new UserPersistence();
     }
+    
+    public RestaurantPersistence getRestaurantPersistence()
+    {
+        return rp;
+    }
+    
+    public UserPersistence getUserPersistence()
+    {
+        return up;
+    }
+    
     public List<Account> createAccounts(int n)
     {
         List<Account> accounts = new ArrayList<>();
@@ -45,7 +56,7 @@ public class SamplesCreator {
     
     public List<Restaurant> createRestaurants(int n)
     {
-        List<Restaurant> restaurants = new ArrayList<Restaurant>();
+        List<Restaurant> restaurants = new ArrayList<>();
         for(int i = 0; i < n; i++)
         {
             Restaurant restaurant = new Restaurant();
@@ -56,8 +67,22 @@ public class SamplesCreator {
         return restaurants;
     }
     
-    public List<Review> createReviewsForRestaurant(Restaurant r, int n)
+    public List<Review> createReviewsForRestaurant(String restaurantId, List<Account> users, int n)
     {
-        return new ArrayList<Review>();
+        List<Review> reviews = new ArrayList<>();
+        
+        for(int i = 0; i < n; i++)
+        {
+            Review review = new Review();
+            Random r = new Random();
+            review.setRating(r.nextInt(5) + 1);//assuming we use 5 star rating
+            review.setRestaurant_id(restaurantId);
+            String userId = users.get(r.nextInt(users.size())).getId();
+            review.setUserId(userId);
+            review.setText("Text" + r.nextInt());
+            reviews.add(rp.addReview(restaurantId, review, userId));
+        }
+        
+        return reviews;
     }
 }
