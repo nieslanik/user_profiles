@@ -23,7 +23,7 @@
                Password:
                <input type="password" name="password" />
                <br/>
-               <input type="submit" value="OK" /> 
+               <input type="submit" value="OK" />
            </form>           
         </div>
         <%

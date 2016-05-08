@@ -19,25 +19,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/register.jsp")
-//@WebServlet(name = "registerServlet", urlPatterns = {"/register.jsp"})
 public class RegisterServlet  {
-     
+
     private  AccountFacade myFacade;
 
     @Autowired
     public RegisterServlet(AccountFacade myFacade) {
         this.myFacade = myFacade;
     }
-    
+
     public AccountFacade getMyFacade() {
         return myFacade;
     }
 
     public void setMyFacade(AccountFacade myFacade) {
         this.myFacade = myFacade;
-    }  
-    
-  
+    }
+
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -45,31 +44,26 @@ public class RegisterServlet  {
      */
     @RequestMapping(method = RequestMethod.POST, params={"username"})
     protected String doPost(HttpServletRequest request) {
-        
-        try{ 
-            String name = (String) request.getAttribute("username"); 
+
+        try{
+            String name = (String) request.getAttribute("username");
             String password = (String) request.getAttribute("password");
             Boolean employee =  Boolean.parseBoolean(request.getAttribute("employee").toString());
 
             if(myFacade.register(name, password, employee)) {
                 request.getSession().setAttribute("username", name);
-               // RequestDispatcher rd=request.getRequestDispatcher("/outline.jsp");
                 return "/outline.jsp";
             }
             else {
-               request.setAttribute("errorMessage", "Invalid username or password");
-            //   RequestDispatcher rd = request.getRequestDispatcher("/");
-            //   rd.forward(request, response); 
-               return "/";
+                request.setAttribute("errorMessage", "Invalid username or password");
+                return "/";
             }
         }
         catch(Exception e){
-            //response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
-           
         }
         return "";
     }
 
- 
+
 
 }

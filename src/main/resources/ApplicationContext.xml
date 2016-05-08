@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd"
-    xmlns:context="http://www.springframework.org/schema/context">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <context:component-scan base-package="cz.muni.fi.pa036.web"/>
 
     <!-- ...............................Persistence................................................. -->
     <!-- NoSQL -->
@@ -23,7 +19,7 @@
     <!-- ...............................Service ................................................. -->
     <!-- NoSQL -->
     <bean id="restaurantService" class="cz.muni.fi.pa036.nosql.service.RestaurantServiceImpl">
-       <property name="restaurantPersistence" ref="restaurantPersistence" />
+        <property name="restaurantPersistence" ref="restaurantPersistence" />
     </bean>
     <bean id="accountService" class="cz.muni.fi.pa036.nosql.service.AccountServiceImpl" >
         <property name="userPersistence" ref="userPersistence" />
@@ -63,11 +59,11 @@
         <property name="accountServiceSQL" ref="accountServiceSQL" />
 
     </bean>
-    
-    <!-- ................................web.................................................... 
+
+    <!-- ................................web....................................................-->
     <bean id="registerServlet" class="cz.muni.fi.pa036.web.RegisterServlet">
         <property name="myFacade" ref="accountFacade"/>
     </bean>
-    -->
+
 
 </beans>

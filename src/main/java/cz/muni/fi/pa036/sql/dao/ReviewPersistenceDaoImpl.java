@@ -19,7 +19,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository 
 public class ReviewPersistenceDaoImpl implements ReviewPersistenceDao{
-    @PersistenceContext
+
+
     private EntityManager em;
     
     @Override

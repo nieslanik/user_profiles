@@ -19,7 +19,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class RestaurantPersistenceDaoImpl implements RestaurantPersistenceDao {
-    @PersistenceContext
+
+
     private EntityManager em;
     
     @Override

@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AccountPersistenceDaoImpl implements AccountPersistenceDao{
     
-    @PersistenceContext
+
     private EntityManager em;
 
     public EntityManager getEm() {
