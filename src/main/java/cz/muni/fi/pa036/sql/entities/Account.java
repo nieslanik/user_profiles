@@ -27,9 +27,9 @@ public class Account {
     @Column
     private String password;
     @Column
-    private char[] ui_lang;
+    private String ui_lang;
     @Column
-    private char[] acces_rights;
+    private String acces_rights;
     @Column
     private String ui_settings;
     @Column
@@ -57,11 +57,11 @@ public class Account {
         return password;
     }
 
-    public char[] getUi_lang() {
+    public String getUi_lang() {
         return ui_lang;
     }
 
-    public char[] getAcces_rights() {
+    public String getAcces_rights() {
         return acces_rights;
     }
 
@@ -101,11 +101,11 @@ public class Account {
         this.password = password;
     }
 
-    public void setUi_lang(char[] ui_lang) {
+    public void setUi_lang(String ui_lang) {
         this.ui_lang = ui_lang;
     }
 
-    public void setAcces_rights(char[] acces_rights) {
+    public void setAcces_rights(String acces_rights) {
         this.acces_rights = acces_rights;
     }
 
