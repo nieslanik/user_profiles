@@ -32,5 +32,7 @@ public interface RestaurantPersistenceDao {
     
     double getRating(int restaurantId);
     
+    List<Restaurant> getTop10();
+    
     
 }

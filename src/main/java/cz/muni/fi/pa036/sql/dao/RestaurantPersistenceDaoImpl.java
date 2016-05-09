@@ -60,12 +60,19 @@ public class RestaurantPersistenceDaoImpl implements RestaurantPersistenceDao {
     
     @Override
     public double getRating(int restaurantId){
-        final ReviewPersistenceDao rep= new ReviewPersistenceDaoImpl();
-        List<Review>list = rep.findByRestaurantId(restaurantId);
-        Long rate=0L;
-        for(int i=0;i<list.size();i++){
-            rate+=new Long(list.get(i).getRestaurant_id());
-        }
-        return rate/new  Long(list.size());
+        //  SELECT  AVG(rating) from review JOIN restaurant ON review.restaurant_id = restaurant.id WHERE restaurant.id LIKE 'a';
+        
+        return em.createQuery("SELECT  AVG(rating) from review JOIN restaurant ON review.restaurant_id = restaurant.id WHERE restaurant.id = :restaurantId", Restaurant.class).setParameter("restaurantId", restaurantId).getFirstResult();
+    }
+    
+    
+     @Override
+     public List<Restaurant> getTop10()
+    {
+    // top to review dle rating SELECT restaurant_id from review GROUP BY restaurant_id ORDER BY AVG(rating) LIMIT 10
+        //napojení na restaurace  SELECT id, name from restaurant JOIN (SELECT restaurant_id from review GROUP BY restaurant_id ORDER BY AVG(rating) LIMIT 10) a ON a.restaurant_id = restaurant.id;
+    
+    return em.createQuery("SELECT id, name from restaurant JOIN (SELECT restaurant_id from review GROUP BY restaurant_id ORDER BY AVG(rating) LIMIT 10) a ON a.restaurant_id = restaurant.id", Restaurant.class).getResultList();
+   
     }
 }
