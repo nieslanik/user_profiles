@@ -5,11 +5,13 @@
  */
 package cz.muni.fi.pa036.nosql.persistence;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import cz.muni.fi.pa036.nosql.entities.Account;
 import java.util.List;
 import org.mongojack.DBQuery;
+import org.mongojack.DBUpdate;
 import org.mongojack.JacksonDBCollection;
 import org.mongojack.WriteResult;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,13 @@ public class UserPersistence
         coll.updateById(u.getId(), u);
     }
 
+    /*public void changeLogOnStatus(Account u, int status)
+    {
+        JacksonDBCollection<Account, String> coll = JacksonDBCollection.wrap(database.getCollection("Users"), Account.class,
+                String.class);
+        //BasicDBObject o = new BasicDBObject("$set", new BasicDBObject("logon_status", status));
+        coll.updateById(u.getId(), DBUpdate.set("logon_status", status));
+    }*/
 
     public List<Account> findAll()
     {

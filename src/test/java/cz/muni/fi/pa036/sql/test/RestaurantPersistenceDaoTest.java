@@ -2,13 +2,16 @@ package cz.muni.fi.pa036.sql.test;
 
 
  
+import cz.muni.fi.pa036.sql.entities.Review;
 import static org.junit.Assert.*;
 import org.junit.Test;
  
 import cz.muni.fi.pa036.sql.dao.RestaurantPersistenceDao;
+import cz.muni.fi.pa036.sql.dao.ReviewPersistenceDao;
 import cz.muni.fi.pa036.sql.entities.Restaurant;
 import cz.muni.fi.pa036.sql.spring.SpringContext;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -31,6 +34,8 @@ import org.springframework.transaction.annotation.Transactional;
      
      @Inject
      private RestaurantPersistenceDao rp;
+     @Inject
+     private ReviewPersistenceDao reviewP;
      
      private Restaurant rest;
      @Before
@@ -57,6 +62,21 @@ import org.springframework.transaction.annotation.Transactional;
          assertEquals("changed", rp.findById(rest.getId()).getName());
      }
  
+     /*@Test
+     @Transactional
+     public void testTop10()
+     {
+         int restId = rest.getId();
+         Review r = new Review();
+         r.setRating(3);
+         r.setRestaurant_id(restId);
+         reviewP.create(r);
+         //System.out.println("Rating: " + rp.getRating(restId));
+         List<Restaurant> top = rp.getTop10();
+         assertEquals(top.get(0), rest);
+         
+     }*/
+     
      @Test
      public void testFindById() {
          assertSame(rest, rp.findById(rest.getId()));

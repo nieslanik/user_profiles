@@ -68,6 +68,7 @@ public class Test {
             Account a = userPersistance.findById(accounts.get(index).getId());
             a.setLogon_status(a.getLogon_status() ^ 1);
             userPersistance.update(a);
+            //userPersistance.changeLogOnStatus(a, index);
             i++;
         }
         Date end = new Date();
