@@ -14,11 +14,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import org.junit.BeforeClass;
+import org.junit.Test;
 /**
  *
  * @author Mato
  */
-public class Test {
+public class NoSQLPresentationTest {
     
     private SamplesCreator creator;
     private UserPersistence userPersistance;
@@ -28,7 +29,7 @@ public class Test {
     private List<Restaurant> restaurants;
     private List<Review> reviews;*/
             
-    public Test()
+    public NoSQLPresentationTest()
     {
         creator = new SamplesCreator();
         userPersistance = new UserPersistence();
@@ -75,6 +76,26 @@ public class Test {
         
         System.out.println("StatusChange: " + (end.getTime() - start.getTime()) + " ms.");
         
+    }
+    
+    @org.junit.Test
+    public void addUsers()
+    {
+        System.out.println("AddNoSQL");
+        Date start = new Date();
+        List<Account> accounts = creator.createAccounts(1000);
+        Date end = new Date();
+        System.out.println("AddUsers: " + (end.getTime() - start.getTime()) + " ms.");
+    }
+    @Test
+    public void getUsers()
+    {
+        System.out.println("GetUsers");
+        List<Account> accounts  = creator.createAccounts(100000);
+        Date start = new Date();
+        List<Account> gotAccounts = userPersistance.findAll();
+        Date end = new Date();
+        System.out.println("GetUsers: " + (end.getTime() - start.getTime()) + "ms.");
     }
     
 }

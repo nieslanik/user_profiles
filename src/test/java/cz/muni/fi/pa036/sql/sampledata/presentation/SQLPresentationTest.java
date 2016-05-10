@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -30,7 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringContext.class)
 @Transactional
-public class Test {
+public class SQLPresentationTest {
     
     
     
@@ -83,7 +84,7 @@ public class Test {
     {
         return userPersistence;
     }
-    public Test()
+    public SQLPresentationTest()
     {
         creator = new SamplesCreatorSQL();
     }
@@ -128,5 +129,25 @@ public class Test {
         
         System.out.println("StatusChange: " + (end.getTime() - start.getTime()) + " ms.");
         
+    }
+    @org.junit.Test
+    public void addUsers()
+    {
+        System.out.println("AddSQL");
+        Date start = new Date();
+        List<Account> accounts = creator.createAccounts(1000);
+        Date end = new Date();
+        System.out.println("AddUsers: " + (end.getTime() - start.getTime()) + " ms.");
+    }
+    
+    @Test
+    public void getUsers()
+    {
+        System.out.println("GetUsers");
+        List<Account> accounts  = creator.createAccounts(100000);
+        Date start = new Date();
+        List<Account> gotAccounts = userPersistence.findAll();
+        Date end = new Date();
+        System.out.println("GetUsers: " + (end.getTime() - start.getTime()) + "ms.");
     }
 }
