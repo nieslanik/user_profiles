@@ -84,6 +84,7 @@ public class SQLPresentationTest {
     {
         return userPersistence;
     }
+    
     public SQLPresentationTest()
     {
         creator = new SamplesCreatorSQL();
@@ -95,7 +96,7 @@ public class SQLPresentationTest {
         
     }
     
-    @org.junit.Test
+    @Test
     @Transactional
     public void statusChangeSQL()
     {
@@ -130,7 +131,7 @@ public class SQLPresentationTest {
         System.out.println("StatusChange: " + (end.getTime() - start.getTime()) + " ms.");
         
     }
-    @org.junit.Test
+    @Test
     public void addUsers()
     {
         System.out.println("AddSQL");

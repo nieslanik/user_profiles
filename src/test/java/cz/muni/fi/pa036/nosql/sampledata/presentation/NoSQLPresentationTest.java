@@ -42,11 +42,11 @@ public class NoSQLPresentationTest {
         
     }
     
-    @org.junit.Test
+    @Test
     public void statusChangeNoSQL()
     {
         System.out.println("StatusChangeNoSQL");
-        List<Account> accounts = creator.createAccounts(1000);
+        List<Account> accounts = creator.createAccounts(100000);
         for(int i = 0; i < accounts.size(); i++)
         {
             accounts.get(i).setLogon_status(1);
@@ -78,7 +78,7 @@ public class NoSQLPresentationTest {
         
     }
     
-    @org.junit.Test
+    @Test
     public void addUsers()
     {
         System.out.println("AddNoSQL");
@@ -91,7 +91,7 @@ public class NoSQLPresentationTest {
     public void getUsers()
     {
         System.out.println("GetUsers");
-        List<Account> accounts  = creator.createAccounts(100000);
+        List<Account> accounts  = creator.createAccounts(1000);
         Date start = new Date();
         List<Account> gotAccounts = userPersistance.findAll();
         Date end = new Date();

@@ -7,6 +7,7 @@ package cz.muni.fi.pa036.nosql.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.sql.Timestamp;
+import java.util.Date;
 import org.mongojack.Id;
 import org.mongojack.MongoCollection;
 import org.mongojack.ObjectId;
@@ -39,7 +40,7 @@ public class Account {
 
     private boolean employee_acount;
 
-    private Timestamp logon_last_timestamp;
+    private Date logon_last_timestamp;
 
     private int logon_status;
 
@@ -88,7 +89,7 @@ public class Account {
         return employee_acount;
     }
 
-    public Timestamp getLogon_last_timestamp() {
+    public Date getLogon_last_timestamp() {
         return logon_last_timestamp;
     }
 
@@ -129,7 +130,7 @@ public class Account {
         this.employee_acount = employee_acount;
     }
 
-    public void setLogon_last_timestamp(Timestamp logon_last_timestamp) {
+    public void setLogon_last_timestamp(Date logon_last_timestamp) {
         this.logon_last_timestamp = logon_last_timestamp;
     }
 
