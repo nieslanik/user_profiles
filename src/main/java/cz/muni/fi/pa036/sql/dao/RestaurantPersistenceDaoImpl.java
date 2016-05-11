@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -59,20 +60,17 @@ public class RestaurantPersistenceDaoImpl implements RestaurantPersistenceDao {
     }
     
     @Override
-    public double getRating(int restaurantId){
-        //  SELECT  AVG(rating) from review JOIN restaurant ON review.restaurant_id = restaurant.id WHERE restaurant.id LIKE 'a';
-        
-        return em.createQuery("SELECT  AVG(rating) from review JOIN restaurant ON review.restaurant_id = restaurant.id WHERE restaurant.id = :restaurantId", Restaurant.class).setParameter("restaurantId", restaurantId).getFirstResult();
+    public double getRating(int restaurantId){  
+       Object l = em.createQuery("SELECT  AVG(r.rating) FROM Review r WHERE r.restaurant_id = :restaurantId").setParameter("restaurantId", restaurantId).getSingleResult();
+       return Double.parseDouble(l.toString());
     }
     
     
      @Override
      public List<Restaurant> getTop10()
     {
-    // top to review dle rating SELECT restaurant_id from review GROUP BY restaurant_id ORDER BY AVG(rating) LIMIT 10
-        //napojení na restaurace  SELECT id, name from restaurant JOIN (SELECT restaurant_id from review GROUP BY restaurant_id ORDER BY AVG(rating) LIMIT 10) a ON a.restaurant_id = restaurant.id;
-    
-    return em.createQuery("SELECT id, name from restaurant JOIN (SELECT restaurant_id from review GROUP BY restaurant_id ORDER BY AVG(rating) LIMIT 10) a ON a.restaurant_id = restaurant.id", Restaurant.class).getResultList();
+   List<Restaurant> l = em.createQuery(" SELECT r FROM Restaurant r WHERE EXISTS ( SELECT e.restaurant_id FROM Review e GROUP BY e.restaurant_id ORDER BY AVG(e.rating) DESC)").setMaxResults(10).getResultList();
    
+    return l;
     }
 }
