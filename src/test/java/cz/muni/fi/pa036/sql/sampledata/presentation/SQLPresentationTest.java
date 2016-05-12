@@ -10,6 +10,7 @@ import cz.muni.fi.pa036.sql.dao.AccountPersistenceDaoImpl;
 import cz.muni.fi.pa036.sql.dao.RestaurantPersistenceDao;
 import cz.muni.fi.pa036.sql.dao.ReviewPersistenceDao;
 import cz.muni.fi.pa036.sql.entities.Account;
+import cz.muni.fi.pa036.sql.entities.Restaurant;
 import cz.muni.fi.pa036.sql.spring.SpringContext;
 import java.util.Date;
 import java.util.List;
@@ -145,10 +146,54 @@ public class SQLPresentationTest {
     public void getUsers()
     {
         System.out.println("GetUsers");
-        List<Account> accounts  = creator.createAccounts(100000);
+        List<Account> accounts  = creator.createAccounts(1000);
         Date start = new Date();
         List<Account> gotAccounts = userPersistence.findAll();
         Date end = new Date();
         System.out.println("GetUsers: " + (end.getTime() - start.getTime()) + "ms.");
+    }
+    
+
+    @Test
+    public void averageRating()
+    {
+        System.out.println("AverageRating");
+        List<Account> users = creator.createAccounts(1000);
+        List<Restaurant> restaurants = creator.createRestaurants(1);
+        for(Restaurant r : restaurants)
+        {
+            creator.createReviewsForRestaurant(r.getId(), users, 1000);
+        }
+        
+        Random r = new Random();
+        
+        
+        int restaurantId = restaurants.get(r.nextInt(restaurants.size())).getId();
+        Date start = new Date();
+        restaurantPersistence.getRating(restaurantId);
+        Date end = new Date();
+        System.out.println("GetAverage: " + (end.getTime() - start.getTime()) + " ms.");
+    }
+    
+    @Test
+    public void getTop10()
+    {
+        System.out.println("GetTop10");
+        
+        List<Account> users = creator.createAccounts(1000);
+        List<Restaurant> restaurants = creator.createRestaurants(100);
+        for(Restaurant r : restaurants)
+        {
+            creator.createReviewsForRestaurant(r.getId(), users, 100);
+        }
+        
+        Random r = new Random();
+        
+        Date start = new Date();
+        restaurantPersistence.getTop10();
+        Date end = new Date();
+        
+        System.out.println("GetTop10: " + (end.getTime() - start.getTime()) + " ms.");
+        
     }
 }

@@ -22,8 +22,8 @@ import org.junit.Test;
 public class NoSQLPresentationTest {
     
     private SamplesCreator creator;
-    private UserPersistence userPersistance;
-    private RestaurantPersistence restaurantPersistance;
+    private UserPersistence userPersistence;
+    private RestaurantPersistence restaurantPersistence;
     
     /*private List<Account> accounts;
     private List<Restaurant> restaurants;
@@ -32,8 +32,8 @@ public class NoSQLPresentationTest {
     public NoSQLPresentationTest()
     {
         creator = new SamplesCreator();
-        userPersistance = new UserPersistence();
-        restaurantPersistance = new RestaurantPersistence();
+        userPersistence = new UserPersistence();
+        restaurantPersistence = new RestaurantPersistence();
     }
     
     @BeforeClass
@@ -46,7 +46,7 @@ public class NoSQLPresentationTest {
     public void statusChangeNoSQL()
     {
         System.out.println("StatusChangeNoSQL");
-        List<Account> accounts = creator.createAccounts(100000);
+        List<Account> accounts = creator.createAccounts(1000);
         for(int i = 0; i < accounts.size(); i++)
         {
             accounts.get(i).setLogon_status(1);
@@ -66,16 +66,16 @@ public class NoSQLPresentationTest {
         while(i < accounts.size()/2)
         {
             int index = r.nextInt(accounts.size());
-            Account a = userPersistance.findById(accounts.get(index).getId());
+            Account a = userPersistence.findById(accounts.get(index).getId());
             a.setLogon_status(a.getLogon_status() ^ 1);
-            userPersistance.update(a);
+            userPersistence.update(a);
             //userPersistance.changeLogOnStatus(a, index);
             i++;
         }
         Date end = new Date();
         
         System.out.println("StatusChange: " + (end.getTime() - start.getTime()) + " ms.");
-        
+        userPersistence.RemoveAll();
     }
     
     @Test
@@ -86,6 +86,7 @@ public class NoSQLPresentationTest {
         List<Account> accounts = creator.createAccounts(1000);
         Date end = new Date();
         System.out.println("AddUsers: " + (end.getTime() - start.getTime()) + " ms.");
+        userPersistence.RemoveAll();
     }
     @Test
     public void getUsers()
@@ -93,9 +94,55 @@ public class NoSQLPresentationTest {
         System.out.println("GetUsers");
         List<Account> accounts  = creator.createAccounts(1000);
         Date start = new Date();
-        List<Account> gotAccounts = userPersistance.findAll();
+        List<Account> gotAccounts = userPersistence.findAll();
         Date end = new Date();
         System.out.println("GetUsers: " + (end.getTime() - start.getTime()) + "ms.");
+        userPersistence.RemoveAll();
+    }
+    
+    @Test
+    public void averageRating()
+    {
+        System.out.println("AverageRating");
+        List<Account> users = creator.createAccounts(1000);
+        List<Restaurant> restaurants = creator.createRestaurants(1);
+        for(Restaurant r : restaurants)
+        {
+            creator.createReviewsForRestaurant(r.getId(), users, 1000);
+        }
+        
+        Random r = new Random();
+        
+        
+        String restaurantId = restaurants.get(r.nextInt(restaurants.size())).getId();
+        Date start = new Date();
+        restaurantPersistence.getRating(restaurantId);
+        Date end = new Date();
+        System.out.println("GetAverage: " + (end.getTime() - start.getTime()) + " ms.");
+        restaurantPersistence.RemoveAll();
+    }
+    
+    @Test
+    public void getTop10()
+    {
+        System.out.println("GetTop10");
+        
+        List<Account> users = creator.createAccounts(1000);
+        List<Restaurant> restaurants = creator.createRestaurants(100);
+        for(Restaurant r : restaurants)
+        {
+            creator.createReviewsForRestaurant(r.getId(), users, 100);
+        }
+        
+        Random r = new Random();
+        
+        Date start = new Date();
+        restaurantPersistence.getTop10();
+        Date end = new Date();
+        
+        System.out.println("GetTop10: " + (end.getTime() - start.getTime()) + " ms.");
+        restaurantPersistence.RemoveAll();
+        
     }
     
 }
